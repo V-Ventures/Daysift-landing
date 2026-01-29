@@ -1291,30 +1291,6 @@
 
     .ai-question-text {
       flex: 1;
-      overflow: hidden;
-    }
-
-    .typing-text {
-      display: inline-block;
-      overflow: hidden;
-      white-space: nowrap;
-      border-right: 2px solid var(--foreground);
-      animation: typing 2s steps(30) infinite, blink 0.8s step-end infinite;
-      width: 0;
-    }
-
-    .feature-card:hover .typing-text {
-      animation: typing 2s steps(30) forwards, blink 0.8s step-end infinite;
-      width: 100%;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blink {
-      50% { border-color: transparent; }
     }
 
     .ask-ai-badge {
@@ -1327,15 +1303,7 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      opacity: 0;
-      transform: scale(0.9);
-      transition: all 0.3s ease;
       flex-shrink: 0;
-    }
-
-    .feature-card:hover .ask-ai-badge {
-      opacity: 1;
-      transform: scale(1);
     }
 
     .ask-ai-badge svg {
@@ -2458,9 +2426,7 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
                 </svg>
-                <div class="ai-question-text">
-                  <span class="typing-text">How do I center a div in CSS?</span>
-                </div>
+                <div class="ai-question-text">How do I center a div in CSS?</div>
                 <div class="ask-ai-badge">
                   Ask AI
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
