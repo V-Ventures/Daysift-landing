@@ -1321,14 +1321,46 @@
       border-radius: 12px;
       padding: 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      opacity: 0;
-      transform: translateY(-8px);
-      transition: all 0.3s ease 0.2s;
+      position: relative;
     }
 
-    .feature-card:hover .ai-answer {
+    .ai-answer-skeleton {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      transition: opacity 0.3s ease;
+    }
+
+    .skeleton-line {
+      height: 10px;
+      background: linear-gradient(90deg, var(--muted-bg) 25%, #e8e8e8 50%, var(--muted-bg) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+      margin-bottom: 10px;
+    }
+
+    .skeleton-line:nth-child(1) { width: 40%; }
+    .skeleton-line:nth-child(2) { width: 100%; }
+    .skeleton-line:nth-child(3) { width: 80%; }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .ai-answer-content {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover .ai-answer-skeleton {
+      opacity: 0;
+    }
+
+    .feature-card:hover .ai-answer-content {
       opacity: 1;
-      transform: translateY(0);
     }
 
     .ai-answer-label {
@@ -2451,14 +2483,21 @@
                 </div>
               </div>
               <div class="ai-answer">
-                <div class="ai-answer-label">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-                  </svg>
-                  AI Answer
+                <div class="ai-answer-skeleton">
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
                 </div>
-                <div class="ai-answer-text">
-                  Use <code>display: flex</code> with <code>justify-content: center</code> and <code>align-items: center</code> on the parent.
+                <div class="ai-answer-content">
+                  <div class="ai-answer-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                    </svg>
+                    AI Answer
+                  </div>
+                  <div class="ai-answer-text">
+                    Use <code>display: flex</code> with <code>justify-content: center</code> and <code>align-items: center</code> on the parent.
+                  </div>
                 </div>
               </div>
             </div>
