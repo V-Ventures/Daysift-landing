@@ -1444,19 +1444,7 @@
     }
 
     .note-text-line {
-      opacity: 0;
-      transform: translateY(8px);
-      transition: all 0.3s ease;
       margin-bottom: 8px;
-    }
-
-    .note-text-line:nth-child(1) { transition-delay: 0s; }
-    .note-text-line:nth-child(2) { transition-delay: 0.1s; }
-    .note-text-line:nth-child(3) { transition-delay: 0.2s; }
-
-    .feature-card:hover .note-text-line {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .note-text-line strong {
@@ -1465,6 +1453,17 @@
 
     .note-text-line .bullet {
       color: var(--accent);
+    }
+
+    .note-text-line.note-text-hover {
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .note-text-line.note-text-hover {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .note-text-line.muted {
@@ -2527,6 +2526,7 @@
                   <div class="note-text-line"><strong>Product launch checklist</strong></div>
                   <div class="note-text-line"><span class="bullet">•</span> Finalize pricing with Sarah</div>
                   <div class="note-text-line"><span class="bullet">•</span> Send assets to marketing</div>
+                  <div class="note-text-line note-text-hover"><span class="bullet">•</span> Schedule launch tweet</div>
                 </div>
               </div>
             </div>
