@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service - Daysift</title>
+  <meta name="description" content="Daysift Terms of Service. Simple, fair terms for using our browser extension.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #FAFAF9;
+      --foreground: #1C1917;
+      --muted: #78716C;
+      --muted-light: #A8A29E;
+      --muted-bg: #F5F5F4;
+      --surface-alt: #E9E7E2;
+      --border: #E7E5E4;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      height: 28px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Content */
+    .policy {
+      padding: 80px 0;
+    }
+
+    .policy h1 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .policy .updated {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .policy-summary {
+      background: var(--muted-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+    }
+
+    .policy-summary h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .policy-summary p {
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .policy-summary p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy-summary ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .policy-summary li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .policy-summary li::before {
+      content: "→";
+      color: var(--muted);
+    }
+
+    .policy section {
+      margin-bottom: 40px;
+    }
+
+    .policy h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .policy h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+
+    .policy p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .policy ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+
+    .policy ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .policy ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--muted-light);
+    }
+
+    .policy a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy a:hover {
+      text-decoration: underline;
+    }
+
+    .policy strong {
+      color: var(--foreground);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .container {
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-left img {
+      height: 24px;
+      opacity: 0.6;
+    }
+
+    .footer-left span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .policy h1 {
+        font-size: 32px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="index.html"><img src="logo.png" alt="Daysift" class="logo"></a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a class="btn btn-primary" href="https://chrome.google.com/webstore" target="_blank">Add to Chrome</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Terms of Service Content -->
+  <div class="policy">
+    <div class="container">
+      <h1>Terms of Service</h1>
+      <p class="updated">Last updated: January 2025</p>
+
+      <div class="policy-summary">
+        <h2>In Short</h2>
+        <p>Daysift is a browser extension that helps you search your browsing history. Use it lawfully. We provide it "as is". Payments are handled by Lemon Squeezy.</p>
+        <p>These terms are governed by the laws of England and Wales.</p>
+      </div>
+
+      <section>
+        <h2>About These Terms</h2>
+        <p>These terms govern your use of Daysift, a browser extension provided by Vincenti Capital LTD, a company registered in England and Wales.</p>
+        <p>By installing or using Daysift, you agree to these terms. If you don't agree, please don't use the extension.</p>
+      </section>
+
+      <section>
+        <h2>Using Daysift</h2>
+        <p>You may use Daysift for personal or business purposes, subject to these terms. You agree to:</p>
+        <ul>
+          <li>Use Daysift lawfully and not for any illegal purpose</li>
+          <li>Not attempt to reverse engineer, modify, or redistribute the extension</li>
+          <li>Not use Daysift to violate anyone's privacy or rights</li>
+          <li>Keep your browser and extension updated for security</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Free and Paid Features</h2>
+        <p>Daysift offers both free and paid tiers. Free features may be used without payment. Paid features require a subscription through our payment processor, Lemon Squeezy.</p>
+        <p>We may change which features are free or paid at any time, but we won't remove access to paid features you've already purchased during your subscription period.</p>
+      </section>
+
+      <section>
+        <h2>Payments and Billing</h2>
+        <p>All payments are processed by <a href="https://www.lemonsqueezy.com" target="_blank">Lemon Squeezy</a>. We never see or store your payment card details.</p>
+        <ul>
+          <li>Subscriptions renew automatically until cancelled</li>
+          <li>You can cancel anytime through Lemon Squeezy's customer portal</li>
+          <li>Prices may change, but we'll give you notice before your next billing cycle</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Your Cancellation Rights</h2>
+        <p>Under UK Consumer Contracts Regulations, you have the right to cancel within <strong>14 days</strong> of purchase for a full refund, no questions asked.</p>
+        <p>If you start using the paid features before the 14-day period ends, you may still cancel, but we may deduct a proportionate amount for the service you've used.</p>
+        <p>To cancel, email us at <a href="mailto:hello@daysift.com">hello@daysift.com</a> or use the cancellation link in your purchase confirmation.</p>
+      </section>
+
+      <section>
+        <h2>Refunds</h2>
+        <ul>
+          <li><strong>Within 14 days:</strong> Full refund under your statutory rights (see above)</li>
+          <li><strong>After 14 days:</strong> We don't offer refunds for change of mind, but we'll consider refund requests for technical issues on a case-by-case basis</li>
+          <li><strong>How to request:</strong> Email <a href="mailto:hello@daysift.com">hello@daysift.com</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Your Data</h2>
+        <p>Daysift stores data locally on your device. We don't have servers storing your browsing data. See our <a href="privacy.html">Privacy Policy</a> for full details on how data is handled.</p>
+        <p>You are responsible for backing up any important data. Uninstalling the extension will delete all locally stored data.</p>
+      </section>
+
+      <section>
+        <h2>Intellectual Property</h2>
+        <p>Daysift and its original content, features, and functionality are owned by Vincenti Capital LTD and are protected by copyright, trademark, and other intellectual property laws.</p>
+        <p>You may not copy, modify, distribute, or create derivative works based on Daysift without our written permission.</p>
+      </section>
+
+      <section>
+        <h2>Disclaimer</h2>
+        <p>Daysift is provided "as is" without warranties of any kind, either express or implied. We don't guarantee that the extension will be error-free, secure, or available at all times.</p>
+        <p>This does not affect your statutory rights as a consumer under UK law, including your rights under the Consumer Rights Act 2015.</p>
+      </section>
+
+      <section>
+        <h2>Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, or consequential damages arising from your use of Daysift.</p>
+        <p>Our total liability to you for any claims shall not exceed the amount you paid us in the 12 months before the claim arose.</p>
+        <p>Nothing in these terms limits our liability for death or personal injury caused by negligence, fraud, or any other liability that cannot be excluded by law.</p>
+      </section>
+
+      <section>
+        <h2>Changes to Daysift</h2>
+        <p>We may update, modify, or discontinue Daysift or any features at any time. We'll try to give reasonable notice for significant changes, but we're not obligated to maintain any particular feature.</p>
+      </section>
+
+      <section>
+        <h2>Changes to These Terms</h2>
+        <p>We may update these terms from time to time. We'll post the new terms on this page and update the "Last updated" date.</p>
+        <p>Continued use of Daysift after changes means you accept the new terms.</p>
+      </section>
+
+      <section>
+        <h2>Termination</h2>
+        <p>You can stop using Daysift at any time by uninstalling the extension and cancelling any subscription.</p>
+        <p>We may suspend or terminate your access if you violate these terms. Upon termination, your right to use Daysift ends immediately.</p>
+      </section>
+
+      <section>
+        <h2>Governing Law</h2>
+        <p>These terms are governed by the laws of <strong>England and Wales</strong>. Any disputes will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+        <p>If you are a consumer, you may also have rights under the laws of your country of residence.</p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Questions about these terms? Email us at <a href="mailto:hello@daysift.com">hello@daysift.com</a></p>
+        <p>
+          <strong>Vincenti Capital LTD</strong><br>
+          England and Wales
+        </p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-left">
+        <img src="logo.png" alt="Daysift">
+        <span>&copy; 2025 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="mailto:hello@daysift.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

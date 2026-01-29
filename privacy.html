@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Daysift</title>
+  <meta name="description" content="Daysift Privacy Policy. Your data stays on your device. We don't have servers storing your data.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #FAFAF9;
+      --foreground: #1C1917;
+      --muted: #78716C;
+      --muted-light: #A8A29E;
+      --muted-bg: #F5F5F4;
+      --surface-alt: #E9E7E2;
+      --border: #E7E5E4;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      height: 28px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--foreground);
+      color: var(--background);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    /* Content */
+    .policy {
+      padding: 80px 0;
+    }
+
+    .policy h1 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .policy .updated {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .policy-summary {
+      background: var(--muted-bg);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+    }
+
+    .policy-summary h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .policy-summary p {
+      color: var(--foreground);
+      margin-bottom: 16px;
+    }
+
+    .policy-summary ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .policy-summary li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .policy-summary li::before {
+      content: "→";
+      color: var(--muted);
+    }
+
+    .policy section {
+      margin-bottom: 40px;
+    }
+
+    .policy h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .policy h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+
+    .policy p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .policy ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+
+    .policy ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    .policy ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--muted-light);
+    }
+
+    .policy table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+      font-size: 14px;
+    }
+
+    .policy th {
+      text-align: left;
+      padding: 12px 16px;
+      background: var(--muted-bg);
+      font-weight: 600;
+      color: var(--foreground);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .policy th:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    .policy th:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    .policy td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .policy tr:last-child td {
+      border-bottom: none;
+    }
+
+    .policy tr:last-child td:first-child {
+      border-radius: 0 0 0 8px;
+    }
+
+    .policy tr:last-child td:last-child {
+      border-radius: 0 0 8px 0;
+    }
+
+    .policy a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy a:hover {
+      text-decoration: underline;
+    }
+
+    .policy strong {
+      color: var(--foreground);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .container {
+      max-width: 1100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-left img {
+      height: 24px;
+      opacity: 0.6;
+    }
+
+    .footer-left span {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .policy h1 {
+        font-size: 32px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .policy table {
+        font-size: 13px;
+      }
+
+      .policy th,
+      .policy td {
+        padding: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="index.html"><img src="logo.png" alt="Daysift" class="logo"></a>
+      <div class="nav-links">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a class="btn btn-primary" href="https://chrome.google.com/webstore" target="_blank">Add to Chrome</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Privacy Policy Content -->
+  <div class="policy">
+    <div class="container">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: January 2025</p>
+
+      <div class="policy-summary">
+        <h2>In Short</h2>
+        <p>Daysift stores everything locally on your device. We don't have servers storing your data. We don't have accounts. We don't track you.</p>
+        <p>The only data that leaves your device:</p>
+        <ul>
+          <li>Search queries → OpenAI (only when using AI features)</li>
+          <li>Domain names → Google (to fetch website icons)</li>
+          <li>Payment info → Lemon Squeezy, our payment provider (when you upgrade — we never see your card)</li>
+        </ul>
+      </div>
+
+      <section>
+        <h2>What We Collect</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Stored</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Browser history (URLs, titles, timestamps)</td>
+              <td>Locally on your device</td>
+              <td>Enable search</td>
+            </tr>
+            <tr>
+              <td>Notes you create</td>
+              <td>Locally on your device</td>
+              <td>Save your notes</td>
+            </tr>
+            <tr>
+              <td>Pinned items</td>
+              <td>Locally on your device</td>
+              <td>Quick access</td>
+            </tr>
+            <tr>
+              <td>Settings & preferences</td>
+              <td>Locally on your device</td>
+              <td>Remember your choices</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>What Leaves Your Device</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Data</th>
+              <th>Sent to</th>
+              <th>When</th>
+              <th>Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Search query text</td>
+              <td>OpenAI</td>
+              <td>You use AI search</td>
+              <td>Provide AI answers</td>
+            </tr>
+            <tr>
+              <td>Domain names</td>
+              <td>Google</td>
+              <td>Viewing results</td>
+              <td>Display favicons</td>
+            </tr>
+            <tr>
+              <td>Payment details</td>
+              <td>Lemon Squeezy</td>
+              <td>You upgrade</td>
+              <td>Process payment</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>We never see your payment information — Lemon Squeezy handles this entirely.</p>
+      </section>
+
+      <section>
+        <h2>What We DON'T Collect</h2>
+        <ul>
+          <li>No accounts or login</li>
+          <li>No email addresses (unless you contact us)</li>
+          <li>No analytics or tracking</li>
+          <li>No passwords or form data</li>
+          <li>No page content</li>
+          <li>No cloud storage of your data</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Your Control</h2>
+        <ul>
+          <li><strong>See your data:</strong> It's on your device — open browser dev tools</li>
+          <li><strong>Delete everything:</strong> Uninstall the extension</li>
+          <li><strong>AI queries:</strong> Not stored by us; see OpenAI's privacy policy</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Third-Party Services</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>What they receive</th>
+              <th>Their policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>OpenAI</td>
+              <td>Search queries (AI features)</td>
+              <td><a href="https://openai.com/privacy" target="_blank">openai.com/privacy</a></td>
+            </tr>
+            <tr>
+              <td>Google Favicon API</td>
+              <td>Domain names only</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank">google.com/privacy</a></td>
+            </tr>
+            <tr>
+              <td>Lemon Squeezy</td>
+              <td>Payment details</td>
+              <td><a href="https://www.lemonsqueezy.com/privacy" target="_blank">lemonsqueezy.com/privacy</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2>Security</h2>
+        <p>Your data lives in your browser's local storage. We can't access it. External transmissions (AI queries) use HTTPS encryption.</p>
+      </section>
+
+      <section>
+        <h2>Changes</h2>
+        <p>We'll update this page if anything changes. Major changes will be noted in the extension update notes.</p>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Questions? Email us at <a href="mailto:hello@daysift.com">hello@daysift.com</a></p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-left">
+        <img src="logo.png" alt="Daysift">
+        <span>&copy; 2025 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="mailto:hello@daysift.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
