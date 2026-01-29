@@ -1457,13 +1457,13 @@
 
     .note-text-line.note-text-hover {
       opacity: 0;
-      transform: translateY(-5px);
-      transition: all 0.3s ease;
+      transform: translateX(-10px);
+      transition: opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
     }
 
     .feature-card:hover .note-text-line.note-text-hover {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(0);
     }
 
     .note-text-line.muted {
