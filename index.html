@@ -125,7 +125,7 @@
 
     /* Hero */
     .hero {
-      padding: 100px 0 60px;
+      padding: 120px 0 80px;
       text-align: center;
     }
 
@@ -133,13 +133,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
-      background: #fff;
-      border: 1px solid var(--border);
+      padding: 8px 16px;
+      background: rgba(244, 107, 69, 0.08);
+      border: 1px solid rgba(244, 107, 69, 0.2);
       border-radius: 100px;
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--accent);
+      margin-bottom: 32px;
+      font-weight: 500;
     }
 
     .hero-badge svg {
@@ -148,21 +149,27 @@
     }
 
     .hero h1 {
-      font-size: 56px;
+      font-size: 72px;
       font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      margin-bottom: 20px;
-      max-width: 700px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
     }
 
+    .hero h1 em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
     .hero p {
-      font-size: 20px;
+      font-size: 21px;
       color: var(--muted);
-      max-width: 540px;
-      margin: 0 auto 40px;
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.5;
     }
 
     .hero-cta {
@@ -1051,24 +1058,78 @@
       to { width: 100%; }
     }
 
-    /* Features */
-    .features {
-      padding: 80px 0;
+    /* Marquee */
+    .marquee {
+      padding: 48px 0;
       background: #fff;
       border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .marquee-label {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+
+    .marquee-content {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+      padding-right: 56px;
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .marquee-item img {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Features */
+    .features {
+      padding: 120px 0;
+      background: linear-gradient(180deg, #fff 0%, var(--background) 100%);
       border-bottom: 1px solid var(--border);
     }
 
     .features-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 72px;
     }
 
     .features-header h2 {
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .features-header p {
@@ -1079,57 +1140,272 @@
     .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 24px;
     }
 
-    .feature {
-      text-align: center;
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.3s ease;
     }
 
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 16px;
-      background: var(--muted-bg);
-      border-radius: 12px;
+    .feature-card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      transform: translateY(-4px);
+    }
+
+    .feature-visual {
+      height: 280px;
+      background: linear-gradient(180deg, #F8F8F7 0%, #FAFAF9 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--foreground);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .feature-icon svg {
-      width: 24px;
-      height: 24px;
+    .feature-content {
+      padding: 28px;
     }
 
-    .feature h3 {
-      font-size: 18px;
+    .feature-content h3 {
+      font-size: 20px;
       font-weight: 600;
       margin-bottom: 8px;
     }
 
-    .feature p {
+    .feature-content p {
       font-size: 15px;
       color: var(--muted);
       line-height: 1.6;
     }
 
+    /* Search Card Visual */
+    .search-mockup {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .search-input-mock {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .search-input-mock svg {
+      width: 18px;
+      height: 18px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .search-input-mock span {
+      font-size: 14px;
+      color: var(--foreground);
+    }
+
+    .search-results-mock {
+      background: #fff;
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .search-results-mock {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: background 0.15s;
+    }
+
+    .search-result-item:first-child {
+      background: var(--muted-bg);
+    }
+
+    .result-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .result-icon.docs { background: #E8F0FE; }
+    .result-icon.sheets { background: #E6F4EA; }
+    .result-icon.figma { background: #FCE8EC; }
+
+    .result-text {
+      font-size: 13px;
+      color: var(--foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* AI Card Visual */
+    .ai-mockup {
+      width: 100%;
+      max-width: 280px;
+    }
+
+    .ai-question {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      font-size: 14px;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+
+    .ai-answer {
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover .ai-answer {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ai-answer-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ai-answer-label svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .ai-answer-text {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .ai-answer code {
+      background: var(--muted-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+      color: var(--foreground);
+    }
+
+    /* Notes Card Visual */
+    .notes-mockup {
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .note-window {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .note-header {
+      background: var(--muted-bg);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .note-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .note-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .note-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .note-body {
+      padding: 16px;
+      min-height: 120px;
+    }
+
+    .note-line {
+      height: 8px;
+      background: var(--muted-bg);
+      border-radius: 4px;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .note-line:nth-child(1) { width: 90%; transition-delay: 0s; }
+    .note-line:nth-child(2) { width: 75%; transition-delay: 0.1s; }
+    .note-line:nth-child(3) { width: 85%; transition-delay: 0.2s; }
+    .note-line:nth-child(4) { width: 60%; transition-delay: 0.3s; }
+
+    .feature-card:hover .note-line {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     /* How it works */
     .how-it-works {
-      padding: 100px 0;
+      padding: 120px 0;
     }
 
     .how-it-works-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 72px;
     }
 
     .how-it-works-header h2 {
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .how-it-works-header p {
@@ -1140,7 +1416,7 @@
     .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
+      gap: 48px;
     }
 
     .step {
@@ -1148,47 +1424,48 @@
     }
 
     .step-number {
-      width: 40px;
-      height: 40px;
-      margin: 0 auto 16px;
-      background: var(--foreground);
-      color: var(--background);
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 20px;
+      background: var(--accent);
+      color: #fff;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
     }
 
     .step h3 {
       font-size: 18px;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .step p {
       font-size: 15px;
       color: var(--muted);
+      line-height: 1.6;
     }
 
     /* Pricing */
     .pricing {
-      padding: 100px 0;
+      padding: 120px 0;
       background: #fff;
       border-top: 1px solid var(--border);
     }
 
     .pricing-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 72px;
     }
 
     .pricing-header h2 {
-      font-size: 36px;
+      font-size: 40px;
       font-weight: 700;
       letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .pricing-header p {
@@ -1282,21 +1559,22 @@
 
     /* CTA */
     .cta {
-      padding: 100px 0;
+      padding: 120px 0;
       text-align: center;
+      background: linear-gradient(180deg, var(--background) 0%, #fff 100%);
     }
 
     .cta h2 {
-      font-size: 36px;
+      font-size: 48px;
       font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
     }
 
     .cta p {
       font-size: 18px;
       color: var(--muted);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     /* Footer */
@@ -1354,19 +1632,53 @@
     }
 
     @media (max-width: 768px) {
+      .hero {
+        padding: 80px 0 60px;
+      }
+
       .hero h1 {
-        font-size: 36px;
+        font-size: 42px;
+      }
+
+      .hero h1 br {
+        display: none;
       }
 
       .hero p {
         font-size: 18px;
       }
 
+      .hero-badge {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+
+      .marquee-label {
+        font-size: 11px;
+      }
+
+      .features {
+        padding: 80px 0;
+      }
+
+      .features-header h2 {
+        font-size: 32px;
+      }
+
       .features-grid,
       .steps,
       .pricing-grid {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 24px;
+      }
+
+      .feature-card .feature-visual {
+        height: 220px;
+        padding: 24px;
+      }
+
+      .feature-card .feature-content {
+        padding: 20px;
       }
 
       .nav-links {
@@ -1417,12 +1729,9 @@
   <section class="hero">
     <div class="container">
       <div class="hero-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-        Chrome Extension
+        Stop digging through 47 tabs
       </div>
-      <h1>Your shortcut to everything <em>work</em></h1>
+      <h1>Your shortcut to<br>everything <em>work</em></h1>
       <p>Press <kbd class="kbd">&#8984;J</kbd> to get back to any doc, page, or tab you've touched. Instantly.</p>
       <div class="hero-cta">
         <a class="btn btn-accent" href="https://chrome.google.com/webstore" target="_blank">
@@ -1947,6 +2256,81 @@
     </div>
   </section>
 
+  <!-- Marquee -->
+  <section class="marquee">
+    <div class="marquee-label">Works with your favorite tools</div>
+    <div class="marquee-track">
+      <div class="marquee-content">
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="">
+          Google Docs
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="">
+          Notion
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=32" alt="">
+          Figma
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=linear.app&sz=32" alt="">
+          Linear
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=github.com&sz=32" alt="">
+          GitHub
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=miro.com&sz=32" alt="">
+          Miro
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=slack.com&sz=32" alt="">
+          Slack
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=32" alt="">
+          Google Sheets
+        </div>
+      </div>
+      <div class="marquee-content">
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="">
+          Google Docs
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="">
+          Notion
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=32" alt="">
+          Figma
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=linear.app&sz=32" alt="">
+          Linear
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=github.com&sz=32" alt="">
+          GitHub
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=miro.com&sz=32" alt="">
+          Miro
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=slack.com&sz=32" alt="">
+          Slack
+        </div>
+        <div class="marquee-item">
+          <img src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=32" alt="">
+          Google Sheets
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Features -->
   <section class="features" id="features">
     <div class="container">
@@ -1955,34 +2339,86 @@
         <p>Stop losing track of work. Daysift remembers everything.</p>
       </div>
       <div class="features-grid">
-        <div class="feature">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.3-4.3"/>
-            </svg>
+        <!-- Search Card -->
+        <div class="feature-card">
+          <div class="feature-visual">
+            <div class="search-mockup">
+              <div class="search-input-mock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+                <span>Q3 budget presentation</span>
+              </div>
+              <div class="search-results-mock">
+                <div class="search-result-item">
+                  <div class="result-icon docs">📄</div>
+                  <span class="result-text">Q3 Budget Review - Google Docs</span>
+                </div>
+                <div class="search-result-item">
+                  <div class="result-icon sheets">📊</div>
+                  <span class="result-text">Budget Tracker 2026 - Sheets</span>
+                </div>
+                <div class="search-result-item">
+                  <div class="result-icon figma">🎨</div>
+                  <span class="result-text">Budget Deck - Figma</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3>Instant Search</h3>
-          <p>Press Cmd+J anywhere and search your entire browsing history in milliseconds.</p>
+          <div class="feature-content">
+            <h3>Instant Search</h3>
+            <p>Press Cmd+J anywhere and search your entire work history in milliseconds.</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-            </svg>
+
+        <!-- AI Card -->
+        <div class="feature-card">
+          <div class="feature-visual">
+            <div class="ai-mockup">
+              <div class="ai-question">How do I center a div in CSS?</div>
+              <div class="ai-answer">
+                <div class="ai-answer-label">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                  </svg>
+                  AI Answer
+                </div>
+                <div class="ai-answer-text">
+                  Use <code>display: flex</code> with <code>justify-content: center</code> and <code>align-items: center</code> on the parent.
+                </div>
+              </div>
+            </div>
           </div>
-          <h3>AI-Powered</h3>
-          <p>Ask questions in natural language. "How do I center a div in CSS?" just works.</p>
+          <div class="feature-content">
+            <h3>AI-Powered</h3>
+            <p>Ask questions in natural language. Get instant answers without leaving your workflow.</p>
+          </div>
         </div>
-        <div class="feature">
-          <div class="feature-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-            </svg>
+
+        <!-- Notes Card -->
+        <div class="feature-card">
+          <div class="feature-visual">
+            <div class="notes-mockup">
+              <div class="note-window">
+                <div class="note-header">
+                  <div class="note-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <span class="note-title">Quick Note</span>
+                </div>
+                <div class="note-body">
+                  <div class="note-line"></div>
+                  <div class="note-line"></div>
+                  <div class="note-line"></div>
+                  <div class="note-line"></div>
+                </div>
+              </div>
+            </div>
           </div>
-          <h3>Floating Notes</h3>
-          <p>Jot down thoughts in a floating window that stays on top. Your ideas, always accessible.</p>
+          <div class="feature-content">
+            <h3>Floating Notes</h3>
+            <p>Jot down thoughts in a floating window that stays on top. Always accessible.</p>
+          </div>
         </div>
       </div>
     </div>
