@@ -1434,26 +1434,34 @@
     .note-body {
       padding: 16px;
       min-height: 120px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--foreground);
     }
 
-    .note-line {
-      height: 8px;
-      background: var(--muted-bg);
-      border-radius: 4px;
-      margin-bottom: 10px;
+    .note-text-line {
       opacity: 0;
-      transform: translateX(-10px);
+      transform: translateY(8px);
       transition: all 0.3s ease;
+      margin-bottom: 8px;
     }
 
-    .note-line:nth-child(1) { width: 90%; transition-delay: 0s; }
-    .note-line:nth-child(2) { width: 75%; transition-delay: 0.1s; }
-    .note-line:nth-child(3) { width: 85%; transition-delay: 0.2s; }
-    .note-line:nth-child(4) { width: 60%; transition-delay: 0.3s; }
+    .note-text-line:nth-child(1) { transition-delay: 0s; }
+    .note-text-line:nth-child(2) { transition-delay: 0.1s; }
+    .note-text-line:nth-child(3) { transition-delay: 0.2s; }
 
-    .feature-card:hover .note-line {
+    .feature-card:hover .note-text-line {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
+    }
+
+    .note-text-line strong {
+      font-weight: 600;
+    }
+
+    .note-text-line.muted {
+      color: var(--muted);
+      font-size: 12px;
     }
 
     /* How it works */
@@ -2489,10 +2497,9 @@
                   <span class="note-title">Daysift Notes</span>
                 </div>
                 <div class="note-body">
-                  <div class="note-line"></div>
-                  <div class="note-line"></div>
-                  <div class="note-line"></div>
-                  <div class="note-line"></div>
+                  <div class="note-text-line"><strong>Meeting notes</strong></div>
+                  <div class="note-text-line">- Follow up with design team</div>
+                  <div class="note-text-line">- Review Q3 roadmap by Friday</div>
                 </div>
               </div>
             </div>
