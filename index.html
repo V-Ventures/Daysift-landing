@@ -123,6 +123,13 @@
       background: var(--accent-hover);
     }
 
+    /* TODO: Remove .btn-disabled when ready to launch */
+    .btn-disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
     /* Hero */
     .hero {
       padding: 120px 0 80px;
@@ -1802,7 +1809,8 @@
       <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#pricing">Pricing</a>
-        <a class="btn btn-primary" href="https://chrome.google.com/webstore" target="_blank">Add to Chrome</a>
+        <!-- TODO: Change back to "Add to Chrome" with href="https://chrome.google.com/webstore" when ready to launch -->
+        <span class="btn btn-primary btn-disabled">Coming Soon</span>
       </div>
     </div>
   </nav>
@@ -1816,9 +1824,8 @@
       <h1>Your shortcut to<br>everything <em>work</em></h1>
       <p>Press <kbd class="kbd">&#8984;J</kbd> to get back to any doc, page, or tab you've touched. Instantly.</p>
       <div class="hero-cta">
-        <a class="btn btn-accent" href="https://chrome.google.com/webstore" target="_blank">
-          Add to Chrome
-        </a>
+        <!-- TODO: Change back to "Add to Chrome" with href="https://chrome.google.com/webstore" when ready to launch -->
+        <span class="btn btn-accent btn-disabled">Coming Soon</span>
       </div>
       <p class="hero-note">Free forever. No account required.</p>
     </div>
@@ -2718,9 +2725,8 @@
     <div class="container">
       <h2>Your shortcut to everything work</h2>
       <p>Get back to any doc, page, or tab you've touched. Instantly.</p>
-      <a class="btn btn-accent" href="https://chrome.google.com/webstore" target="_blank">
-        Add to Chrome
-      </a>
+      <!-- TODO: Change back to "Add to Chrome" with href="https://chrome.google.com/webstore" when ready to launch -->
+      <span class="btn btn-accent btn-disabled">Coming Soon</span>
     </div>
   </section>
 
