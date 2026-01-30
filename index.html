@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daysift - Your shortcut to everything work</title>
-  <meta name="description" content="Press Cmd+J to get back to any doc, page, or tab you've touched. Instantly.">
+  <meta name="description" content="Press Cmd+J to instantly find any doc, page, or tab you've touched. Search across all your work apps.">
   <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
   <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -18,35 +18,40 @@
     }
 
     :root {
-      --background: #FAFAF9;
-      --foreground: #1C1917;
-      --muted: #78716C;
-      --muted-light: #A8A29E;
-      --muted-bg: #F5F5F4;
-      --surface-alt: #E9E7E2;
-      --border: #E7E5E4;
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
       --accent: #F46B45;
       --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
     }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--background);
+      background: var(--bg);
       color: var(--foreground);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      /* Subtle grid pattern */
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
     /* Navigation */
     nav {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
     }
 
     nav .container {
@@ -55,20 +60,42 @@
       justify-content: space-between;
     }
 
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .logo {
-      height: 28px;
+      height: 26px;
+    }
+
+    .beta-badge {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-alt);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 24px;
     }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       transition: color 0.15s;
     }
@@ -77,13 +104,58 @@
       color: var(--foreground);
     }
 
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
       font-weight: 500;
       text-decoration: none;
       transition: all 0.15s;
@@ -93,1056 +165,676 @@
 
     .btn-primary {
       background: var(--foreground);
-      color: var(--background);
-    }
-
-    a.btn-primary {
-      color: var(--background);
+      color: #fff;
     }
 
     .btn-primary:hover {
-      opacity: 0.9;
+      background: #333;
     }
 
     .btn-secondary {
       background: transparent;
-      color: var(--foreground);
-      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 10px 0;
     }
 
     .btn-secondary:hover {
+      color: var(--foreground);
+    }
+
+    .btn-secondary::after {
+      content: '→';
+      margin-left: 4px;
+      transition: transform 0.15s;
+    }
+
+    .btn-secondary:hover::after {
+      transform: translateX(2px);
+    }
+
+    .btn-secondary.video-link::after {
+      content: none;
+    }
+
+    .btn-secondary .arrow {
+      display: inline-block;
+      transition: transform 0.15s;
+    }
+
+    .btn-secondary:hover .arrow {
+      transform: translateX(2px);
+    }
+
+    /* Video preview hover */
+    .video-link {
+      position: relative;
+    }
+
+    .video-thumb {
+      position: fixed;
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.1s ease-out;
+      z-index: 1000;
+    }
+
+    .video-link:hover .video-thumb {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .video-thumb-inner {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .video-thumb-img {
+      display: block;
+      width: 200px;
+      height: 112px;
+      border-radius: 6px;
+      background: var(--bg-alt);
+      object-fit: cover;
+      position: relative;
+    }
+
+    .video-thumb-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-thumb-play svg {
+      width: 14px;
+      height: 14px;
+      color: #fff;
+      margin-left: 2px;
+    }
+
+    .video-thumb-label {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* Demo */
+    .demo {
+      margin: 40px 0 80px;
+    }
+
+    .demo-frame {
+      width: 100%;
+      position: relative;
+    }
+
+    /* Browser chrome behind the modal */
+    .browser-chrome {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      padding-top: 44px;
+      position: relative;
+    }
+
+    .browser-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
       background: var(--border);
     }
 
-    .btn-accent {
-      background: var(--accent);
-      color: white;
-    }
-
-    .btn-accent:hover {
-      background: var(--accent-hover);
-    }
-
-    /* TODO: Remove .btn-disabled when ready to launch */
-    .btn-disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      pointer-events: none;
-    }
-
-    /* Hero */
-    .hero {
-      padding: 120px 0 80px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 16px;
-      background: rgba(244, 107, 69, 0.08);
-      border: 1px solid rgba(244, 107, 69, 0.2);
-      border-radius: 100px;
-      font-size: 14px;
-      color: var(--accent);
-      margin-bottom: 32px;
-      font-weight: 500;
-    }
-
-    .hero-badge svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .hero h1 {
-      font-size: 72px;
-      font-weight: 700;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      margin-bottom: 24px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero h1 em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .hero p {
-      font-size: 21px;
-      color: var(--muted);
-      max-width: 500px;
-      margin: 0 auto 48px;
-      line-height: 1.5;
-    }
-
-    .hero-cta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .hero-note {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .kbd {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 24px;
-      height: 24px;
-      padding: 0 8px;
+    .browser-url {
+      flex: 1;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 6px;
+      padding: 6px 12px;
       font-size: 12px;
-      font-family: inherit;
-      font-weight: 500;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      color: var(--muted-light);
+      max-width: 300px;
     }
 
-    /* Demo Section */
-    .demo {
-      padding: 40px 0 100px;
+    .browser-content {
+      background: var(--bg);
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      border-radius: 0 0 12px 12px;
     }
 
-    .demo-container {
-      max-width: 1400px;
-      margin: 0 auto;
-      position: relative;
-      padding: 0 24px;
-    }
-
-    .demo-window-wrapper {
-      position: relative;
-    }
-
-    /* Real Daysift Modal Styles */
-    .daysift-modal {
-      width: 100%;
-      height: 520px;
+    .demo-window {
       background: #fff;
       border-radius: 12px;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    /* AI Answer View */
-    .daysift-ai-view {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .daysift-ai-content {
-      flex: 1;
-      padding: 24px;
-      overflow-y: auto;
-    }
-
-    .daysift-ai-question {
-      font-size: 14px;
-      color: var(--muted-light);
-      margin-bottom: 20px;
-      font-style: italic;
-    }
-
-    .daysift-ai-answer {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--foreground);
-    }
-
-    .daysift-ai-answer p {
-      margin-bottom: 14px;
-    }
-
-    .daysift-ai-answer code {
-      display: block;
-      background: #1e1e1e;
-      color: #d4d4d4;
-      border-radius: 8px;
-      padding: 14px 18px;
-      font-family: 'SF Mono', Monaco, Consolas, monospace;
-      font-size: 13px;
-      line-height: 1.6;
-      margin: 14px 0;
-      overflow-x: auto;
-    }
-
-    .daysift-ai-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: linear-gradient(135deg, rgba(244, 107, 69, 0.1) 0%, rgba(244, 107, 69, 0.05) 100%);
-      border: 1px solid rgba(244, 107, 69, 0.25);
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .daysift-ai-badge svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    /* Notes List View */
-    .daysift-notes-list {
-      padding: 8px;
-    }
-
-    .daysift-note-item {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      padding: 14px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-
-    .daysift-note-item:hover {
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    .daysift-note-item.selected {
-      background: var(--muted-bg);
-    }
-
-    .daysift-note-title {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--foreground);
-    }
-
-    .daysift-note-preview {
-      font-size: 14px;
-      color: var(--muted-light);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .daysift-note-meta {
-      font-size: 12px;
-      color: var(--muted-light);
-      margin-top: 2px;
-    }
-
-    /* Note Detail View */
-    .daysift-note-detail {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .daysift-note-header {
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .daysift-note-back {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    .daysift-note-back:hover {
-      background: var(--muted-bg);
-      color: var(--foreground);
-    }
-
-    .daysift-note-back svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .daysift-note-header-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--foreground);
-    }
-
-    .daysift-note-body {
-      flex: 1;
-      padding: 16px;
-      font-size: 14px;
-      line-height: 1.7;
-      color: var(--foreground);
-      overflow-y: auto;
-    }
-
-    .daysift-note-body p {
-      margin-bottom: 12px;
-    }
-
-    /* AI Writing in Note */
-    .daysift-ai-writing {
-      background: linear-gradient(90deg, var(--muted-bg) 0%, transparent 100%);
-      border-left: 2px solid var(--accent);
-      padding: 8px 12px;
-      margin: 12px 0;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .daysift-search {
-      display: flex;
-      align-items: center;
-      padding: 18px 20px;
-      border-bottom: 1px solid var(--border);
-      gap: 14px;
-      height: 64px;
-      min-height: 64px;
-      flex-shrink: 0;
-    }
-
-    .daysift-search-icon {
-      width: 22px;
-      height: 22px;
-      color: var(--muted-light);
-      flex-shrink: 0;
-    }
-
-    .daysift-search-input {
-      flex: 1;
-      border: none;
-      outline: none;
-      font-size: 17px;
-      background: transparent;
-      color: var(--foreground);
-      font-family: inherit;
-      font-weight: 400;
-    }
-
-    .daysift-search-input::placeholder {
-      color: var(--muted-light);
-    }
-
-    .daysift-search-clear {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      color: var(--muted-light);
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.15s, background 0.15s, color 0.15s;
-    }
-
-    .daysift-search-clear.visible {
-      opacity: 1;
-    }
-
-    .daysift-search-clear:hover {
-      background: var(--muted-bg);
-      color: var(--foreground);
-    }
-
-    .daysift-search-clear svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .daysift-pill-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      height: 52px;
-      min-height: 52px;
-      padding: 0 16px;
-      border-bottom: 1px solid var(--border);
-      overflow-x: auto;
-      flex-shrink: 0;
-    }
-
-    .daysift-pill-bar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .daysift-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      height: 32px;
-      padding: 0 12px;
       border: 1px solid var(--border);
-      border-radius: 9999px;
-      background-color: #fff;
-      color: var(--foreground);
-      font-size: 13px;
-      font-weight: 500;
-      white-space: nowrap;
-      flex-shrink: 0;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .daysift-pill:hover {
-      background-color: var(--muted-bg);
-    }
-
-    .daysift-pill.active {
-      background-color: var(--foreground);
-      color: #fff;
-      border-color: var(--foreground);
-    }
-
-    .daysift-pill svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    .daysift-pill-icon {
-      width: 16px;
-      height: 16px;
-      border-radius: 3px;
-      flex-shrink: 0;
-    }
-
-    .daysift-results {
-      padding: 8px;
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .daysift-result {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 14px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-
-    .daysift-result:hover {
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    .daysift-result.selected {
-      background: var(--muted-bg);
-    }
-
-    .daysift-result-favicon {
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
-      flex-shrink: 0;
-    }
-
-    .daysift-result-content {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .daysift-result-title {
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--foreground);
-      white-space: nowrap;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
       overflow: hidden;
-      text-overflow: ellipsis;
-      margin-bottom: 2px;
-    }
-
-    .daysift-result-url {
-      font-size: 13px;
-      color: var(--muted-light);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .daysift-result-time {
-      font-size: 13px;
-      color: var(--muted-light);
-      flex-shrink: 0;
-    }
-
-    .daysift-result-pin {
+      padding: 20px;
+      width: 100%;
+      max-width: 640px;
+      min-height: 380px;
+      max-height: 400px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      color: var(--muted-light);
-      cursor: pointer;
-      opacity: 0;
-      transition: opacity 0.15s, background 0.15s, color 0.15s;
-      flex-shrink: 0;
+      flex-direction: column;
     }
 
-    .daysift-result:hover .daysift-result-pin,
-    .daysift-result.selected .daysift-result-pin {
-      opacity: 1;
-    }
-
-    .daysift-result-pin:hover {
-      background: var(--muted-bg);
-      color: var(--foreground);
-    }
-
-    .daysift-result-pin.pinned {
-      opacity: 1;
-      color: var(--accent);
-    }
-
-    .daysift-result-pin svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .daysift-slash-title {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--muted-light);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 12px 16px 8px;
-    }
-
-    .daysift-slash-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 12px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.1s;
-    }
-
-    .daysift-slash-item:hover {
-      background: rgba(0, 0, 0, 0.03);
-    }
-
-    .daysift-slash-item.selected {
-      background: var(--muted-bg);
-    }
-
-    .daysift-slash-icon {
-      width: 24px;
-      height: 24px;
-      color: var(--muted-light);
-      flex-shrink: 0;
-    }
-
-    .daysift-slash-name {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--foreground);
-    }
-
-    .daysift-slash-desc {
-      font-size: 14px;
-      color: var(--muted-light);
-      margin-left: auto;
-      font-weight: 400;
-    }
-
-    .daysift-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 16px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--muted-light);
-      height: 48px;
-      min-height: 48px;
-      flex-shrink: 0;
-      background: #fff;
-    }
-
-    .daysift-footer-shortcuts {
-      display: flex;
-      gap: 20px;
-    }
-
-    .daysift-footer-shortcut {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .daysift-footer-shortcut span:last-child {
-      color: var(--muted-light);
-    }
-
-    .daysift-footer-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .daysift-footer-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      color: var(--muted-light);
-      cursor: pointer;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .daysift-footer-btn:hover {
-      background: var(--muted-bg);
-      color: var(--foreground);
-    }
-
-    .daysift-footer-btn svg {
-      width: 18px;
-      height: 18px;
-    }
-
-    .daysift-kbd {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 22px;
-      height: 22px;
-      padding: 0 6px;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 5px;
-      font-size: 12px;
-      font-family: inherit;
-      font-weight: 500;
-      color: var(--muted);
-    }
-
-    /* Screens */
     .demo-screen {
       display: none;
       flex-direction: column;
-      height: 100%;
+      flex: 1;
     }
 
     .demo-screen.active {
       display: flex;
     }
 
-    /* Commands/Slash results - padding override */
-    .daysift-results-commands {
-      padding-top: 8px;
-    }
-
-    /* Floating Notes Window */
-    .demo-notes-float {
-      position: absolute;
-      top: 50%;
-      left: calc(50% + 120px);
-      transform: translateY(-50%);
-      width: 300px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.04),
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        0 24px 56px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      z-index: 20;
-      display: none;
-    }
-
-    /* Show floating notes when notes screen is active */
-    .demo-browser-content.notes-active .demo-notes-float {
-      display: block;
-    }
-
-    .demo-browser-content.notes-active .demo-modal-wrapper {
-      transform: translateX(-100px);
-    }
-
-    .demo-notes-float-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      border-bottom: 1px solid var(--border);
-      background: #fff;
-    }
-
-    .demo-notes-float-title {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--foreground);
-    }
-
-    .demo-notes-float-actions {
-      display: flex;
-      gap: 2px;
-    }
-
-    .demo-notes-float-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px;
-      height: 28px;
-      border: none;
-      background: transparent;
-      border-radius: 6px;
-      color: var(--muted-light);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .demo-notes-float-btn:hover {
-      background: var(--muted-bg);
-      color: var(--foreground);
-    }
-
-    .demo-notes-float-btn svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    .demo-notes-float-editor {
-      padding: 16px;
-      min-height: 220px;
-    }
-
-    .demo-notes-float-editor-title {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 16px;
-      border: none;
-      outline: none;
-      width: 100%;
-    }
-
-    .demo-notes-float-editor-body {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
-    }
-
-    .demo-notes-float-editor-body p {
-      margin-bottom: 6px;
-    }
-
-    /* AI CTA in notes */
-    .demo-notes-ai-cta {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 20px;
-      padding: 12px 14px;
-      background: var(--muted-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--muted);
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-
-    .demo-notes-ai-cta:hover {
-      border-color: var(--accent);
-      background: rgba(244, 107, 69, 0.05);
-    }
-
-    .demo-notes-ai-cta svg {
-      width: 18px;
-      height: 18px;
-      flex-shrink: 0;
-      color: var(--accent);
-    }
-
-    .demo-notes-ai-cta span {
-      color: var(--muted);
-    }
-
-    /* Notes slide - hide main modal, show floating window */
-    #screen-notes .daysift-modal-hidden {
-      display: none;
-    }
-
-    /* Adjust modal wrapper for notes to allow floating window */
-    .demo-modal-wrapper-notes {
-      display: flex;
-      align-items: flex-start;
-      gap: 24px;
-      max-width: none;
-      width: auto;
-    }
-
-    /* Chrome Browser Wrapper - Light Theme */
-    .demo-browser {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.06),
-        0 4px 16px rgba(0, 0, 0, 0.08),
-        0 24px 48px rgba(0, 0, 0, 0.12);
-    }
-
-    .demo-browser-chrome {
-      background: linear-gradient(180deg, #f0f0f0 0%, #e4e4e4 100%);
-      padding: 12px 16px;
+    .demo-search {
       display: flex;
       align-items: center;
       gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .demo-search-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-search-text {
+      flex: 1;
+      font-size: 14px;
+      color: var(--foreground);
+    }
+
+    .demo-ai-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--badge-bg);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--badge-text);
+      flex-shrink: 0;
+    }
+
+    .demo-pills {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .demo-pill.active {
+      border-color: var(--foreground);
+    }
+
+    .demo-pill img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .demo-results {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 16px;
+    }
+
+    .demo-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 6px;
+    }
+
+    .demo-result.selected {
+      background: #F5F4F2;
+    }
+
+    .demo-result img {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .demo-result-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .demo-result-title {
+      display: block;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .demo-result-url {
+      display: block;
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .demo-result-time {
+      font-size: 11px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-footer {
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .demo-shortcuts {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .demo-shortcuts kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 10px;
+      font-family: inherit;
+      margin-right: 2px;
+    }
+
+    /* AI Answer */
+    .demo-ai-answer {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .demo-ai-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .demo-ai-answer p {
+      font-size: 13px;
+      color: var(--foreground);
+      margin: 0 0 12px 0;
+    }
+
+    .demo-ai-answer code {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+      color: var(--foreground);
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* Notes Screen */
+    .demo-command-hint {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #F5F4F2;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .demo-command-hint svg {
+      color: var(--muted);
+    }
+
+    .demo-command-hint span {
+      flex: 1;
+    }
+
+    .demo-command-hint kbd {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .demo-floating-note-outside {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 280px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .demo-floating-note-outside.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .floating-note-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: #78716C;
+      color: #fff;
+    }
+
+    .floating-note-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .floating-note-actions {
+      display: flex;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .floating-note-list {
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .floating-note-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .floating-note-item:hover {
+      background: var(--bg);
+    }
+
+    .floating-note-item.active {
+      background: var(--bg-alt);
+    }
+
+    .floating-note-item:last-child {
+      border-bottom: none;
+    }
+
+    .floating-note-item .pin-icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .floating-note-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .floating-note-item-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .floating-note-item-preview {
+      display: block;
+      font-size: 11px;
+      color: var(--muted-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .floating-note-item-time {
+      font-size: 11px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-typing {
+      position: relative;
+    }
+
+    .demo-typing::after {
+      content: '|';
+      animation: blink 1s infinite;
+      color: var(--accent);
+      margin-left: 1px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .demo-notes-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #F5F4F2;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .demo-notes-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .demo-notes-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .demo-notes-body {
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .demo-note-line {
+      margin-bottom: 6px;
+    }
+
+    .demo-note-line strong {
+      font-weight: 600;
+    }
+
+    .demo-note-line .bullet {
+      color: var(--accent);
+    }
+
+    /* Switcher */
+    .demo-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .demo-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .demo-switch:hover {
+      border-color: var(--muted-light);
+      color: var(--foreground);
+    }
+
+    .demo-switch.active {
+      background: var(--foreground);
+      border-color: var(--foreground);
+      color: #fff;
+    }
+
+    .demo-switch svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Trust Bar */
+    .trust-bar {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
-    .demo-browser-controls {
-      display: flex;
-      gap: 8px;
-    }
-
-    .demo-browser-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      box-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.1);
-    }
-
-    .demo-browser-dot.red { background: #ff5f57; }
-    .demo-browser-dot.yellow { background: #ffbd2e; }
-    .demo-browser-dot.green { background: #28ca41; }
-
-    .demo-browser-content {
-      position: relative;
-      min-height: 600px;
-      background: var(--muted-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 64px;
-      overflow: visible;
-    }
-
-    /* Simulated blurred page behind modal */
-    .demo-browser-backdrop {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, #fafafa 0%, #f0f0f0 50%, #e8e8e8 100%);
-    }
-
-    .demo-browser-backdrop::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(3px);
-    }
-
-    .demo-modal-wrapper {
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 700px;
-      overflow: visible;
-      transition: transform 0.3s ease;
-    }
-
-    .demo-modal-wrapper.notes-active {
-      transform: translateX(-200px);
-    }
-
-    /* Modal shadow for floating effect */
-    .demo-browser .daysift-modal {
-      box-shadow:
-        0 0 0 1px rgba(0, 0, 0, 0.04),
-        0 8px 32px rgba(0, 0, 0, 0.12),
-        0 24px 56px rgba(0, 0, 0, 0.08);
-    }
-
-    /* Switcher - below demo (light theme to match) */
-    .demo-switcher {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      padding: 6px;
-      background: var(--muted-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      margin-top: 32px;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .demo-switcher-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      padding: 10px 16px;
-      background: transparent;
-      border: none;
-      border-radius: 8px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: inherit;
-      white-space: nowrap;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .demo-switcher-btn:hover {
-      color: var(--foreground);
-      background: rgba(0, 0, 0, 0.04);
-    }
-
-    .demo-switcher-btn.active {
-      background: #fff;
-      color: var(--foreground);
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-    }
-
-    .demo-switcher-btn svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Progress bar for autoplay */
-    .demo-switcher-btn .progress-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      height: 2px;
-      width: 0%;
-      background: var(--accent);
-      border-radius: 0 0 8px 8px;
-      transition: none;
-    }
-
-    .demo-switcher-btn.active .progress-bar {
-      animation: progressFill 5s linear forwards;
-    }
-
-    .demo-switcher-btn.active.paused .progress-bar {
-      animation-play-state: paused;
-    }
-
-    @keyframes progressFill {
-      from { width: 0%; }
-      to { width: 100%; }
-    }
-
-    /* Marquee */
-    .marquee {
-      padding: 48px 0;
-      background: #fff;
-      border-top: 1px solid var(--border);
-      overflow: hidden;
-    }
-
-    .marquee-label {
-      text-align: center;
-      font-size: 13px;
+    .trust-bar p {
+      font-size: 11px;
       color: var(--muted-light);
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 24px;
     }
 
-    .marquee-track {
-      display: flex;
-      animation: marquee 30s linear infinite;
-      width: max-content;
-    }
-
-    .marquee:hover .marquee-track {
-      animation-play-state: paused;
-    }
-
-    .marquee-content {
+    .trust-logos {
       display: flex;
       align-items: center;
-      gap: 56px;
-      padding-right: 56px;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
     }
 
-    .marquee-item {
+    .tool-item {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--muted);
-      white-space: nowrap;
+      justify-content: center;
     }
 
-    .marquee-item img,
-    .marquee-item svg {
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
-      flex-shrink: 0;
+    .tool-item img {
+      height: 28px;
+      width: 28px;
+      object-fit: contain;
+      opacity: 0.7;
+      transition: opacity 0.15s;
     }
 
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    .tool-item img:hover {
+      opacity: 1;
     }
 
     /* Features */
     .features {
-      padding: 120px 0;
-      background: linear-gradient(180deg, #fff 0%, var(--background) 100%);
-      border-bottom: 1px solid var(--border);
+      padding: 80px 0;
     }
 
     .features-header {
       text-align: center;
-      margin-bottom: 72px;
+      margin-bottom: 48px;
     }
 
     .features-header h2 {
-      font-size: 40px;
-      font-weight: 700;
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+    }
+
+    .features-header h2 em {
+      font-style: italic;
     }
 
     .features-header p {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--muted);
     }
 
@@ -1155,63 +847,62 @@
     .feature-card {
       background: #fff;
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 12px;
       overflow: hidden;
       transition: all 0.3s ease;
     }
 
     .feature-card:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
     }
 
     .feature-visual {
-      height: 280px;
-      background: linear-gradient(180deg, #F8F8F7 0%, #FAFAF9 100%);
+      height: 240px;
+      background: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px;
-      position: relative;
+      padding: 32px;
       overflow: hidden;
     }
 
     .feature-content {
-      padding: 28px;
+      padding: 24px;
     }
 
     .feature-content h3 {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: 600;
       margin-bottom: 8px;
     }
 
     .feature-content p {
-      font-size: 15px;
+      font-size: 13px;
       color: var(--muted);
       line-height: 1.6;
     }
 
-    /* Search Card Visual */
+    /* Search Mockup */
     .search-mockup {
       width: 100%;
-      max-width: 280px;
+      max-width: 260px;
     }
 
     .search-input-mock {
       background: #fff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .search-input-mock svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       color: var(--muted-light);
       flex-shrink: 0;
     }
@@ -1223,136 +914,113 @@
 
     .search-results-mock {
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       overflow: hidden;
-      max-height: 156px;
+      max-height: 140px;
     }
 
     .search-results-inner {
-      padding: 8px;
+      padding: 6px;
       transition: transform 0.4s ease;
     }
 
     .feature-card:hover .search-results-inner {
-      transform: translateY(-96px);
+      transform: translateY(-44px);
     }
 
     .search-result-item {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      transition: background 0.15s;
-    }
-
-    .search-result-item:first-child {
-      background: var(--muted-bg);
-    }
-
-    .result-icon {
-      width: 28px;
-      height: 28px;
+      padding: 8px 10px;
       border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
+    }
+
+    .search-result-item.selected {
+      background: #F5F4F2;
+    }
+
+    .search-result-item .result-icon {
+      width: 18px;
+      height: 18px;
       flex-shrink: 0;
     }
 
-    .result-icon.docs { background: #E8F0FE; }
-    .result-icon.sheets { background: #E6F4EA; }
-    .result-icon.figma { background: #FCE8EC; }
-    .result-icon.slides { background: #FEF7E0; }
-    .result-icon.notion { background: #F5F5F5; }
-
-    .result-text {
-      font-size: 13px;
+    .search-result-item .result-text {
+      font-size: 12px;
       color: var(--foreground);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
-    /* AI Card Visual */
+    /* AI Mockup */
     .ai-mockup {
       width: 100%;
-      max-width: 280px;
+      max-width: 260px;
     }
 
     .ai-question {
       background: #fff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      font-size: 13px;
-      color: var(--foreground);
-      margin-bottom: 12px;
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-bottom: 10px;
     }
 
     .ai-question svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       color: var(--muted-light);
       flex-shrink: 0;
     }
 
     .ai-question-text {
       flex: 1;
+      font-size: 13px;
+      color: var(--foreground);
     }
 
     .ask-ai-badge {
-      background: var(--muted-bg);
-      border-radius: 6px;
+      background: var(--badge-bg);
+      border-radius: 4px;
       padding: 4px 8px;
       font-size: 11px;
-      font-weight: 600;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      font-weight: 500;
+      color: var(--badge-text);
       flex-shrink: 0;
-    }
-
-    .ask-ai-badge svg {
-      width: 12px;
-      height: 12px;
-      color: var(--muted);
     }
 
     .ai-answer {
       background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       position: relative;
+      min-height: 90px;
     }
 
     .ai-answer-skeleton {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      right: 16px;
+      top: 14px;
+      left: 14px;
+      right: 14px;
       transition: opacity 0.3s ease;
     }
 
     .skeleton-line {
-      height: 10px;
-      background: linear-gradient(90deg, var(--muted-bg) 25%, #e8e8e8 50%, var(--muted-bg) 75%);
+      height: 8px;
+      background: linear-gradient(90deg, #F0EFEC 25%, #e8e8e8 50%, #F0EFEC 75%);
       background-size: 200% 100%;
       animation: shimmer 1.5s infinite;
       border-radius: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .skeleton-line:nth-child(1) { width: 40%; }
     .skeleton-line:nth-child(2) { width: 100%; }
-    .skeleton-line:nth-child(3) { width: 80%; }
+    .skeleton-line:nth-child(3) { width: 75%; }
 
     @keyframes shimmer {
       0% { background-position: 200% 0; }
@@ -1374,52 +1042,42 @@
 
     .ai-answer-label {
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
       margin-bottom: 8px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .ai-answer-label svg {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
     }
 
     .ai-answer-text {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--muted);
       line-height: 1.5;
+      margin: 0;
     }
 
-    .ai-answer code {
-      background: var(--muted-bg);
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: 'SF Mono', Monaco, monospace;
-      font-size: 12px;
-      color: var(--foreground);
-    }
-
-    /* Notes Card Visual */
+    /* Notes Mockup */
     .notes-mockup {
       width: 100%;
-      max-width: 260px;
+      max-width: 240px;
     }
 
     .note-window {
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
       overflow: hidden;
     }
 
     .note-header {
-      background: var(--muted-bg);
-      padding: 10px 14px;
+      background: #F5F4F2;
+      padding: 8px 12px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1427,33 +1085,32 @@
 
     .note-dots {
       display: flex;
-      gap: 6px;
+      gap: 5px;
     }
 
     .note-dots span {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: var(--border);
     }
 
     .note-title {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: var(--muted);
       margin-left: auto;
     }
 
     .note-body {
-      padding: 16px;
-      min-height: 120px;
-      font-size: 13px;
+      padding: 14px;
+      font-size: 12px;
       line-height: 1.6;
       color: var(--foreground);
     }
 
     .note-text-line {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .note-text-line strong {
@@ -1466,7 +1123,7 @@
 
     .note-text-line.note-text-hover {
       opacity: 0;
-      transform: translateX(-10px);
+      transform: translateX(-8px);
       transition: opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
     }
 
@@ -1475,90 +1132,25 @@
       transform: translateX(0);
     }
 
-    .note-text-line.muted {
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* How it works */
-    .how-it-works {
-      padding: 120px 0;
-    }
-
-    .how-it-works-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-
-    .how-it-works-header h2 {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 16px;
-    }
-
-    .how-it-works-header p {
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-    }
-
-    .step {
-      text-align: center;
-    }
-
-    .step-number {
-      width: 48px;
-      height: 48px;
-      margin: 0 auto 20px;
-      background: var(--accent);
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    .step h3 {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .step p {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
     /* Pricing */
     .pricing {
-      padding: 120px 0;
-      background: #fff;
-      border-top: 1px solid var(--border);
+      padding: 80px 0;
     }
 
     .pricing-header {
       text-align: center;
-      margin-bottom: 72px;
+      margin-bottom: 48px;
     }
 
     .pricing-header h2 {
-      font-size: 40px;
-      font-weight: 700;
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
     }
 
     .pricing-header p {
-      font-size: 18px;
+      font-size: 16px;
       color: var(--muted);
     }
 
@@ -1571,51 +1163,58 @@
     }
 
     .pricing-card {
-      padding: 32px;
-      background: var(--background);
+      background: #fff;
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 12px;
+      padding: 28px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .pricing-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
     }
 
     .pricing-card.featured {
-      border-color: var(--accent);
-      position: relative;
+      border-color: var(--foreground);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    .pricing-card.featured::before {
-      content: 'Most Popular';
+    .pricing-badge {
       position: absolute;
-      top: -12px;
+      top: -10px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 4px 12px;
-      background: var(--accent);
-      color: white;
-      font-size: 12px;
+      background: var(--foreground);
+      color: #fff;
+      font-size: 11px;
       font-weight: 500;
-      border-radius: 100px;
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
     .pricing-name {
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
       margin-bottom: 8px;
     }
 
     .pricing-price {
-      font-size: 40px;
-      font-weight: 700;
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
       margin-bottom: 4px;
     }
 
     .pricing-price span {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 400;
       color: var(--muted);
     }
 
     .pricing-description {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--muted);
       margin-bottom: 24px;
     }
@@ -1627,18 +1226,18 @@
 
     .pricing-features li {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       gap: 10px;
-      font-size: 14px;
+      font-size: 13px;
+      color: var(--foreground);
       margin-bottom: 12px;
     }
 
     .pricing-features li svg {
-      width: 18px;
-      height: 18px;
-      color: var(--foreground);
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
       flex-shrink: 0;
-      margin-top: 1px;
     }
 
     .pricing-card .btn {
@@ -1646,24 +1245,55 @@
       justify-content: center;
     }
 
-    /* CTA */
-    .cta {
-      padding: 120px 0;
-      text-align: center;
-      background: linear-gradient(180deg, var(--background) 0%, #fff 100%);
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
     }
 
-    .cta h2 {
-      font-size: 48px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
+    .btn-outline:hover {
+      background: var(--bg);
+      border-color: var(--muted-light);
     }
 
-    .cta p {
-      font-size: 18px;
+    /* Quote Section */
+    .quote-section {
+      padding: 80px 0;
+      background: var(--bg-alt);
+    }
+
+    .quote-section blockquote {
+      font-size: 24px;
+      line-height: 1.5;
+      max-width: 680px;
+      color: var(--foreground);
+    }
+
+    .quote-section blockquote span {
       color: var(--muted);
-      margin-bottom: 40px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
     }
 
     /* Footer */
@@ -1674,129 +1304,77 @@
 
     footer .container {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .footer-left {
+    .footer-brand {
       display: flex;
-      align-items: center;
-      gap: 24px;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .footer-left img {
-      height: 24px;
-      opacity: 0.6;
+    .footer-brand img {
+      height: 22px;
     }
 
-    .footer-left span {
-      font-size: 14px;
-      color: var(--muted);
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
     }
 
     .footer-links {
       display: flex;
-      gap: 24px;
+      gap: 64px;
     }
 
-    .footer-links a {
-      font-size: 14px;
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-light);
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
       color: var(--muted);
       text-decoration: none;
+      margin-bottom: 8px;
     }
 
-    .footer-links a:hover {
+    .footer-col a:hover {
       color: var(--foreground);
     }
 
     /* Responsive */
-    @media (max-width: 1100px) {
-      .demo-notes-float {
-        display: none !important;
-      }
-
-      .demo-modal-wrapper.notes-active {
-        transform: none;
-      }
-    }
-
     @media (max-width: 768px) {
-      .hero {
-        padding: 80px 0 60px;
-      }
-
       .hero h1 {
-        font-size: 42px;
-      }
-
-      .hero h1 br {
-        display: none;
-      }
-
-      .hero p {
-        font-size: 18px;
-      }
-
-      .hero-badge {
-        font-size: 13px;
-        padding: 6px 12px;
-      }
-
-      .marquee-label {
-        font-size: 11px;
-      }
-
-      .features {
-        padding: 80px 0;
-      }
-
-      .features-header h2 {
         font-size: 32px;
       }
 
-      .features-grid,
-      .steps,
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
       .pricing-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .feature-card .feature-visual {
-        height: 220px;
-        padding: 24px;
-      }
-
-      .feature-card .feature-content {
-        padding: 20px;
+        max-width: 360px;
       }
 
       .nav-links {
         display: none;
       }
 
-      footer .container {
-        flex-direction: column;
-        gap: 24px;
+      .footer-links {
+        gap: 32px;
       }
 
-      .demo-browser-content {
-        padding: 32px 24px;
-        min-height: 420px;
-      }
-
-      .demo-switcher {
+      .trust-logos {
         flex-wrap: wrap;
-        width: 100%;
-        justify-content: center;
-      }
-
-      .demo-switcher-btn {
-        padding: 8px 12px;
-        font-size: 12px;
-      }
-
-      .demo-switcher-btn svg {
-        display: none;
+        gap: 24px;
       }
     }
   </style>
@@ -1805,12 +1383,16 @@
   <!-- Navigation -->
   <nav>
     <div class="container">
-      <img src="logo.png" alt="Daysift" class="logo">
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <!-- TODO: Change back to "Add to Chrome" with href="https://chrome.google.com/webstore" when ready to launch -->
-        <span class="btn btn-primary btn-disabled">Coming Soon</span>
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Daysift" class="logo">
+        <span class="beta-badge">Beta</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="https://daysift.lemonsqueezy.com" target="_blank">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="accent">Install extension →</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -1818,667 +1400,288 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge">
-        Stop digging through 47 tabs
+      <h1>Your shortcut to everything &lsquo;<em>work</em>.&rsquo;</h1>
+      <p class="hero-subtitle">Press ⌘J to get back to any doc, page, or tab you've touched. One shortcut to search across Google Docs, Figma, Notion, and everything else.</p>
+      <div class="hero-actions">
+        <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="btn btn-primary">Get started</a>
+        <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="btn btn-secondary video-link">
+          See how it works <span class="arrow">→</span>
+          <div class="video-thumb">
+            <div class="video-thumb-inner">
+              <div style="position: relative;">
+                <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/mqdefault.jpg" alt="Demo video" class="video-thumb-img">
+                <div class="video-thumb-play">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <span class="video-thumb-label">Watch demo · 2 min</span>
+            </div>
+          </div>
+        </a>
       </div>
-      <h1>Your shortcut to<br>everything <em>work</em></h1>
-      <p>Press <kbd class="kbd">&#8984;J</kbd> to get back to any doc, page, or tab you've touched. Instantly.</p>
-      <div class="hero-cta">
-        <!-- TODO: Change back to "Add to Chrome" with href="https://chrome.google.com/webstore" when ready to launch -->
-        <span class="btn btn-accent btn-disabled">Coming Soon</span>
-      </div>
-      <p class="hero-note">Free forever. No account required.</p>
     </div>
   </section>
 
   <!-- Demo -->
   <section class="demo">
     <div class="container">
-      <div class="demo-container">
-        <div class="demo-browser">
-          <!-- Browser Chrome - macOS style title bar -->
-          <div class="demo-browser-chrome">
-            <div class="demo-browser-controls">
-              <div class="demo-browser-dot red"></div>
-              <div class="demo-browser-dot yellow"></div>
-              <div class="demo-browser-dot green"></div>
+      <div class="demo-frame">
+        <div class="browser-chrome">
+          <div class="browser-toolbar">
+            <div class="browser-dots">
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+            </div>
+            <div class="browser-url">notion.so/workspace/projects</div>
+          </div>
+          <div class="browser-content">
+            <div class="demo-window">
+              <!-- Screen 1: Search -->
+          <div class="demo-screen active" data-screen="search">
+            <div class="demo-search">
+              <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span class="demo-search-text">Q3 budget</span>
+            </div>
+            <div class="demo-pills">
+              <div class="demo-pill active">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                  <rect x="1" y="1" width="6" height="6" rx="1"/>
+                  <rect x="9" y="1" width="6" height="6" rx="1"/>
+                  <rect x="1" y="9" width="6" height="6" rx="1"/>
+                  <rect x="9" y="9" width="6" height="6" rx="1"/>
+                </svg>
+                All
+              </div>
+              <div class="demo-pill">
+                <img src="google-docs.png" alt="">
+                Docs
+              </div>
+              <div class="demo-pill">
+                <img src="google-sheets.png" alt="">
+                Sheets
+              </div>
+              <div class="demo-pill">
+                <img src="https://svgl.app/library/notion.svg" alt="">
+                Notion
+              </div>
+              <div class="demo-pill">
+                <img src="https://svgl.app/library/figma.svg" alt="">
+                Figma
+              </div>
+            </div>
+            <div class="demo-results">
+              <div class="demo-result selected">
+                <img src="google-docs.png" alt="">
+                <div class="demo-result-content">
+                  <span class="demo-result-title">Q3 Budget Planning</span>
+                  <span class="demo-result-url">docs.google.com</span>
+                </div>
+                <span class="demo-result-time">2d ago</span>
+              </div>
+              <div class="demo-result">
+                <img src="google-sheets.png" alt="">
+                <div class="demo-result-content">
+                  <span class="demo-result-title">Q3 Budget Spreadsheet</span>
+                  <span class="demo-result-url">sheets.google.com</span>
+                </div>
+                <span class="demo-result-time">1w ago</span>
+              </div>
+              <div class="demo-result">
+                <img src="https://svgl.app/library/notion.svg" alt="">
+                <div class="demo-result-content">
+                  <span class="demo-result-title">Q3 Budget Notes</span>
+                  <span class="demo-result-url">notion.so</span>
+                </div>
+                <span class="demo-result-time">3d ago</span>
+              </div>
+            </div>
+            <div class="demo-footer">
+              <div class="demo-shortcuts">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> open</span>
+                <span><kbd>esc</kbd> close</span>
+              </div>
             </div>
           </div>
-          <!-- Browser Content with Modal -->
-          <div class="demo-browser-content">
-            <div class="demo-browser-backdrop"></div>
-            <div class="demo-modal-wrapper">
-              <div class="daysift-modal">
-                <!-- Screen 1: Search -->
-                <div class="demo-screen active" id="screen-search">
-                  <div class="daysift-search">
-                    <svg class="daysift-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
-                    <input type="text" class="daysift-search-input" value="Q3 budget" readonly>
-                    <button class="daysift-search-clear visible">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M18 6 6 18M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="daysift-pill-bar">
-                    <div class="daysift-pill active">
-                      <svg class="daysift-pill-icon" viewBox="0 0 16 16" fill="currentColor">
-                        <rect x="1" y="1" width="6" height="6" rx="1"/>
-                        <rect x="9" y="1" width="6" height="6" rx="1"/>
-                        <rect x="1" y="9" width="6" height="6" rx="1"/>
-                        <rect x="9" y="9" width="6" height="6" rx="1"/>
-                      </svg>
-                      <span>All</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Google Docs</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Sheets</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=miro.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Miro</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Notion</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Figma</span>
-                    </div>
-                  </div>
-                  <div class="daysift-results">
-                    <div class="daysift-result selected">
-                      <img class="daysift-result-favicon" src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="">
-                      <div class="daysift-result-content">
-                        <div class="daysift-result-title">Q3 Budget Planning</div>
-                        <div class="daysift-result-url">docs.google.com</div>
-                      </div>
-                      <span class="daysift-result-time">2 days ago</span>
-                    </div>
-                    <div class="daysift-result">
-                      <img class="daysift-result-favicon" src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=32" alt="">
-                      <div class="daysift-result-content">
-                        <div class="daysift-result-title">Q3 Budget Spreadsheet</div>
-                        <div class="daysift-result-url">sheets.google.com</div>
-                      </div>
-                      <span class="daysift-result-time">1 week ago</span>
-                    </div>
-                    <div class="daysift-result">
-                      <img class="daysift-result-favicon" src="https://www.google.com/s2/favicons?domain=miro.com&sz=32" alt="">
-                      <div class="daysift-result-content">
-                        <div class="daysift-result-title">Q3 Budget Review Board</div>
-                        <div class="daysift-result-url">miro.com</div>
-                      </div>
-                      <span class="daysift-result-time">3 days ago</span>
-                    </div>
-                  </div>
-                  <div class="daysift-footer">
-                    <div class="daysift-footer-shortcuts">
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↑</span>
-                        <span class="daysift-kbd">↓</span>
-                        <span>navigate</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↵</span>
-                        <span>open</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">esc</span>
-                        <span>close</span>
-                      </div>
-                    </div>
-                    <div class="daysift-footer-actions">
-                      <button class="daysift-footer-btn" title="Settings">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <circle cx="12" cy="12" r="3" />
-                          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
 
-                <!-- Screen 2: Filters (Google Docs filter active) -->
-                <div class="demo-screen" id="screen-filters">
-                  <div class="daysift-search">
-                    <svg class="daysift-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
-                    <input type="text" class="daysift-search-input" value="Q3 budget" readonly>
-                    <button class="daysift-search-clear visible">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M18 6 6 18M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="daysift-pill-bar">
-                    <div class="daysift-pill">
-                      <svg class="daysift-pill-icon" viewBox="0 0 16 16" fill="currentColor">
-                        <rect x="1" y="1" width="6" height="6" rx="1"/>
-                        <rect x="9" y="1" width="6" height="6" rx="1"/>
-                        <rect x="1" y="9" width="6" height="6" rx="1"/>
-                        <rect x="9" y="9" width="6" height="6" rx="1"/>
-                      </svg>
-                      <span>All</span>
-                    </div>
-                    <div class="daysift-pill active">
-                      <img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Google Docs</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Sheets</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=miro.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Miro</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=notion.so&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Notion</span>
-                    </div>
-                    <div class="daysift-pill">
-                      <img src="https://www.google.com/s2/favicons?domain=figma.com&sz=32" alt="" class="daysift-pill-icon">
-                      <span>Figma</span>
-                    </div>
-                  </div>
-                  <div class="daysift-results">
-                    <div class="daysift-result selected">
-                      <img class="daysift-result-favicon" src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="">
-                      <div class="daysift-result-content">
-                        <div class="daysift-result-title">Q3 Budget Planning</div>
-                        <div class="daysift-result-url">docs.google.com</div>
-                      </div>
-                      <span class="daysift-result-time">2 days ago</span>
-                    </div>
-                    <div class="daysift-result">
-                      <img class="daysift-result-favicon" src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=32" alt="">
-                      <div class="daysift-result-content">
-                        <div class="daysift-result-title">Q3 Budget Draft</div>
-                        <div class="daysift-result-url">docs.google.com</div>
-                      </div>
-                      <span class="daysift-result-time">1 week ago</span>
-                    </div>
-                  </div>
-                  <div class="daysift-footer">
-                    <div class="daysift-footer-shortcuts">
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↑</span>
-                        <span class="daysift-kbd">↓</span>
-                        <span>navigate</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↵</span>
-                        <span>open</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">esc</span>
-                        <span>close</span>
-                      </div>
-                    </div>
-                    <div class="daysift-footer-actions">
-                      <button class="daysift-footer-btn" title="Settings">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <circle cx="12" cy="12" r="3" />
-                          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Screen 3: AI Search -->
-                <div class="demo-screen" id="screen-ai">
-                  <div class="daysift-search">
-                    <svg class="daysift-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
-                    <input type="text" class="daysift-search-input" value="how do I center a div in CSS?" readonly>
-                    <div class="daysift-ai-badge">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-                      </svg>
-                      Ask AI
-                    </div>
-                  </div>
-                  <div class="daysift-ai-view">
-                    <div class="daysift-ai-content">
-                      <div class="daysift-ai-question">how do I center a div in CSS?</div>
-                      <div class="daysift-ai-answer">
-                        <p>To center a div, use Flexbox:</p>
-                        <code>.container {
+          <!-- Screen 2: AI -->
+          <div class="demo-screen" data-screen="ai">
+            <div class="demo-search">
+              <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span class="demo-search-text">How do I center a div in CSS?</span>
+              <div class="demo-ai-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                </svg>
+                Ask AI
+              </div>
+            </div>
+            <div class="demo-ai-answer">
+              <div class="demo-ai-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                </svg>
+                AI Answer
+              </div>
+              <p>To center a div, use Flexbox:</p>
+              <code>.container {
   display: flex;
   justify-content: center;
   align-items: center;
 }</code>
-                        <p>Or use Grid:</p>
-                        <code>.container {
-  display: grid;
-  place-items: center;
-}</code>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="daysift-footer">
-                    <div class="daysift-footer-shortcuts">
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">⌘</span>
-                        <span class="daysift-kbd">C</span>
-                        <span>copy</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">esc</span>
-                        <span>back</span>
-                      </div>
-                    </div>
-                    <div class="daysift-footer-actions">
-                      <button class="daysift-footer-btn" title="Copy answer">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-                          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="demo-footer">
+              <div class="demo-shortcuts">
+                <span><kbd>⌘</kbd><kbd>C</kbd> copy</span>
+                <span><kbd>esc</kbd> back</span>
+              </div>
+            </div>
+          </div>
 
-                <!-- Screen 4: Notes (shows floating window) -->
-                <div class="demo-screen" id="screen-notes">
-                  <div class="daysift-search">
-                    <svg class="daysift-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
-                    <input type="text" class="daysift-search-input" value="/notes" readonly>
-                    <button class="daysift-search-clear visible">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M18 6 6 18M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="daysift-results" style="flex: 1; overflow-y: auto; padding-top: 8px;">
-                    <div class="daysift-slash-title">Commands</div>
-                    <div class="daysift-slash-item selected">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10"/>
-                      </svg>
-                      <span class="daysift-slash-name">/notes</span>
-                      <span class="daysift-slash-desc">Open floating notes</span>
-                    </div>
-                  </div>
-                  <div class="daysift-footer">
-                    <div class="daysift-footer-shortcuts">
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↑</span>
-                        <span class="daysift-kbd">↓</span>
-                        <span>navigate</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↵</span>
-                        <span>open</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">esc</span>
-                        <span>close</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Screen 5: Commands -->
-                <div class="demo-screen" id="screen-commands">
-                  <div class="daysift-search">
-                    <svg class="daysift-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
-                    <input type="text" class="daysift-search-input" value="/" readonly>
-                    <button class="daysift-search-clear visible">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M18 6 6 18M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div class="daysift-results" style="padding-top: 8px;">
-                    <div class="daysift-slash-title">Commands</div>
-                    <div class="daysift-slash-item selected">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/doc</span>
-                      <span class="daysift-slash-desc">New Google Doc</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/sheet</span>
-                      <span class="daysift-slash-desc">New Google Sheet</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/slide</span>
-                      <span class="daysift-slash-desc">New Google Slides</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/figma</span>
-                      <span class="daysift-slash-desc">New Figma file</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/notion</span>
-                      <span class="daysift-slash-desc">New Notion page</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/linear</span>
-                      <span class="daysift-slash-desc">New Linear issue</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                        <polyline points="14 2 14 8 20 8"/>
-                        <line x1="12" y1="18" x2="12" y2="12"/>
-                        <line x1="9" y1="15" x2="15" y2="15"/>
-                      </svg>
-                      <span class="daysift-slash-name">/github</span>
-                      <span class="daysift-slash-desc">New GitHub repo</span>
-                    </div>
-                    <div class="daysift-slash-item">
-                      <svg class="daysift-slash-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10"/>
-                      </svg>
-                      <span class="daysift-slash-name">/notes</span>
-                      <span class="daysift-slash-desc">Open floating notes</span>
-                    </div>
-                  </div>
-                  <div class="daysift-footer">
-                    <div class="daysift-footer-shortcuts">
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↑</span>
-                        <span class="daysift-kbd">↓</span>
-                        <span>navigate</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">↵</span>
-                        <span>open</span>
-                      </div>
-                      <div class="daysift-footer-shortcut">
-                        <span class="daysift-kbd">esc</span>
-                        <span>close</span>
-                      </div>
-                    </div>
-                    <div class="daysift-footer-actions">
-                      <button class="daysift-footer-btn" title="Settings">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <circle cx="12" cy="12" r="3" />
-                          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                        </svg>
-                      </button>
-                      <button class="daysift-footer-btn" title="Toggle dark mode">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div><!-- end daysift-modal -->
-            </div><!-- end demo-modal-wrapper -->
-
-            <!-- Floating Notes Window (shows on Notes screen) -->
-            <div class="demo-notes-float" id="notes-float-window">
-              <div class="demo-notes-float-header">
-                <span class="demo-notes-float-title">Meeting notes</span>
-                <div class="demo-notes-float-actions">
-                  <button class="demo-notes-float-btn" title="Pin">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="12" y1="17" x2="12" y2="22" />
-                      <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z" />
-                    </svg>
-                  </button>
-                  <button class="demo-notes-float-btn" title="Close">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M18 6 6 18M6 6l12 12" />
-                    </svg>
-                  </button>
+          <!-- Screen 3: Notes -->
+          <div class="demo-screen demo-screen-notes" data-screen="notes">
+            <div class="demo-search">
+              <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span class="demo-search-text demo-typing">/notes</span>
+            </div>
+            <div class="demo-command-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              <span>Open floating notes</span>
+              <kbd>↵</kbd>
+            </div>
+          </div>
+            </div>
+            <!-- Floating note outside the modal -->
+            <div class="demo-floating-note-outside">
+              <div class="floating-note-header">
+                <span class="floating-note-title">Daysift Notes</span>
+                <div class="floating-note-actions">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
                 </div>
               </div>
-              <div class="demo-notes-float-editor">
-                <div class="demo-notes-float-editor-title">Meeting notes</div>
-                <div class="demo-notes-float-editor-body">
-                  <p>Discussion about Q3 roadmap priorities and timeline adjustments.</p>
-                  <p>Key points:</p>
-                  <p>• Shipping v2 by end of month</p>
-                  <p>• Need design review for settings page</p>
+              <div class="floating-note-list">
+                <div class="floating-note-item">
+                  <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Product launch</span>
+                    <span class="floating-note-item-preview">Finalize pricing with Sarah</span>
+                  </div>
+                  <span class="floating-note-item-time">2m</span>
                 </div>
-                <div class="demo-notes-ai-cta">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-                  </svg>
-                  <span>Ask AI to help write...</span>
+                <div class="floating-note-item active">
+                  <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Q3 Planning</span>
+                    <span class="floating-note-item-preview">Budget approved: $50k</span>
+                  </div>
+                  <span class="floating-note-item-time">1h</span>
+                </div>
+                <div class="floating-note-item">
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Meeting notes</span>
+                    <span class="floating-note-item-preview">Review design feedback</span>
+                  </div>
+                  <span class="floating-note-item-time">2d</span>
+                </div>
+                <div class="floating-note-item">
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">API docs</span>
+                    <span class="floating-note-item-preview">Endpoints reference</span>
+                  </div>
+                  <span class="floating-note-item-time">3d</span>
+                </div>
+                <div class="floating-note-item">
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Ideas</span>
+                    <span class="floating-note-item-preview">New feature brainstorm</span>
+                  </div>
+                  <span class="floating-note-item-time">1w</span>
                 </div>
               </div>
             </div>
-          </div><!-- end demo-browser-content -->
-        </div><!-- end demo-browser -->
+          </div>
+        </div>
 
-        <!-- Switcher below demo -->
+        <!-- Switcher -->
         <div class="demo-switcher">
-          <button class="demo-switcher-btn active" data-screen="search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="11" cy="11" r="8"/>
-              <path d="m21 21-4.3-4.3"/>
+          <button class="demo-switch active" data-target="search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
             </svg>
             Search
-            <span class="progress-bar"></span>
           </button>
-          <button class="demo-switcher-btn" data-screen="filters">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/>
-            </svg>
-            Filters
-            <span class="progress-bar"></span>
-          </button>
-          <button class="demo-switcher-btn" data-screen="ai">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button class="demo-switch" data-target="ai">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
             </svg>
-            AI Search
-            <span class="progress-bar"></span>
+            AI
           </button>
-          <button class="demo-switcher-btn" data-screen="notes">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button class="demo-switch" data-target="notes">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
               <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
             </svg>
             Notes
-            <span class="progress-bar"></span>
-          </button>
-          <button class="demo-switcher-btn" data-screen="commands">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
-            </svg>
-            Commands
-            <span class="progress-bar"></span>
           </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Marquee -->
-  <section class="marquee">
-    <div class="marquee-label">Works with your favorite tools</div>
-    <div class="marquee-track">
-      <div class="marquee-content">
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googledocs/4285F4" alt="">
-          Google Docs
+  <!-- Tools Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <p>Works with your favorite tools, and a hundred more</p>
+      <div class="trust-logos">
+        <div class="tool-item">
+          <img src="google-docs.png" alt="Google Docs">
         </div>
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googlesheets/0F9D58" alt="">
-          Google Sheets
+        <div class="tool-item">
+          <img src="google-sheets.png" alt="Google Sheets">
         </div>
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googleslides/F4B400" alt="">
-          Google Slides
+        <div class="tool-item">
+          <img src="https://svgl.app/library/notion.svg" alt="Notion">
         </div>
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googlecalendar" alt="">
-          Google Calendar
+        <div class="tool-item">
+          <img src="https://svgl.app/library/figma.svg" alt="Figma">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/gmail.svg" alt="">
-          Gmail
+        <div class="tool-item">
+          <img src="github.png" alt="GitHub">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/notion.svg" alt="">
-          Notion
+        <div class="tool-item">
+          <img src="https://svgl.app/library/slack.svg" alt="Slack">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/figma.svg" alt="">
-          Figma
+        <div class="tool-item">
+          <img src="https://svgl.app/library/linear.svg" alt="Linear">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/asana-logo.svg" alt="">
-          Asana
+        <div class="tool-item">
+          <img src="https://svgl.app/library/asana-logo.svg" alt="Asana">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/github_dark.svg" alt="">
-          GitHub
+        <div class="tool-item">
+          <img src="https://svgl.app/library/gmail.svg" alt="Gmail">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/dropbox.svg" alt="">
-          Dropbox
+        <div class="tool-item">
+          <img src="https://svgl.app/library/zoom.svg" alt="Zoom">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/zoom.svg" alt="">
-          Zoom
+        <div class="tool-item">
+          <img src="https://svgl.app/library/dropbox.svg" alt="Dropbox">
         </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/drive.svg" alt="">
-          Google Drive
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/microsoft-outlook.svg" alt="">
-          Outlook
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/microsoft-teams.svg" alt="">
-          Teams
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/linear.svg" alt="">
-          Linear
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/slack.svg" alt="">
-          Slack
-        </div>
-      </div>
-      <div class="marquee-content">
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googledocs/4285F4" alt="">
-          Google Docs
-        </div>
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googlesheets/0F9D58" alt="">
-          Google Sheets
-        </div>
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googleslides/F4B400" alt="">
-          Google Slides
-        </div>
-        <div class="marquee-item">
-          <img src="https://cdn.simpleicons.org/googlecalendar" alt="">
-          Google Calendar
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/gmail.svg" alt="">
-          Gmail
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/notion.svg" alt="">
-          Notion
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/figma.svg" alt="">
-          Figma
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/asana-logo.svg" alt="">
-          Asana
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/github_dark.svg" alt="">
-          GitHub
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/dropbox.svg" alt="">
-          Dropbox
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/zoom.svg" alt="">
-          Zoom
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/drive.svg" alt="">
-          Google Drive
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/microsoft-outlook.svg" alt="">
-          Outlook
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/microsoft-teams.svg" alt="">
-          Teams
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/linear.svg" alt="">
-          Linear
-        </div>
-        <div class="marquee-item">
-          <img src="https://svgl.app/library/slack.svg" alt="">
-          Slack
+        <div class="tool-item">
+          <img src="https://svgl.app/library/drive.svg" alt="Google Drive">
         </div>
       </div>
     </div>
@@ -2504,43 +1707,33 @@
               </div>
               <div class="search-results-mock">
                 <div class="search-results-inner">
-                  <div class="search-result-item">
-                    <div class="result-icon docs">
-                      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#4285F4" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path fill="#A1C2FA" d="M14 2v6h6"/><path fill="#fff" d="M8 12h8v1H8zm0 3h8v1H8zm0 3h5v1H8z"/></svg>
-                    </div>
-                    <span class="result-text">Q3 Budget Review - Docs</span>
+                  <div class="search-result-item selected">
+                    <img src="google-docs.png" alt="" class="result-icon">
+                    <span class="result-text">Q3 Budget Review</span>
                   </div>
                   <div class="search-result-item">
-                    <div class="result-icon sheets">
-                      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#0F9D58" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path fill="#87CEAC" d="M14 2v6h6"/><path fill="#fff" d="M8 12h8v6H8z"/><path fill="#0F9D58" d="M8 14h8v1H8zm0 2h8v1H8z"/></svg>
-                    </div>
-                    <span class="result-text">Budget Tracker 2026 - Sheets</span>
+                    <img src="google-sheets.png" alt="" class="result-icon">
+                    <span class="result-text">Budget Tracker 2026</span>
                   </div>
                   <div class="search-result-item">
-                    <div class="result-icon figma">
-                      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#F24E1E" d="M8 24a4 4 0 0 0 4-4v-4H8a4 4 0 0 0 0 8z"/><path fill="#A259FF" d="M4 12a4 4 0 0 1 4-4h4v8H8a4 4 0 0 1-4-4z"/><path fill="#1ABCFE" d="M12 8h4a4 4 0 1 1 0 8h-4V8z"/><path fill="#0ACF83" d="M4 4a4 4 0 0 1 4-4h4v8H8a4 4 0 0 1-4-4z"/><path fill="#FF7262" d="M12 0h4a4 4 0 1 1 0 8h-4V0z"/></svg>
-                    </div>
-                    <span class="result-text">Budget Deck - Figma</span>
+                    <img src="https://svgl.app/library/figma.svg" alt="" class="result-icon">
+                    <span class="result-text">Budget Deck</span>
                   </div>
                   <div class="search-result-item">
-                    <div class="result-icon slides">
-                      <svg viewBox="0 0 24 24" width="18" height="18"><path fill="#F4B400" d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path fill="#F7D77C" d="M14 2v6h6"/><path fill="#fff" d="M7 11h10v8H7z"/></svg>
-                    </div>
-                    <span class="result-text">Q3 Presentation - Slides</span>
+                    <img src="google-slides.png" alt="" class="result-icon">
+                    <span class="result-text">Q3 Presentation</span>
                   </div>
                   <div class="search-result-item">
-                    <div class="result-icon notion">
-                      <svg viewBox="0 0 100 100" width="18" height="18" fill="none"><path d="M6.017 4.313l55.333-4.087c6.797-.583 8.543-.19 12.817 2.917l17.663 12.443c2.913 2.14 3.883 2.723 3.883 5.053v68.243c0 4.277-1.553 6.807-6.99 7.193L24.467 99.967c-4.08.193-6.023-.39-8.16-3.113L3.3 79.94c-2.333-3.113-3.3-5.443-3.3-8.167V11.113c0-3.497 1.553-6.413 6.017-6.8z" fill="#fff"/><path fill-rule="evenodd" clip-rule="evenodd" d="M61.35.227l-55.333 4.087C1.553 4.7 0 7.617 0 11.113v60.66c0 2.723.967 5.053 3.3 8.167l13.007 16.913c2.137 2.723 4.08 3.307 8.16 3.113l64.257-3.89c5.437-.387 6.99-2.917 6.99-7.193V20.64c0-2.21-.873-2.847-3.443-4.733L74.167 3.143C69.873.027 68.127-.357 61.35.227zM25.663 19.853c-5.24.33-6.44.404-9.457-2.083L8.35 11.8c-.77-.78-.387-1.753 1.163-1.94l53.193-3.887c4.467-.387 6.793.973 8.537 2.333l9.07 6.607c.39.193 1.36 1.36.193 1.36l-54.843 3.58zM19.57 88.123V32.047c0-2.53.78-3.697 3.103-3.893L86.14 24.65c2.14-.193 3.107 1.167 3.107 3.693v55.69c0 2.53-1.36 4.087-3.883 4.28l-61.9 3.697c-2.527.193-3.893-1.167-3.893-3.887zm60.527-53.54c.387 1.553 0 3.107-1.553 3.3l-2.913.58v41.117c-2.527 1.36-4.853 2.143-6.797 2.143-3.107 0-3.883-.973-6.21-3.887l-19.03-29.94v28.97l6.02 1.363s0 3.107-4.273 3.107l-11.827.773c-.387-.78 0-2.723 1.357-3.11l3.107-.83V40.047l-4.277-.387c-.387-1.553.58-3.89 3.107-4.08l12.797-.777 19.803 30.327V37.91l-5.057-.58c-.387-1.943 1.167-3.497 3.3-3.69l11.447-.773z" fill="#000"/></svg>
-                    </div>
-                    <span class="result-text">Budget Planning - Notion</span>
+                    <img src="https://svgl.app/library/notion.svg" alt="" class="result-icon">
+                    <span class="result-text">Budget Planning</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="feature-content">
-            <h3>Instant Search</h3>
-            <p>Press Cmd+J anywhere and search your entire work history in milliseconds.</p>
+            <h3>Instant search</h3>
+            <p>Press ⌘J anywhere and search your entire work history in milliseconds.</p>
           </div>
         </div>
 
@@ -2552,11 +1745,8 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
                 </svg>
-                <div class="ai-question-text">Best channels for B2B SaaS?</div>
-                <div class="ask-ai-badge">
-                  Ask AI
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-                </div>
+                <span class="ai-question-text">Best channels for B2B SaaS?</span>
+                <span class="ask-ai-badge">Ask AI</span>
               </div>
               <div class="ai-answer">
                 <div class="ai-answer-skeleton">
@@ -2571,16 +1761,14 @@
                     </svg>
                     AI Answer
                   </div>
-                  <div class="ai-answer-text">
-                    Focus on LinkedIn for organic reach, content marketing for SEO, and cold email with personalized outreach.
-                  </div>
+                  <p class="ai-answer-text">Focus on LinkedIn for organic reach, content marketing for SEO, and cold email with personalized outreach.</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="feature-content">
-            <h3>AI-Powered</h3>
-            <p>Ask questions in natural language. Get instant answers without leaving your workflow.</p>
+            <h3>AI-powered answers</h3>
+            <p>Ask questions in natural language. Get instant answers from your work history.</p>
           </div>
         </div>
 
@@ -2590,9 +1778,7 @@
             <div class="notes-mockup">
               <div class="note-window">
                 <div class="note-header">
-                  <div class="note-dots">
-                    <span></span><span></span><span></span>
-                  </div>
+                  <div class="note-dots"><span></span><span></span><span></span></div>
                   <span class="note-title">Daysift Notes</span>
                 </div>
                 <div class="note-body">
@@ -2605,7 +1791,7 @@
             </div>
           </div>
           <div class="feature-content">
-            <h3>Floating Notes</h3>
+            <h3>Floating notes</h3>
             <p>Jot down thoughts in a floating window that stays on top. Always accessible.</p>
           </div>
         </div>
@@ -2613,30 +1799,12 @@
     </div>
   </section>
 
-  <!-- How it works -->
-  <section class="how-it-works">
+  <!-- Quote -->
+  <section class="quote-section">
     <div class="container">
-      <div class="how-it-works-header">
-        <h2>Up and running in seconds</h2>
-        <p>No account, no setup, no friction.</p>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Install the extension</h3>
-          <p>Add Daysift to Chrome with one click. Works immediately.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Press Cmd+J</h3>
-          <p>Open the command palette from any webpage, anytime.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Find what you need</h3>
-          <p>Type what you remember. We'll find the rest.</p>
-        </div>
-      </div>
+      <blockquote>
+        For knowledge workers — <span>our work is scattered across dozens of apps and hundreds of tabs. Daysift brings it all together, so you can focus on what matters.</span>
+      </blockquote>
     </div>
   </section>
 
@@ -2670,9 +1838,10 @@
               30 AI searches/month
             </li>
           </ul>
-          <a class="btn btn-secondary" href="https://chrome.google.com/webstore" target="_blank">Get Started</a>
+          <a class="btn btn-outline" href="https://chromewebstore.google.com/detail/daysift" target="_blank">Get started</a>
         </div>
         <div class="pricing-card featured">
+          <div class="pricing-badge">Most popular</div>
           <div class="pricing-name">Pro</div>
           <div class="pricing-price">$1.99<span>/month</span></div>
           <div class="pricing-description">For power users</div>
@@ -2694,10 +1863,10 @@
               Advanced formatting
             </li>
           </ul>
-          <a class="btn btn-accent" href="https://daysift.lemonsqueezy.com" target="_blank">Upgrade to Pro</a>
+          <a class="btn btn-primary" href="https://daysift.lemonsqueezy.com" target="_blank">Upgrade to Pro</a>
         </div>
         <div class="pricing-card">
-          <div class="pricing-name">Pro+</div>
+          <div class="pricing-name">Unlimited</div>
           <div class="pricing-price">$4.99<span>/month</span></div>
           <div class="pricing-description">For AI power users</div>
           <ul class="pricing-features">
@@ -2714,87 +1883,91 @@
               Unlimited AI writing
             </li>
           </ul>
-          <a class="btn btn-secondary" href="https://daysift.lemonsqueezy.com" target="_blank">Upgrade to Pro+</a>
+          <a class="btn btn-outline" href="https://daysift.lemonsqueezy.com" target="_blank">Get Unlimited</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta">
+  <section class="cta-section">
     <div class="container">
-      <h2>Your shortcut to everything work</h2>
-      <p>Get back to any doc, page, or tab you've touched. Instantly.</p>
-      <!-- TODO: Change back to "Add to Chrome" with href="https://chrome.google.com/webstore" when ready to launch -->
-      <span class="btn btn-accent btn-disabled">Coming Soon</span>
+      <h2>Ready to find anything?</h2>
+      <p>Start free. No credit card required.</p>
+      <div class="cta-actions">
+        <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="btn btn-primary">Install for Chrome</a>
+        <a href="https://daysift.lemonsqueezy.com" target="_blank" class="btn btn-secondary">Explore plans</a>
+      </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-left">
+      <div class="footer-brand">
         <img src="logo.png" alt="Daysift">
-        <span>&copy; 2026 Daysift</span>
+        <span>© 2024 Daysift</span>
       </div>
       <div class="footer-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="mailto:hello@daysift.com">Contact</a>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="https://daysift.lemonsqueezy.com" target="_blank">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">Contact</a>
+          <a href="https://twitter.com/daysift" target="_blank">Twitter</a>
+        </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Demo switcher functionality
-    const switcherBtns = document.querySelectorAll('.demo-switcher-btn');
-    const screens = document.querySelectorAll('.demo-screen');
-    const browserContent = document.querySelector('.demo-browser-content');
-    let autoplayInterval;
-    let autoplayTimeout;
+    // Demo screen switcher
+    const floatingNote = document.querySelector('.demo-floating-note-outside');
 
-    function showScreen(screenId) {
-      // Update buttons
-      switcherBtns.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.screen === screenId);
-      });
-
-      // Update screens
-      screens.forEach(screen => {
-        screen.classList.toggle('active', screen.id === `screen-${screenId}`);
-      });
-
-      // Toggle notes-active class on browser content for CSS-based visibility
-      const isNotes = screenId === 'notes';
-      if (browserContent) {
-        browserContent.classList.toggle('notes-active', isNotes);
-      }
-    }
-
-    // Click handlers
-    switcherBtns.forEach(btn => {
+    document.querySelectorAll('.demo-switch').forEach(btn => {
       btn.addEventListener('click', () => {
-        showScreen(btn.dataset.screen);
-        // Reset autoplay on manual click
-        clearInterval(autoplayInterval);
-        clearTimeout(autoplayTimeout);
-        // Resume autoplay after 8s of inactivity
-        autoplayTimeout = setTimeout(startAutoplay, 8000);
+        const target = btn.dataset.target;
+
+        // Update buttons
+        document.querySelectorAll('.demo-switch').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update screens
+        document.querySelectorAll('.demo-screen').forEach(s => s.classList.remove('active'));
+        document.querySelector(`.demo-screen[data-screen="${target}"]`).classList.add('active');
+
+        // Show/hide floating note for Notes screen
+        if (floatingNote) {
+          if (target === 'notes') {
+            floatingNote.classList.add('visible');
+          } else {
+            floatingNote.classList.remove('visible');
+          }
+        }
       });
     });
 
-    // Autoplay through all 5 screens
-    function startAutoplay() {
-      const screenOrder = ['search', 'filters', 'ai', 'notes', 'commands'];
-      let currentIndex = 0;
+    // Video thumbnail follows mouse
+    const videoLink = document.querySelector('.video-link');
+    const videoThumb = document.querySelector('.video-thumb');
 
-      autoplayInterval = setInterval(() => {
-        currentIndex = (currentIndex + 1) % screenOrder.length;
-        showScreen(screenOrder[currentIndex]);
-      }, 5000);
+    if (videoLink && videoThumb) {
+      videoLink.addEventListener('mousemove', (e) => {
+        const offsetX = 20;
+        const offsetY = 15;
+        videoThumb.style.left = e.clientX + offsetX + 'px';
+        videoThumb.style.top = e.clientY + offsetY + 'px';
+      });
     }
-
-    startAutoplay();
   </script>
 </body>
 </html>
