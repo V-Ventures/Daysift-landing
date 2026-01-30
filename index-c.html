@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daysift - Your shortcut to everything work</title>
+  <meta name="description" content="Press Cmd+J to instantly find any doc, page, or tab you've touched. Search across all your work apps.">
+  <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      /* Subtle grid pattern */
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .beta-badge {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-alt);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: left;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--foreground);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #333;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 0;
+    }
+
+    .btn-secondary:hover {
+      color: var(--foreground);
+    }
+
+    .btn-secondary::after {
+      content: '→';
+      margin-left: 4px;
+      transition: transform 0.15s;
+    }
+
+    .btn-secondary:hover::after {
+      transform: translateX(2px);
+    }
+
+    .btn-secondary.video-link::after {
+      content: none;
+    }
+
+    .btn-secondary .arrow {
+      display: inline-block;
+      transition: transform 0.15s;
+    }
+
+    .btn-secondary:hover .arrow {
+      transform: translateX(2px);
+    }
+
+    /* Video preview hover */
+    .video-link {
+      position: relative;
+    }
+
+    .video-thumb {
+      position: fixed;
+      transform: scale(0.95);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.1s ease-out;
+      z-index: 1000;
+    }
+
+    .video-link:hover .video-thumb {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .video-thumb-inner {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .video-thumb-img {
+      display: block;
+      width: 200px;
+      height: 112px;
+      border-radius: 6px;
+      background: var(--bg-alt);
+      object-fit: cover;
+      position: relative;
+    }
+
+    .video-thumb-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px;
+      height: 36px;
+      background: rgba(0,0,0,0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-thumb-play svg {
+      width: 14px;
+      height: 14px;
+      color: #fff;
+      margin-left: 2px;
+    }
+
+    .video-thumb-label {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* Demo */
+    .demo {
+      margin: 40px 0 80px;
+    }
+
+    .demo-frame {
+      width: 100%;
+      position: relative;
+    }
+
+    /* Browser chrome behind the modal */
+    .browser-chrome {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      padding-top: 44px;
+      position: relative;
+    }
+
+    .browser-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .browser-url {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--muted-light);
+      max-width: 300px;
+    }
+
+    .browser-content {
+      background: var(--bg);
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      border-radius: 0 0 12px 12px;
+    }
+
+    .demo-window {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      overflow: hidden;
+      padding: 20px;
+      width: 100%;
+      max-width: 640px;
+      min-height: 380px;
+      max-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .demo-screen.active {
+      display: flex;
+    }
+
+    .demo-search {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .demo-search-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-search-text {
+      flex: 1;
+      font-size: 14px;
+      color: var(--foreground);
+    }
+
+    .demo-ai-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--badge-bg);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--badge-text);
+      flex-shrink: 0;
+    }
+
+    .demo-pills {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .demo-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .demo-pill.active {
+      border-color: var(--foreground);
+    }
+
+    .demo-pill img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .demo-results {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 16px;
+    }
+
+    .demo-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 6px;
+    }
+
+    .demo-result.selected {
+      background: #F5F4F2;
+    }
+
+    .demo-result img {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .demo-result-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .demo-result-title {
+      display: block;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .demo-result-url {
+      display: block;
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .demo-result-time {
+      font-size: 11px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-footer {
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .demo-shortcuts {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .demo-shortcuts kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 10px;
+      font-family: inherit;
+      margin-right: 2px;
+    }
+
+    /* AI Answer */
+    .demo-ai-answer {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .demo-ai-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .demo-ai-answer p {
+      font-size: 13px;
+      color: var(--foreground);
+      margin: 0 0 12px 0;
+    }
+
+    .demo-ai-answer code {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+      color: var(--foreground);
+      white-space: pre;
+      overflow-x: auto;
+    }
+
+    /* Notes Screen */
+    .demo-command-hint {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #F5F4F2;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .demo-command-hint svg {
+      color: var(--muted);
+    }
+
+    .demo-command-hint span {
+      flex: 1;
+    }
+
+    .demo-command-hint kbd {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .demo-floating-note-outside {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      width: 280px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+      transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .demo-floating-note-outside.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .floating-note-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: #78716C;
+      color: #fff;
+    }
+
+    .floating-note-title {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .floating-note-actions {
+      display: flex;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .floating-note-list {
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .floating-note-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+
+    .floating-note-item:hover {
+      background: var(--bg);
+    }
+
+    .floating-note-item.active {
+      background: var(--bg-alt);
+    }
+
+    .floating-note-item:last-child {
+      border-bottom: none;
+    }
+
+    .floating-note-item .pin-icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .floating-note-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .floating-note-item-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .floating-note-item-preview {
+      display: block;
+      font-size: 11px;
+      color: var(--muted-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .floating-note-item-time {
+      font-size: 11px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-typing {
+      position: relative;
+    }
+
+    .demo-typing::after {
+      content: '|';
+      animation: blink 1s infinite;
+      color: var(--accent);
+      margin-left: 1px;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .demo-notes-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: #F5F4F2;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .demo-notes-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .demo-notes-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .demo-notes-body {
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .demo-note-line {
+      margin-bottom: 6px;
+    }
+
+    .demo-note-line strong {
+      font-weight: 600;
+    }
+
+    .demo-note-line .bullet {
+      color: var(--accent);
+    }
+
+    /* Switcher */
+    .demo-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .demo-switch {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .demo-switch:hover {
+      border-color: var(--muted-light);
+      color: var(--foreground);
+    }
+
+    .demo-switch.active {
+      background: var(--foreground);
+      border-color: var(--foreground);
+      color: #fff;
+    }
+
+    .demo-switch svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Trust Bar */
+    .trust-bar {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .trust-bar p {
+      font-size: 11px;
+      color: var(--muted-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 24px;
+    }
+
+    .trust-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .tool-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tool-item img {
+      height: 28px;
+      width: 28px;
+      object-fit: contain;
+      opacity: 0.7;
+      transition: opacity 0.15s;
+    }
+
+    .tool-item img:hover {
+      opacity: 1;
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 0;
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .features-header h2 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .features-header h2 em {
+      font-style: italic;
+    }
+
+    .features-header p {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .feature-visual {
+      height: 240px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      overflow: hidden;
+    }
+
+    .feature-content {
+      padding: 24px;
+    }
+
+    .feature-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-content p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Search Mockup */
+    .search-mockup {
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .search-input-mock {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .search-input-mock svg {
+      width: 16px;
+      height: 16px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .search-input-mock span {
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .search-results-mock {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      max-height: 140px;
+    }
+
+    .search-results-inner {
+      padding: 6px;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover .search-results-inner {
+      transform: translateY(-44px);
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 6px;
+    }
+
+    .search-result-item.selected {
+      background: #F5F4F2;
+    }
+
+    .search-result-item .result-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .search-result-item .result-text {
+      font-size: 12px;
+      color: var(--foreground);
+    }
+
+    /* AI Mockup */
+    .ai-mockup {
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .ai-question {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .ai-question svg {
+      width: 16px;
+      height: 16px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .ai-question-text {
+      flex: 1;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .ask-ai-badge {
+      background: var(--badge-bg);
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--badge-text);
+      flex-shrink: 0;
+    }
+
+    .ai-answer {
+      background: #fff;
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      position: relative;
+      min-height: 90px;
+    }
+
+    .ai-answer-skeleton {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      transition: opacity 0.3s ease;
+    }
+
+    .skeleton-line {
+      height: 8px;
+      background: linear-gradient(90deg, #F0EFEC 25%, #e8e8e8 50%, #F0EFEC 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .skeleton-line:nth-child(1) { width: 40%; }
+    .skeleton-line:nth-child(2) { width: 100%; }
+    .skeleton-line:nth-child(3) { width: 75%; }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    .ai-answer-content {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .feature-card:hover .ai-answer-skeleton {
+      opacity: 0;
+    }
+
+    .feature-card:hover .ai-answer-content {
+      opacity: 1;
+    }
+
+    .ai-answer-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .ai-answer-label svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .ai-answer-text {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    /* Notes Mockup */
+    .notes-mockup {
+      width: 100%;
+      max-width: 240px;
+    }
+
+    .note-window {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    .note-header {
+      background: #F5F4F2;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .note-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .note-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .note-title {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .note-body {
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--foreground);
+    }
+
+    .note-text-line {
+      margin-bottom: 6px;
+    }
+
+    .note-text-line strong {
+      font-weight: 600;
+    }
+
+    .note-text-line .bullet {
+      color: var(--accent);
+    }
+
+    .note-text-line.note-text-hover {
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.4s ease 0.1s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+    }
+
+    .feature-card:hover .note-text-line.note-text-hover {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* Pricing */
+    .pricing {
+      padding: 80px 0;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .pricing-header h2 {
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .pricing-header p {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .pricing-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .pricing-card.featured {
+      border-color: var(--foreground);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--foreground);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .pricing-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price span {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .pricing-description {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+
+    .pricing-features li svg {
+      width: 16px;
+      height: 16px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .pricing-card .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg);
+      border-color: var(--muted-light);
+    }
+
+    /* Quote Section */
+    .quote-section {
+      padding: 80px 0;
+      background: var(--bg-alt);
+    }
+
+    .quote-section blockquote {
+      font-size: 24px;
+      line-height: 1.5;
+      max-width: 680px;
+      color: var(--foreground);
+    }
+
+    .quote-section blockquote span {
+      color: var(--muted);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 22px;
+    }
+
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 64px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-light);
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .footer-col a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .footer-links {
+        gap: 32px;
+      }
+
+      .trust-logos {
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src="logo.png" alt="Daysift" class="logo">
+        <span class="beta-badge">Beta</span>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="https://daysift.lemonsqueezy.com" target="_blank">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Your shortcut to everything &lsquo;<em>work</em>.&rsquo;</h1>
+      <p class="hero-subtitle">Press ⌘J to get back to any doc, page, or tab you've touched. One shortcut to search across Google Docs, Figma, Notion, and everything else.</p>
+      <div class="hero-actions">
+        <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="btn btn-primary">Get started</a>
+        <a href="https://youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" class="btn btn-secondary video-link">
+          See how it works <span class="arrow">→</span>
+          <div class="video-thumb">
+            <div class="video-thumb-inner">
+              <div style="position: relative;">
+                <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/mqdefault.jpg" alt="Demo video" class="video-thumb-img">
+                <div class="video-thumb-play">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+              </div>
+              <span class="video-thumb-label">Watch demo · 2 min</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo -->
+  <section class="demo">
+    <div class="container">
+      <div class="demo-frame">
+        <div class="browser-chrome">
+          <div class="browser-toolbar">
+            <div class="browser-dots">
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+              <span class="browser-dot"></span>
+            </div>
+            <div class="browser-url">notion.so/workspace/projects</div>
+          </div>
+          <div class="browser-content">
+            <div class="demo-window">
+              <!-- Screen 1: Search -->
+          <div class="demo-screen active" data-screen="search">
+            <div class="demo-search">
+              <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span class="demo-search-text">Q3 budget</span>
+            </div>
+            <div class="demo-pills">
+              <div class="demo-pill active">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                  <rect x="1" y="1" width="6" height="6" rx="1"/>
+                  <rect x="9" y="1" width="6" height="6" rx="1"/>
+                  <rect x="1" y="9" width="6" height="6" rx="1"/>
+                  <rect x="9" y="9" width="6" height="6" rx="1"/>
+                </svg>
+                All
+              </div>
+              <div class="demo-pill">
+                <img src="google-docs.png" alt="">
+                Docs
+              </div>
+              <div class="demo-pill">
+                <img src="google-sheets.png" alt="">
+                Sheets
+              </div>
+              <div class="demo-pill">
+                <img src="https://svgl.app/library/notion.svg" alt="">
+                Notion
+              </div>
+              <div class="demo-pill">
+                <img src="https://svgl.app/library/figma.svg" alt="">
+                Figma
+              </div>
+            </div>
+            <div class="demo-results">
+              <div class="demo-result selected">
+                <img src="google-docs.png" alt="">
+                <div class="demo-result-content">
+                  <span class="demo-result-title">Q3 Budget Planning</span>
+                  <span class="demo-result-url">docs.google.com</span>
+                </div>
+                <span class="demo-result-time">2d ago</span>
+              </div>
+              <div class="demo-result">
+                <img src="google-sheets.png" alt="">
+                <div class="demo-result-content">
+                  <span class="demo-result-title">Q3 Budget Spreadsheet</span>
+                  <span class="demo-result-url">sheets.google.com</span>
+                </div>
+                <span class="demo-result-time">1w ago</span>
+              </div>
+              <div class="demo-result">
+                <img src="https://svgl.app/library/notion.svg" alt="">
+                <div class="demo-result-content">
+                  <span class="demo-result-title">Q3 Budget Notes</span>
+                  <span class="demo-result-url">notion.so</span>
+                </div>
+                <span class="demo-result-time">3d ago</span>
+              </div>
+            </div>
+            <div class="demo-footer">
+              <div class="demo-shortcuts">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> open</span>
+                <span><kbd>esc</kbd> close</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen 2: AI -->
+          <div class="demo-screen" data-screen="ai">
+            <div class="demo-search">
+              <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span class="demo-search-text">How do I center a div in CSS?</span>
+              <div class="demo-ai-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                </svg>
+                Ask AI
+              </div>
+            </div>
+            <div class="demo-ai-answer">
+              <div class="demo-ai-label">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                </svg>
+                AI Answer
+              </div>
+              <p>To center a div, use Flexbox:</p>
+              <code>.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code>
+            </div>
+            <div class="demo-footer">
+              <div class="demo-shortcuts">
+                <span><kbd>⌘</kbd><kbd>C</kbd> copy</span>
+                <span><kbd>esc</kbd> back</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen 3: Notes -->
+          <div class="demo-screen demo-screen-notes" data-screen="notes">
+            <div class="demo-search">
+              <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span class="demo-search-text demo-typing">/notes</span>
+            </div>
+            <div class="demo-command-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              <span>Open floating notes</span>
+              <kbd>↵</kbd>
+            </div>
+          </div>
+            </div>
+            <!-- Floating note outside the modal -->
+            <div class="demo-floating-note-outside">
+              <div class="floating-note-header">
+                <span class="floating-note-title">Daysift Notes</span>
+                <div class="floating-note-actions">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </div>
+              </div>
+              <div class="floating-note-list">
+                <div class="floating-note-item">
+                  <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Product launch</span>
+                    <span class="floating-note-item-preview">Finalize pricing with Sarah</span>
+                  </div>
+                  <span class="floating-note-item-time">2m</span>
+                </div>
+                <div class="floating-note-item active">
+                  <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Q3 Planning</span>
+                    <span class="floating-note-item-preview">Budget approved: $50k</span>
+                  </div>
+                  <span class="floating-note-item-time">1h</span>
+                </div>
+                <div class="floating-note-item">
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Meeting notes</span>
+                    <span class="floating-note-item-preview">Review design feedback</span>
+                  </div>
+                  <span class="floating-note-item-time">2d</span>
+                </div>
+                <div class="floating-note-item">
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">API docs</span>
+                    <span class="floating-note-item-preview">Endpoints reference</span>
+                  </div>
+                  <span class="floating-note-item-time">3d</span>
+                </div>
+                <div class="floating-note-item">
+                  <div class="floating-note-item-content">
+                    <span class="floating-note-item-title">Ideas</span>
+                    <span class="floating-note-item-preview">New feature brainstorm</span>
+                  </div>
+                  <span class="floating-note-item-time">1w</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Switcher -->
+        <div class="demo-switcher">
+          <button class="demo-switch active" data-target="search">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+            Search
+          </button>
+          <button class="demo-switch" data-target="ai">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+            </svg>
+            AI
+          </button>
+          <button class="demo-switch" data-target="notes">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+            Notes
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Bar -->
+  <section class="trust-bar">
+    <div class="container">
+      <p>Works with your favorite tools, and a hundred more</p>
+      <div class="trust-logos">
+        <div class="tool-item">
+          <img src="google-docs.png" alt="Google Docs">
+        </div>
+        <div class="tool-item">
+          <img src="google-sheets.png" alt="Google Sheets">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/notion.svg" alt="Notion">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/figma.svg" alt="Figma">
+        </div>
+        <div class="tool-item">
+          <img src="github.png" alt="GitHub">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/slack.svg" alt="Slack">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/linear.svg" alt="Linear">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/asana-logo.svg" alt="Asana">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/gmail.svg" alt="Gmail">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/zoom.svg" alt="Zoom">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/dropbox.svg" alt="Dropbox">
+        </div>
+        <div class="tool-item">
+          <img src="https://svgl.app/library/drive.svg" alt="Google Drive">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="features-header">
+        <h2>Everything you need to find <em>anything</em></h2>
+        <p>Stop losing track of work. Daysift remembers everything.</p>
+      </div>
+      <div class="features-grid">
+        <!-- Search Card -->
+        <div class="feature-card">
+          <div class="feature-visual">
+            <div class="search-mockup">
+              <div class="search-input-mock">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+                <span>Q3 budget presentation</span>
+              </div>
+              <div class="search-results-mock">
+                <div class="search-results-inner">
+                  <div class="search-result-item selected">
+                    <img src="google-docs.png" alt="" class="result-icon">
+                    <span class="result-text">Q3 Budget Review</span>
+                  </div>
+                  <div class="search-result-item">
+                    <img src="google-sheets.png" alt="" class="result-icon">
+                    <span class="result-text">Budget Tracker 2026</span>
+                  </div>
+                  <div class="search-result-item">
+                    <img src="https://svgl.app/library/figma.svg" alt="" class="result-icon">
+                    <span class="result-text">Budget Deck</span>
+                  </div>
+                  <div class="search-result-item">
+                    <img src="google-slides.png" alt="" class="result-icon">
+                    <span class="result-text">Q3 Presentation</span>
+                  </div>
+                  <div class="search-result-item">
+                    <img src="https://svgl.app/library/notion.svg" alt="" class="result-icon">
+                    <span class="result-text">Budget Planning</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3>Instant search</h3>
+            <p>Press ⌘J anywhere and search your entire work history in milliseconds.</p>
+          </div>
+        </div>
+
+        <!-- AI Card -->
+        <div class="feature-card">
+          <div class="feature-visual">
+            <div class="ai-mockup">
+              <div class="ai-question">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+                <span class="ai-question-text">Best channels for B2B SaaS?</span>
+                <span class="ask-ai-badge">Ask AI</span>
+              </div>
+              <div class="ai-answer">
+                <div class="ai-answer-skeleton">
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                  <div class="skeleton-line"></div>
+                </div>
+                <div class="ai-answer-content">
+                  <div class="ai-answer-label">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                    </svg>
+                    AI Answer
+                  </div>
+                  <p class="ai-answer-text">Focus on LinkedIn for organic reach, content marketing for SEO, and cold email with personalized outreach.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3>AI-powered answers</h3>
+            <p>Ask questions in natural language. Get instant answers from your work history.</p>
+          </div>
+        </div>
+
+        <!-- Notes Card -->
+        <div class="feature-card">
+          <div class="feature-visual">
+            <div class="notes-mockup">
+              <div class="note-window">
+                <div class="note-header">
+                  <div class="note-dots"><span></span><span></span><span></span></div>
+                  <span class="note-title">Daysift Notes</span>
+                </div>
+                <div class="note-body">
+                  <div class="note-text-line"><strong>Product launch checklist</strong></div>
+                  <div class="note-text-line"><span class="bullet">•</span> Finalize pricing with Sarah</div>
+                  <div class="note-text-line"><span class="bullet">•</span> Send assets to marketing</div>
+                  <div class="note-text-line note-text-hover"><span class="bullet">•</span> Schedule launch tweet</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-content">
+            <h3>Floating notes</h3>
+            <p>Jot down thoughts in a floating window that stays on top. Always accessible.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="quote-section">
+    <div class="container">
+      <blockquote>
+        For knowledge workers — <span>our work is scattered across dozens of apps and hundreds of tabs. Daysift brings it all together, so you can focus on what matters.</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="pricing-header">
+        <h2>Simple, transparent pricing</h2>
+        <p>Start free. Upgrade when you need more.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-name">Free</div>
+          <div class="pricing-price">$0</div>
+          <div class="pricing-description">Perfect for getting started</div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Last 14 days of history
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              5 pinned items
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              5 notes
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              30 AI searches/month
+            </li>
+          </ul>
+          <a class="btn btn-outline" href="https://chromewebstore.google.com/detail/daysift" target="_blank">Get started</a>
+        </div>
+        <div class="pricing-card featured">
+          <div class="pricing-badge">Most popular</div>
+          <div class="pricing-name">Pro</div>
+          <div class="pricing-price">$1.99<span>/month</span></div>
+          <div class="pricing-description">For power users</div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Unlimited history
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Unlimited pins & notes
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              100 AI credits/month
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Advanced formatting
+            </li>
+          </ul>
+          <a class="btn btn-primary" href="https://daysift.lemonsqueezy.com" target="_blank">Upgrade to Pro</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-name">Unlimited</div>
+          <div class="pricing-price">$4.99<span>/month</span></div>
+          <div class="pricing-description">For AI power users</div>
+          <ul class="pricing-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Everything in Pro
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Unlimited AI searches
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Unlimited AI writing
+            </li>
+          </ul>
+          <a class="btn btn-outline" href="https://daysift.lemonsqueezy.com" target="_blank">Get Unlimited</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to find anything?</h2>
+      <p>Start free. No credit card required.</p>
+      <div class="cta-actions">
+        <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="btn btn-primary">Install for Chrome</a>
+        <a href="https://daysift.lemonsqueezy.com" target="_blank" class="btn btn-secondary">Explore plans</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Daysift">
+        <span>© 2024 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="https://daysift.lemonsqueezy.com" target="_blank">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">Contact</a>
+          <a href="https://twitter.com/daysift" target="_blank">Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Demo screen switcher
+    const floatingNote = document.querySelector('.demo-floating-note-outside');
+
+    document.querySelectorAll('.demo-switch').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.target;
+
+        // Update buttons
+        document.querySelectorAll('.demo-switch').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Update screens
+        document.querySelectorAll('.demo-screen').forEach(s => s.classList.remove('active'));
+        document.querySelector(`.demo-screen[data-screen="${target}"]`).classList.add('active');
+
+        // Show/hide floating note for Notes screen
+        if (floatingNote) {
+          if (target === 'notes') {
+            floatingNote.classList.add('visible');
+          } else {
+            floatingNote.classList.remove('visible');
+          }
+        }
+      });
+    });
+
+    // Video thumbnail follows mouse
+    const videoLink = document.querySelector('.video-link');
+    const videoThumb = document.querySelector('.video-thumb');
+
+    if (videoLink && videoThumb) {
+      videoLink.addEventListener('mousemove', (e) => {
+        const offsetX = 20;
+        const offsetY = 15;
+        videoThumb.style.left = e.clientX + offsetX + 'px';
+        videoThumb.style.top = e.clientY + offsetY + 'px';
+      });
+    }
+  </script>
+</body>
+</html>
