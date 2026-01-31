@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - Daysift</title>
   <meta name="description" content="Daysift Terms of Service. Simple, fair terms for using our browser extension.">
+  <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,23 +18,28 @@
     }
 
     :root {
-      --background: #FAFAF9;
-      --foreground: #1C1917;
-      --muted: #78716C;
-      --muted-light: #A8A29E;
-      --muted-bg: #F5F5F4;
-      --surface-alt: #E9E7E2;
-      --border: #E7E5E4;
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
       --accent: #F46B45;
       --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
     }
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--background);
+      background: var(--bg);
       color: var(--foreground);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
     .container {
@@ -43,31 +50,53 @@
 
     /* Navigation */
     nav {
-      padding: 20px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
     }
 
     nav .container {
-      max-width: 1100px;
+      max-width: 980px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
     .logo {
-      height: 28px;
+      height: 26px;
+    }
+
+    .beta-badge {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-alt);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 24px;
     }
 
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 500;
       transition: color 0.15s;
     }
@@ -76,27 +105,12 @@
       color: var(--foreground);
     }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: 500;
-      text-decoration: none;
-      transition: all 0.15s;
-      cursor: pointer;
-      border: none;
+    .nav-links a.accent {
+      color: var(--accent);
     }
 
-    .btn-primary {
-      background: var(--foreground);
-      color: var(--background);
-    }
-
-    .btn-primary:hover {
-      opacity: 0.9;
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
     }
 
     /* Content */
@@ -106,7 +120,7 @@
 
     .policy h1 {
       font-size: 40px;
-      font-weight: 700;
+      font-weight: 500;
       letter-spacing: -0.02em;
       margin-bottom: 16px;
     }
@@ -118,7 +132,8 @@
     }
 
     .policy-summary {
-      background: var(--muted-bg);
+      background: #fff;
+      border: 1px solid var(--border);
       border-radius: 12px;
       padding: 24px;
       margin-bottom: 48px;
@@ -133,29 +148,12 @@
     .policy-summary p {
       color: var(--foreground);
       margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.6;
     }
 
     .policy-summary p:last-child {
       margin-bottom: 0;
-    }
-
-    .policy-summary ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .policy-summary li {
-      display: flex;
-      align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 8px;
-      font-size: 15px;
-    }
-
-    .policy-summary li::before {
-      content: "→";
-      color: var(--muted);
     }
 
     .policy section {
@@ -181,23 +179,15 @@
     }
 
     .policy ul {
-      list-style: none;
+      list-style: disc;
       padding: 0;
-      margin-bottom: 16px;
+      margin: 0 0 16px 20px;
     }
 
     .policy ul li {
-      position: relative;
-      padding-left: 20px;
       margin-bottom: 8px;
       color: var(--muted);
-    }
-
-    .policy ul li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: var(--muted-light);
+      line-height: 1.6;
     }
 
     .policy a {
@@ -221,40 +211,50 @@
     }
 
     footer .container {
-      max-width: 1100px;
+      max-width: 980px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: flex-start;
     }
 
-    .footer-left {
+    .footer-brand {
       display: flex;
-      align-items: center;
-      gap: 24px;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .footer-left img {
-      height: 24px;
-      opacity: 0.6;
+    .footer-brand img {
+      height: 22px;
     }
 
-    .footer-left span {
-      font-size: 14px;
-      color: var(--muted);
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
     }
 
     .footer-links {
       display: flex;
-      gap: 24px;
+      gap: 64px;
     }
 
-    .footer-links a {
-      font-size: 14px;
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-light);
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
       color: var(--muted);
       text-decoration: none;
+      margin-bottom: 8px;
     }
 
-    .footer-links a:hover {
+    .footer-col a:hover {
       color: var(--foreground);
     }
 
@@ -270,7 +270,11 @@
 
       footer .container {
         flex-direction: column;
-        gap: 24px;
+        gap: 32px;
+      }
+
+      .footer-links {
+        gap: 32px;
       }
     }
   </style>
@@ -279,11 +283,16 @@
   <!-- Navigation -->
   <nav>
     <div class="container">
-      <a href="index.html"><img src="logo.png" alt="Daysift" class="logo"></a>
-      <div class="nav-links">
-        <a href="index.html#features">Features</a>
-        <a href="index.html#pricing">Pricing</a>
-        <a class="btn btn-primary" href="https://chrome.google.com/webstore" target="_blank">Add to Chrome</a>
+      <a href="index.html" class="logo-wrapper">
+        <img src="logo.png" alt="Daysift" class="logo">
+        <span class="beta-badge">Beta</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html#features">Features</a>
+          <a href="https://daysift.lemonsqueezy.com" target="_blank">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="accent">Install extension →</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -411,14 +420,27 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-left">
+      <div class="footer-brand">
         <img src="logo.png" alt="Daysift">
-        <span>&copy; 2025 Daysift</span>
+        <span>© 2024 Daysift</span>
       </div>
       <div class="footer-links">
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="mailto:hello@daysift.com">Contact</a>
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="index.html#features">Features</a>
+          <a href="https://daysift.lemonsqueezy.com" target="_blank">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">Contact</a>
+          <a href="https://twitter.com/daysift" target="_blank">Twitter</a>
+        </div>
       </div>
     </div>
   </footer>
