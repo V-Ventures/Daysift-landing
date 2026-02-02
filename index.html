@@ -2004,7 +2004,7 @@
         <!-- Switcher -->
         <div class="demo-switcher">
           <div class="demo-switcher-buttons">
-            <button class="demo-switch active" data-target="search" data-title="Find Anything." data-desc="Instantly find any doc, page, or tab you've opened. Just start typing.">
+            <button class="demo-switch active" data-target="search" data-title="" data-desc="Instantly find any doc, page, or tab you've opened. Just start typing.">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
               </svg>
@@ -2027,7 +2027,7 @@
             </button>
           </div>
           <div class="demo-switcher-desc">
-            <strong>Find Anything.</strong> <span>Instantly find any doc, page, or tab you've opened. Just start typing.</span>
+            <span>Instantly find any doc, page, or tab you've opened. Just start typing.</span>
           </div>
         </div>
       </div>
@@ -2394,8 +2394,8 @@
 
         // Update description
         const descEl = document.querySelector('.demo-switcher-desc');
-        if (descEl && title && desc) {
-          descEl.innerHTML = `<strong>${title}</strong> <span>${desc}</span>`;
+        if (descEl && desc) {
+          descEl.innerHTML = title ? `<strong>${title}</strong> <span>${desc}</span>` : `<span>${desc}</span>`;
         }
 
         // Update screens
