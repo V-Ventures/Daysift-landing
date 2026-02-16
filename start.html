@@ -84,22 +84,28 @@
       margin-top: 12px;
     }
 
-    .shortcut {
+    .shortcut-keys {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .key {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 16px 32px;
+      padding: 16px 24px;
       font-family: inherit;
-      font-size: 42px;
+      font-size: 36px;
       font-weight: 600;
       background: linear-gradient(180deg, #f8f8f8 0%, #efefef 100%);
       border: 1px solid #e0e0e0;
-      border-radius: 16px;
+      border-radius: 12px;
       color: #1a1a1a;
       box-shadow:
         0 4px 0 #d4d4d4,
         0 8px 16px rgba(0, 0, 0, 0.1);
-      animation: pulse 2s ease-in-out infinite;
     }
 
     @keyframes pulse {
@@ -154,28 +160,13 @@
         color: #fafafa;
       }
 
-      .shortcut {
+      .key {
         background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
         border-color: #3a3a3a;
         color: #fafafa;
         box-shadow:
           0 4px 0 #0a0a0a,
           0 8px 16px rgba(0, 0, 0, 0.3);
-      }
-
-      @keyframes pulse {
-        0%, 100% {
-          transform: scale(1);
-          box-shadow:
-            0 4px 0 #0a0a0a,
-            0 8px 16px rgba(0, 0, 0, 0.3);
-        }
-        50% {
-          transform: scale(1.02);
-          box-shadow:
-            0 4px 0 #0a0a0a,
-            0 12px 24px rgba(0, 0, 0, 0.4);
-        }
       }
 
       .subheadline {
@@ -207,7 +198,10 @@
       <h1 class="headline">Your entire workday,<br>one shortcut away.</h1>
 
       <div class="shortcut-container">
-        <kbd class="shortcut" id="shortcut"></kbd>
+        <div class="shortcut-keys">
+          <kbd class="key" id="modifier-key"></kbd>
+          <kbd class="key" id="letter-key">J</kbd>
+        </div>
         <p class="shortcut-hint">press these keys</p>
       </div>
 
@@ -220,11 +214,11 @@
   </div>
 
   <script>
-    // Detect platform and show appropriate shortcut
+    // Detect platform and show appropriate modifier key
     const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-    const shortcutEl = document.getElementById('shortcut');
-    if (shortcutEl) {
-      shortcutEl.textContent = isMac ? '\u2318J' : 'Ctrl+J';
+    const modifierEl = document.getElementById('modifier-key');
+    if (modifierEl) {
+      modifierEl.textContent = isMac ? '\u2318' : 'Ctrl';
     }
   </script>
 </body>
