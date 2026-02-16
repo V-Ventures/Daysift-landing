@@ -88,7 +88,6 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      animation: pulse 2s ease-in-out infinite;
     }
 
     .key {
@@ -99,28 +98,11 @@
       font-family: inherit;
       font-size: 36px;
       font-weight: 600;
-      background: linear-gradient(180deg, #f8f8f8 0%, #efefef 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f5f5f5 100%);
       border: 1px solid #e0e0e0;
       border-radius: 12px;
       color: #1a1a1a;
-      box-shadow:
-        0 4px 0 #d4d4d4,
-        0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow:
-          0 4px 0 #d4d4d4,
-          0 8px 16px rgba(0, 0, 0, 0.1);
-      }
-      50% {
-        transform: scale(1.02);
-        box-shadow:
-          0 4px 0 #d4d4d4,
-          0 12px 24px rgba(0, 0, 0, 0.15);
-      }
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     }
 
     .subheadline {
@@ -164,9 +146,7 @@
         background: linear-gradient(180deg, #2a2a2a 0%, #1f1f1f 100%);
         border-color: #3a3a3a;
         color: #fafafa;
-        box-shadow:
-          0 4px 0 #0a0a0a,
-          0 8px 16px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
 
       .subheadline {
@@ -202,7 +182,7 @@
           <kbd class="key" id="modifier-key"></kbd>
           <kbd class="key" id="letter-key">J</kbd>
         </div>
-        <p class="shortcut-hint">press these keys</p>
+        <p class="shortcut-hint">press these keys together</p>
       </div>
 
       <p class="subheadline">to instantly find any doc, email, or conversation.</p>
