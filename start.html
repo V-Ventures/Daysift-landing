@@ -289,7 +289,12 @@
     // Extension detection logic
     let extensionDetected = false;
 
-    // Listen for the extension's ready event
+    // Check for marker attribute (set synchronously by content script)
+    if (document.documentElement.getAttribute('data-daysift-installed') === 'true') {
+      extensionDetected = true;
+    }
+
+    // Also listen for the extension's ready event (backup)
     document.addEventListener('daysift-extension-ready', () => {
       extensionDetected = true;
     });
