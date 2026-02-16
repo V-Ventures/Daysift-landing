@@ -289,6 +289,20 @@
     // Extension detection logic
     let extensionDetected = false;
 
+    function showNormalContent() {
+      const normalContent = document.getElementById('normal-content');
+      const fallbackContent = document.getElementById('fallback-content');
+      if (normalContent) normalContent.classList.remove('hidden');
+      if (fallbackContent) fallbackContent.classList.remove('visible');
+    }
+
+    function showFallbackContent() {
+      const normalContent = document.getElementById('normal-content');
+      const fallbackContent = document.getElementById('fallback-content');
+      if (normalContent) normalContent.classList.add('hidden');
+      if (fallbackContent) fallbackContent.classList.add('visible');
+    }
+
     // Check for marker attribute (set synchronously by content script)
     if (document.documentElement.getAttribute('data-daysift-installed') === 'true') {
       extensionDetected = true;
@@ -297,19 +311,21 @@
     // Also listen for the extension's ready event (backup)
     document.addEventListener('daysift-extension-ready', () => {
       extensionDetected = true;
+      // If fallback was shown, switch back to normal content
+      showNormalContent();
     });
 
-    // After a short delay, check if extension was detected
+    // After a delay, check if extension was detected
     setTimeout(() => {
-      if (!extensionDetected) {
-        // Show fallback content
-        const normalContent = document.getElementById('normal-content');
-        const fallbackContent = document.getElementById('fallback-content');
-
-        if (normalContent) normalContent.classList.add('hidden');
-        if (fallbackContent) fallbackContent.classList.add('visible');
+      // Check attribute again (content script may have set it after initial check)
+      if (document.documentElement.getAttribute('data-daysift-installed') === 'true') {
+        extensionDetected = true;
       }
-    }, 800);
+
+      if (!extensionDetected) {
+        showFallbackContent();
+      }
+    }, 1000);
   </script>
 </body>
 </html>
