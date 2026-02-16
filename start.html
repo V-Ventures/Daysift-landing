@@ -115,64 +115,19 @@
       font-size: 17px;
       color: #6b6b6b;
       line-height: 1.5;
+      margin-bottom: 32px;
     }
 
-    /* Fallback state - when extension not detected */
-    .fallback-content {
-      display: none;
-    }
-
-    .fallback-content.visible {
-      display: block;
-    }
-
-    .fallback-content h2 {
-      font-size: 24px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin-bottom: 16px;
-    }
-
-    .fallback-content p {
-      font-size: 15px;
-      color: #6b6b6b;
-      margin-bottom: 24px;
-    }
-
-    .install-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      font-family: inherit;
-      font-size: 16px;
-      font-weight: 600;
-      background: #1a1a1a;
-      color: white;
-      border: none;
-      border-radius: 12px;
+    .install-link {
+      font-size: 13px;
+      color: #999;
       text-decoration: none;
-      cursor: pointer;
-      transition: background 0.15s, transform 0.15s;
+      transition: color 0.15s;
     }
 
-    .install-btn:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
-
-    .install-btn svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    /* Normal content - hidden when fallback shown */
-    .normal-content {
-      display: block;
-    }
-
-    .normal-content.hidden {
-      display: none;
+    .install-link:hover {
+      color: #1a1a1a;
+      text-decoration: underline;
     }
 
     /* Dark mode support */
@@ -221,21 +176,12 @@
         color: #a1a1aa;
       }
 
-      .fallback-content h2 {
+      .install-link {
+        color: #71717a;
+      }
+
+      .install-link:hover {
         color: #fafafa;
-      }
-
-      .fallback-content p {
-        color: #a1a1aa;
-      }
-
-      .install-btn {
-        background: #fafafa;
-        color: #0a0a0a;
-      }
-
-      .install-btn:hover {
-        background: #e5e5e5;
       }
     }
   </style>
@@ -248,33 +194,17 @@
         <path d="M223.926 74.9766C303.409 74.9766 354.253 120.028 354.253 190.501C354.253 260.974 303.409 306.026 223.926 306.026H111.831C109.048 306.026 106.793 303.77 106.793 300.987V275.667C106.793 272.884 109.048 270.628 111.831 270.628H223.926C278.953 270.628 312.098 239.092 312.098 190.501C312.098 141.588 278.953 110.374 223.604 110.374H111.831C109.049 110.374 106.793 108.118 106.793 105.336V80.0156C106.793 77.233 109.048 74.9767 111.831 74.9766H223.926ZM153.775 208.912C156.558 208.912 158.814 211.168 158.814 213.951V239.092C158.814 241.875 156.558 244.131 153.775 244.131H31.7852C29.0024 244.131 26.7461 241.875 26.7461 239.092V213.951C26.7461 211.168 29.0024 208.912 31.7852 208.912H153.775ZM182.703 149.798C185.486 149.798 187.742 152.053 187.742 154.836V179.978C187.742 182.76 185.486 185.016 182.703 185.016H60.7119C57.9294 185.015 55.6739 182.76 55.6738 179.978V154.836C55.674 152.053 57.9295 149.798 60.7119 149.798H182.703Z" fill="currentColor"/>
       </svg>
 
-      <!-- Normal content - shown when extension is detected -->
-      <div class="normal-content" id="normal-content">
-        <h1 class="headline">Your entire workday,<br>one shortcut away.</h1>
+      <h1 class="headline">Your entire workday,<br>one shortcut away.</h1>
 
-        <div class="shortcut-container">
-          <kbd class="shortcut" id="shortcut"></kbd>
-        </div>
-
-        <p class="subheadline">to instantly find any doc, email, or conversation.</p>
+      <div class="shortcut-container">
+        <kbd class="shortcut" id="shortcut"></kbd>
       </div>
 
-      <!-- Fallback content - shown when extension NOT detected -->
-      <div class="fallback-content" id="fallback-content">
-        <h2>Install DaySift first</h2>
-        <p>Get the Chrome extension to search your browsing history instantly.</p>
-        <a href="https://chromewebstore.google.com/detail/daysift/kcdhnmbigpjffnphnlioeiaecnagakea" class="install-btn">
-          <!-- Chrome icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <circle cx="12" cy="12" r="4"/>
-            <line x1="21.17" y1="8" x2="12" y2="8"/>
-            <line x1="3.95" y1="6.06" x2="8.54" y2="14"/>
-            <line x1="10.88" y1="21.94" x2="15.46" y2="14"/>
-          </svg>
-          Get the Extension
-        </a>
-      </div>
+      <p class="subheadline">to instantly find any doc, email, or conversation.</p>
+
+      <a href="https://chromewebstore.google.com/detail/daysift/kcdhnmbigpjffnphnlioeiaecnagakea" class="install-link">
+        Don't have DaySift yet? Install for Chrome
+      </a>
     </div>
   </div>
 
@@ -285,47 +215,6 @@
     if (shortcutEl) {
       shortcutEl.textContent = isMac ? '\u2318J' : 'Ctrl+J';
     }
-
-    // Extension detection logic
-    let extensionDetected = false;
-
-    function showNormalContent() {
-      const normalContent = document.getElementById('normal-content');
-      const fallbackContent = document.getElementById('fallback-content');
-      if (normalContent) normalContent.classList.remove('hidden');
-      if (fallbackContent) fallbackContent.classList.remove('visible');
-    }
-
-    function showFallbackContent() {
-      const normalContent = document.getElementById('normal-content');
-      const fallbackContent = document.getElementById('fallback-content');
-      if (normalContent) normalContent.classList.add('hidden');
-      if (fallbackContent) fallbackContent.classList.add('visible');
-    }
-
-    // Check for marker attribute (set synchronously by content script)
-    if (document.documentElement.getAttribute('data-daysift-installed') === 'true') {
-      extensionDetected = true;
-    }
-
-    // Also listen for the extension's ready event (backup)
-    document.addEventListener('daysift-extension-ready', () => {
-      extensionDetected = true;
-      // If fallback was shown, switch back to normal content
-      showNormalContent();
-    });
-
-    // After a delay, check if extension was detected
-    setTimeout(() => {
-      // Check attribute again (content script may have set it after initial check)
-      if (document.documentElement.getAttribute('data-daysift-installed') === 'true') {
-        extensionDetected = true;
-      }
-
-      if (!extensionDetected) {
-        showFallbackContent();
-      }
-    }, 1000);
   </script>
 </body>
 </html>
