@@ -353,87 +353,132 @@
   <div class="policy">
     <div class="container">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: January 2025</p>
+      <p class="updated">Last updated: February 2026</p>
 
       <div class="policy-summary">
-        <h2>In Short</h2>
-        <p>Daysift stores everything locally on your device. We don't have servers storing your data. We don't have accounts. We don't track you.</p>
-        <p>The only data that leaves your device:</p>
+        <h2>Your data stays on your device</h2>
+        <p>Daysift runs entirely on your computer. There are no accounts, no cloud sync, and no servers storing your data.</p>
+        <p><strong>What's stored locally:</strong></p>
         <ul>
-          <li><strong>Search queries</strong> are sent to OpenAI when you use AI features</li>
-          <li><strong>Domain names</strong> are sent to Google to fetch website icons</li>
-          <li><strong>Payment info</strong> is processed by <a href="https://www.lemonsqueezy.com" target="_blank">Lemon Squeezy</a>, a trusted payment platform used by thousands of software companies — we never see your card details</li>
+          <li>Page titles and URLs from your work apps</li>
+          <li>Notes and pins you create</li>
+          <li>Your settings and preferences</li>
         </ul>
+        <p><strong>What leaves your device (only when you choose):</strong></p>
+        <ul>
+          <li><strong>AI search (/ai):</strong> Your query and relevant context are sent to OpenAI</li>
+          <li><strong>Favicons:</strong> Domain names sent to Google to display site icons</li>
+          <li><strong>Payment:</strong> Processed by <a href="https://www.lemonsqueezy.com" target="_blank">Lemon Squeezy</a> — we never see your card details</li>
+        </ul>
+        <p style="margin-top: 16px; padding: 12px; background: var(--bg-alt); border-radius: 8px;"><strong>Regular search with ⌘J runs entirely on your device.</strong> No network requests, no data sent anywhere.</p>
       </div>
 
       <section>
-        <h2>What We Collect</h2>
-        <table>
-          <thead>
-            <tr>
-              <th>Data</th>
-              <th>Stored</th>
-              <th>Purpose</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Browser history (URLs, titles, timestamps)</td>
-              <td>Locally on your device</td>
-              <td>Enable search</td>
-            </tr>
-            <tr>
-              <td>Notes you create</td>
-              <td>Locally on your device</td>
-              <td>Save your notes</td>
-            </tr>
-            <tr>
-              <td>Pinned items</td>
-              <td>Locally on your device</td>
-              <td>Quick access</td>
-            </tr>
-            <tr>
-              <td>Settings & preferences</td>
-              <td>Locally on your device</td>
-              <td>Remember your choices</td>
-            </tr>
-          </tbody>
-        </table>
+        <h2>What Daysift Indexes</h2>
+        <p>Daysift uses an <strong>allowlist model</strong> — it only indexes pages from work-related apps you configure. By default, this includes tools like:</p>
+        <ul>
+          <li>Google Docs, Sheets, Slides, Drive</li>
+          <li>Notion, Figma, Linear, Jira</li>
+          <li>GitHub, GitLab, Confluence</li>
+          <li>Slack, Asana, and similar productivity tools</li>
+        </ul>
+        <p><strong>What's NOT indexed:</strong> Personal browsing, social media, banking, shopping, email content, and any sites not on your allowlist. You have full control over which domains Daysift can see.</p>
       </section>
 
       <section>
-        <h2>What Leaves Your Device</h2>
+        <h2>Why Chrome Shows Permission Warnings</h2>
+        <p>When you install Daysift, Chrome shows a warning that the extension can "read your browsing history." Here's what that actually means for Daysift:</p>
+        <h3>What the permission allows</h3>
+        <ul>
+          <li>Read page titles and URLs from your allowlisted work apps</li>
+          <li>Store this data locally so you can search it later</li>
+        </ul>
+        <h3>What Daysift does NOT do</h3>
+        <ul>
+          <li>Access passwords or autofill data</li>
+          <li>Read form inputs or page content</li>
+          <li>Track sites outside your allowlist</li>
+          <li>Send your history to any server</li>
+          <li>Run in the background when you're not using it</li>
+        </ul>
+        <p>The broad Chrome permission warning exists because Chrome doesn't distinguish between extensions that send data to servers and ones like Daysift that keep everything local. We need this permission to provide search functionality, but we've designed Daysift to be as privacy-respecting as possible.</p>
+      </section>
+
+      <section>
+        <h2>What's Stored on Your Device</h2>
         <table>
           <thead>
             <tr>
               <th>Data</th>
-              <th>Sent to</th>
-              <th>When</th>
+              <th>Where</th>
               <th>Why</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Search query text</td>
-              <td>OpenAI</td>
-              <td>You use AI search</td>
-              <td>Provide AI answers</td>
+              <td>Page titles & URLs from work apps</td>
+              <td>Your browser's local storage</td>
+              <td>So you can search your work history</td>
             </tr>
             <tr>
-              <td>Domain names</td>
-              <td>Google</td>
-              <td>Viewing results</td>
-              <td>Display favicons</td>
+              <td>Notes you write</td>
+              <td>Your browser's local storage</td>
+              <td>So your notes persist between sessions</td>
             </tr>
             <tr>
-              <td>Payment details</td>
-              <td>Lemon Squeezy</td>
-              <td>You upgrade</td>
-              <td>Process payment</td>
+              <td>Pinned items</td>
+              <td>Your browser's local storage</td>
+              <td>Quick access to frequent pages</td>
+            </tr>
+            <tr>
+              <td>Your settings</td>
+              <td>Your browser's local storage</td>
+              <td>Remember your preferences</td>
             </tr>
           </tbody>
         </table>
-        <p>We never see your payment information — Lemon Squeezy handles this entirely.</p>
+        <p>All this data stays on your computer. We can't see it, and it's never uploaded anywhere.</p>
+      </section>
+
+      <section>
+        <h2>When Data Leaves Your Device</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>What's sent</th>
+              <th>Where</th>
+              <th>Your control</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Regular search (⌘J)</td>
+              <td><strong>Nothing</strong></td>
+              <td>Runs locally</td>
+              <td>100% offline</td>
+            </tr>
+            <tr>
+              <td>AI search (/ai)</td>
+              <td>Your query + relevant page titles</td>
+              <td>OpenAI</td>
+              <td>Only when you type /ai</td>
+            </tr>
+            <tr>
+              <td>Favicons</td>
+              <td>Domain names only (e.g., "notion.so")</td>
+              <td>Google</td>
+              <td>Can be disabled</td>
+            </tr>
+            <tr>
+              <td>Payment</td>
+              <td>Card details (we never see these)</td>
+              <td>Lemon Squeezy</td>
+              <td>Only when you upgrade</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>The key difference:</strong> Regular search with ⌘J never touches the network. AI search with /ai sends your query to OpenAI to get intelligent answers. You're always in control of which one you use.</p>
       </section>
 
       <section>
@@ -509,7 +554,7 @@
     <div class="container">
       <div class="footer-brand">
         <img src="logo.png" alt="Daysift">
-        <span>© 2024 Daysift</span>
+        <span>© 2026 Daysift</span>
       </div>
       <div class="footer-links">
         <div class="footer-col">
