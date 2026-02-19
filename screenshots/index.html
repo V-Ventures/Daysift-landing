@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daysift - Chrome Web Store Screenshots</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #333;
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      font-weight: 500;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .subtitle {
+      color: #999;
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .screenshots {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .screenshot-label {
+      color: #999;
+      font-size: 12px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Each screenshot frame - 1280x800 for Chrome Web Store */
+    .screenshot-frame {
+      width: 1280px;
+      height: 800px;
+      background: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Cover slide specific styles */
+    .cover-content {
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .cover-logo {
+      height: 48px;
+      margin-bottom: 32px;
+    }
+
+    .cover-content h2 {
+      font-size: 56px;
+      font-weight: 500;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+    }
+
+    .cover-content h2 span {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .cover-content p {
+      font-size: 22px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .cover-hints {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--muted-light);
+    }
+
+    .cover-hints kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 10px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 500;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+
+    /* Feature slide layout */
+    .feature-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      padding: 60px 100px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .feature-text {
+      flex: 0 0 340px;
+    }
+
+    .feature-text h2 {
+      font-size: 42px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+    }
+
+    .feature-text p {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .feature-demo {
+      flex: 1;
+      max-width: 640px;
+    }
+
+    /* Browser chrome */
+    .browser-chrome {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      padding-top: 44px;
+      position: relative;
+    }
+
+    .browser-toolbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 12px;
+    }
+
+    .browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .browser-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .browser-url {
+      flex: 1;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      color: var(--muted-light);
+      max-width: 300px;
+    }
+
+    .browser-content {
+      background: var(--bg);
+      height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      border-radius: 0 0 12px 12px;
+    }
+
+    /* Demo window */
+    .demo-window {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      overflow: hidden;
+      width: 100%;
+      max-width: 560px;
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-search {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 12px;
+      border-bottom: 1px solid var(--border);
+      height: 54px;
+      min-height: 54px;
+    }
+
+    .demo-search-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-search-text {
+      flex: 1;
+      font-size: 14px;
+      color: var(--foreground);
+    }
+
+    .demo-ai-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: var(--badge-bg);
+      border-radius: 4px;
+      font-size: 11px;
+      color: var(--badge-text);
+      flex-shrink: 0;
+    }
+
+    .demo-pills {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      flex-wrap: wrap;
+      height: 50px;
+      min-height: 50px;
+      align-items: center;
+    }
+
+    .demo-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .demo-pill.active {
+      border-color: var(--foreground);
+    }
+
+    .demo-pill img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .demo-results {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px;
+    }
+
+    .demo-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    .demo-result.selected {
+      background: #F5F4F2;
+    }
+
+    .demo-result img {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .demo-result-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .demo-result-title {
+      display: block;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .demo-result-url {
+      display: block;
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .demo-result-time {
+      font-size: 11px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .demo-footer {
+      padding: 8px 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+
+    .demo-shortcuts {
+      display: flex;
+      gap: 16px;
+      font-size: 11px;
+      color: var(--muted-light);
+    }
+
+    .demo-shortcuts kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 10px;
+      font-family: inherit;
+      margin-right: 2px;
+    }
+
+    .demo-footer-icons {
+      display: flex;
+      gap: 4px;
+    }
+
+    .demo-footer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      color: var(--muted-light);
+    }
+
+    /* AI Answer */
+    .demo-ai-answer {
+      background: var(--bg);
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px;
+    }
+
+    .demo-ai-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .demo-ai-answer p {
+      font-size: 13px;
+      color: var(--foreground);
+      margin: 0 0 12px 0;
+    }
+
+    .demo-ai-answer code {
+      display: block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-size: 12px;
+      color: var(--foreground);
+      white-space: pre;
+    }
+
+    /* Notes Screen */
+    .demo-command-hint {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px;
+      padding: 10px 12px;
+      background: #F5F4F2;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .demo-command-hint svg {
+      color: var(--muted);
+    }
+
+    .demo-command-hint span {
+      flex: 1;
+    }
+
+    .demo-command-hint kbd {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* Floating note outside modal */
+    .demo-floating-note {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      width: 260px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    .floating-note-header-search {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      border-radius: 10px 10px 0 0;
+    }
+
+    .floating-note-search-text {
+      font-size: 13px;
+      color: var(--muted-light);
+    }
+
+    .floating-note-add-btn {
+      font-size: 18px;
+      color: var(--muted-light);
+      font-weight: 300;
+    }
+
+    .floating-note-list {
+      max-height: 200px;
+      overflow: hidden;
+    }
+
+    .floating-note-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .floating-note-item:last-child {
+      border-bottom: none;
+    }
+
+    .floating-note-item .pin-icon {
+      color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 3px;
+      width: 14px;
+      height: 14px;
+    }
+
+    .floating-note-item-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .floating-note-item-title {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--foreground);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .floating-note-item-preview {
+      display: block;
+      font-size: 11px;
+      color: var(--muted-light);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    .floating-note-item-time {
+      font-size: 11px;
+      color: var(--muted-light);
+      flex-shrink: 0;
+    }
+
+    .floating-note-item.active {
+      background: var(--bg-alt);
+    }
+
+    .demo-typing {
+      position: relative;
+    }
+
+    .demo-typing::after {
+      content: '|';
+      color: var(--accent);
+      margin-left: 1px;
+    }
+
+    /* Demo Actions */
+    .demo-actions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 12px;
+    }
+
+    .demo-action-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+
+    .demo-action-item.selected {
+      background: #F5F4F2;
+    }
+
+    .demo-action-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .demo-action-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--foreground);
+    }
+
+    .demo-action-desc {
+      font-size: 12px;
+      color: var(--muted-light);
+      margin-left: auto;
+    }
+
+    /* Download button */
+    .screenshot-wrapper {
+      position: relative;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 16px;
+      padding: 6px 12px;
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .download-btn:hover {
+      background: #555;
+    }
+
+    .download-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .download-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .screenshot-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    /* Promo Tiles */
+    .promo-frame {
+      background: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .promo-small {
+      width: 440px;
+      height: 280px;
+    }
+
+    .promo-marquee {
+      width: 1400px;
+      height: 560px;
+    }
+
+    .promo-frame .promo-logo {
+      height: 32px;
+      margin-bottom: 16px;
+    }
+
+    .promo-frame .promo-logo-large {
+      height: 48px;
+      margin-bottom: 24px;
+    }
+
+    .promo-frame h2 {
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      color: var(--foreground);
+    }
+
+    .promo-small h2 {
+      font-size: 24px;
+    }
+
+    .promo-marquee h2 {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .promo-frame h2 span {
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .promo-frame p {
+      font-size: 14px;
+      color: var(--muted);
+      max-width: 500px;
+    }
+
+    .promo-marquee p {
+      font-size: 20px;
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .promo-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .promo-hints {
+      display: flex;
+      gap: 24px;
+      font-size: 14px;
+      color: var(--muted-light);
+    }
+
+    .promo-hints kbd {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: inherit;
+      font-weight: 500;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+  </style>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+</head>
+<body>
+  <h1>Daysift - Chrome Web Store Screenshots</h1>
+  <p class="subtitle">1280x800px each - Click download on each frame or use "Download All"</p>
+  <div style="text-align: center; margin-bottom: 32px;">
+    <button class="download-btn" onclick="downloadAll()" style="padding: 10px 20px; font-size: 14px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download All (5 PNGs)
+    </button>
+  </div>
+
+  <div class="screenshots">
+
+    <!-- Screenshot 1: Cover -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">1. Cover</div>
+        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-cover.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="screenshot-frame">
+      <div class="cover-content">
+        <img src="../logo.png" alt="Daysift" class="cover-logo">
+        <h2>Find anything. <span>Instantly.</span></h2>
+        <p>Press one shortcut to get back to any doc, page or tab you opened.</p>
+        <div class="cover-hints">
+          <span><kbd>&#8984;J</kbd> for Mac</span>
+          <span><kbd>Ctrl+J</kbd> for Windows</span>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Screenshot 2: Search -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">2. Search</div>
+        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-search.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="screenshot-frame">
+      <div class="feature-slide">
+        <div class="feature-text">
+          <h2>Just type.</h2>
+          <p>Instantly find any doc, page, or tab you've opened. Search across all your work apps in milliseconds.</p>
+        </div>
+        <div class="feature-demo">
+          <div class="browser-chrome">
+            <div class="browser-toolbar">
+              <div class="browser-dots">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+              </div>
+              <div class="browser-url">notion.so/workspace/projects</div>
+            </div>
+            <div class="browser-content">
+              <div class="demo-window">
+                <div class="demo-search">
+                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span class="demo-search-text">Q3 budget</span>
+                </div>
+                <div class="demo-pills">
+                  <div class="demo-pill active">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                      <rect x="1" y="1" width="6" height="6" rx="1"/>
+                      <rect x="9" y="1" width="6" height="6" rx="1"/>
+                      <rect x="1" y="9" width="6" height="6" rx="1"/>
+                      <rect x="9" y="9" width="6" height="6" rx="1"/>
+                    </svg>
+                    All
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../google-docs.png" alt="">
+                    Docs
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../google-sheets.png" alt="">
+                    Sheets
+                  </div>
+                  <div class="demo-pill">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjY4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDI1NiAyNjgiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xNi4wOTIgMTEuNTM4IDE2NC4wOS42MDhjMTguMTc5LTEuNTYgMjIuODUtLjUwOCAzNC4yOCA3LjgwMWw0Ny4yNDMgMzMuMjgyQzI1My40MDYgNDcuNDE0IDI1NiA0OC45NzUgMjU2IDU1LjIwN3YxODIuNTI3YzAgMTEuNDM5LTQuMTU1IDE4LjIwNS0xOC42OTYgMTkuMjRMNjUuNDQgMjY3LjM3OGMtMTAuOTEzLjUxNy0xNi4xMS0xLjA0My0yMS44MjUtOC4zMjdMOC44MjYgMjEzLjgxNEMyLjU4NiAyMDUuNDg3IDAgMTk5LjI1NCAwIDE5MS45N1YyOS43MjZjMC05LjM1MiA0LjE1NS0xNy4xNTMgMTYuMDkyLTE4LjE4OFoiLz48cGF0aCBkPSJNMTY0LjA5LjYwOCAxNi4wOTIgMTEuNTM4QzQuMTU1IDEyLjU3MyAwIDIwLjM3NCAwIDI5LjcyNnYxNjIuMjQ1YzAgNy4yODQgMi41ODUgMTMuNTE2IDguODI2IDIxLjg0M2wzNC43ODkgNDUuMjM3YzUuNzE1IDcuMjg0IDEwLjkxMiA4Ljg0NCAyMS44MjUgOC4zMjdsMTcxLjg2NC0xMC40MDRjMTQuNTMyLTEuMDM1IDE4LjY5Ni03LjgwMSAxOC42OTYtMTkuMjRWNTUuMjA3YzAtNS45MTEtMi4zMzYtNy42MTQtOS4yMS0xMi42NmwtMS4xODUtLjg1NkwxOTguMzcgOC40MDlDMTg2Ljk0LjEgMTgyLjI3LS45NTIgMTY0LjA5LjYwOFpNNjkuMzI3IDUyLjIyYy0xNC4wMzMuOTQ1LTE3LjIxNiAxLjE1OS0yNS4xODYtNS4zMjNMMjMuODc2IDMwLjc3OGMtMi4wNi0yLjA4Ni0xLjAyNi00LjY5IDQuMTYzLTUuMjA3bDE0Mi4yNzQtMTAuMzk1YzExLjk0Ny0xLjA0MyAxOC4xNyAzLjEyIDIyLjg0MiA2Ljc1OGwyNC40MDEgMTcuNjhjMS4wNDMuNTI1IDMuNjM4IDMuNjM3LjUxNyAzLjYzN0w3MS4xNDYgNTIuMDk1bC0xLjgxOS4xMjVabS0xNi4zNiAxODMuOTU0VjgxLjIyMmMwLTYuNzY3IDIuMDc3LTkuODg3IDguMy0xMC40MTNMMjMwLjAyIDYwLjkzYzUuNzI0LS41MTcgOC4zMSAzLjEyIDguMzEgOS44Nzl2MTUzLjkxN2MwIDYuNzY3LTEuMDQ0IDEyLjQ5LTEwLjM4NyAxMy4wMDhsLTE2MS40ODcgOS4zNjFjLTkuMzQzLjUxNy0xMy40ODktMi41OTQtMTMuNDg5LTEwLjkyMVpNMjEyLjM3NyA4OS41M2MxLjAzNCA0LjY4MSAwIDkuMzYyLTQuNjgxIDkuODk3bC03Ljc4MyAxLjU0MnYxMTQuNDA0Yy02Ljc1OCAzLjYzNy0xMi45ODEgNS43MTUtMTguMTggNS43MTUtOC4zMDggMC0xMC4zODYtMi42MDQtMTYuNjA5LTEwLjM5NmwtNTAuODk4LTgwLjA3OXY3Ny40NzZsMTYuMSAzLjY0NnMwIDkuMzYyLTEyLjk4OSA5LjM2MmwtMzUuODE0IDIuMDc3Yy0xLjA0My0yLjA4NiAwLTcuMjg0IDMuNjMtOC4zMThsOS4zNTEtMi41OTVWMTA5LjgyM2wtMTIuOTgtMS4wNTJjLTEuMDQ0LTQuNjggMS41NS0xMS40MzkgOC44MjYtMTEuOTY1bDM4LjQyNi0yLjU4NSA1Mi45NTggODEuMTEzdi03MS43NmwtMTMuNDk4LTEuNTUyYy0xLjA0My01LjczMyAzLjExMS05Ljg5NiA4LjMtMTAuNDA0bDM1Ljg0LTIuMDg3WiIvPjwvc3ZnPg==" alt="">
+                    Notion
+                  </div>
+                  <div class="demo-pill">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTQiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA1NCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkxMl8zKSI+CjxwYXRoIGQ9Ik0xMy4zMzMzIDgwLjAwMDJDMjAuNjkzMyA4MC4wMDAyIDI2LjY2NjcgNzQuMDI2OCAyNi42NjY3IDY2LjY2NjhWNTMuMzMzNUgxMy4zMzMzQzUuOTczMzMgNTMuMzMzNSAwIDU5LjMwNjggMCA2Ni42NjY4QzAgNzQuMDI2OCA1Ljk3MzMzIDgwLjAwMDIgMTMuMzMzMyA4MC4wMDAyWiIgZmlsbD0iIzBBQ0Y4MyIvPgo8cGF0aCBkPSJNMCAzOS45OTk4QzAgMzIuNjM5OCA1Ljk3MzMzIDI2LjY2NjUgMTMuMzMzMyAyNi42NjY1SDI2LjY2NjdWNTMuMzMzMkgxMy4zMzMzQzUuOTczMzMgNTMuMzMzMiAwIDQ3LjM1OTggMCAzOS45OTk4WiIgZmlsbD0iI0EyNTlGRiIvPgo8cGF0aCBkPSJNMCAxMy4zMzMzQzAgNS45NzMzMyA1Ljk3MzMzIDAgMTMuMzMzMyAwSDI2LjY2NjdWMjYuNjY2N0gxMy4zMzMzQzUuOTczMzMgMjYuNjY2NyAwIDIwLjY5MzMgMCAxMy4zMzMzWiIgZmlsbD0iI0YyNEUxRSIvPgo8cGF0aCBkPSJNMjYuNjY2NyAwSDQwLjAwMDFDNDcuMzYwMSAwIDUzLjMzMzQgNS45NzMzMyA1My4zMzM0IDEzLjMzMzNDNTMuMzMzNCAyMC42OTMzIDQ3LjM2MDEgMjYuNjY2NyA0MC4wMDAxIDI2LjY2NjdIMjYuNjY2N1YwWiIgZmlsbD0iI0ZGNzI2MiIvPgo8cGF0aCBkPSJNNTMuMzMzNCAzOS45OTk4QzUzLjMzMzQgNDcuMzU5OCA0Ny4zNjAxIDUzLjMzMzIgNDAuMDAwMSA1My4zMzMyQzMyLjY0MDEgNTMuMzMzMiAyNi42NjY3IDQ3LjM1OTggMjYuNjY2NyAzOS45OTk4QzI2LjY2NjcgMzIuNjM5OCAzMi42NDAxIDI2LjY2NjUgNDAuMDAwMSAyNi42NjY1QzQ3LjM2MDEgMjYuNjY2NSA1My4zMzM0IDMyLjYzOTggNTMuMzMzNCAzOS45OTk4WiIgZmlsbD0iIzFBQkNGRSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkxMl8zIj4KPHJlY3Qgd2lkdGg9IjUzLjMzMzMiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt="">
+                    Figma
+                  </div>
+                </div>
+                <div class="demo-results">
+                  <div class="demo-result selected">
+                    <img src="../google-docs.png" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Planning</span>
+                      <span class="demo-result-url">docs.google.com</span>
+                    </div>
+                    <span class="demo-result-time">2d ago</span>
+                  </div>
+                  <div class="demo-result">
+                    <img src="../google-sheets.png" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Spreadsheet</span>
+                      <span class="demo-result-url">sheets.google.com</span>
+                    </div>
+                    <span class="demo-result-time">1w ago</span>
+                  </div>
+                  <div class="demo-result">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjY4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDI1NiAyNjgiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xNi4wOTIgMTEuNTM4IDE2NC4wOS42MDhjMTguMTc5LTEuNTYgMjIuODUtLjUwOCAzNC4yOCA3LjgwMWw0Ny4yNDMgMzMuMjgyQzI1My40MDYgNDcuNDE0IDI1NiA0OC45NzUgMjU2IDU1LjIwN3YxODIuNTI3YzAgMTEuNDM5LTQuMTU1IDE4LjIwNS0xOC42OTYgMTkuMjRMNjUuNDQgMjY3LjM3OGMtMTAuOTEzLjUxNy0xNi4xMS0xLjA0My0yMS44MjUtOC4zMjdMOC44MjYgMjEzLjgxNEMyLjU4NiAyMDUuNDg3IDAgMTk5LjI1NCAwIDE5MS45N1YyOS43MjZjMC05LjM1MiA0LjE1NS0xNy4xNTMgMTYuMDkyLTE4LjE4OFoiLz48cGF0aCBkPSJNMTY0LjA5LjYwOCAxNi4wOTIgMTEuNTM4QzQuMTU1IDEyLjU3MyAwIDIwLjM3NCAwIDI5LjcyNnYxNjIuMjQ1YzAgNy4yODQgMi41ODUgMTMuNTE2IDguODI2IDIxLjg0M2wzNC43ODkgNDUuMjM3YzUuNzE1IDcuMjg0IDEwLjkxMiA4Ljg0NCAyMS44MjUgOC4zMjdsMTcxLjg2NC0xMC40MDRjMTQuNTMyLTEuMDM1IDE4LjY5Ni03LjgwMSAxOC42OTYtMTkuMjRWNTUuMjA3YzAtNS45MTEtMi4zMzYtNy42MTQtOS4yMS0xMi42NmwtMS4xODUtLjg1NkwxOTguMzcgOC40MDlDMTg2Ljk0LjEgMTgyLjI3LS45NTIgMTY0LjA5LjYwOFpNNjkuMzI3IDUyLjIyYy0xNC4wMzMuOTQ1LTE3LjIxNiAxLjE1OS0yNS4xODYtNS4zMjNMMjMuODc2IDMwLjc3OGMtMi4wNi0yLjA4Ni0xLjAyNi00LjY5IDQuMTYzLTUuMjA3bDE0Mi4yNzQtMTAuMzk1YzExLjk0Ny0xLjA0MyAxOC4xNyAzLjEyIDIyLjg0MiA2Ljc1OGwyNC40MDEgMTcuNjhjMS4wNDMuNTI1IDMuNjM4IDMuNjM3LjUxNyAzLjYzN0w3MS4xNDYgNTIuMDk1bC0xLjgxOS4xMjVabS0xNi4zNiAxODMuOTU0VjgxLjIyMmMwLTYuNzY3IDIuMDc3LTkuODg3IDguMy0xMC40MTNMMjMwLjAyIDYwLjkzYzUuNzI0LS41MTcgOC4zMSAzLjEyIDguMzEgOS44Nzl2MTUzLjkxN2MwIDYuNzY3LTEuMDQ0IDEyLjQ5LTEwLjM4NyAxMy4wMDhsLTE2MS40ODcgOS4zNjFjLTkuMzQzLjUxNy0xMy40ODktMi41OTQtMTMuNDg5LTEwLjkyMVpNMjEyLjM3NyA4OS41M2MxLjAzNCA0LjY4MSAwIDkuMzYyLTQuNjgxIDkuODk3bC03Ljc4MyAxLjU0MnYxMTQuNDA0Yy02Ljc1OCAzLjYzNy0xMi45ODEgNS43MTUtMTguMTggNS43MTUtOC4zMDggMC0xMC4zODYtMi42MDQtMTYuNjA5LTEwLjM5NmwtNTAuODk4LTgwLjA3OXY3Ny40NzZsMTYuMSAzLjY0NnMwIDkuMzYyLTEyLjk4OSA5LjM2MmwtMzUuODE0IDIuMDc3Yy0xLjA0My0yLjA4NiAwLTcuMjg0IDMuNjMtOC4zMThsOS4zNTEtMi41OTVWMTA5LjgyM2wtMTIuOTgtMS4wNTJjLTEuMDQ0LTQuNjggMS41NS0xMS40MzkgOC44MjYtMTEuOTY1bDM4LjQyNi0yLjU4NSA1Mi45NTggODEuMTEzdi03MS43NmwtMTMuNDk4LTEuNTUyYy0xLjA0My01LjczMyAzLjExMS05Ljg5NiA4LjMtMTAuNDA0bDM1Ljg0LTIuMDg3WiIvPjwvc3ZnPg==" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Notes</span>
+                      <span class="demo-result-url">notion.so</span>
+                    </div>
+                    <span class="demo-result-time">3d ago</span>
+                  </div>
+                </div>
+                <div class="demo-footer">
+                  <div class="demo-shortcuts">
+                    <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> navigate</span>
+                    <span><kbd>&#8629;</kbd> open</span>
+                    <span><kbd>esc</kbd> close</span>
+                  </div>
+                  <div class="demo-footer-icons">
+                    <button class="demo-footer-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    <button class="demo-footer-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Screenshot 3: AI -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">3. AI Answers</div>
+        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-ai.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="screenshot-frame">
+      <div class="feature-slide">
+        <div class="feature-text">
+          <h2>Ask AI.</h2>
+          <p>Have a question? Get answers from AI without leaving your keyboard or opening a new tab.</p>
+        </div>
+        <div class="feature-demo">
+          <div class="browser-chrome">
+            <div class="browser-toolbar">
+              <div class="browser-dots">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+              </div>
+              <div class="browser-url">github.com/project/src</div>
+            </div>
+            <div class="browser-content">
+              <div class="demo-window">
+                <div class="demo-search">
+                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span class="demo-search-text">How do I center a div in CSS?</span>
+                  <div class="demo-ai-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                    </svg>
+                    Ask AI
+                  </div>
+                </div>
+                <div class="demo-ai-answer">
+                  <div class="demo-ai-label">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                    </svg>
+                    AI Answer
+                  </div>
+                  <p>To center a div, use Flexbox:</p>
+                  <code>.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}</code>
+                </div>
+                <div class="demo-footer">
+                  <div class="demo-shortcuts">
+                    <span><kbd>&#8984;</kbd><kbd>C</kbd> copy</span>
+                    <span><kbd>esc</kbd> back</span>
+                  </div>
+                  <div class="demo-footer-icons">
+                    <button class="demo-footer-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    <button class="demo-footer-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Screenshot 4: Notes -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">4. Floating Notes</div>
+        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-notes.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="screenshot-frame">
+      <div class="feature-slide">
+        <div class="feature-text">
+          <h2>Capture ideas.</h2>
+          <p>Floating notes that stay with you across tabs. Pin them to any page or keep them handy.</p>
+        </div>
+        <div class="feature-demo" style="position: relative;">
+          <div class="browser-chrome">
+            <div class="browser-toolbar">
+              <div class="browser-dots">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+              </div>
+              <div class="browser-url">docs.google.com/document/edit</div>
+            </div>
+            <div class="browser-content" style="position: relative;">
+              <div class="demo-window">
+                <div class="demo-search">
+                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span class="demo-search-text demo-typing">/notes</span>
+                </div>
+                <div class="demo-command-hint">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                  </svg>
+                  <span>Open floating notes</span>
+                  <kbd>&#8629;</kbd>
+                </div>
+              </div>
+              <!-- Floating note window -->
+              <div class="demo-floating-note">
+                <div class="floating-note-header-search">
+                  <span class="floating-note-search-text">Search notes...</span>
+                  <span class="floating-note-add-btn">+</span>
+                </div>
+                <div class="floating-note-list">
+                  <div class="floating-note-item">
+                    <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                    <div class="floating-note-item-content">
+                      <span class="floating-note-item-title">Product launch</span>
+                      <span class="floating-note-item-preview">Finalize pricing with Sarah</span>
+                    </div>
+                    <span class="floating-note-item-time">2m</span>
+                  </div>
+                  <div class="floating-note-item active">
+                    <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                    <div class="floating-note-item-content">
+                      <span class="floating-note-item-title">Q3 Planning</span>
+                      <span class="floating-note-item-preview">Budget approved: $50k</span>
+                    </div>
+                    <span class="floating-note-item-time">1h</span>
+                  </div>
+                  <div class="floating-note-item">
+                    <div class="floating-note-item-content">
+                      <span class="floating-note-item-title">Meeting notes</span>
+                      <span class="floating-note-item-preview">Review design feedback</span>
+                    </div>
+                    <span class="floating-note-item-time">2d</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Screenshot 5: Actions -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">5. Quick Actions</div>
+        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-actions.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="screenshot-frame">
+      <div class="feature-slide">
+        <div class="feature-text">
+          <h2>Do more.</h2>
+          <p>Quick actions to create new docs, open apps, and run commands - all from your keyboard.</p>
+        </div>
+        <div class="feature-demo">
+          <div class="browser-chrome">
+            <div class="browser-toolbar">
+              <div class="browser-dots">
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+                <span class="browser-dot"></span>
+              </div>
+              <div class="browser-url">figma.com/file/design</div>
+            </div>
+            <div class="browser-content">
+              <div class="demo-window">
+                <div class="demo-search">
+                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span class="demo-search-text">/</span>
+                </div>
+                <div class="demo-actions-list">
+                  <div class="demo-action-item selected">
+                    <img src="../google-docs.png" alt="" class="demo-action-icon">
+                    <span class="demo-action-name">/doc</span>
+                    <span class="demo-action-desc">New Google Doc</span>
+                  </div>
+                  <div class="demo-action-item">
+                    <img src="../google-sheets.png" alt="" class="demo-action-icon">
+                    <span class="demo-action-name">/sheet</span>
+                    <span class="demo-action-desc">New Google Sheet</span>
+                  </div>
+                  <div class="demo-action-item">
+                    <img src="../google-slides.png" alt="" class="demo-action-icon">
+                    <span class="demo-action-name">/slide</span>
+                    <span class="demo-action-desc">New Slides</span>
+                  </div>
+                  <div class="demo-action-item">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTQiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA1NCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkxMl8zKSI+CjxwYXRoIGQ9Ik0xMy4zMzMzIDgwLjAwMDJDMjAuNjkzMyA4MC4wMDAyIDI2LjY2NjcgNzQuMDI2OCAyNi42NjY3IDY2LjY2NjhWNTMuMzMzNUgxMy4zMzMzQzUuOTczMzMgNTMuMzMzNSAwIDU5LjMwNjggMCA2Ni42NjY4QzAgNzQuMDI2OCA1Ljk3MzMzIDgwLjAwMDIgMTMuMzMzMyA4MC4wMDAyWiIgZmlsbD0iIzBBQ0Y4MyIvPgo8cGF0aCBkPSJNMCAzOS45OTk4QzAgMzIuNjM5OCA1Ljk3MzMzIDI2LjY2NjUgMTMuMzMzMyAyNi42NjY1SDI2LjY2NjdWNTMuMzMzMkgxMy4zMzMzQzUuOTczMzMgNTMuMzMzMiAwIDQ3LjM1OTggMCAzOS45OTk4WiIgZmlsbD0iI0EyNTlGRiIvPgo8cGF0aCBkPSJNMCAxMy4zMzMzQzAgNS45NzMzMyA1Ljk3MzMzIDAgMTMuMzMzMyAwSDI2LjY2NjdWMjYuNjY2N0gxMy4zMzMzQzUuOTczMzMgMjYuNjY2NyAwIDIwLjY5MzMgMCAxMy4zMzMzWiIgZmlsbD0iI0YyNEUxRSIvPgo8cGF0aCBkPSJNMjYuNjY2NyAwSDQwLjAwMDFDNDcuMzYwMSAwIDUzLjMzMzQgNS45NzMzMyA1My4zMzM0IDEzLjMzMzNDNTMuMzMzNCAyMC42OTMzIDQ3LjM2MDEgMjYuNjY2NyA0MC4wMDAxIDI2LjY2NjdIMjYuNjY2N1YwWiIgZmlsbD0iI0ZGNzI2MiIvPgo8cGF0aCBkPSJNNTMuMzMzNCAzOS45OTk4QzUzLjMzMzQgNDcuMzU5OCA0Ny4zNjAxIDUzLjMzMzIgNDAuMDAwMSA1My4zMzMyQzMyLjY0MDEgNTMuMzMzMiAyNi42NjY3IDQ3LjM1OTggMjYuNjY2NyAzOS45OTk4QzI2LjY2NjcgMzIuNjM5OCAzMi42NDAxIDI2LjY2NjUgNDAuMDAwMSAyNi42NjY1QzQ3LjM2MDEgMjYuNjY2NSA1My4zMzM0IDMyLjYzOTggNTMuMzMzNCAzOS45OTk4WiIgZmlsbD0iIzFBQkNGRSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkxMl8zIj4KPHJlY3Qgd2lkdGg9IjUzLjMzMzMiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt="" class="demo-action-icon">
+                    <span class="demo-action-name">/figma</span>
+                    <span class="demo-action-desc">New Figma file</span>
+                  </div>
+                  <div class="demo-action-item">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjY4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDI1NiAyNjgiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xNi4wOTIgMTEuNTM4IDE2NC4wOS42MDhjMTguMTc5LTEuNTYgMjIuODUtLjUwOCAzNC4yOCA3LjgwMWw0Ny4yNDMgMzMuMjgyQzI1My40MDYgNDcuNDE0IDI1NiA0OC45NzUgMjU2IDU1LjIwN3YxODIuNTI3YzAgMTEuNDM5LTQuMTU1IDE4LjIwNS0xOC42OTYgMTkuMjRMNjUuNDQgMjY3LjM3OGMtMTAuOTEzLjUxNy0xNi4xMS0xLjA0My0yMS44MjUtOC4zMjdMOC44MjYgMjEzLjgxNEMyLjU4NiAyMDUuNDg3IDAgMTk5LjI1NCAwIDE5MS45N1YyOS43MjZjMC05LjM1MiA0LjE1NS0xNy4xNTMgMTYuMDkyLTE4LjE4OFoiLz48cGF0aCBkPSJNMTY0LjA5LjYwOCAxNi4wOTIgMTEuNTM4QzQuMTU1IDEyLjU3MyAwIDIwLjM3NCAwIDI5LjcyNnYxNjIuMjQ1YzAgNy4yODQgMi41ODUgMTMuNTE2IDguODI2IDIxLjg0M2wzNC43ODkgNDUuMjM3YzUuNzE1IDcuMjg0IDEwLjkxMiA4Ljg0NCAyMS44MjUgOC4zMjdsMTcxLjg2NC0xMC40MDRjMTQuNTMyLTEuMDM1IDE4LjY5Ni03LjgwMSAxOC42OTYtMTkuMjRWNTUuMjA3YzAtNS45MTEtMi4zMzYtNy42MTQtOS4yMS0xMi42NmwtMS4xODUtLjg1NkwxOTguMzcgOC40MDlDMTg2Ljk0LjEgMTgyLjI3LS45NTIgMTY0LjA5LjYwOFpNNjkuMzI3IDUyLjIyYy0xNC4wMzMuOTQ1LTE3LjIxNiAxLjE1OS0yNS4xODYtNS4zMjNMMjMuODc2IDMwLjc3OGMtMi4wNi0yLjA4Ni0xLjAyNi00LjY5IDQuMTYzLTUuMjA3bDE0Mi4yNzQtMTAuMzk1YzExLjk0Ny0xLjA0MyAxOC4xNyAzLjEyIDIyLjg0MiA2Ljc1OGwyNC40MDEgMTcuNjhjMS4wNDMuNTI1IDMuNjM4IDMuNjM3LjUxNyAzLjYzN0w3MS4xNDYgNTIuMDk1bC0xLjgxOS4xMjVabS0xNi4zNiAxODMuOTU0VjgxLjIyMmMwLTYuNzY3IDIuMDc3LTkuODg3IDguMy0xMC40MTNMMjMwLjAyIDYwLjkzYzUuNzI0LS41MTcgOC4zMSAzLjEyIDguMzEgOS44Nzl2MTUzLjkxN2MwIDYuNzY3LTEuMDQ0IDEyLjQ5LTEwLjM4NyAxMy4wMDhsLTE2MS40ODcgOS4zNjFjLTkuMzQzLjUxNy0xMy40ODktMi41OTQtMTMuNDg5LTEwLjkyMVpNMjEyLjM3NyA4OS41M2MxLjAzNCA0LjY4MSAwIDkuMzYyLTQuNjgxIDkuODk3bC03Ljc4MyAxLjU0MnYxMTQuNDA0Yy02Ljc1OCAzLjYzNy0xMi45ODEgNS43MTUtMTguMTggNS43MTUtOC4zMDggMC0xMC4zODYtMi42MDQtMTYuNjA5LTEwLjM5NmwtNTAuODk4LTgwLjA3OXY3Ny40NzZsMTYuMSAzLjY0NnMwIDkuMzYyLTEyLjk4OSA5LjM2MmwtMzUuODE0IDIuMDc3Yy0xLjA0My0yLjA4NiAwLTcuMjg0IDMuNjMtOC4zMThsOS4zNTEtMi41OTVWMTA5LjgyM2wtMTIuOTgtMS4wNTJjLTEuMDQ0LTQuNjggMS41NS0xMS40MzkgOC44MjYtMTEuOTY1bDM4LjQyNi0yLjU4NSA1Mi45NTggODEuMTEzdi03MS43NmwtMTMuNDk4LTEuNTUyYy0xLjA0My01LjczMyAzLjExMS05Ljg5NiA4LjMtMTAuNDA0bDM1Ljg0LTIuMDg3WiIvPjwvc3ZnPg==" alt="" class="demo-action-icon">
+                    <span class="demo-action-name">/notion</span>
+                    <span class="demo-action-desc">New Notion page</span>
+                  </div>
+                </div>
+                <div class="demo-footer">
+                  <div class="demo-shortcuts">
+                    <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> navigate</span>
+                    <span><kbd>&#8629;</kbd> run</span>
+                  </div>
+                  <div class="demo-footer-icons">
+                    <button class="demo-footer-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                    </button>
+                    <button class="demo-footer-btn">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  </div>
+
+  <!-- Promo Tiles Section -->
+  <h1 style="margin-top: 60px;">Promo Tiles</h1>
+  <p class="subtitle">For Chrome Web Store promotional placement</p>
+
+  <div class="screenshots">
+    <!-- Small Promo Tile: 440x280 -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">Small Promo Tile (440x280)</div>
+        <button class="download-btn" onclick="downloadPromo(this, 'daysift-promo-small.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="promo-frame promo-small">
+        <img src="../logo.png" alt="Daysift" class="promo-logo">
+        <h2>Find anything. <span>Instantly.</span></h2>
+        <p>Press ⌘J to get back to any doc, page or tab.</p>
+      </div>
+    </div>
+
+    <!-- Marquee Promo Tile: 1400x560 -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">Marquee Promo Tile (1400x560)</div>
+        <button class="download-btn" onclick="downloadPromo(this, 'daysift-promo-marquee.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="promo-frame promo-marquee">
+        <div class="promo-content">
+          <img src="../logo.png" alt="Daysift" class="promo-logo-large">
+          <h2>Find anything. <span>Instantly.</span></h2>
+          <p>Press one shortcut to get back to any doc, page or tab you opened. Search across all your work apps in milliseconds.</p>
+          <div class="promo-hints">
+            <span><kbd>⌘J</kbd> for Mac</span>
+            <span><kbd>Ctrl+J</kbd> for Windows</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    async function downloadPromo(btn, filename) {
+      const wrapper = btn.closest('.screenshot-wrapper');
+      const frame = wrapper.querySelector('.promo-frame');
+
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const canvas = await html2canvas(frame, {
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#F8F7F4'
+        });
+
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        console.error('Promo download failed:', err);
+        alert('Failed to generate promo. Try using browser screenshot tools instead.');
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PNG';
+    }
+
+    async function downloadScreenshot(btn, filename) {
+      const wrapper = btn.closest('.screenshot-wrapper');
+      const frame = wrapper.querySelector('.screenshot-frame');
+
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const canvas = await html2canvas(frame, {
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: '#F8F7F4'
+        });
+
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        console.error('Screenshot failed:', err);
+        alert('Failed to generate screenshot. Try using browser screenshot tools instead.');
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PNG';
+    }
+
+    async function downloadAll() {
+      const filenames = [
+        'daysift-cover.png',
+        'daysift-search.png',
+        'daysift-ai.png',
+        'daysift-notes.png',
+        'daysift-actions.png'
+      ];
+
+      const frames = document.querySelectorAll('.screenshot-frame');
+      const allBtn = event.target.closest('.download-btn');
+
+      allBtn.disabled = true;
+      allBtn.textContent = 'Generating...';
+
+      for (let i = 0; i < frames.length; i++) {
+        allBtn.textContent = `Downloading ${i + 1}/${frames.length}...`;
+
+        try {
+          const canvas = await html2canvas(frames[i], {
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#F8F7F4'
+          });
+
+          const link = document.createElement('a');
+          link.download = filenames[i];
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+
+          // Small delay between downloads
+          await new Promise(r => setTimeout(r, 500));
+        } catch (err) {
+          console.error(`Screenshot ${i + 1} failed:`, err);
+        }
+      }
+
+      allBtn.disabled = false;
+      allBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download All (5 PNGs)';
+    }
+  </script>
+</body>
+</html>

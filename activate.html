@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activate Daysift Pro</title>
+  <meta name="description" content="Activate your Daysift Pro license and unlock unlimited history search.">
+  <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #FFFFFF;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --success: #22c55e;
+      --success-bg: #f0fdf4;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a0a0a;
+        --bg-alt: #171717;
+        --foreground: #fafafa;
+        --muted: #a1a1aa;
+        --muted-light: #71717a;
+        --border: #27272a;
+        --success-bg: #14532d20;
+      }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-image:
+          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      }
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo {
+      height: 64px;
+      color: var(--foreground);
+      margin-bottom: 48px;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 64px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        margin-bottom: 40px;
+      }
+    }
+
+    .step {
+      text-align: left;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      color: var(--foreground);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .step-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-secondary {
+      background: var(--bg-alt);
+      color: var(--foreground);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: var(--border);
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .license-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+    }
+
+    .license-key {
+      font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      flex: 1;
+      word-break: break-all;
+      text-align: left;
+    }
+
+    .copy-btn {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover {
+      color: var(--foreground);
+      background: var(--border);
+    }
+
+    .copy-btn.copied {
+      color: var(--success);
+    }
+
+    .instructions {
+      font-size: 12px;
+      color: var(--muted-light);
+      text-align: left;
+    }
+
+    .tip-list {
+      list-style: disc;
+      margin: 0;
+      padding-left: 16px;
+      text-align: left;
+    }
+
+    .tip-list li {
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .no-key-message {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 32px;
+      font-size: 14px;
+      color: #92400e;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .no-key-message {
+        background: #78350f20;
+        border-color: #f59e0b40;
+        color: #fbbf24;
+      }
+    }
+
+    .no-key-message a {
+      color: inherit;
+      font-weight: 500;
+    }
+
+    .help-link {
+      font-size: 13px;
+      color: var(--muted-light);
+    }
+
+    .help-link a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .help-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="logo" viewBox="0 0 381 381" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M223.926 74.9766C303.409 74.9766 354.253 120.028 354.253 190.501C354.253 260.974 303.409 306.026 223.926 306.026H111.831C109.048 306.026 106.793 303.77 106.793 300.987V275.667C106.793 272.884 109.048 270.628 111.831 270.628H223.926C278.953 270.628 312.098 239.092 312.098 190.501C312.098 141.588 278.953 110.374 223.604 110.374H111.831C109.049 110.374 106.793 108.118 106.793 105.336V80.0156C106.793 77.233 109.048 74.9767 111.831 74.9766H223.926ZM153.775 208.912C156.558 208.912 158.814 211.168 158.814 213.951V239.092C158.814 241.875 156.558 244.131 153.775 244.131H31.7852C29.0024 244.131 26.7461 241.875 26.7461 239.092V213.951C26.7461 211.168 29.0024 208.912 31.7852 208.912H153.775ZM182.703 149.798C185.486 149.798 187.742 152.053 187.742 154.836V179.978C187.742 182.76 185.486 185.016 182.703 185.016H60.7119C57.9294 185.015 55.6739 182.76 55.6738 179.978V154.836C55.674 152.053 57.9295 149.798 60.7119 149.798H182.703Z" fill="currentColor"/>
+    </svg>
+
+    <h1>Daysift Pro is ready to go!</h1>
+    <p class="subtitle">Below you will find the steps to activate your license.</p>
+
+    <div class="steps">
+      <!-- Step 1: Install -->
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-title">Install Daysift</div>
+        <p class="step-description">If you haven't already, install the extension from the Chrome Web Store.</p>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Install Extension
+        </a>
+      </div>
+
+      <!-- Step 2: Activate -->
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-title">Activate</div>
+        <p class="step-description">Copy the license key from your email and paste it in Daysift settings.</p>
+        <a href="#" class="btn btn-secondary" onclick="return false;" style="pointer-events: none;">
+          Cmd+J → Settings → Your Plan
+        </a>
+      </div>
+
+      <!-- Step 3: Tips -->
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-title">You're all set</div>
+        <p class="step-description">Your Pro features are now unlocked. Here's what you can do:</p>
+        <ul class="tip-list">
+          <li>Unlimited history search</li>
+          <li>AI-powered answers</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="help-link">
+      Need help? <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+    </p>
+  </div>
+
+</body>
+</html>
