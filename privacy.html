@@ -485,6 +485,43 @@
       </section>
 
       <section>
+        <h2>About OpenAI Data Processing</h2>
+        <p>When you use the "Ask AI" feature, your data is processed by OpenAI. Here's what you should know:</p>
+        <h3>Data flow</h3>
+        <p>When you use AI search, your query takes this path:</p>
+        <ol style="list-style: decimal; margin-left: 20px; margin-bottom: 16px; color: var(--muted);">
+          <li style="margin-bottom: 8px;"><strong>Your browser</strong> → sends query to our proxy</li>
+          <li style="margin-bottom: 8px;"><strong>Cloudflare Worker</strong> (our proxy) → forwards to OpenAI</li>
+          <li style="margin-bottom: 8px;"><strong>OpenAI API</strong> → processes and returns response</li>
+        </ol>
+        <p>The Cloudflare Worker acts as a secure proxy. It does not store your queries, but Cloudflare may log request metadata (IP addresses, timestamps) per their standard practices.</p>
+        <h3>What's sent to OpenAI</h3>
+        <ul>
+          <li>Your question (the text you type)</li>
+          <li>Relevant page titles from your local search results</li>
+          <li>Domain names of those pages</li>
+        </ul>
+        <h3>What's NOT sent to OpenAI</h3>
+        <ul>
+          <li>Page content or extracted keywords</li>
+          <li>Your notes or pinned items</li>
+          <li>Your browsing history beyond relevant search results</li>
+          <li>Any personally identifiable information</li>
+        </ul>
+        <h3>OpenAI's data handling</h3>
+        <p>We use OpenAI's API with data retention disabled. According to OpenAI's <a href="https://openai.com/enterprise-privacy" target="_blank">API data usage policy</a>:</p>
+        <ul>
+          <li>API inputs and outputs are <strong>not used to train OpenAI models</strong></li>
+          <li>Data is retained for up to 30 days for abuse monitoring, then deleted</li>
+        </ul>
+        <p>For full details, see <a href="https://openai.com/privacy" target="_blank">OpenAI's Privacy Policy</a>.</p>
+        <h3>Your consent and withdrawal</h3>
+        <p><strong>First use:</strong> When you first use AI search, you'll be asked to consent to your query being sent to OpenAI. AI features won't work until you accept.</p>
+        <p><strong>Withdrawal:</strong> You can revoke your consent at any time in the extension's Settings → AI Search → "Revoke AI Consent". After revoking, you'll need to consent again to use AI features.</p>
+        <p><strong>After uninstall:</strong> If you uninstall Daysift, your local data is deleted immediately. However, any queries previously sent to OpenAI may be retained by them for up to 30 days per their data retention policy.</p>
+      </section>
+
+      <section>
         <h2>What We DON'T Collect</h2>
         <ul>
           <li>No accounts or login</li>
@@ -506,38 +543,83 @@
       </section>
 
       <section>
-        <h2>Third-Party Services</h2>
+        <h2>Third-Party Services (Data Processors)</h2>
+        <p>When you use certain features, your data may be processed by these third-party services:</p>
         <table>
           <thead>
             <tr>
               <th>Service</th>
+              <th>Role</th>
               <th>What they receive</th>
               <th>Their policy</th>
             </tr>
           </thead>
           <tbody>
             <tr>
+              <td>Cloudflare</td>
+              <td>Processor (proxy)</td>
+              <td>AI queries, IP address, request metadata</td>
+              <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">cloudflare.com/privacy</a></td>
+            </tr>
+            <tr>
               <td>OpenAI</td>
-              <td>Search queries (AI features)</td>
+              <td>Processor</td>
+              <td>AI queries + relevant page titles</td>
               <td><a href="https://openai.com/privacy" target="_blank">openai.com/privacy</a></td>
             </tr>
             <tr>
               <td>Google Favicon API</td>
+              <td>Processor</td>
               <td>Domain names only</td>
               <td><a href="https://policies.google.com/privacy" target="_blank">google.com/privacy</a></td>
             </tr>
             <tr>
               <td>Lemon Squeezy</td>
-              <td>Payment details</td>
+              <td>Controller (payments)</td>
+              <td>Payment details, email</td>
               <td><a href="https://www.lemonsqueezy.com/privacy" target="_blank">lemonsqueezy.com/privacy</a></td>
             </tr>
           </tbody>
         </table>
+        <p style="margin-top: 16px;">We have Data Processing Agreements (DPAs) in place with our processors. Cloudflare's DPA is incorporated by reference in their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">Customer DPA</a>. OpenAI's DPA is available at <a href="https://openai.com/policies/data-processing-addendum/" target="_blank">openai.com/policies/data-processing-addendum</a>.</p>
       </section>
 
       <section>
         <h2>Security</h2>
         <p>Your data lives in your browser's local storage. We can't access it. External transmissions (AI queries) use HTTPS encryption.</p>
+      </section>
+
+      <section>
+        <h2>GDPR & Data Protection</h2>
+        <p>For users in the UK and EU, here's how data protection roles work with Daysift:</p>
+        <h3>Local data (most of Daysift)</h3>
+        <p>Since Daysift stores your data locally on your device and we cannot access it, traditional data controller/processor roles don't apply to this data. <strong>You control your own data.</strong></p>
+        <h3>When you use AI features</h3>
+        <p>When you use "Ask AI," your query is sent to OpenAI. In this case:</p>
+        <ul>
+          <li><strong>Daysift</strong> acts as a data controller (we decide to use OpenAI for AI features)</li>
+          <li><strong>OpenAI</strong> acts as a data processor (they process the query on our behalf)</li>
+        </ul>
+        <p>OpenAI processes data in accordance with their <a href="https://openai.com/privacy" target="_blank">Privacy Policy</a> and <a href="https://openai.com/policies/data-processing-addendum" target="_blank">Data Processing Addendum</a>.</p>
+        <h3>When you make a payment</h3>
+        <p>Payment processing is handled by Lemon Squeezy, who acts as an independent data controller for payment data. See their <a href="https://www.lemonsqueezy.com/privacy" target="_blank">Privacy Policy</a>.</p>
+        <h3>International data transfers</h3>
+        <p>When you use AI features, your data may be transferred outside the UK/EU:</p>
+        <ul>
+          <li><strong>Cloudflare:</strong> May process data in various locations globally. Covered by their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">DPA</a> which includes Standard Contractual Clauses (SCCs) and UK International Data Transfer Agreement (IDTA).</li>
+          <li><strong>OpenAI:</strong> Processes data in the United States. Covered by their <a href="https://openai.com/policies/data-processing-addendum/" target="_blank">DPA</a> which includes Standard Contractual Clauses for EU/UK transfers.</li>
+        </ul>
+        <p>These transfer mechanisms ensure your data receives adequate protection when processed outside the UK/EU, as required by data protection law.</p>
+        <h3>Your rights</h3>
+        <p>Under UK GDPR and EU GDPR, you have the right to:</p>
+        <ul>
+          <li><strong>Access:</strong> Your local data is already accessible to you in your browser</li>
+          <li><strong>Deletion:</strong> Uninstall the extension to delete all local data</li>
+          <li><strong>Portability:</strong> Your data is stored in your browser and can be exported via developer tools</li>
+          <li><strong>Object:</strong> Don't use AI features if you don't want data sent to OpenAI</li>
+          <li><strong>Withdraw consent:</strong> Revoke AI consent anytime in Settings → AI Search</li>
+        </ul>
+        <p>For questions about data protection, email <a href="mailto:hello@daysift.com">hello@daysift.com</a>.</p>
       </section>
 
       <section>
@@ -570,6 +652,7 @@
           <h4>Legal</h4>
           <a href="privacy.html">Privacy</a>
           <a href="terms.html">Terms</a>
+          <a href="aup.html">Acceptable Use</a>
         </div>
         <div class="footer-col">
           <h4>Connect</h4>

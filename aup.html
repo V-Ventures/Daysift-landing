@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acceptable Use Policy - Daysift</title>
+  <meta name="description" content="Daysift Acceptable Use Policy. Guidelines for using our browser extension responsibly.">
+  <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+    }
+
+    nav .container {
+      max-width: 980px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Content */
+    .policy {
+      padding: 80px 0;
+    }
+
+    .policy h1 {
+      font-size: 40px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .policy .updated {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .policy-summary {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+    }
+
+    .policy-summary h2 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .policy-summary p {
+      color: var(--foreground);
+      margin-bottom: 16px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .policy-summary p:last-child {
+      margin-bottom: 0;
+    }
+
+    .policy section {
+      margin-bottom: 40px;
+    }
+
+    .policy h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .policy h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+
+    .policy p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .policy ul {
+      list-style: disc;
+      padding: 0;
+      margin: 0 0 16px 20px;
+    }
+
+    .policy ul li {
+      margin-bottom: 8px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .policy a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .policy a:hover {
+      text-decoration: underline;
+    }
+
+    .policy strong {
+      color: var(--foreground);
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .container {
+      max-width: 980px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 22px;
+    }
+
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 64px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted-light);
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+
+    .footer-col a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .policy h1 {
+        font-size: 32px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-links {
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="index.html"><img src="logo.png" alt="Daysift" class="logo"></a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="index.html#features">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Acceptable Use Policy Content -->
+  <div class="policy">
+    <div class="container">
+      <h1>Acceptable Use Policy</h1>
+      <p class="updated">Last updated: February 2026</p>
+
+      <div class="policy-summary">
+        <h2>Use Daysift responsibly</h2>
+        <p>Daysift is designed to help you work more efficiently. This policy outlines how we expect you to use it — essentially, don't use it for anything illegal, harmful, or that would damage others or our service.</p>
+      </div>
+
+      <section>
+        <h2>Permitted Use</h2>
+        <p>You may use Daysift for:</p>
+        <ul>
+          <li>Searching your own work history and documents</li>
+          <li>Creating personal notes and pinning pages for quick access</li>
+          <li>Using AI features to find information in your work history</li>
+          <li>Personal productivity and legitimate business purposes</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Prohibited Use</h2>
+        <p>You must not use Daysift to:</p>
+        <h3>Illegal activities</h3>
+        <ul>
+          <li>Violate any applicable laws, regulations, or third-party rights</li>
+          <li>Engage in fraud, identity theft, or other criminal activities</li>
+          <li>Access systems or data you're not authorised to access</li>
+        </ul>
+        <h3>Harmful content</h3>
+        <ul>
+          <li>Store, distribute, or create content that is illegal, harmful, threatening, abusive, harassing, defamatory, or hateful</li>
+          <li>Store content involving the exploitation of minors</li>
+          <li>Create or distribute malware, viruses, or other harmful code</li>
+        </ul>
+        <h3>AI misuse</h3>
+        <ul>
+          <li>Attempt to circumvent, bypass, or manipulate AI safety measures</li>
+          <li>Use AI features to generate content that violates these guidelines</li>
+          <li>Systematically extract or scrape AI outputs for the purpose of training other AI systems</li>
+          <li>Misrepresent AI-generated content as human-created</li>
+        </ul>
+        <h3>Service abuse</h3>
+        <ul>
+          <li>Reverse engineer, decompile, or attempt to extract the source code of Daysift</li>
+          <li>Use automated systems or bots to interact with Daysift in unintended ways</li>
+          <li>Attempt to gain unauthorised access to our systems or other users' data</li>
+          <li>Interfere with or disrupt the service or its infrastructure</li>
+          <li>Share your subscription or licence with others not covered by your plan</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Content Standards</h2>
+        <p>While Daysift stores data locally on your device, if you use AI features or contact us, any content you provide must:</p>
+        <ul>
+          <li>Be accurate and not misleading</li>
+          <li>Not infringe any intellectual property or privacy rights</li>
+          <li>Not contain personal data of others without their consent</li>
+          <li>Not be designed to harass, abuse, or harm others</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Enforcement</h2>
+        <p>If we believe you've violated this policy, we may:</p>
+        <ul>
+          <li>Issue a warning</li>
+          <li>Temporarily suspend your access to paid features</li>
+          <li>Permanently terminate your account and subscription</li>
+          <li>Report illegal activity to law enforcement</li>
+        </ul>
+        <p>We'll try to give you notice before taking action, except in cases where we believe immediate action is necessary to protect others or comply with legal requirements.</p>
+      </section>
+
+      <section>
+        <h2>Reporting Violations</h2>
+        <p>If you become aware of any misuse of Daysift or violations of this policy, please contact us at <a href="mailto:hello@daysift.com">hello@daysift.com</a>.</p>
+      </section>
+
+      <section>
+        <h2>Changes to This Policy</h2>
+        <p>We may update this policy from time to time. We'll post the new policy on this page and update the "Last updated" date. Continued use of Daysift after changes means you accept the updated policy.</p>
+      </section>
+
+      <section>
+        <h2>Related Policies</h2>
+        <ul>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Contact</h2>
+        <p>Questions about this policy? Email us at <a href="mailto:hello@daysift.com">hello@daysift.com</a></p>
+      </section>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="index.html#features">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">Contact</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
