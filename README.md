@@ -44,7 +44,11 @@ Auto-advances every 5 seconds with progress bar indicator. Manual switching paus
 
 ## Deployment
 
-TODO: Connect to Vercel/Netlify for auto-deploy
+Push to `main` branch auto-deploys to daysift.com:
+
+```bash
+git add -A && git commit -m "Update message" && git push
+```
 
 ## Local Preview
 
