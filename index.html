@@ -5,6 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Daysift - Find anything. Instantly.</title>
   <meta name="description" content="Press ⌘J to instantly find any doc, page, or tab you've touched. Search across all your work apps.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Daysift - Find anything. Instantly.">
+  <meta property="og:description" content="Press ⌘J to instantly find any doc, page, or tab you've touched.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daysift.com/">
+  <meta property="og:image" content="https://daysift.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Daysift">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@daysift">
+  <meta name="twitter:title" content="Daysift - Find anything. Instantly.">
+  <meta name="twitter:description" content="Press ⌘J to instantly find any doc, page, or tab you've touched.">
+  <meta name="twitter:image" content="https://daysift.com/og-image.png">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://daysift.com/">
+  <meta name="theme-color" content="#F8F7F4">
+
   <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
   <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1772,6 +1794,29 @@
       }
     }
   </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Daysift",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "Chrome",
+    "description": "Press one shortcut to instantly find any doc, page, or tab you've touched. Search across all your work apps.",
+    "url": "https://daysift.com/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "10"
+    }
+  }
+  </script>
 </head>
 <body>
   <!-- Navigation -->
@@ -1858,25 +1903,25 @@
                 All
               </div>
               <div class="demo-pill">
-                <img src="google-docs.png" alt="">
+                <img src="google-docs.png" alt="Google Docs">
                 Docs
               </div>
               <div class="demo-pill">
-                <img src="google-sheets.png" alt="">
+                <img src="google-sheets.png" alt="Google Sheets">
                 Sheets
               </div>
               <div class="demo-pill">
-                <img src="https://svgl.app/library/notion.svg" alt="">
+                <img src="https://svgl.app/library/notion.svg" alt="Notion">
                 Notion
               </div>
               <div class="demo-pill">
-                <img src="https://svgl.app/library/figma.svg" alt="">
+                <img src="https://svgl.app/library/figma.svg" alt="Figma">
                 Figma
               </div>
             </div>
             <div class="demo-results">
               <div class="demo-result selected">
-                <img src="google-docs.png" alt="">
+                <img src="google-docs.png" alt="Google Docs">
                 <div class="demo-result-content">
                   <span class="demo-result-title">Q3 Budget Planning</span>
                   <span class="demo-result-url">docs.google.com</span>
@@ -1884,7 +1929,7 @@
                 <span class="demo-result-time">2d ago</span>
               </div>
               <div class="demo-result">
-                <img src="google-sheets.png" alt="">
+                <img src="google-sheets.png" alt="Google Sheets">
                 <div class="demo-result-content">
                   <span class="demo-result-title">Q3 Budget Spreadsheet</span>
                   <span class="demo-result-url">sheets.google.com</span>
@@ -1892,7 +1937,7 @@
                 <span class="demo-result-time">1w ago</span>
               </div>
               <div class="demo-result">
-                <img src="https://svgl.app/library/notion.svg" alt="">
+                <img src="https://svgl.app/library/notion.svg" alt="Notion">
                 <div class="demo-result-content">
                   <span class="demo-result-title">Q3 Budget Notes</span>
                   <span class="demo-result-url">notion.so</span>
@@ -1992,32 +2037,32 @@
             </div>
             <div class="demo-actions-list">
               <div class="demo-action-item selected">
-                <img src="google-docs.png" alt="" class="demo-action-icon">
+                <img src="google-docs.png" alt="Google Docs" class="demo-action-icon">
                 <span class="demo-action-name">/doc</span>
                 <span class="demo-action-desc">New Google Doc</span>
               </div>
               <div class="demo-action-item">
-                <img src="google-sheets.png" alt="" class="demo-action-icon">
+                <img src="google-sheets.png" alt="Google Sheets" class="demo-action-icon">
                 <span class="demo-action-name">/sheet</span>
                 <span class="demo-action-desc">New Google Sheet</span>
               </div>
               <div class="demo-action-item">
-                <img src="google-slides.png" alt="" class="demo-action-icon">
+                <img src="google-slides.png" alt="Google Slides" class="demo-action-icon">
                 <span class="demo-action-name">/slide</span>
                 <span class="demo-action-desc">New Slides</span>
               </div>
               <div class="demo-action-item">
-                <img src="https://svgl.app/library/figma.svg" alt="" class="demo-action-icon">
+                <img src="https://svgl.app/library/figma.svg" alt="Figma" class="demo-action-icon">
                 <span class="demo-action-name">/figma</span>
                 <span class="demo-action-desc">New Figma file</span>
               </div>
               <div class="demo-action-item">
-                <img src="https://svgl.app/library/notion.svg" alt="" class="demo-action-icon">
+                <img src="https://svgl.app/library/notion.svg" alt="Notion" class="demo-action-icon">
                 <span class="demo-action-name">/notion</span>
                 <span class="demo-action-desc">New Notion page</span>
               </div>
               <div class="demo-action-item">
-                <img src="https://linear.app/favicon.ico" alt="" class="demo-action-icon">
+                <img src="https://linear.app/favicon.ico" alt="Linear" class="demo-action-icon">
                 <span class="demo-action-name">/linear</span>
                 <span class="demo-action-desc">New Linear issue</span>
               </div>
@@ -2189,23 +2234,23 @@
               <div class="search-results-mock">
                 <div class="search-results-inner">
                   <div class="search-result-item selected">
-                    <img src="google-docs.png" alt="" class="result-icon">
+                    <img src="google-docs.png" alt="Google Docs" class="result-icon">
                     <span class="result-text">Q3 Budget Review</span>
                   </div>
                   <div class="search-result-item">
-                    <img src="google-sheets.png" alt="" class="result-icon">
+                    <img src="google-sheets.png" alt="Google Sheets" class="result-icon">
                     <span class="result-text">Budget Tracker 2026</span>
                   </div>
                   <div class="search-result-item">
-                    <img src="https://svgl.app/library/figma.svg" alt="" class="result-icon">
+                    <img src="https://svgl.app/library/figma.svg" alt="Figma" class="result-icon">
                     <span class="result-text">Budget Deck</span>
                   </div>
                   <div class="search-result-item">
-                    <img src="google-slides.png" alt="" class="result-icon">
+                    <img src="google-slides.png" alt="Google Slides" class="result-icon">
                     <span class="result-text">Q3 Presentation</span>
                   </div>
                   <div class="search-result-item">
-                    <img src="https://svgl.app/library/notion.svg" alt="" class="result-icon">
+                    <img src="https://svgl.app/library/notion.svg" alt="Notion" class="result-icon">
                     <span class="result-text">Budget Planning</span>
                   </div>
                 </div>
@@ -2290,22 +2335,22 @@
               <div class="commands-list">
                 <div class="commands-list-inner">
                   <div class="command-item selected">
-                    <img src="google-docs.png" alt="" class="command-icon">
+                    <img src="google-docs.png" alt="Google Docs" class="command-icon">
                     <span class="command-name">/doc</span>
                     <span class="command-desc">New Google Doc</span>
                   </div>
                   <div class="command-item">
-                    <img src="google-slides.png" alt="" class="command-icon">
+                    <img src="google-slides.png" alt="Google Slides" class="command-icon">
                     <span class="command-name">/slide</span>
                     <span class="command-desc">New Slides</span>
                   </div>
                   <div class="command-item">
-                    <img src="https://svgl.app/library/figma.svg" alt="" class="command-icon">
+                    <img src="https://svgl.app/library/figma.svg" alt="Figma" class="command-icon">
                     <span class="command-name">/figma</span>
                     <span class="command-desc">New Figma file</span>
                   </div>
                   <div class="command-item">
-                    <img src="https://svgl.app/library/notion.svg" alt="" class="command-icon">
+                    <img src="https://svgl.app/library/notion.svg" alt="Notion" class="command-icon">
                     <span class="command-name">/notion</span>
                     <span class="command-desc">New Notion page</span>
                   </div>

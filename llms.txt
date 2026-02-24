@@ -1,0 +1,128 @@
+# Daysift
+
+> Find anything. Instantly.
+
+Daysift is a Chrome browser extension that provides instant search across your browsing history and work applications. It functions as a command palette (similar to Spotlight on Mac, Alfred, or Raycast) but for your browser.
+
+## Problems it solves
+
+- Cannot find a document, page, or tab you were working on recently
+- Chrome's built-in history search is slow and limited
+- Information is scattered across many apps (Notion, Google Docs, Figma, Linear, etc.)
+- Losing track of important pages you forgot to bookmark
+- Context switching between too many browser tabs
+- No unified way to search across all your work tools
+- Repeatedly searching for the same pages you visit often
+
+## How it works
+
+Press ⌘J (Mac) or Ctrl+J (Windows/Linux) to open a command palette overlay. Start typing to instantly search everything you've visited. Results appear in milliseconds, ranked by relevance and recency.
+
+## Core features
+
+### Instant search
+Search your browsing history across 100+ work applications. Finds pages by title, URL, or content. Results load instantly from local index.
+
+### AI-powered answers
+Ask natural language questions and get answers based on your work context. Example: "What were the action items from the Q3 planning doc?"
+
+### Floating notes
+Persistent notes window that stays on top of other windows. Quick capture for ideas, todos, meeting notes. Accessible from anywhere with a keyboard shortcut.
+
+### Pins
+Save frequently accessed pages for one-click access. Like bookmarks but faster and integrated into the command palette.
+
+### Quick actions (slash commands)
+Create new documents instantly without leaving your current page:
+- /doc - New Google Doc
+- /sheet - New Google Sheet
+- /slide - New Google Slides
+- /figma - New Figma file
+- /notion - New Notion page
+- /linear - New Linear issue
+- /notes - Open floating notes
+- /pins - View pinned pages
+
+### Keyboard-first design
+Entire interface navigable by keyboard. Up/down arrows to navigate, Enter to open, Escape to close. No mouse required.
+
+## Supported applications
+
+Daysift indexes pages from productivity and work applications including:
+
+**Documents & wikis**: Google Docs, Google Sheets, Google Slides, Notion, Confluence, Coda, Dropbox Paper, Quip
+
+**Design**: Figma, Canva, Miro, FigJam, Whimsical
+
+**Development**: GitHub, GitLab, Bitbucket, Linear, Jira, Vercel, Netlify, AWS Console
+
+**Communication**: Slack, Gmail, Google Calendar, Zoom, Microsoft Teams
+
+**Project management**: Asana, Monday.com, Trello, Basecamp, ClickUp, Todoist
+
+**Other**: Airtable, HubSpot, Salesforce, Intercom, Zendesk, and 100+ more
+
+The extension uses an allowlist approach - it only indexes recognized work applications, not general browsing or personal sites.
+
+## Privacy and security
+
+Daysift is designed with privacy as a core principle:
+
+- **Local-first**: All data is stored on your device in the browser's local storage. No cloud servers store your browsing data.
+- **No account required**: Works immediately after install. No signup, no login, no email required for core features.
+- **No tracking**: No analytics on your browsing behavior or search queries.
+- **Allowlist-only**: Only indexes known work applications, not your entire browsing history.
+- **AI is optional**: AI features require explicit opt-in consent. When used, only page titles and URLs are sent (not page content).
+- **Data stays local**: Uninstalling the extension deletes all stored data.
+
+## Who it's for
+
+- **Knowledge workers** who use multiple browser-based tools daily
+- **Developers** managing code, issues, docs, and deployments across many platforms
+- **Designers** working across Figma, documentation, and project management tools
+- **Product managers** juggling specs, roadmaps, analytics, and communication tools
+- **Researchers** collecting information across many sources
+- **Remote workers** whose entire workflow lives in the browser
+- **Anyone** who has ever thought "where did I see that page?"
+
+## Use cases
+
+- Find a Google Doc you were editing last week
+- Locate a Figma file a colleague shared in Slack
+- Search for a GitHub PR you reviewed recently
+- Recall what Notion pages you visited for a specific project
+- Quickly access your most-used dashboards without bookmarking
+- Take quick notes during a meeting without leaving your current tab
+- Create a new Google Sheet without navigating to Google Drive first
+
+## Comparison to other tools
+
+- **Chrome history**: Daysift is faster, searches more fields, and has better ranking
+- **Bookmarks**: Daysift is dynamic (no manual saving) and includes search
+- **Tab managers**: Daysift searches history, not just open tabs
+- **Spotlight/Alfred/Raycast**: Daysift is specifically for browser content and works inside Chrome
+- **Full-text search tools**: Daysift is lighter weight and privacy-focused (no content indexing)
+
+## Pricing
+
+- **Free**: 14-day history search, 30 AI queries/month, 5 notes, 5 pins
+- **Pro** ($4/month): Unlimited history, 100 AI queries/month, unlimited notes and pins
+- **Pro+** ($8/month): Everything unlimited including AI queries
+
+Free tier has no time limit - use it indefinitely with the 14-day history window.
+
+## Technical details
+
+- Chrome extension (Manifest V3)
+- Works in Chrome, Brave, Arc, Edge, and Chromium-based browsers
+- Lightweight: minimal CPU and memory usage
+- Offline capable: search works without internet connection
+- Fast: local IndexedDB storage, sub-100ms search results
+
+## Links
+
+- Website: https://daysift.com
+- Install: https://chrome.google.com/webstore/detail/daysift
+- Privacy Policy: https://daysift.com/privacy.html
+- Terms of Service: https://daysift.com/terms.html
+- Contact: hello@daysift.com

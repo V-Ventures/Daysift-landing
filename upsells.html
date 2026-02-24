@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upsells Reference — Daysift Internal</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f4;
+      color: #1c1917;
+      line-height: 1.5;
+      padding: 40px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid #e7e5e4;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #78716c;
+      font-size: 15px;
+    }
+
+    .warning-banner {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .warning-banner svg {
+      width: 20px;
+      height: 20px;
+      color: #d97706;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .warning-banner p {
+      font-size: 14px;
+      color: #92400e;
+    }
+
+    .warning-banner strong {
+      color: #78350f;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .section-desc {
+      color: #78716c;
+      font-size: 14px;
+    }
+
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+    }
+
+    .component-card {
+      background: white;
+      border: 1px solid #e7e5e4;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .component-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #e7e5e4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .component-name {
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .component-location {
+      font-size: 12px;
+      color: #78716c;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .component-preview {
+      padding: 32px 24px;
+      background: #fafaf9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .component-copy {
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    .copy-row {
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .copy-label {
+      width: 100px;
+      flex-shrink: 0;
+      color: #78716c;
+      font-weight: 500;
+    }
+
+    .copy-value {
+      color: #1c1917;
+    }
+
+    .copy-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .copy-list li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 2px;
+    }
+
+    .copy-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #a8a29e;
+    }
+
+    /* ===== COMPONENT STYLES (matching production) ===== */
+
+    /* Upgrade Modal */
+    .upgrade-modal {
+      width: 320px;
+      background: white;
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+
+    .upgrade-badge {
+      display: inline-flex;
+      padding: 5px 12px;
+      background: rgba(244, 107, 69, 0.12);
+      color: #F46B45;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .upgrade-headline {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0 0 20px 0;
+      line-height: 1.3;
+    }
+
+    .upgrade-benefits {
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .upgrade-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      color: #44403c;
+    }
+
+    .upgrade-benefit svg {
+      width: 18px;
+      height: 18px;
+      color: #F46B45;
+      flex-shrink: 0;
+    }
+
+    .upgrade-cta {
+      width: 100%;
+      padding: 12px 20px;
+      background: #F46B45;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .upgrade-reassurance {
+      font-size: 12px;
+      color: #a8a29e;
+      margin-top: 12px;
+    }
+
+    /* Limit Modal */
+    .limit-modal {
+      width: 320px;
+      background: white;
+      border-radius: 16px;
+      padding: 28px 24px 24px;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+    }
+
+    .limit-modal-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(244, 107, 69, 0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .limit-modal-icon svg {
+      width: 24px;
+      height: 24px;
+      color: #F46B45;
+    }
+
+    .limit-modal h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .limit-modal p {
+      font-size: 14px;
+      color: #78716c;
+      margin-bottom: 20px;
+    }
+
+    .limit-modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .limit-modal-btn {
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    .limit-modal-btn.primary {
+      background: #F46B45;
+      color: white;
+    }
+
+    .limit-modal-btn.secondary {
+      background: transparent;
+      color: #78716c;
+    }
+
+    /* AI Credits Exhausted */
+    .credits-exhausted {
+      width: 100%;
+      max-width: 400px;
+      padding: 24px;
+      background: #fafaf9;
+      border: 1px solid #e7e5e4;
+      border-radius: 12px;
+      text-align: center;
+    }
+
+    .credits-exhausted-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(244, 107, 69, 0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+
+    .credits-exhausted-icon svg {
+      width: 20px;
+      height: 20px;
+      color: #F46B45;
+    }
+
+    .credits-exhausted p {
+      font-size: 14px;
+      color: #57534e;
+      margin-bottom: 16px;
+    }
+
+    .credits-exhausted-btn {
+      padding: 10px 20px;
+      background: #F46B45;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Upsell Card (inline) */
+    .upsell-card {
+      width: 100%;
+      max-width: 300px;
+      padding: 16px;
+      background: rgba(244, 107, 69, 0.08);
+      border: 1px solid rgba(244, 107, 69, 0.2);
+      border-radius: 12px;
+    }
+
+    .upsell-card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #1c1917;
+      margin-bottom: 4px;
+    }
+
+    .upsell-card-text {
+      font-size: 13px;
+      color: #78716c;
+      margin-bottom: 12px;
+    }
+
+    .upsell-card-btn {
+      padding: 8px 16px;
+      background: #F46B45;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Upsell Popover */
+    .upsell-popover {
+      width: 200px;
+      padding: 12px;
+      background: white;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+    }
+
+    .upsell-popover-title {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .upsell-popover-desc {
+      font-size: 12px;
+      color: #78716c;
+      margin-bottom: 10px;
+    }
+
+    .upsell-popover-btn {
+      width: 100%;
+      padding: 8px 12px;
+      background: #F46B45;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Settings License Section */
+    .license-section {
+      width: 100%;
+      max-width: 380px;
+      background: #fafaf9;
+      border: 1px solid #d6d3d1;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .license-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    .license-title {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .license-badge {
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .license-badge.free {
+      background: #e7e5e4;
+      color: #78716c;
+    }
+
+    .license-badge.pro {
+      background: rgba(244, 107, 69, 0.12);
+      color: #F46B45;
+    }
+
+    .license-desc {
+      font-size: 13px;
+      color: #78716c;
+      margin-bottom: 16px;
+    }
+
+    .license-upgrade-box {
+      background: white;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .license-upgrade-box h4 {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .license-benefits {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .license-benefits li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #57534e;
+      margin-bottom: 8px;
+    }
+
+    .license-benefits li svg {
+      width: 16px;
+      height: 16px;
+      color: #F46B45;
+      flex-shrink: 0;
+    }
+
+    .license-benefits li span {
+      color: #a8a29e;
+      font-size: 12px;
+    }
+
+    .license-cta {
+      width: 100%;
+      padding: 10px 16px;
+      background: #F46B45;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Pricing Cards (LP) */
+    .pricing-grid-preview {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .pricing-card-preview {
+      width: 200px;
+      background: white;
+      border: 1px solid #e7e5e4;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .pricing-card-preview.featured {
+      border-color: #1c1917;
+      box-shadow: 0 0 0 1px #1c1917;
+    }
+
+    .pricing-badge-preview {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #1c1917;
+      color: white;
+      border-radius: 9999px;
+      font-size: 10px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .pricing-name-preview {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price-preview {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price-preview span {
+      font-size: 13px;
+      font-weight: 400;
+      color: #78716c;
+    }
+
+    .pricing-desc-preview {
+      font-size: 12px;
+      color: #78716c;
+      margin-bottom: 12px;
+    }
+
+    .pricing-features-preview {
+      list-style: none;
+      text-align: left;
+      font-size: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pricing-features-preview li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+
+    .pricing-features-preview li svg {
+      width: 14px;
+      height: 14px;
+      color: #4d9968;
+      flex-shrink: 0;
+    }
+
+    .pricing-cta-preview {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .pricing-cta-preview.primary {
+      background: #1c1917;
+      color: white;
+      border: none;
+    }
+
+    .pricing-cta-preview.outline {
+      background: white;
+      color: #1c1917;
+      border: 1px solid #e7e5e4;
+    }
+
+    /* Issue flag */
+    .issue-flag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      background: #fef2f2;
+      color: #dc2626;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+
+    /* Table of contents */
+    .toc {
+      background: white;
+      border: 1px solid #e7e5e4;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+
+    .toc h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .toc ul {
+      list-style: none;
+      columns: 2;
+      gap: 20px;
+    }
+
+    .toc li {
+      margin-bottom: 6px;
+    }
+
+    .toc a {
+      font-size: 13px;
+      color: #F46B45;
+      text-decoration: none;
+    }
+
+    .toc a:hover {
+      text-decoration: underline;
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .checkmark-icon {
+      width: 14px;
+      height: 14px;
+      color: #4d9968;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Upsells Reference</h1>
+      <p class="subtitle">Internal documentation — All upgrade components and copy</p>
+    </header>
+
+    <div class="warning-banner">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+        <line x1="12" y1="9" x2="12" y2="13"/>
+        <line x1="12" y1="17" x2="12.01" y2="17"/>
+      </svg>
+      <p>
+        <strong>Keep this document in sync!</strong> Whenever you change any upsell button, modal, or copy in the codebase, update this page to match. This is our single source of truth for upsell alignment.
+      </p>
+    </div>
+
+    <nav class="toc">
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#landing-page">Landing Page Pricing</a></li>
+        <li><a href="#upgrade-modal">Upgrade Modal</a></li>
+        <li><a href="#limit-modals">Limit Modals (Pin/Notes)</a></li>
+        <li><a href="#credits-exhausted">AI Credits Exhausted</a></li>
+        <li><a href="#inline-upsells">Inline Upsells</a></li>
+        <li><a href="#settings">Settings License Section</a></li>
+      </ul>
+    </nav>
+
+    <!-- ===== LANDING PAGE ===== -->
+    <section class="section" id="landing-page">
+      <div class="section-header">
+        <h2>Landing Page Pricing</h2>
+        <p class="section-desc">index.html — Main pricing section</p>
+      </div>
+
+      <div class="component-card">
+        <div class="component-header">
+          <span class="component-name">Pricing Cards</span>
+          <span class="component-location">landing/index.html:2327</span>
+        </div>
+        <div class="component-preview">
+          <div class="pricing-grid-preview">
+            <!-- Free -->
+            <div class="pricing-card-preview">
+              <div class="pricing-name-preview">Free</div>
+              <div class="pricing-price-preview">$0</div>
+              <div class="pricing-desc-preview">Explore the basics</div>
+              <ul class="pricing-features-preview">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Last 14 days of history</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 5 pins</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 5 notes</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 30 AI credits/month</li>
+              </ul>
+              <button class="pricing-cta-preview outline">Get started</button>
+            </div>
+            <!-- Pro -->
+            <div class="pricing-card-preview featured">
+              <div class="pricing-badge-preview">Most popular</div>
+              <div class="pricing-name-preview">Pro</div>
+              <div class="pricing-price-preview">$1.99<span>/month</span></div>
+              <div class="pricing-desc-preview">Get unlimited search</div>
+              <ul class="pricing-features-preview">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited history</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited pins</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited notes</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 100 AI credits/month</li>
+              </ul>
+              <button class="pricing-cta-preview primary">Upgrade to Pro</button>
+            </div>
+            <!-- Unlimited -->
+            <div class="pricing-card-preview">
+              <div class="pricing-name-preview">Unlimited</div>
+              <div class="pricing-price-preview">$4.99<span>/month</span></div>
+              <div class="pricing-desc-preview">Get unlimited search with AI</div>
+              <ul class="pricing-features-preview">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Everything in Pro</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI searches</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Unlimited AI writing</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Faster support</li>
+              </ul>
+              <button class="pricing-cta-preview outline">Get Unlimited</button>
+            </div>
+          </div>
+        </div>
+        <div class="component-copy">
+          <h4 style="font-size: 13px; font-weight: 600; margin-bottom: 12px;">Copy Reference</h4>
+          <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+            <tr style="border-bottom: 1px solid #e7e5e4;">
+              <td style="padding: 8px 0; font-weight: 500; width: 80px;">Plan</td>
+              <td style="padding: 8px 0; font-weight: 500;">Description</td>
+              <td style="padding: 8px 0; font-weight: 500;">Features</td>
+              <td style="padding: 8px 0; font-weight: 500; width: 120px;">CTA</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e7e5e4;">
+              <td style="padding: 8px 0;">Free</td>
+              <td style="padding: 8px 0;">Explore the basics</td>
+              <td style="padding: 8px 0;">Last 14 days of history, 5 pins, 5 notes, 30 AI credits/month</td>
+              <td style="padding: 8px 0;">Get started</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e7e5e4;">
+              <td style="padding: 8px 0;">Pro</td>
+              <td style="padding: 8px 0;">Get unlimited search</td>
+              <td style="padding: 8px 0;">Unlimited history, Unlimited pins, Unlimited notes, 100 AI credits/month</td>
+              <td style="padding: 8px 0;">Upgrade to Pro</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0;">Unlimited</td>
+              <td style="padding: 8px 0;">Get unlimited search with AI</td>
+              <td style="padding: 8px 0;">Everything in Pro, Unlimited AI searches, Unlimited AI writing, Faster support</td>
+              <td style="padding: 8px 0;">Get Unlimited</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== UPGRADE MODAL ===== -->
+    <section class="section" id="upgrade-modal">
+      <div class="section-header">
+        <h2>Upgrade Modal</h2>
+        <p class="section-desc">Shown when user clicks upgrade from footer menu</p>
+      </div>
+
+      <div class="component-grid">
+        <!-- Free → Pro -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Free → Pro</span>
+            <span class="component-location">UpgradeModal.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="upgrade-modal">
+              <div class="upgrade-badge">Pro</div>
+              <h3 class="upgrade-headline">No limits on your<br>productivity</h3>
+              <div class="upgrade-benefits">
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Unlimited history</span>
+                </div>
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                  <span>Unlimited pins</span>
+                </div>
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg>
+                  <span>Unlimited notes</span>
+                </div>
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  <span>100 AI credits/month</span>
+                </div>
+              </div>
+              <button class="upgrade-cta">Get Daysift Pro</button>
+              <p class="upgrade-reassurance">Cancel anytime · No commitment</p>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Badge</span><span class="copy-value">Pro</span></div>
+            <div class="copy-row"><span class="copy-label">Headline</span><span class="copy-value">No limits on your productivity</span></div>
+            <div class="copy-row"><span class="copy-label">Benefits</span>
+              <ul class="copy-list">
+                <li>Unlimited history</li>
+                <li>Unlimited pins</li>
+                <li>Unlimited notes</li>
+                <li>100 AI credits/month</li>
+              </ul>
+            </div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Get Daysift Pro</span></div>
+            <div class="copy-row"><span class="copy-label">Reassurance</span><span class="copy-value">Cancel anytime · No commitment</span></div>
+          </div>
+        </div>
+
+        <!-- Pro → Unlimited -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Pro → Unlimited</span>
+            <span class="component-location">UpgradeModal.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="upgrade-modal">
+              <div class="upgrade-badge">Unlimited</div>
+              <h3 class="upgrade-headline">Unlimited AI<br>at your fingertips</h3>
+              <div class="upgrade-benefits">
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span>Everything in Pro</span>
+                </div>
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                  <span>Unlimited AI searches</span>
+                </div>
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+                  <span>Unlimited AI writing</span>
+                </div>
+                <div class="upgrade-benefit">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <span>Faster support</span>
+                </div>
+              </div>
+              <button class="upgrade-cta">Get Daysift Unlimited</button>
+              <p class="upgrade-reassurance">Cancel anytime · No commitment</p>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Badge</span><span class="copy-value">Unlimited</span></div>
+            <div class="copy-row"><span class="copy-label">Headline</span><span class="copy-value">Unlimited AI at your fingertips</span></div>
+            <div class="copy-row"><span class="copy-label">Benefits</span>
+              <ul class="copy-list">
+                <li>Everything in Pro</li>
+                <li>Unlimited AI searches</li>
+                <li>Unlimited AI writing</li>
+                <li>Faster support</li>
+              </ul>
+            </div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Get Daysift Unlimited</span></div>
+            <div class="copy-row"><span class="copy-label">Reassurance</span><span class="copy-value">Cancel anytime · No commitment</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LIMIT MODALS ===== -->
+    <section class="section" id="limit-modals">
+      <div class="section-header">
+        <h2>Limit Modals</h2>
+        <p class="section-desc">Shown when free user hits a limit</p>
+      </div>
+
+      <div class="component-grid">
+        <!-- Pin Limit -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Pin Limit (5 pins)</span>
+            <span class="component-location">PinLimitModal.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="limit-modal">
+              <div class="limit-modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="17" x2="12" y2="22"/>
+                  <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/>
+                </svg>
+              </div>
+              <h3>Save everything that matters</h3>
+              <p>Free accounts can pin up to 5 items. Pin unlimited items so your most important things are always within reach.</p>
+              <div class="limit-modal-actions">
+                <button class="limit-modal-btn primary">Unlock unlimited pins</button>
+                <button class="limit-modal-btn secondary">Not now</button>
+              </div>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Headline</span><span class="copy-value">Save everything that matters</span></div>
+            <div class="copy-row"><span class="copy-label">Body</span><span class="copy-value">Free accounts can pin up to 5 items. Pin unlimited items so your most important things are always within reach.</span></div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Unlock unlimited pins</span></div>
+            <div class="copy-row"><span class="copy-label">Secondary</span><span class="copy-value">Not now</span></div>
+          </div>
+        </div>
+
+        <!-- Notes Limit -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Notes Limit (5 notes)</span>
+            <span class="component-location">floatingNotes.ts:1078</span>
+          </div>
+          <div class="component-preview">
+            <div class="limit-modal">
+              <div class="limit-modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/>
+                  <path d="M15 3v6h6"/>
+                </svg>
+              </div>
+              <h3>Never run out of space for your thoughts</h3>
+              <p>Free accounts are limited to 5 notes. Upgrade to create unlimited notes.</p>
+              <div class="limit-modal-actions">
+                <button class="limit-modal-btn primary">Unlock unlimited notes</button>
+                <button class="limit-modal-btn secondary">Not now</button>
+              </div>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Headline</span><span class="copy-value">Never run out of space for your thoughts</span></div>
+            <div class="copy-row"><span class="copy-label">Body</span><span class="copy-value">Free accounts are limited to 5 notes. Upgrade to create unlimited notes.</span></div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Unlock unlimited notes</span></div>
+            <div class="copy-row"><span class="copy-label">Secondary</span><span class="copy-value">Not now</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== AI CREDITS EXHAUSTED ===== -->
+    <section class="section" id="credits-exhausted">
+      <div class="section-header">
+        <h2>AI Credits Exhausted</h2>
+        <p class="section-desc">Shown when user runs out of monthly AI credits</p>
+      </div>
+
+      <div class="component-grid">
+        <!-- Search Credits -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">AI Search Credits</span>
+            <span class="component-location">AIAnswerView.tsx:145</span>
+          </div>
+          <div class="component-preview">
+            <div class="credits-exhausted">
+              <div class="credits-exhausted-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              </div>
+              <p>You've used all 30 AI credits this month. Upgrade for unlimited credits.</p>
+              <button class="credits-exhausted-btn">Continue with unlimited AI</button>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Body</span><span class="copy-value">You've used all 30 AI credits this month. Upgrade for unlimited credits.</span></div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Continue with unlimited AI</span></div>
+          </div>
+        </div>
+
+        <!-- Notes AI Credits -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">AI Writing Credits (Notes)</span>
+            <span class="component-location">floatingNotes.ts:1115</span>
+          </div>
+          <div class="component-preview">
+            <div class="credits-exhausted">
+              <div class="credits-exhausted-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                </svg>
+              </div>
+              <h3 style="font-size: 16px; font-weight: 500; margin-bottom: 8px;">Write faster with AI</h3>
+              <p>You've used all 30 AI credits this month. Upgrade for unlimited credits.</p>
+              <button class="credits-exhausted-btn">Unlock unlimited AI</button>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Headline</span><span class="copy-value">Write faster with AI</span></div>
+            <div class="copy-row"><span class="copy-label">Body</span><span class="copy-value">You've used all 30 AI credits this month. Upgrade for unlimited credits.</span></div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Unlock unlimited AI</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INLINE UPSELLS ===== -->
+    <section class="section" id="inline-upsells">
+      <div class="section-header">
+        <h2>Inline Upsells</h2>
+        <p class="section-desc">Contextual upsells within the UI</p>
+      </div>
+
+      <div class="component-grid">
+        <!-- History Upsell Card -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">History Upsell Card</span>
+            <span class="component-location">UpsellCard.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="upsell-card">
+              <div class="upsell-card-title">Access your full history</div>
+              <div class="upsell-card-text">Search across all your past notes and activity with unlimited history.</div>
+              <button class="upsell-card-btn">Unlock full history</button>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Title</span><span class="copy-value">Access your full history</span></div>
+            <div class="copy-row"><span class="copy-label">Body</span><span class="copy-value">Search across all your past notes and activity with unlimited history.</span></div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Unlock full history</span></div>
+          </div>
+        </div>
+
+        <!-- Notes Count Popover -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Notes Count Popover</span>
+            <span class="component-location">floatingNotes.ts:1795</span>
+          </div>
+          <div class="component-preview">
+            <div class="upsell-popover">
+              <div class="upsell-popover-title">Unlock Unlimited Notes</div>
+              <div class="upsell-popover-desc">Your plan is limited to 5 free notes</div>
+              <button class="upsell-popover-btn">Get Daysift Pro</button>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Title</span><span class="copy-value">Unlock Unlimited Notes</span></div>
+            <div class="copy-row"><span class="copy-label">Body</span><span class="copy-value">Your plan is limited to 5 free notes</span></div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Get Daysift Pro</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SETTINGS LICENSE SECTION ===== -->
+    <section class="section" id="settings">
+      <div class="section-header">
+        <h2>Settings License Section</h2>
+        <p class="section-desc">Plan info and upgrade options in settings page</p>
+      </div>
+
+      <div class="component-grid">
+        <!-- Free User -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Free User View</span>
+            <span class="component-location">LicenseSection.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="license-section">
+              <div class="license-header">
+                <span class="license-title">Your Plan</span>
+                <span class="license-badge free">Free</span>
+              </div>
+              <p class="license-desc">30 AI credits/month to get started.</p>
+              <div class="license-upgrade-box">
+                <h4>Upgrade to unlock:</h4>
+                <ul class="license-benefits">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Unlimited history <span>(vs 14 days)</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg> Unlimited pins <span>(vs 5)</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15.5 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.5L15.5 3Z"/><path d="M15 3v6h6"/></svg> Unlimited notes <span>(vs 5)</span></li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg> 100 AI credits/month <span>(vs 30)</span></li>
+                </ul>
+                <button class="license-cta">Get Daysift Pro</button>
+              </div>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Card desc</span><span class="copy-value">30 AI credits/month to get started.</span></div>
+            <div class="copy-row"><span class="copy-label">Box headline</span><span class="copy-value">Upgrade to unlock:</span></div>
+            <div class="copy-row"><span class="copy-label">Benefits</span>
+              <ul class="copy-list">
+                <li>Unlimited history (vs 14 days)</li>
+                <li>Unlimited pins (vs 5)</li>
+                <li>Unlimited notes (vs 5)</li>
+                <li>100 AI credits/month (vs 30)</li>
+              </ul>
+            </div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Get Daysift Pro</span></div>
+          </div>
+        </div>
+
+        <!-- Pro User -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Pro User View</span>
+            <span class="component-location">LicenseSection.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="license-section">
+              <div class="license-header">
+                <span class="license-title">Your Plan</span>
+                <span class="license-badge pro">Pro</span>
+              </div>
+              <p class="license-desc">Unlimited history, pins & notes. 100 AI credits/month.</p>
+              <div class="license-upgrade-box">
+                <h4>Upgrade to Unlimited:</h4>
+                <ul class="license-benefits">
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Everything in Pro</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg> Unlimited AI searches</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg> Unlimited AI writing</li>
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Faster support</li>
+                </ul>
+                <button class="license-cta">Get Daysift Unlimited</button>
+              </div>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Card desc</span><span class="copy-value">Unlimited history, pins & notes. 100 AI credits/month.</span></div>
+            <div class="copy-row"><span class="copy-label">Box headline</span><span class="copy-value">Upgrade to Unlimited:</span></div>
+            <div class="copy-row"><span class="copy-label">Benefits</span>
+              <ul class="copy-list">
+                <li>Everything in Pro</li>
+                <li>Unlimited AI searches</li>
+                <li>Unlimited AI writing</li>
+                <li>Faster support</li>
+              </ul>
+            </div>
+            <div class="copy-row"><span class="copy-label">CTA</span><span class="copy-value">Get Daysift Unlimited</span></div>
+          </div>
+        </div>
+
+        <!-- Unlimited User -->
+        <div class="component-card">
+          <div class="component-header">
+            <span class="component-name">Unlimited User View</span>
+            <span class="component-location">LicenseSection.tsx</span>
+          </div>
+          <div class="component-preview">
+            <div class="license-section">
+              <div class="license-header">
+                <span class="license-title">Your Plan</span>
+                <span class="license-badge pro">Unlimited</span>
+              </div>
+              <p class="license-desc">Unlimited everything — history, pins, notes & AI.</p>
+              <div style="display: flex; align-items: center; gap: 10px; padding: 12px; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 8px;">
+                <div style="width: 24px; height: 24px; background: #4d9968; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <span style="font-size: 13px; font-weight: 500; color: #3d7a52;">Unlimited license active</span>
+              </div>
+            </div>
+          </div>
+          <div class="component-copy">
+            <div class="copy-row"><span class="copy-label">Card desc</span><span class="copy-value">Unlimited everything — history, pins, notes & AI.</span></div>
+            <div class="copy-row"><span class="copy-label">Status</span><span class="copy-value">Unlimited license active</span></div>
+            <div class="copy-row"><span class="copy-label">Links</span><span class="copy-value">Manage subscription · Remove license</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
