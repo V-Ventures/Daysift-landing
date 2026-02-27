@@ -12,6 +12,10 @@ Marketing website for Daysift - a Chrome extension for instant access to your wo
 | `terms.html` | Terms of service |
 | `logo.png` | Current logo asset |
 | `DEMO_SPEC.md` | Spec for the interactive demo carousel |
+| `blog/` | Blog section |
+| `blog/index.html` | Blog listing page |
+| `blog/_template.html` | Article template (copy for new posts) |
+| `blog/images/` | Article images |
 
 ## Brand
 
@@ -57,3 +61,23 @@ open index.html
 # or
 open index-b.html
 ```
+
+## Blog
+
+### Creating a New Article
+
+1. Copy `blog/_template.html` to `blog/article-slug.html`
+2. Update the meta tags (title, description, canonical URL, OG image)
+3. Update the structured data (headline, description, datePublished)
+4. Write the article content
+5. Add article card to `blog/index.html` (remove empty state when first article added)
+6. Add article to `sitemap.xml`
+7. Deploy: `git add -A && git commit -m "Add: article-slug blog post" && git push`
+
+### Article Tags
+
+Use consistent tags for categorization:
+- **Productivity** — General productivity tips
+- **Tutorial** — How-to guides for Daysift
+- **Comparison** — vs competitor articles
+- **ADHD** — Neurodivergent-focused content

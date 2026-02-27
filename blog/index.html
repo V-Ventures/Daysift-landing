@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog - Daysift</title>
+  <meta name="description" content="Tips, guides, and insights on productivity, tab management, and getting more done with less clutter.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog - Daysift">
+  <meta property="og:description" content="Tips, guides, and insights on productivity, tab management, and getting more done.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daysift.com/blog/">
+  <meta property="og:image" content="https://daysift.com/og-image.png">
+  <meta property="og:site_name" content="Daysift">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@daysiftapp">
+  <meta name="twitter:title" content="Blog - Daysift">
+  <meta name="twitter:description" content="Tips, guides, and insights on productivity, tab management, and getting more done.">
+  <meta name="twitter:image" content="https://daysift.com/og-image.png">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://daysift.com/blog/">
+  <meta name="theme-color" content="#FDFCFB">
+
+  <link rel="icon" href="../favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2THKJKR3Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P2THKJKR3Q');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vmbrlb8k8z");
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Daysift Design System */
+      --background: #FDFCFB;
+      --foreground: #292524;
+      --muted: #F5F4F2;
+      --muted-foreground: #78716C;
+      --border: #E7E5E4;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      /* Subtle grid pattern from landing */
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-wrapper a {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.active {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Blog Header */
+    .blog-header {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .blog-header h1 {
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .blog-header p {
+      font-size: 18px;
+      color: var(--muted-foreground);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Blog Grid - 2 Column Notion-style */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      padding-bottom: 100px;
+    }
+
+    /* Featured Post - Full Width */
+    .article-card.featured {
+      grid-column: 1 / -1;
+    }
+
+    .article-card.featured .article-card-image {
+      height: 360px;
+    }
+
+    .article-card.featured h2 {
+      font-size: 24px;
+    }
+
+    .article-card.featured p {
+      font-size: 15px;
+      max-width: 600px;
+    }
+
+    /* Article Card */
+    .article-card {
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.15s;
+    }
+
+    .article-card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .article-card-image {
+      width: 100%;
+      height: 200px;
+      background: var(--muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-card-content {
+      padding: 24px;
+    }
+
+    .article-card-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .article-card h2 {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .article-card p {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .article-card-date {
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    /* Empty State */
+    .blog-empty {
+      text-align: center;
+      padding: 100px 24px;
+    }
+
+    .blog-empty h2 {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--foreground);
+      margin-bottom: 12px;
+    }
+
+    .blog-empty p {
+      font-size: 16px;
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .blog-empty a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .blog-empty a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 24px;
+    }
+
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 64px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .blog-header {
+        padding: 60px 0 40px;
+      }
+
+      .blog-header h1 {
+        font-size: 32px;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .article-card.featured .article-card-image {
+        height: 220px;
+      }
+
+      .article-card-image {
+        height: 180px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="../">
+          <img src="../logo.png" alt="Daysift" class="logo">
+        </a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="./" class="active">Blog</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Blog Header -->
+  <section class="blog-header">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Tips, guides, and insights on productivity and getting more done with less clutter.</p>
+    </div>
+  </section>
+
+  <!-- Blog Grid -->
+  <section class="container">
+    <div class="blog-grid">
+      <!-- ARTICLES -->
+      <article class="article-card">
+        <a href="./tab-hoarding-isnt-your-fault.html">
+          <div class="article-card-image">
+            <img src="./images/tab-hoarding-og.png" alt="Why Tab Hoarding Isn't Your Fault">
+          </div>
+          <div class="article-card-content">
+            <span class="article-card-tag">Productivity</span>
+            <h2>Why Tab Hoarding Isn't Your Fault</h2>
+            <p>You have 73 tabs open and feel guilty about it. But the problem isn't you—it's broken retrieval tools. Here's a different way to think about it.</p>
+            <span class="article-card-date">February 27, 2026</span>
+          </div>
+        </a>
+      </article>
+
+      <article class="article-card">
+        <a href="./find-any-tab-in-seconds.html">
+          <div class="article-card-image">
+            <img src="./images/find-any-tab-og.png" alt="How to Find Any Tab in Seconds">
+          </div>
+          <div class="article-card-content">
+            <span class="article-card-tag">How-To</span>
+            <h2>How to Find Any Tab in Seconds</h2>
+            <p>Stop scrolling through 50 tabs. Press one shortcut to search them all instantly. Here's how.</p>
+            <span class="article-card-date">February 27, 2026</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- SCHEDULED: Unhide March 2, 2026 -->
+      <!--
+      <article class="article-card">
+        <a href="./keyboard-shortcuts-save-time.html">
+          <div class="article-card-image">
+            <img src="./images/keyboard-shortcuts-og.png" alt="7 Keyboard Shortcuts That Actually Save Time">
+          </div>
+          <div class="article-card-content">
+            <span class="article-card-tag">Productivity</span>
+            <h2>7 Keyboard Shortcuts That Actually Save Time</h2>
+            <p>Most people use 3 shortcuts. These 7 will change how you work in the browser.</p>
+            <span class="article-card-date">March 2, 2026</span>
+          </div>
+        </a>
+      </article>
+      -->
+
+      <!-- SCHEDULED: Unhide March 5, 2026 -->
+      <!--
+      <article class="article-card">
+        <a href="./daysift-vs-onetab.html">
+          <div class="article-card-image">
+            <img src="./images/daysift-vs-onetab-og.png" alt="Daysift vs OneTab">
+          </div>
+          <div class="article-card-content">
+            <span class="article-card-tag">Comparison</span>
+            <h2>Daysift vs OneTab: Which Do You Need?</h2>
+            <p>Both help with tab overload, but they solve different problems. Here's how to choose.</p>
+            <span class="article-card-date">March 5, 2026</span>
+          </div>
+        </a>
+      </article>
+      -->
+
+      <!-- SCHEDULED: Unhide March 8, 2026 -->
+      <!--
+      <article class="article-card">
+        <a href="./browser-tips-adhd.html">
+          <div class="article-card-image">
+            <img src="./images/browser-tips-adhd-og.png" alt="Browser Tips for ADHD">
+          </div>
+          <div class="article-card-content">
+            <span class="article-card-tag">Productivity</span>
+            <h2>Browser Tips for ADHD: Tools That Work With Your Brain</h2>
+            <p>Most productivity advice assumes you can stay organized. These tips work with your brain, not against it.</p>
+            <span class="article-card-date">March 8, 2026</span>
+          </div>
+        </a>
+      </article>
+      -->
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="../logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="./">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

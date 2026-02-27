@@ -6,6 +6,36 @@
     <changefreq>weekly</changefreq>
   </url>
   <url>
+    <loc>https://daysift.com/blog/</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://daysift.com/blog/tab-hoarding-isnt-your-fault.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://daysift.com/blog/find-any-tab-in-seconds.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://daysift.com/blog/keyboard-shortcuts-save-time.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://daysift.com/blog/daysift-vs-onetab.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://daysift.com/blog/browser-tips-adhd.html</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://daysift.com/privacy.html</loc>
     <priority>0.5</priority>
     <changefreq>monthly</changefreq>

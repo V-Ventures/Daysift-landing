@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7 Keyboard Shortcuts That Actually Save Time - Daysift Blog</title>
+  <meta name="description" content="Most people use 3 shortcuts. These 7 will change how you work in the browser. No obscure combos—just the ones that matter.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="7 Keyboard Shortcuts That Actually Save Time">
+  <meta property="og:description" content="Most people use 3 shortcuts. These 7 will change how you work in the browser.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://daysift.com/blog/keyboard-shortcuts-save-time.html">
+  <meta property="og:image" content="https://daysift.com/blog/images/keyboard-shortcuts-og.png">
+  <meta property="og:site_name" content="Daysift">
+  <meta property="article:published_time" content="2026-02-27T00:00:00Z">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@daysiftapp">
+  <meta name="twitter:title" content="7 Keyboard Shortcuts That Actually Save Time">
+  <meta name="twitter:description" content="Most people use 3 shortcuts. These 7 will change how you work in the browser.">
+  <meta name="twitter:image" content="https://daysift.com/blog/images/keyboard-shortcuts-og.png">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://daysift.com/blog/keyboard-shortcuts-save-time.html">
+  <meta name="theme-color" content="#F8F7F4">
+  <meta name="keywords" content="keyboard shortcuts, productivity, browser shortcuts, chrome shortcuts, save time">
+
+  <link rel="icon" href="../favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2THKJKR3Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P2THKJKR3Q');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vmbrlb8k8z");
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-wrapper a {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.active {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Article */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .article-header {
+      margin-bottom: 40px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-tag {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .article-date {
+      color: var(--muted-light);
+      font-size: 13px;
+    }
+
+    .article-header h1 {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .article-header .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Article Content */
+    .article-content {
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .article-content h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .article-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .article-content p {
+      margin-bottom: 24px;
+    }
+
+    .article-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .article-content a:hover {
+      text-decoration: underline;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    .article-content kbd {
+      background: var(--foreground);
+      color: white;
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-size: 0.85em;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-weight: 500;
+    }
+
+    /* Shortcut card */
+    .shortcut-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .shortcut-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .shortcut-card-number {
+      background: var(--accent);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .shortcut-card-title {
+      flex: 1;
+    }
+
+    .shortcut-card-title h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .shortcut-card-title h3 kbd {
+      font-size: 14px;
+    }
+
+    .shortcut-card-title .label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .shortcut-card p {
+      margin: 0 0 12px 0;
+      color: var(--muted);
+    }
+
+    .shortcut-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .shortcut-card .takeaway {
+      background: var(--bg-alt);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .shortcut-card .takeaway strong {
+      color: var(--foreground);
+    }
+
+    /* Featured shortcut */
+    .shortcut-card.featured {
+      border-color: var(--accent);
+      border-width: 2px;
+    }
+
+    .shortcut-card.featured .shortcut-card-number {
+      background: var(--accent);
+    }
+
+    /* CTA Box */
+    .article-cta {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    .article-cta h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .article-cta p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .article-cta .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+
+    .article-cta .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Back link */
+    .article-back {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .article-back a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .article-back a:hover {
+      color: var(--foreground);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 24px;
+    }
+
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 64px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .article-header h1 {
+        font-size: 28px;
+      }
+
+      .article-content {
+        font-size: 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+
+      .shortcut-card-header {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "7 Keyboard Shortcuts That Actually Save Time",
+    "description": "Most people use 3 shortcuts. These 7 will change how you work in the browser.",
+    "image": "https://daysift.com/blog/images/keyboard-shortcuts-og.png",
+    "datePublished": "2026-02-27T00:00:00Z",
+    "dateModified": "2026-02-27T00:00:00Z",
+    "author": {
+      "@type": "Organization",
+      "name": "Daysift",
+      "url": "https://daysift.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Daysift",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://daysift.com/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://daysift.com/blog/keyboard-shortcuts-save-time.html"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="../">
+          <img src="../logo.png" alt="Daysift" class="logo">
+        </a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="./" class="active">Blog</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <article class="article">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="article-tag">Productivity</span>
+        <span class="article-date">February 27, 2026</span>
+      </div>
+      <h1>7 Keyboard Shortcuts That Actually Save Time</h1>
+      <p class="subtitle">Most people use maybe 3 keyboard shortcuts. These are the ones that actually change your workflow.</p>
+    </header>
+
+    <div class="article-content">
+
+      <p>Most people use <kbd>⌘C</kbd>, <kbd>⌘V</kbd>, and maybe <kbd>⌘Z</kbd>. That's it. They're leaving hours on the table every week.</p>
+
+      <p>These aren't obscure combos you'll forget by tomorrow. They're the high-impact shortcuts that become muscle memory—the ones that actually change how you work.</p>
+
+      <div class="shortcut-card featured">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">1</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘J</kbd> Search everything</h3>
+            <span class="label">Daysift · Mac: ⌘J · Windows: Ctrl+J</span>
+          </div>
+        </div>
+        <p>Opens instant search across all your tabs and browsing history. Find any page without scrolling or remembering where it is.</p>
+        <p>This one shortcut replaces tab hunting entirely. Press it, type a few letters, hit enter. Done.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> The shortcut that makes every other tab shortcut less necessary.
+        </div>
+      </div>
+
+      <div class="shortcut-card">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">2</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘T</kbd> New tab</h3>
+            <span class="label">Mac: ⌘T · Windows: Ctrl+T</span>
+          </div>
+        </div>
+        <p>Basic, but essential. Opens a new tab instantly—faster than clicking the + icon every time.</p>
+        <p>Combine with immediate typing to search or navigate. Your hands never leave the keyboard.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> If this isn't muscle memory yet, start here.
+        </div>
+      </div>
+
+      <div class="shortcut-card">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">3</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘W</kbd> Close tab</h3>
+            <span class="label">Mac: ⌘W · Windows: Ctrl+W</span>
+          </div>
+        </div>
+        <p>One-handed tab closing. Close the current tab without reaching for the tiny X button.</p>
+        <p>Pair this with <kbd>⌘Shift+T</kbd> (below) and you can close aggressively, knowing you can recover.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Close aggressively when you can retrieve easily.
+        </div>
+      </div>
+
+      <div class="shortcut-card">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">4</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘L</kbd> Jump to address bar</h3>
+            <span class="label">Mac: ⌘L · Windows: Ctrl+L</span>
+          </div>
+        </div>
+        <p>Instantly selects the URL bar, ready for you to type. Start searching or navigate to a new site without touching the mouse.</p>
+        <p>Works in every browser. One of the most underused shortcuts.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Your hands should rarely leave the keyboard.
+        </div>
+      </div>
+
+      <div class="shortcut-card">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">5</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘Shift+T</kbd> Reopen closed tab</h3>
+            <span class="label">Mac: ⌘Shift+T · Windows: Ctrl+Shift+T</span>
+          </div>
+        </div>
+        <p>Brings back the last tab you closed. Press it multiple times to restore tabs in sequence.</p>
+        <p>This is your safety net. Accidentally closed something important? It's one shortcut away.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> This + <kbd>⌘W</kbd> = fearless tab management.
+        </div>
+      </div>
+
+      <div class="shortcut-card">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">6</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘[</kbd> and <kbd>⌘]</kbd> Navigate history</h3>
+            <span class="label">Mac: ⌘[ / ⌘] · Windows: Alt+← / Alt+→</span>
+          </div>
+        </div>
+        <p><kbd>⌘[</kbd> goes back, <kbd>⌘]</kbd> goes forward. No mouse needed.</p>
+        <p>Much faster for quick back-and-forth between pages. Especially useful when researching or comparing.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Stop reaching for the back button.
+        </div>
+      </div>
+
+      <div class="shortcut-card">
+        <div class="shortcut-card-header">
+          <span class="shortcut-card-number">7</span>
+          <div class="shortcut-card-title">
+            <h3><kbd>⌘1</kbd> through <kbd>⌘9</kbd> Jump to tab</h3>
+            <span class="label">Mac: ⌘1-9 · Windows: Ctrl+1-9</span>
+          </div>
+        </div>
+        <p><kbd>⌘1</kbd> jumps to the first tab, <kbd>⌘2</kbd> to the second, and so on. <kbd>⌘9</kbd> always jumps to the <em>last</em> tab.</p>
+        <p>Direct access beats scrolling. Keep important tabs in predictable positions.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Pin your most-used tabs to the left for instant access.
+        </div>
+      </div>
+
+      <h2>The pattern</h2>
+
+      <p>Notice what these shortcuts have in common: they all reduce mouse usage.</p>
+
+      <p>Every time you reach for the mouse, you break flow. Your eyes move, your hand moves, you hunt for a button. It adds up to hours every week.</p>
+
+      <p>Keyboard shortcuts keep you in the zone. Your hands stay in position. Actions become automatic.</p>
+
+      <h2>How to actually learn them</h2>
+
+      <p>Don't try to memorize all seven at once. Pick one—whichever solves your biggest friction—and use it exclusively until it's automatic.</p>
+
+      <p>Then add another.</p>
+
+      <p>Within a few weeks, you'll wonder how you ever worked without them.</p>
+
+      <!-- CTA Box -->
+      <div class="article-cta">
+        <h3>Want ⌘J for instant search?</h3>
+        <p>Daysift adds it to Chrome for free.</p>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn">Install for Chrome →</a>
+      </div>
+
+      <div class="article-back">
+        <a href="./">← Back to Blog</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="../logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="./">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

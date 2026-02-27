@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daysift - Chrome Web Store Screenshots</title>
+  <title>Daysift - Image Assets</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -48,7 +48,64 @@
       color: #999;
       font-size: 14px;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 24px;
+    }
+
+    /* Category Navigation */
+    .category-nav {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+
+    .category-tab {
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid #555;
+      border-radius: 8px;
+      color: #999;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .category-tab:hover {
+      border-color: #777;
+      color: #ccc;
+    }
+
+    .category-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .category-section {
+      display: none;
+    }
+
+    .category-section.active {
+      display: block;
+    }
+
+    .category-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .category-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .category-desc {
+      color: #777;
+      font-size: 13px;
     }
 
     .screenshots {
@@ -118,7 +175,7 @@
       display: flex;
       gap: 32px;
       justify-content: center;
-      font-size: 15px;
+      font-size: 17px;
       color: var(--muted-light);
     }
 
@@ -126,11 +183,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 3px 10px;
+      padding: 4px 12px;
       background: var(--bg-alt);
       border: 1px solid var(--border);
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 16px;
       font-family: inherit;
       font-weight: 500;
       color: var(--muted);
@@ -153,16 +210,16 @@
     }
 
     .feature-text h2 {
-      font-size: 42px;
+      font-size: 52px;
       font-weight: 500;
       line-height: 1.2;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       letter-spacing: -0.02em;
       color: var(--foreground);
     }
 
     .feature-text p {
-      font-size: 18px;
+      font-size: 22px;
       color: var(--muted);
       line-height: 1.6;
     }
@@ -214,8 +271,8 @@
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 6px 12px;
-      font-size: 12px;
+      padding: 8px 14px;
+      font-size: 14px;
       color: var(--muted-light);
       max-width: 300px;
     }
@@ -255,15 +312,15 @@
     }
 
     .demo-search-icon {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       color: var(--muted-light);
       flex-shrink: 0;
     }
 
     .demo-search-text {
       flex: 1;
-      font-size: 14px;
+      font-size: 16px;
       color: var(--foreground);
     }
 
@@ -271,10 +328,10 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 10px;
+      padding: 6px 12px;
       background: var(--badge-bg);
       border-radius: 4px;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--badge-text);
       flex-shrink: 0;
     }
@@ -293,11 +350,11 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
+      padding: 8px 14px;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 20px;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .demo-pill.active {
@@ -305,8 +362,8 @@
     }
 
     .demo-pill img {
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
     }
 
     .demo-results {
@@ -329,8 +386,8 @@
     }
 
     .demo-result img {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
     }
 
@@ -341,18 +398,18 @@
 
     .demo-result-title {
       display: block;
-      font-size: 13px;
+      font-size: 15px;
       color: var(--foreground);
     }
 
     .demo-result-url {
       display: block;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted-light);
     }
 
     .demo-result-time {
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted-light);
       flex-shrink: 0;
     }
@@ -369,7 +426,7 @@
     .demo-shortcuts {
       display: flex;
       gap: 16px;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted-light);
     }
 
@@ -377,13 +434,13 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 20px;
-      height: 20px;
-      padding: 0 5px;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 4px;
-      font-size: 10px;
+      font-size: 12px;
       font-family: inherit;
       margin-right: 2px;
     }
@@ -417,14 +474,14 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--accent);
       margin-bottom: 12px;
     }
 
     .demo-ai-answer p {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--foreground);
       margin: 0 0 12px 0;
     }
@@ -434,9 +491,9 @@
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 12px;
+      padding: 14px;
       font-family: 'SF Mono', Monaco, monospace;
-      font-size: 12px;
+      font-size: 14px;
       color: var(--foreground);
       white-space: pre;
     }
@@ -447,10 +504,10 @@
       align-items: center;
       gap: 10px;
       margin: 12px;
-      padding: 10px 12px;
+      padding: 12px 14px;
       background: #F5F4F2;
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 15px;
       color: var(--foreground);
     }
 
@@ -466,16 +523,16 @@
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 2px 8px;
-      font-size: 11px;
+      padding: 3px 10px;
+      font-size: 13px;
       color: var(--muted);
     }
 
     /* Floating note outside modal */
     .demo-floating-note {
       position: absolute;
-      bottom: 40px;
-      right: 40px;
+      bottom: 30px;
+      right: -30px;
       width: 260px;
       background: #fff;
       border-radius: 10px;
@@ -488,19 +545,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px;
+      padding: 14px 16px;
       background: #fff;
       border-bottom: 1px solid var(--border);
       border-radius: 10px 10px 0 0;
     }
 
     .floating-note-search-text {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--muted-light);
     }
 
     .floating-note-add-btn {
-      font-size: 18px;
+      font-size: 20px;
       color: var(--muted-light);
       font-weight: 300;
     }
@@ -537,7 +594,7 @@
 
     .floating-note-item-title {
       display: block;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
       color: var(--foreground);
       white-space: nowrap;
@@ -547,7 +604,7 @@
 
     .floating-note-item-preview {
       display: block;
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted-light);
       white-space: nowrap;
       overflow: hidden;
@@ -556,7 +613,7 @@
     }
 
     .floating-note-item-time {
-      font-size: 11px;
+      font-size: 13px;
       color: var(--muted-light);
       flex-shrink: 0;
     }
@@ -596,19 +653,19 @@
     }
 
     .demo-action-icon {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       flex-shrink: 0;
     }
 
     .demo-action-name {
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 500;
       color: var(--foreground);
     }
 
     .demo-action-desc {
-      font-size: 12px;
+      font-size: 14px;
       color: var(--muted-light);
       margin-left: auto;
     }
@@ -747,24 +804,531 @@
       border-radius: 4px;
       font-size: 13px;
       font-family: inherit;
+    }
+
+    /* Promo with mockup layout */
+    .promo-with-mockup {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .promo-with-mockup .promo-text {
+      flex: 0 0 auto;
+    }
+
+    .promo-with-mockup .promo-mockup {
+      position: relative;
+    }
+
+    /* Small promo mockup */
+    .promo-small.promo-with-mockup {
+      gap: 0;
+      padding: 28px 0 28px 28px;
+      justify-content: flex-start;
+    }
+
+    .promo-small .promo-text {
+      max-width: 180px;
+      flex-shrink: 0;
+    }
+
+    .promo-small .promo-mockup {
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 220px;
+    }
+
+    .promo-small .promo-mini-window {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    .promo-small .promo-mini-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .promo-small .promo-mini-search svg {
+      width: 16px;
+      height: 16px;
+      color: var(--muted-light);
+    }
+
+    .promo-small .promo-mini-search span {
+      font-size: 13px;
+      color: var(--foreground);
+    }
+
+    .promo-small .promo-mini-pills {
+      display: flex;
+      gap: 5px;
+      padding: 10px 12px;
+      flex-wrap: nowrap;
+    }
+
+    .promo-small .promo-mini-pill {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 10px;
+    }
+
+    .promo-small .promo-mini-pill.active {
+      border-color: var(--foreground);
+    }
+
+    .promo-small .promo-mini-pill img {
+      width: 12px;
+      height: 12px;
+    }
+
+    .promo-small .promo-mini-results {
+      padding: 8px;
+    }
+
+    .promo-small .promo-mini-result {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .promo-small .promo-mini-result.selected {
+      background: #F5F4F2;
+    }
+
+    .promo-small .promo-mini-result img {
+      width: 14px;
+      height: 14px;
+    }
+
+    .promo-small .promo-mini-result span {
+      font-size: 11px;
+      color: var(--foreground);
+    }
+
+    /* Marquee promo mockup */
+    .promo-marquee.promo-with-mockup {
+      gap: 80px;
+      padding: 60px 100px;
+    }
+
+    .promo-marquee .promo-text {
+      flex: 0 0 480px;
+    }
+
+    .promo-marquee .promo-mockup {
+      flex: 1;
+      max-width: 500px;
+    }
+
+    .promo-marquee .promo-window {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+      overflow: hidden;
+      transform: rotate(-1deg);
       font-weight: 500;
       color: var(--muted);
       margin-right: 4px;
     }
+
+    /* UPLIFTED STYLES - Proton-inspired */
+    .screenshot-frame.uplifted {
+      background: var(--bg);
+      background-image: none;
+    }
+
+    .uplifted-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 80px;
+      padding: 60px 100px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .uplifted-text {
+      flex: 0 0 480px;
+    }
+
+    .uplifted-text h2 {
+      font-size: 64px;
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 0;
+      letter-spacing: -0.03em;
+      color: var(--foreground);
+    }
+
+    .uplifted-text h2 .muted {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .uplifted-text p {
+      font-size: 24px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 24px;
+    }
+
+    .uplifted-kbd-row {
+      display: flex;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .uplifted-kbd {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--foreground);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .uplifted-kbd span {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .uplifted-demo {
+      flex: 1;
+      max-width: 580px;
+      position: relative;
+    }
+
+    /* Layered mockup container */
+    .uplifted-mockup {
+      position: relative;
+    }
+
+    /* Main window - no browser chrome */
+    .uplifted-window {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.15);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* Secondary floating panel */
+    .uplifted-panel {
+      position: absolute;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+      overflow: hidden;
+    }
+
+    /* Platform icons grid */
+    .uplifted-icons {
+      display: grid;
+      grid-template-columns: repeat(3, 48px);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .uplifted-icons img {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+    }
+
+    /* Larger search/result text for uplifted */
+    .uplifted-window .demo-search {
+      padding: 20px 16px;
+      height: auto;
+      min-height: auto;
+    }
+
+    .uplifted-window .demo-search-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .uplifted-window .demo-search-text {
+      font-size: 18px;
+    }
+
+    .uplifted-window .demo-pill {
+      padding: 10px 16px;
+      font-size: 15px;
+    }
+
+    .uplifted-window .demo-pill img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .uplifted-window .demo-result {
+      padding: 14px 16px;
+    }
+
+    .uplifted-window .demo-result img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .uplifted-window .demo-result-title {
+      font-size: 17px;
+    }
+
+    .uplifted-window .demo-result-url {
+      font-size: 14px;
+    }
+
+    .uplifted-window .demo-result-time {
+      font-size: 14px;
+    }
+
+    .uplifted-window .demo-shortcuts {
+      font-size: 14px;
+    }
+
+    .uplifted-window .demo-shortcuts kbd {
+      font-size: 13px;
+      min-width: 24px;
+      height: 24px;
+    }
+
+    /* Privacy badges */
+    .privacy-badges {
+      position: absolute;
+      top: 40px;
+      right: 60px;
+      display: flex;
+      gap: 12px;
+    }
+
+    .privacy-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--foreground);
+    }
+
+    .privacy-badge svg {
+      width: 16px;
+      height: 16px;
+      color: #4d9968;
+    }
+
+    /* Loading animations */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Download Flyout */
+    .download-flyout {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 320px;
+      background: #1a1a1a;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      z-index: 9999;
+      overflow: hidden;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .download-flyout.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .download-flyout-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      border-bottom: 1px solid #333;
+    }
+
+    .download-flyout-header h3 {
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .download-flyout-close {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .download-flyout-close:hover {
+      color: #fff;
+    }
+
+    .download-flyout-items {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .download-flyout-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px;
+      background: #252525;
+      border-radius: 8px;
+    }
+
+    .download-flyout-thumb {
+      width: 64px;
+      height: 40px;
+      background: #333;
+      border-radius: 4px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .download-flyout-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .download-flyout-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .download-flyout-name {
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .download-flyout-status {
+      font-size: 11px;
+      color: #666;
+    }
+
+    .download-flyout-status.success {
+      color: #4d9968;
+    }
+
+    .download-flyout-status.error {
+      color: #e53935;
+    }
+
+    .download-flyout-status.loading {
+      color: #F46B45;
+    }
+
+    .download-flyout-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #333;
+    }
+
+    .download-flyout-btn {
+      width: 100%;
+      padding: 10px 16px;
+      background: #F46B45;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .download-flyout-btn:hover:not(:disabled) {
+      background: #E85D38;
+    }
+
+    .download-flyout-btn:disabled {
+      background: #444;
+      cursor: not-allowed;
+    }
+
+    .download-flyout-spinner {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #666;
+      border-top-color: #F46B45;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
   </style>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 </head>
 <body>
-  <h1>Daysift - Chrome Web Store Screenshots</h1>
-  <p class="subtitle">1280x800px each - Click download on each frame or use "Download All"</p>
-  <div style="text-align: center; margin-bottom: 32px;">
-    <button class="download-btn" onclick="downloadAll()" style="padding: 10px 20px; font-size: 14px;">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Download All (5 PNGs)
-    </button>
+  <h1>Daysift - Image Assets</h1>
+  <p class="subtitle">Marketing images, screenshots, and graphics</p>
+
+  <div class="category-nav">
+    <button class="category-tab active" onclick="showCategory('chrome-store')">Chrome Web Store</button>
+    <button class="category-tab" onclick="showCategory('blog')">Blog Images</button>
   </div>
 
-  <div class="screenshots">
+  <!-- Chrome Web Store Category -->
+  <div id="chrome-store" class="category-section active">
+    <div class="category-header">
+      <div class="category-title">Chrome Web Store Screenshots</div>
+      <div class="category-desc">1280x800px each</div>
+    </div>
+    <div style="text-align: center; margin-bottom: 32px;">
+      <button class="download-btn" onclick="downloadAll()" style="padding: 10px 20px; font-size: 14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download All (5 + 2 promos)
+      </button>
+    </div>
+
+    <div class="screenshots">
 
     <!-- Screenshot 1: Cover -->
     <div class="screenshot-wrapper">
@@ -775,46 +1339,38 @@
           Download PNG
         </button>
       </div>
-      <div class="screenshot-frame">
-      <div class="cover-content">
-        <img src="../logo.png" alt="Daysift" class="cover-logo">
-        <h2>Find anything. <span>Instantly.</span></h2>
-        <p>Press one shortcut to get back to any doc, page or tab you opened.</p>
-        <div class="cover-hints">
-          <span><kbd>&#8984;J</kbd> for Mac</span>
-          <span><kbd>Ctrl+J</kbd> for Windows</span>
+      <div class="screenshot-frame uplifted">
+        <!-- Privacy badges -->
+        <div class="privacy-badges">
+          <div class="privacy-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8"/>
+              <path d="M12 17v4"/>
+            </svg>
+            Local-Only
+          </div>
+          <div class="privacy-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Private by Design
+          </div>
         </div>
-      </div>
-    </div>
-    </div>
-
-    <!-- Screenshot 2: Search -->
-    <div class="screenshot-wrapper">
-      <div class="screenshot-header">
-        <div class="screenshot-label">2. Search</div>
-        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-search.png')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download PNG
-        </button>
-      </div>
-      <div class="screenshot-frame">
-      <div class="feature-slide">
-        <div class="feature-text">
-          <h2>Just type.</h2>
-          <p>Instantly find any doc, page, or tab you've opened. Search across all your work apps in milliseconds.</p>
-        </div>
-        <div class="feature-demo">
-          <div class="browser-chrome">
-            <div class="browser-toolbar">
-              <div class="browser-dots">
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-              </div>
-              <div class="browser-url">notion.so/workspace/projects</div>
+        <div class="uplifted-slide">
+          <div class="uplifted-text">
+            <img src="../logo.png" alt="Daysift" style="height: 42px; margin-bottom: 28px;">
+            <h2>Your shortcut to<br><span style="white-space: nowrap;">everything <span class="muted" style="font-style: italic;">'work.'</span></span></h2>
+            <p>Instantly find any doc, page, or tab you've visited. Plus notes and pins.</p>
+            <div class="uplifted-kbd-row">
+              <div class="uplifted-kbd">⌘J <span>Mac</span></div>
+              <div class="uplifted-kbd">Ctrl+J <span>Windows</span></div>
             </div>
-            <div class="browser-content">
-              <div class="demo-window">
+          </div>
+          <div class="uplifted-demo">
+            <div class="uplifted-mockup">
+              <!-- Main window -->
+              <div class="uplifted-window">
                 <div class="demo-search">
                   <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"/>
@@ -822,9 +1378,9 @@
                   </svg>
                   <span class="demo-search-text">Q3 budget</span>
                 </div>
-                <div class="demo-pills">
+                <div class="demo-pills" style="height: auto; min-height: auto;">
                   <div class="demo-pill active">
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                       <rect x="1" y="1" width="6" height="6" rx="1"/>
                       <rect x="9" y="1" width="6" height="6" rx="1"/>
                       <rect x="1" y="9" width="6" height="6" rx="1"/>
@@ -841,12 +1397,8 @@
                     Sheets
                   </div>
                   <div class="demo-pill">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjY4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDI1NiAyNjgiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xNi4wOTIgMTEuNTM4IDE2NC4wOS42MDhjMTguMTc5LTEuNTYgMjIuODUtLjUwOCAzNC4yOCA3LjgwMWw0Ny4yNDMgMzMuMjgyQzI1My40MDYgNDcuNDE0IDI1NiA0OC45NzUgMjU2IDU1LjIwN3YxODIuNTI3YzAgMTEuNDM5LTQuMTU1IDE4LjIwNS0xOC42OTYgMTkuMjRMNjUuNDQgMjY3LjM3OGMtMTAuOTEzLjUxNy0xNi4xMS0xLjA0My0yMS44MjUtOC4zMjdMOC44MjYgMjEzLjgxNEMyLjU4NiAyMDUuNDg3IDAgMTk5LjI1NCAwIDE5MS45N1YyOS43MjZjMC05LjM1MiA0LjE1NS0xNy4xNTMgMTYuMDkyLTE4LjE4OFoiLz48cGF0aCBkPSJNMTY0LjA5LjYwOCAxNi4wOTIgMTEuNTM4QzQuMTU1IDEyLjU3MyAwIDIwLjM3NCAwIDI5LjcyNnYxNjIuMjQ1YzAgNy4yODQgMi41ODUgMTMuNTE2IDguODI2IDIxLjg0M2wzNC43ODkgNDUuMjM3YzUuNzE1IDcuMjg0IDEwLjkxMiA4Ljg0NCAyMS44MjUgOC4zMjdsMTcxLjg2NC0xMC40MDRjMTQuNTMyLTEuMDM1IDE4LjY5Ni03LjgwMSAxOC42OTYtMTkuMjRWNTUuMjA3YzAtNS45MTEtMi4zMzYtNy42MTQtOS4yMS0xMi42NmwtMS4xODUtLjg1NkwxOTguMzcgOC40MDlDMTg2Ljk0LjEgMTgyLjI3LS45NTIgMTY0LjA5LjYwOFpNNjkuMzI3IDUyLjIyYy0xNC4wMzMuOTQ1LTE3LjIxNiAxLjE1OS0yNS4xODYtNS4zMjNMMjMuODc2IDMwLjc3OGMtMi4wNi0yLjA4Ni0xLjAyNi00LjY5IDQuMTYzLTUuMjA3bDE0Mi4yNzQtMTAuMzk1YzExLjk0Ny0xLjA0MyAxOC4xNyAzLjEyIDIyLjg0MiA2Ljc1OGwyNC40MDEgMTcuNjhjMS4wNDMuNTI1IDMuNjM4IDMuNjM3LjUxNyAzLjYzN0w3MS4xNDYgNTIuMDk1bC0xLjgxOS4xMjVabS0xNi4zNiAxODMuOTU0VjgxLjIyMmMwLTYuNzY3IDIuMDc3LTkuODg3IDguMy0xMC40MTNMMjMwLjAyIDYwLjkzYzUuNzI0LS41MTcgOC4zMSAzLjEyIDguMzEgOS44Nzl2MTUzLjkxN2MwIDYuNzY3LTEuMDQ0IDEyLjQ5LTEwLjM4NyAxMy4wMDhsLTE2MS40ODcgOS4zNjFjLTkuMzQzLjUxNy0xMy40ODktMi41OTQtMTMuNDg5LTEwLjkyMVpNMjEyLjM3NyA4OS41M2MxLjAzNCA0LjY4MSAwIDkuMzYyLTQuNjgxIDkuODk3bC03Ljc4MyAxLjU0MnYxMTQuNDA0Yy02Ljc1OCAzLjYzNy0xMi45ODEgNS43MTUtMTguMTggNS43MTUtOC4zMDggMC0xMC4zODYtMi42MDQtMTYuNjA5LTEwLjM5NmwtNTAuODk4LTgwLjA3OXY3Ny40NzZsMTYuMSAzLjY0NnMwIDkuMzYyLTEyLjk4OSA5LjM2MmwtMzUuODE0IDIuMDc3Yy0xLjA0My0yLjA4NiAwLTcuMjg0IDMuNjMtOC4zMThsOS4zNTEtMi41OTVWMTA5LjgyM2wtMTIuOTgtMS4wNTJjLTEuMDQ0LTQuNjggMS41NS0xMS40MzkgOC44MjYtMTEuOTY1bDM4LjQyNi0yLjU4NSA1Mi45NTggODEuMTEzdi03MS43NmwtMTMuNDk4LTEuNTUyYy0xLjA0My01LjczMyAzLjExMS05Ljg5NiA4LjMtMTAuNDA0bDM1Ljg0LTIuMDg3WiIvPjwvc3ZnPg==" alt="">
+                    <img src="../notion.svg" alt="">
                     Notion
-                  </div>
-                  <div class="demo-pill">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTQiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA1NCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkxMl8zKSI+CjxwYXRoIGQ9Ik0xMy4zMzMzIDgwLjAwMDJDMjAuNjkzMyA4MC4wMDAyIDI2LjY2NjcgNzQuMDI2OCAyNi42NjY3IDY2LjY2NjhWNTMuMzMzNUgxMy4zMzMzQzUuOTczMzMgNTMuMzMzNSAwIDU5LjMwNjggMCA2Ni42NjY4QzAgNzQuMDI2OCA1Ljk3MzMzIDgwLjAwMDIgMTMuMzMzMyA4MC4wMDAyWiIgZmlsbD0iIzBBQ0Y4MyIvPgo8cGF0aCBkPSJNMCAzOS45OTk4QzAgMzIuNjM5OCA1Ljk3MzMzIDI2LjY2NjUgMTMuMzMzMyAyNi42NjY1SDI2LjY2NjdWNTMuMzMzMkgxMy4zMzMzQzUuOTczMzMgNTMuMzMzMiAwIDQ3LjM1OTggMCAzOS45OTk4WiIgZmlsbD0iI0EyNTlGRiIvPgo8cGF0aCBkPSJNMCAxMy4zMzMzQzAgNS45NzMzMyA1Ljk3MzMzIDAgMTMuMzMzMyAwSDI2LjY2NjdWMjYuNjY2N0gxMy4zMzMzQzUuOTczMzMgMjYuNjY2NyAwIDIwLjY5MzMgMCAxMy4zMzMzWiIgZmlsbD0iI0YyNEUxRSIvPgo8cGF0aCBkPSJNMjYuNjY2NyAwSDQwLjAwMDFDNDcuMzYwMSAwIDUzLjMzMzQgNS45NzMzMyA1My4zMzM0IDEzLjMzMzNDNTMuMzMzNCAyMC42OTMzIDQ3LjM2MDEgMjYuNjY2NyA0MC4wMDAxIDI2LjY2NjdIMjYuNjY2N1YwWiIgZmlsbD0iI0ZGNzI2MiIvPgo8cGF0aCBkPSJNNTMuMzMzNCAzOS45OTk4QzUzLjMzMzQgNDcuMzU5OCA0Ny4zNjAxIDUzLjMzMzIgNDAuMDAwMSA1My4zMzMyQzMyLjY0MDEgNTMuMzMzMiAyNi42NjY3IDQ3LjM1OTggMjYuNjY2NyAzOS45OTk4QzI2LjY2NjcgMzIuNjM5OCAzMi42NDAxIDI2LjY2NjUgNDAuMDAwMSAyNi42NjY1QzQ3LjM2MDEgMjYuNjY2NSA1My4zMzM0IDMyLjYzOTggNTMuMzMzNCAzOS45OTk4WiIgZmlsbD0iIzFBQkNGRSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkxMl8zIj4KPHJlY3Qgd2lkdGg9IjUzLjMzMzMiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt="">
-                    Figma
                   </div>
                 </div>
                 <div class="demo-results">
@@ -867,7 +1419,7 @@
                     <span class="demo-result-time">1w ago</span>
                   </div>
                   <div class="demo-result">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjY4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDI1NiAyNjgiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xNi4wOTIgMTEuNTM4IDE2NC4wOS42MDhjMTguMTc5LTEuNTYgMjIuODUtLjUwOCAzNC4yOCA3LjgwMWw0Ny4yNDMgMzMuMjgyQzI1My40MDYgNDcuNDE0IDI1NiA0OC45NzUgMjU2IDU1LjIwN3YxODIuNTI3YzAgMTEuNDM5LTQuMTU1IDE4LjIwNS0xOC42OTYgMTkuMjRMNjUuNDQgMjY3LjM3OGMtMTAuOTEzLjUxNy0xNi4xMS0xLjA0My0yMS44MjUtOC4zMjdMOC44MjYgMjEzLjgxNEMyLjU4NiAyMDUuNDg3IDAgMTk5LjI1NCAwIDE5MS45N1YyOS43MjZjMC05LjM1MiA0LjE1NS0xNy4xNTMgMTYuMDkyLTE4LjE4OFoiLz48cGF0aCBkPSJNMTY0LjA5LjYwOCAxNi4wOTIgMTEuNTM4QzQuMTU1IDEyLjU3MyAwIDIwLjM3NCAwIDI5LjcyNnYxNjIuMjQ1YzAgNy4yODQgMi41ODUgMTMuNTE2IDguODI2IDIxLjg0M2wzNC43ODkgNDUuMjM3YzUuNzE1IDcuMjg0IDEwLjkxMiA4Ljg0NCAyMS44MjUgOC4zMjdsMTcxLjg2NC0xMC40MDRjMTQuNTMyLTEuMDM1IDE4LjY5Ni03LjgwMSAxOC42OTYtMTkuMjRWNTUuMjA3YzAtNS45MTEtMi4zMzYtNy42MTQtOS4yMS0xMi42NmwtMS4xODUtLjg1NkwxOTguMzcgOC40MDlDMTg2Ljk0LjEgMTgyLjI3LS45NTIgMTY0LjA5LjYwOFpNNjkuMzI3IDUyLjIyYy0xNC4wMzMuOTQ1LTE3LjIxNiAxLjE1OS0yNS4xODYtNS4zMjNMMjMuODc2IDMwLjc3OGMtMi4wNi0yLjA4Ni0xLjAyNi00LjY5IDQuMTYzLTUuMjA3bDE0Mi4yNzQtMTAuMzk1YzExLjk0Ny0xLjA0MyAxOC4xNyAzLjEyIDIyLjg0MiA2Ljc1OGwyNC40MDEgMTcuNjhjMS4wNDMuNTI1IDMuNjM4IDMuNjM3LjUxNyAzLjYzN0w3MS4xNDYgNTIuMDk1bC0xLjgxOS4xMjVabS0xNi4zNiAxODMuOTU0VjgxLjIyMmMwLTYuNzY3IDIuMDc3LTkuODg3IDguMy0xMC40MTNMMjMwLjAyIDYwLjkzYzUuNzI0LS41MTcgOC4zMSAzLjEyIDguMzEgOS44Nzl2MTUzLjkxN2MwIDYuNzY3LTEuMDQ0IDEyLjQ5LTEwLjM4NyAxMy4wMDhsLTE2MS40ODcgOS4zNjFjLTkuMzQzLjUxNy0xMy40ODktMi41OTQtMTMuNDg5LTEwLjkyMVpNMjEyLjM3NyA4OS41M2MxLjAzNCA0LjY4MSAwIDkuMzYyLTQuNjgxIDkuODk3bC03Ljc4MyAxLjU0MnYxMTQuNDA0Yy02Ljc1OCAzLjYzNy0xMi45ODEgNS43MTUtMTguMTggNS43MTUtOC4zMDggMC0xMC4zODYtMi42MDQtMTYuNjA5LTEwLjM5NmwtNTAuODk4LTgwLjA3OXY3Ny40NzZsMTYuMSAzLjY0NnMwIDkuMzYyLTEyLjk4OSA5LjM2MmwtMzUuODE0IDIuMDc3Yy0xLjA0My0yLjA4NiAwLTcuMjg0IDMuNjMtOC4zMThsOS4zNTEtMi41OTVWMTA5LjgyM2wtMTIuOTgtMS4wNTJjLTEuMDQ0LTQuNjggMS41NS0xMS40MzkgOC44MjYtMTEuOTY1bDM4LjQyNi0yLjU4NSA1Mi45NTggODEuMTEzdi03MS43NmwtMTMuNDk4LTEuNTUyYy0xLjA0My01LjczMyAzLjExMS05Ljg5NiA4LjMtMTAuNDA0bDM1Ljg0LTIuMDg3WiIvPjwvc3ZnPg==" alt="">
+                    <img src="../notion.svg" alt="">
                     <div class="demo-result-content">
                       <span class="demo-result-title">Q3 Budget Notes</span>
                       <span class="demo-result-url">notion.so</span>
@@ -877,18 +1429,33 @@
                 </div>
                 <div class="demo-footer">
                   <div class="demo-shortcuts">
-                    <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> navigate</span>
-                    <span><kbd>&#8629;</kbd> open</span>
+                    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                    <span><kbd>↵</kbd> open</span>
                     <span><kbd>esc</kbd> close</span>
                   </div>
-                  <div class="demo-footer-icons">
-                    <button class="demo-footer-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                    <button class="demo-footer-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                    </button>
-                  </div>
+                </div>
+              </div>
+              <!-- Floating note - positioned at bottom right -->
+              <div class="uplifted-panel" style="bottom: -60px; right: -40px; transform: rotate(1deg); width: 280px;">
+                <!-- Note header with icon -->
+                <div style="padding: 12px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; background: var(--bg-alt);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                  <span style="font-size: 12px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Quick Note</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-left: auto;"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                </div>
+                <!-- Note title -->
+                <div style="padding: 14px 14px 8px; font-size: 15px; font-weight: 500; color: var(--foreground);">
+                  Q3 Budget Notes
+                </div>
+                <!-- Note content -->
+                <div style="padding: 0 14px 14px; font-size: 13px; color: var(--foreground); line-height: 1.7;">
+                  <div style="margin-bottom: 6px;">• Approved: <strong>$50k</strong></div>
+                  <div style="margin-bottom: 6px;">• Review with Sarah Friday</div>
+                  <div style="color: var(--muted-light);">• Update slides before EOD</div>
+                </div>
+                <!-- Note footer -->
+                <div style="padding: 10px 14px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted-light);">
+                  Updated 2 min ago
                 </div>
               </div>
             </div>
@@ -896,74 +1463,191 @@
         </div>
       </div>
     </div>
+
+    <!-- Screenshot 2: Search -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">2. Search</div>
+        <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-search.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="screenshot-frame uplifted">
+        <div class="uplifted-slide">
+          <div class="uplifted-text">
+            <h2>Find it<br><span class="muted">in seconds.</span></h2>
+            <p>Close tabs without anxiety. Press ⌘J to find any page you've visited.</p>
+            <div class="uplifted-icons" style="grid-template-columns: repeat(4, 52px); gap: 12px; margin-top: 36px;">
+              <img src="../google-docs.png" alt="Docs" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="../google-sheets.png" alt="Sheets" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="../notion.svg" alt="Notion" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="../figma.svg" alt="Figma" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="../slack.svg" alt="Slack" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="../linear.svg" alt="Linear" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <img src="../gmail.svg" alt="Gmail" style="background: #fff; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+              <div style="width: 52px; height: 52px; background: var(--bg-alt); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--muted);">+100</div>
+            </div>
+          </div>
+          <div class="uplifted-demo">
+            <div class="uplifted-mockup">
+              <div class="uplifted-window">
+                <div class="demo-search">
+                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span class="demo-search-text">Q3 budget</span>
+                </div>
+                <div class="demo-pills" style="height: auto; min-height: auto;">
+                  <div class="demo-pill active">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <rect x="1" y="1" width="6" height="6" rx="1"/>
+                      <rect x="9" y="1" width="6" height="6" rx="1"/>
+                      <rect x="1" y="9" width="6" height="6" rx="1"/>
+                      <rect x="9" y="9" width="6" height="6" rx="1"/>
+                    </svg>
+                    All
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../google-docs.png" alt="">
+                    Docs
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../google-sheets.png" alt="">
+                    Sheets
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../notion.svg" alt="">
+                    Notion
+                  </div>
+                </div>
+                <div class="demo-results">
+                  <div class="demo-result selected">
+                    <img src="../google-docs.png" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Planning</span>
+                      <span class="demo-result-url">docs.google.com</span>
+                    </div>
+                    <span class="demo-result-time">2d ago</span>
+                  </div>
+                  <div class="demo-result">
+                    <img src="../google-sheets.png" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Spreadsheet</span>
+                      <span class="demo-result-url">sheets.google.com</span>
+                    </div>
+                    <span class="demo-result-time">1w ago</span>
+                  </div>
+                  <div class="demo-result">
+                    <img src="../notion.svg" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Notes</span>
+                      <span class="demo-result-url">notion.so</span>
+                    </div>
+                    <span class="demo-result-time">3d ago</span>
+                  </div>
+                </div>
+                <div class="demo-footer">
+                  <div class="demo-shortcuts">
+                    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                    <span><kbd>↵</kbd> open</span>
+                    <span><kbd>esc</kbd> close</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Screenshot 3: AI -->
     <div class="screenshot-wrapper">
       <div class="screenshot-header">
-        <div class="screenshot-label">3. AI Answers</div>
+        <div class="screenshot-label">3. AI</div>
         <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-ai.png')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PNG
         </button>
       </div>
-      <div class="screenshot-frame">
-      <div class="feature-slide">
-        <div class="feature-text">
-          <h2>Ask AI.</h2>
-          <p>Have a question? Get answers from AI without leaving your keyboard or opening a new tab.</p>
-        </div>
-        <div class="feature-demo">
-          <div class="browser-chrome">
-            <div class="browser-toolbar">
-              <div class="browser-dots">
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
+      <div class="screenshot-frame uplifted">
+        <div class="uplifted-slide">
+          <div class="uplifted-text">
+            <h2>Ask AI.<br><span class="muted">By consent only.</span></h2>
+            <p>Get instant answers without leaving your keyboard. AI is opt-in—your data stays local until you decide.</p>
+            <div style="margin-top: 32px; display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: #fff; border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+              <!-- Toggle switch -->
+              <div style="width: 44px; height: 26px; background: var(--accent); border-radius: 13px; position: relative;">
+                <div style="width: 22px; height: 22px; background: #fff; border-radius: 50%; position: absolute; top: 2px; right: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2);"></div>
               </div>
-              <div class="browser-url">github.com/project/src</div>
+              <div>
+                <div style="font-size: 15px; font-weight: 500; color: var(--foreground);">AI Answers enabled</div>
+                <div style="font-size: 13px; color: var(--muted-light);">Queries sent to AI only when you press Enter</div>
+              </div>
             </div>
-            <div class="browser-content">
-              <div class="demo-window">
+          </div>
+          <div class="uplifted-demo">
+            <div class="uplifted-mockup">
+              <!-- Loading state mockup (front, bottom right) -->
+              <div class="uplifted-panel" style="position: absolute; right: -50px; bottom: -60px; width: 260px; transform: rotate(2deg); z-index: 3;">
+                <div style="display: flex; align-items: center; gap: 10px; padding: 14px; border-bottom: 1px solid var(--border);">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span style="font-size: 14px; color: var(--foreground);">How to write a cold email?</span>
+                </div>
+                <!-- Loading skeleton -->
+                <div style="padding: 16px;">
+                  <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                      <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+                    </svg>
+                    <span style="font-size: 12px; font-weight: 500; color: var(--accent);">Thinking...</span>
+                    <!-- Spinner -->
+                    <div style="width: 14px; height: 14px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.6s linear infinite; margin-left: auto;"></div>
+                  </div>
+                  <!-- Skeleton lines -->
+                  <div style="height: 12px; background: linear-gradient(90deg, var(--bg-alt) 25%, var(--bg) 50%, var(--bg-alt) 75%); background-size: 200% 100%; border-radius: 4px; margin-bottom: 10px; animation: shimmer 1.5s infinite;"></div>
+                  <div style="height: 12px; background: linear-gradient(90deg, var(--bg-alt) 25%, var(--bg) 50%, var(--bg-alt) 75%); background-size: 200% 100%; border-radius: 4px; margin-bottom: 10px; width: 85%; animation: shimmer 1.5s infinite;"></div>
+                  <div style="height: 12px; background: linear-gradient(90deg, var(--bg-alt) 25%, var(--bg) 50%, var(--bg-alt) 75%); background-size: 200% 100%; border-radius: 4px; width: 70%; animation: shimmer 1.5s infinite;"></div>
+                </div>
+              </div>
+              <!-- Answer mockup (front) -->
+              <div class="uplifted-window" style="position: relative; z-index: 2;">
                 <div class="demo-search">
                   <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"/>
                     <path d="m21 21-4.3-4.3"/>
                   </svg>
-                  <span class="demo-search-text">How do I center a div in CSS?</span>
-                  <div class="demo-ai-badge">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <span class="demo-search-text">What makes a good landing page?</span>
+                  <div class="demo-ai-badge" style="padding: 8px 14px; font-size: 14px;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
                     </svg>
                     Ask AI
                   </div>
                 </div>
-                <div class="demo-ai-answer">
-                  <div class="demo-ai-label">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <div class="demo-ai-answer" style="margin: 16px; padding: 20px;">
+                  <div class="demo-ai-label" style="font-size: 14px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                       <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
                     </svg>
                     AI Answer
                   </div>
-                  <p>To center a div, use Flexbox:</p>
-                  <code>.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}</code>
+                  <p style="font-size: 15px; line-height: 1.6; margin-bottom: 14px; color: var(--foreground);">A high-converting landing page focuses on a single goal and removes all distractions. Here's what works best:</p>
+                  <div style="font-size: 14px; line-height: 1.7; color: var(--foreground);">
+                    <div style="margin-bottom: 6px;">• <strong>Clear headline</strong> — one benefit, instantly</div>
+                    <div style="margin-bottom: 6px;">• <strong>Single CTA</strong> — one action per page</div>
+                    <div style="margin-bottom: 6px;">• <strong>Social proof</strong> — reviews, logos, stats</div>
+                    <div>• <strong>Fast load</strong> — under 3 seconds</div>
+                  </div>
                 </div>
                 <div class="demo-footer">
                   <div class="demo-shortcuts">
-                    <span><kbd>&#8984;</kbd><kbd>C</kbd> copy</span>
-                    <span><kbd>esc</kbd> back</span>
-                  </div>
-                  <div class="demo-footer-icons">
-                    <button class="demo-footer-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                    <button class="demo-footer-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                    </button>
+                    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                    <span><kbd>↵</kbd> open</span>
+                    <span><kbd>esc</kbd> close</span>
                   </div>
                 </div>
               </div>
@@ -971,82 +1655,98 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
 
     <!-- Screenshot 4: Notes -->
     <div class="screenshot-wrapper">
       <div class="screenshot-header">
-        <div class="screenshot-label">4. Floating Notes</div>
+        <div class="screenshot-label">4. Notes</div>
         <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-notes.png')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PNG
         </button>
       </div>
-      <div class="screenshot-frame">
-      <div class="feature-slide">
-        <div class="feature-text">
-          <h2>Capture ideas.</h2>
-          <p>Floating notes that stay with you across tabs. Pin them to any page or keep them handy.</p>
-        </div>
-        <div class="feature-demo" style="position: relative;">
-          <div class="browser-chrome">
-            <div class="browser-toolbar">
-              <div class="browser-dots">
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-              </div>
-              <div class="browser-url">docs.google.com/document/edit</div>
+      <div class="screenshot-frame uplifted">
+        <div class="uplifted-slide">
+          <div class="uplifted-text">
+            <h2>Capture ideas.<br><span class="muted">Anywhere.</span></h2>
+            <p>Floating notes that follow you across tabs. Pin to any page or keep them at hand.</p>
+            <div class="uplifted-kbd-row">
+              <div class="uplifted-kbd">/notes <span>to open</span></div>
             </div>
-            <div class="browser-content" style="position: relative;">
-              <div class="demo-window">
-                <div class="demo-search">
-                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.3-4.3"/>
-                  </svg>
-                  <span class="demo-search-text demo-typing">/notes</span>
+          </div>
+          <div class="uplifted-demo">
+            <div class="uplifted-mockup">
+              <!-- Main notes window -->
+              <div class="uplifted-window" style="max-width: 320px; transform: rotate(-1deg);">
+                <div style="padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-size: 15px; color: var(--muted-light);">Search notes...</span>
+                  <span style="font-size: 22px; color: var(--muted-light); font-weight: 300;">+</span>
                 </div>
-                <div class="demo-command-hint">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
-                    <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                  </svg>
-                  <span>Open floating notes</span>
-                  <kbd>&#8629;</kbd>
+                <div>
+                  <div style="padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; background: var(--bg-alt);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-top: 3px;"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                    <div style="flex: 1;">
+                      <div style="font-size: 15px; font-weight: 500;">Product launch</div>
+                      <div style="font-size: 13px; color: var(--muted-light); margin-top: 2px;">Finalize pricing with Sarah</div>
+                    </div>
+                    <span style="font-size: 13px; color: var(--muted-light);">2m</span>
+                  </div>
+                  <div style="padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; border-top: 1px solid var(--border);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-top: 3px;"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+                    <div style="flex: 1;">
+                      <div style="font-size: 15px; font-weight: 500;">Q3 Planning</div>
+                      <div style="font-size: 13px; color: var(--muted-light); margin-top: 2px;">Budget approved: $50k</div>
+                    </div>
+                    <span style="font-size: 13px; color: var(--muted-light);">1h</span>
+                  </div>
+                  <div style="padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; border-top: 1px solid var(--border);">
+                    <div style="flex: 1;">
+                      <div style="font-size: 15px; font-weight: 500;">Meeting notes</div>
+                      <div style="font-size: 13px; color: var(--muted-light); margin-top: 2px;">Review design feedback</div>
+                    </div>
+                    <span style="font-size: 13px; color: var(--muted-light);">2d</span>
+                  </div>
+                  <div style="padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; border-top: 1px solid var(--border);">
+                    <div style="flex: 1;">
+                      <div style="font-size: 15px; font-weight: 500;">API docs</div>
+                      <div style="font-size: 13px; color: var(--muted-light); margin-top: 2px;">Endpoints reference</div>
+                    </div>
+                    <span style="font-size: 13px; color: var(--muted-light);">3d</span>
+                  </div>
                 </div>
               </div>
-              <!-- Floating note window -->
-              <div class="demo-floating-note">
-                <div class="floating-note-header-search">
-                  <span class="floating-note-search-text">Search notes...</span>
-                  <span class="floating-note-add-btn">+</span>
+              <!-- Floating note editor with AI toolbar -->
+              <div class="uplifted-panel" style="top: 20px; right: -60px; width: 300px; transform: rotate(2deg);">
+                <!-- Editor toolbar -->
+                <div style="padding: 10px 14px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted-light)" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+                  <span style="font-size: 14px; font-weight: 500; flex: 1;">Product launch</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted-light)" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
                 </div>
-                <div class="floating-note-list">
-                  <div class="floating-note-item">
-                    <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
-                    <div class="floating-note-item-content">
-                      <span class="floating-note-item-title">Product launch</span>
-                      <span class="floating-note-item-preview">Finalize pricing with Sarah</span>
-                    </div>
-                    <span class="floating-note-item-time">2m</span>
-                  </div>
-                  <div class="floating-note-item active">
-                    <svg class="pin-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
-                    <div class="floating-note-item-content">
-                      <span class="floating-note-item-title">Q3 Planning</span>
-                      <span class="floating-note-item-preview">Budget approved: $50k</span>
-                    </div>
-                    <span class="floating-note-item-time">1h</span>
-                  </div>
-                  <div class="floating-note-item">
-                    <div class="floating-note-item-content">
-                      <span class="floating-note-item-title">Meeting notes</span>
-                      <span class="floating-note-item-preview">Review design feedback</span>
-                    </div>
-                    <span class="floating-note-item-time">2d</span>
-                  </div>
+                <!-- Note content -->
+                <div style="padding: 14px; font-size: 14px; color: var(--foreground); line-height: 1.7; min-height: 120px;">
+                  Finalize pricing with Sarah<br>
+                  <span style="color: var(--muted-light);">• Review competitor analysis</span><br>
+                  <span style="color: var(--muted-light);">• Update landing page copy</span>
+                </div>
+                <!-- Format toolbar with AI -->
+                <div style="padding: 8px 10px; border-top: 1px solid var(--border); display: flex; align-items: center; gap: 4px; background: var(--bg-alt);">
+                  <button style="width: 28px; height: 28px; border: none; background: transparent; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--muted-light);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/></svg>
+                  </button>
+                  <button style="width: 28px; height: 28px; border: none; background: transparent; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--muted-light);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/></svg>
+                  </button>
+                  <button style="width: 28px; height: 28px; border: none; background: transparent; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--muted-light);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><circle cx="3" cy="6" r="1" fill="currentColor"/><circle cx="3" cy="12" r="1" fill="currentColor"/><circle cx="3" cy="18" r="1" fill="currentColor"/></svg>
+                  </button>
+                  <div style="flex: 1;"></div>
+                  <!-- AI Button -->
+                  <button style="display: flex; align-items: center; gap: 6px; padding: 6px 10px; border: none; background: var(--accent); color: #fff; border-radius: 6px; font-size: 12px; font-weight: 500;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                    AI
+                  </button>
                 </div>
               </div>
             </div>
@@ -1054,35 +1754,28 @@
         </div>
       </div>
     </div>
-    </div>
 
     <!-- Screenshot 5: Actions -->
     <div class="screenshot-wrapper">
       <div class="screenshot-header">
-        <div class="screenshot-label">5. Quick Actions</div>
+        <div class="screenshot-label">5. Actions</div>
         <button class="download-btn" onclick="downloadScreenshot(this, 'daysift-actions.png')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PNG
         </button>
       </div>
-      <div class="screenshot-frame">
-      <div class="feature-slide">
-        <div class="feature-text">
-          <h2>Do more.</h2>
-          <p>Quick actions to create new docs, open apps, and run commands - all from your keyboard.</p>
-        </div>
-        <div class="feature-demo">
-          <div class="browser-chrome">
-            <div class="browser-toolbar">
-              <div class="browser-dots">
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-                <span class="browser-dot"></span>
-              </div>
-              <div class="browser-url">figma.com/file/design</div>
+      <div class="screenshot-frame uplifted">
+        <div class="uplifted-slide">
+          <div class="uplifted-text">
+            <h2>Do more.<br><span class="muted">Type less.</span></h2>
+            <p>Quick actions to create docs, open apps, and run commands—all from ⌘J.</p>
+            <div class="uplifted-kbd-row">
+              <div class="uplifted-kbd">/ <span>to start</span></div>
             </div>
-            <div class="browser-content">
-              <div class="demo-window">
+          </div>
+          <div class="uplifted-demo">
+            <div class="uplifted-mockup">
+              <div class="uplifted-window">
                 <div class="demo-search">
                   <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"/>
@@ -1090,45 +1783,38 @@
                   </svg>
                   <span class="demo-search-text">/</span>
                 </div>
-                <div class="demo-actions-list">
-                  <div class="demo-action-item selected">
-                    <img src="../google-docs.png" alt="" class="demo-action-icon">
-                    <span class="demo-action-name">/doc</span>
-                    <span class="demo-action-desc">New Google Doc</span>
+                <div style="padding: 12px;">
+                  <div style="padding: 14px 16px; border-radius: 10px; background: var(--bg-alt); display: flex; align-items: center; gap: 14px; margin-bottom: 4px;">
+                    <img src="../google-docs.png" alt="" style="width: 24px; height: 24px;">
+                    <span style="font-size: 16px; font-weight: 500;">/doc</span>
+                    <span style="font-size: 15px; color: var(--muted-light); margin-left: auto;">New Google Doc</span>
                   </div>
-                  <div class="demo-action-item">
-                    <img src="../google-sheets.png" alt="" class="demo-action-icon">
-                    <span class="demo-action-name">/sheet</span>
-                    <span class="demo-action-desc">New Google Sheet</span>
+                  <div style="padding: 14px 16px; border-radius: 10px; display: flex; align-items: center; gap: 14px; margin-bottom: 4px;">
+                    <img src="../google-sheets.png" alt="" style="width: 24px; height: 24px;">
+                    <span style="font-size: 16px; font-weight: 500;">/sheet</span>
+                    <span style="font-size: 15px; color: var(--muted-light); margin-left: auto;">New Google Sheet</span>
                   </div>
-                  <div class="demo-action-item">
-                    <img src="../google-slides.png" alt="" class="demo-action-icon">
-                    <span class="demo-action-name">/slide</span>
-                    <span class="demo-action-desc">New Slides</span>
+                  <div style="padding: 14px 16px; border-radius: 10px; display: flex; align-items: center; gap: 14px; margin-bottom: 4px;">
+                    <img src="../figma.svg" alt="" style="width: 24px; height: 24px;">
+                    <span style="font-size: 16px; font-weight: 500;">/figma</span>
+                    <span style="font-size: 15px; color: var(--muted-light); margin-left: auto;">New Figma file</span>
                   </div>
-                  <div class="demo-action-item">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTQiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA1NCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzkxMl8zKSI+CjxwYXRoIGQ9Ik0xMy4zMzMzIDgwLjAwMDJDMjAuNjkzMyA4MC4wMDAyIDI2LjY2NjcgNzQuMDI2OCAyNi42NjY3IDY2LjY2NjhWNTMuMzMzNUgxMy4zMzMzQzUuOTczMzMgNTMuMzMzNSAwIDU5LjMwNjggMCA2Ni42NjY4QzAgNzQuMDI2OCA1Ljk3MzMzIDgwLjAwMDIgMTMuMzMzMyA4MC4wMDAyWiIgZmlsbD0iIzBBQ0Y4MyIvPgo8cGF0aCBkPSJNMCAzOS45OTk4QzAgMzIuNjM5OCA1Ljk3MzMzIDI2LjY2NjUgMTMuMzMzMyAyNi42NjY1SDI2LjY2NjdWNTMuMzMzMkgxMy4zMzMzQzUuOTczMzMgNTMuMzMzMiAwIDQ3LjM1OTggMCAzOS45OTk4WiIgZmlsbD0iI0EyNTlGRiIvPgo8cGF0aCBkPSJNMCAxMy4zMzMzQzAgNS45NzMzMyA1Ljk3MzMzIDAgMTMuMzMzMyAwSDI2LjY2NjdWMjYuNjY2N0gxMy4zMzMzQzUuOTczMzMgMjYuNjY2NyAwIDIwLjY5MzMgMCAxMy4zMzMzWiIgZmlsbD0iI0YyNEUxRSIvPgo8cGF0aCBkPSJNMjYuNjY2NyAwSDQwLjAwMDFDNDcuMzYwMSAwIDUzLjMzMzQgNS45NzMzMyA1My4zMzM0IDEzLjMzMzNDNTMuMzMzNCAyMC42OTMzIDQ3LjM2MDEgMjYuNjY2NyA0MC4wMDAxIDI2LjY2NjdIMjYuNjY2N1YwWiIgZmlsbD0iI0ZGNzI2MiIvPgo8cGF0aCBkPSJNNTMuMzMzNCAzOS45OTk4QzUzLjMzMzQgNDcuMzU5OCA0Ny4zNjAxIDUzLjMzMzIgNDAuMDAwMSA1My4zMzMyQzMyLjY0MDEgNTMuMzMzMiAyNi42NjY3IDQ3LjM1OTggMjYuNjY2NyAzOS45OTk4QzI2LjY2NjcgMzIuNjM5OCAzMi42NDAxIDI2LjY2NjUgNDAuMDAwMSAyNi42NjY1QzQ3LjM2MDEgMjYuNjY2NSA1My4zMzM0IDMyLjYzOTggNTMuMzMzNCAzOS45OTk4WiIgZmlsbD0iIzFBQkNGRSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzkxMl8zIj4KPHJlY3Qgd2lkdGg9IjUzLjMzMzMiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==" alt="" class="demo-action-icon">
-                    <span class="demo-action-name">/figma</span>
-                    <span class="demo-action-desc">New Figma file</span>
+                  <div style="padding: 14px 16px; border-radius: 10px; display: flex; align-items: center; gap: 14px; margin-bottom: 4px;">
+                    <img src="../notion.svg" alt="" style="width: 24px; height: 24px;">
+                    <span style="font-size: 16px; font-weight: 500;">/notion</span>
+                    <span style="font-size: 15px; color: var(--muted-light); margin-left: auto;">New Notion page</span>
                   </div>
-                  <div class="demo-action-item">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNTYiIGhlaWdodD0iMjY4IiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDI1NiAyNjgiPjxwYXRoIGZpbGw9IiNGRkYiIGQ9Ik0xNi4wOTIgMTEuNTM4IDE2NC4wOS42MDhjMTguMTc5LTEuNTYgMjIuODUtLjUwOCAzNC4yOCA3LjgwMWw0Ny4yNDMgMzMuMjgyQzI1My40MDYgNDcuNDE0IDI1NiA0OC45NzUgMjU2IDU1LjIwN3YxODIuNTI3YzAgMTEuNDM5LTQuMTU1IDE4LjIwNS0xOC42OTYgMTkuMjRMNjUuNDQgMjY3LjM3OGMtMTAuOTEzLjUxNy0xNi4xMS0xLjA0My0yMS44MjUtOC4zMjdMOC44MjYgMjEzLjgxNEMyLjU4NiAyMDUuNDg3IDAgMTk5LjI1NCAwIDE5MS45N1YyOS43MjZjMC05LjM1MiA0LjE1NS0xNy4xNTMgMTYuMDkyLTE4LjE4OFoiLz48cGF0aCBkPSJNMTY0LjA5LjYwOCAxNi4wOTIgMTEuNTM4QzQuMTU1IDEyLjU3MyAwIDIwLjM3NCAwIDI5LjcyNnYxNjIuMjQ1YzAgNy4yODQgMi41ODUgMTMuNTE2IDguODI2IDIxLjg0M2wzNC43ODkgNDUuMjM3YzUuNzE1IDcuMjg0IDEwLjkxMiA4Ljg0NCAyMS44MjUgOC4zMjdsMTcxLjg2NC0xMC40MDRjMTQuNTMyLTEuMDM1IDE4LjY5Ni03LjgwMSAxOC42OTYtMTkuMjRWNTUuMjA3YzAtNS45MTEtMi4zMzYtNy42MTQtOS4yMS0xMi42NmwtMS4xODUtLjg1NkwxOTguMzcgOC40MDlDMTg2Ljk0LjEgMTgyLjI3LS45NTIgMTY0LjA5LjYwOFpNNjkuMzI3IDUyLjIyYy0xNC4wMzMuOTQ1LTE3LjIxNiAxLjE1OS0yNS4xODYtNS4zMjNMMjMuODc2IDMwLjc3OGMtMi4wNi0yLjA4Ni0xLjAyNi00LjY5IDQuMTYzLTUuMjA3bDE0Mi4yNzQtMTAuMzk1YzExLjk0Ny0xLjA0MyAxOC4xNyAzLjEyIDIyLjg0MiA2Ljc1OGwyNC40MDEgMTcuNjhjMS4wNDMuNTI1IDMuNjM4IDMuNjM3LjUxNyAzLjYzN0w3MS4xNDYgNTIuMDk1bC0xLjgxOS4xMjVabS0xNi4zNiAxODMuOTU0VjgxLjIyMmMwLTYuNzY3IDIuMDc3LTkuODg3IDguMy0xMC40MTNMMjMwLjAyIDYwLjkzYzUuNzI0LS41MTcgOC4zMSAzLjEyIDguMzEgOS44Nzl2MTUzLjkxN2MwIDYuNzY3LTEuMDQ0IDEyLjQ5LTEwLjM4NyAxMy4wMDhsLTE2MS40ODcgOS4zNjFjLTkuMzQzLjUxNy0xMy40ODktMi41OTQtMTMuNDg5LTEwLjkyMVpNMjEyLjM3NyA4OS41M2MxLjAzNCA0LjY4MSAwIDkuMzYyLTQuNjgxIDkuODk3bC03Ljc4MyAxLjU0MnYxMTQuNDA0Yy02Ljc1OCAzLjYzNy0xMi45ODEgNS43MTUtMTguMTggNS43MTUtOC4zMDggMC0xMC4zODYtMi42MDQtMTYuNjA5LTEwLjM5NmwtNTAuODk4LTgwLjA3OXY3Ny40NzZsMTYuMSAzLjY0NnMwIDkuMzYyLTEyLjk4OSA5LjM2MmwtMzUuODE0IDIuMDc3Yy0xLjA0My0yLjA4NiAwLTcuMjg0IDMuNjMtOC4zMThsOS4zNTEtMi41OTVWMTA5LjgyM2wtMTIuOTgtMS4wNTJjLTEuMDQ0LTQuNjggMS41NS0xMS40MzkgOC44MjYtMTEuOTY1bDM4LjQyNi0yLjU4NSA1Mi45NTggODEuMTEzdi03MS43NmwtMTMuNDk4LTEuNTUyYy0xLjA0My01LjczMyAzLjExMS05Ljg5NiA4LjMtMTAuNDA0bDM1Ljg0LTIuMDg3WiIvPjwvc3ZnPg==" alt="" class="demo-action-icon">
-                    <span class="demo-action-name">/notion</span>
-                    <span class="demo-action-desc">New Notion page</span>
+                  <div style="padding: 14px 16px; border-radius: 10px; display: flex; align-items: center; gap: 14px;">
+                    <img src="../linear.svg" alt="" style="width: 24px; height: 24px;">
+                    <span style="font-size: 16px; font-weight: 500;">/linear</span>
+                    <span style="font-size: 15px; color: var(--muted-light); margin-left: auto;">New Linear issue</span>
                   </div>
                 </div>
                 <div class="demo-footer">
                   <div class="demo-shortcuts">
-                    <span><kbd>&#8593;</kbd><kbd>&#8595;</kbd> navigate</span>
-                    <span><kbd>&#8629;</kbd> run</span>
-                  </div>
-                  <div class="demo-footer-icons">
-                    <button class="demo-footer-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </button>
-                    <button class="demo-footer-btn">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                    </button>
+                    <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                    <span><kbd>↵</kbd> open</span>
+                    <span><kbd>esc</kbd> close</span>
                   </div>
                 </div>
               </div>
@@ -1136,7 +1822,6 @@
           </div>
         </div>
       </div>
-    </div>
     </div>
 
   </div>
@@ -1155,10 +1840,52 @@
           Download PNG
         </button>
       </div>
-      <div class="promo-frame promo-small">
-        <img src="../logo.png" alt="Daysift" class="promo-logo">
-        <h2>Find anything. <span>Instantly.</span></h2>
-        <p>Press ⌘J to get back to any doc, page or tab.</p>
+      <div class="promo-frame promo-small promo-with-mockup" style="position: relative; overflow: hidden;">
+        <div class="promo-text" style="z-index: 1; margin-right: 16px;">
+          <img src="../logo.png" alt="Daysift" class="promo-logo" style="height: 28px; margin-bottom: 12px;">
+          <h2 style="font-size: 22px; line-height: 1.25;">Your shortcut to<br>everything <span style="font-style: italic;">'work.'</span></h2>
+          <div style="display: flex; gap: 8px; margin-top: 12px;">
+            <div style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; background: #fff; border: 1px solid var(--border); border-radius: 4px; font-size: 11px; font-weight: 500; color: var(--foreground);">⌘J</div>
+            <div style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; background: #fff; border: 1px solid var(--border); border-radius: 4px; font-size: 11px; font-weight: 500; color: var(--foreground);">Ctrl+J</div>
+          </div>
+        </div>
+        <div class="promo-mockup">
+          <div class="promo-mini-window">
+            <div class="promo-mini-search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span>Q3 budget</span>
+            </div>
+            <div class="promo-mini-pills">
+              <div class="promo-mini-pill active">
+                <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor">
+                  <rect x="1" y="1" width="6" height="6" rx="1"/>
+                  <rect x="9" y="1" width="6" height="6" rx="1"/>
+                  <rect x="1" y="9" width="6" height="6" rx="1"/>
+                  <rect x="9" y="9" width="6" height="6" rx="1"/>
+                </svg>
+                All
+              </div>
+              <div class="promo-mini-pill"><img src="../google-docs.png" alt="">Docs</div>
+              <div class="promo-mini-pill"><img src="../google-sheets.png" alt="">Sheets</div>
+            </div>
+            <div class="promo-mini-results">
+              <div class="promo-mini-result selected">
+                <img src="../google-docs.png" alt="">
+                <span>Q3 Budget Planning</span>
+              </div>
+              <div class="promo-mini-result">
+                <img src="../google-sheets.png" alt="">
+                <span>Q3 Budget Spreadsheet</span>
+              </div>
+              <div class="promo-mini-result">
+                <img src="../notion.svg" alt="">
+                <span>Q3 Budget Notes</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -1171,19 +1898,495 @@
           Download PNG
         </button>
       </div>
-      <div class="promo-frame promo-marquee">
-        <div class="promo-content">
+      <div class="promo-frame promo-marquee promo-with-mockup" style="position: relative;">
+        <!-- Privacy badges -->
+        <div class="privacy-badges" style="top: 24px; right: 48px;">
+          <div class="privacy-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8"/>
+              <path d="M12 17v4"/>
+            </svg>
+            Local-Only
+          </div>
+          <div class="privacy-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Private by Design
+          </div>
+        </div>
+        <div class="promo-text">
           <img src="../logo.png" alt="Daysift" class="promo-logo-large">
-          <h2>Find anything. <span>Instantly.</span></h2>
-          <p>Press one shortcut to get back to any doc, page or tab you opened. Search across all your work apps in milliseconds.</p>
-          <div class="promo-hints">
-            <span><kbd>⌘J</kbd> for Mac</span>
-            <span><kbd>Ctrl+J</kbd> for Windows</span>
+          <h2>Your shortcut to everything <span style="font-style: italic;">'work.'</span></h2>
+          <p style="margin-bottom: 24px;">Search pages, take notes, pin favorites. Local-only and private by design.</p>
+          <div class="uplifted-kbd-row" style="margin-top: 24px;">
+            <div class="uplifted-kbd">⌘J <span>Mac</span></div>
+            <div class="uplifted-kbd">Ctrl+J <span>Windows</span></div>
+          </div>
+        </div>
+        <div class="promo-mockup" style="position: relative;">
+          <div class="promo-window">
+            <!-- Search bar -->
+            <div style="display: flex; align-items: center; gap: 10px; padding: 16px 14px; border-bottom: 1px solid var(--border);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+              </svg>
+              <span style="font-size: 16px; color: var(--foreground);">Q3 budget</span>
+            </div>
+            <!-- Filter pills -->
+            <div style="display: flex; gap: 8px; padding: 12px 14px; flex-wrap: wrap;">
+              <div style="display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #fff; border: 1px solid var(--foreground); border-radius: 16px; font-size: 13px;">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="9" y="1" width="6" height="6" rx="1"/><rect x="1" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+                All
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #fff; border: 1px solid var(--border); border-radius: 16px; font-size: 13px;">
+                <img src="../google-docs.png" alt="" style="width: 14px; height: 14px;">
+                Docs
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #fff; border: 1px solid var(--border); border-radius: 16px; font-size: 13px;">
+                <img src="../google-sheets.png" alt="" style="width: 14px; height: 14px;">
+                Sheets
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #fff; border: 1px solid var(--border); border-radius: 16px; font-size: 13px;">
+                <img src="../notion.svg" alt="" style="width: 14px; height: 14px;">
+                Notion
+              </div>
+            </div>
+            <!-- Results -->
+            <div style="padding: 8px 10px;">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F5F4F2; border-radius: 8px; margin-bottom: 4px;">
+                <img src="../google-docs.png" alt="" style="width: 20px; height: 20px;">
+                <div style="flex: 1;">
+                  <div style="font-size: 15px; color: var(--foreground);">Q3 Budget Planning</div>
+                  <div style="font-size: 12px; color: var(--muted-light);">docs.google.com</div>
+                </div>
+                <span style="font-size: 13px; color: var(--muted-light);">2d ago</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px;">
+                <img src="../google-sheets.png" alt="" style="width: 20px; height: 20px;">
+                <div style="flex: 1;">
+                  <div style="font-size: 15px; color: var(--foreground);">Q3 Budget Spreadsheet</div>
+                  <div style="font-size: 12px; color: var(--muted-light);">sheets.google.com</div>
+                </div>
+                <span style="font-size: 13px; color: var(--muted-light);">1w ago</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px;">
+                <img src="../notion.svg" alt="" style="width: 20px; height: 20px;">
+                <div style="flex: 1;">
+                  <div style="font-size: 15px; color: var(--foreground);">Q3 Budget Notes</div>
+                  <div style="font-size: 12px; color: var(--muted-light);">notion.so</div>
+                </div>
+                <span style="font-size: 13px; color: var(--muted-light);">3d ago</span>
+              </div>
+            </div>
+            <!-- Footer -->
+            <div style="padding: 10px 14px; border-top: 1px solid var(--border); display: flex; gap: 16px; font-size: 12px; color: var(--muted-light);">
+              <span><kbd style="padding: 2px 6px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; font-size: 11px;">↑</kbd><kbd style="padding: 2px 6px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; font-size: 11px; margin-left: 2px;">↓</kbd> navigate</span>
+              <span><kbd style="padding: 2px 6px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; font-size: 11px;">↵</kbd> open</span>
+              <span><kbd style="padding: 2px 6px; background: var(--bg); border: 1px solid var(--border); border-radius: 4px; font-size: 11px;">esc</kbd> close</span>
+            </div>
+          </div>
+          <!-- Floating note panel -->
+          <div style="position: absolute; bottom: -30px; right: -30px; width: 220px; background: #fff; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(0,0,0,0.12); overflow: hidden; transform: rotate(2deg);">
+            <!-- Note header -->
+            <div style="padding: 10px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; background: var(--bg-alt);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+              <span style="font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">Quick Note</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="margin-left: auto;"><line x1="12" x2="12" y1="17" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>
+            </div>
+            <!-- Note title -->
+            <div style="padding: 10px 12px 6px; font-size: 13px; font-weight: 500; color: var(--foreground);">
+              Q3 Budget Notes
+            </div>
+            <!-- Note content -->
+            <div style="padding: 0 12px 12px; font-size: 11px; color: var(--foreground); line-height: 1.6;">
+              <div style="margin-bottom: 4px;">• Approved: <strong>$50k</strong></div>
+              <div style="color: var(--muted-light);">• Review Friday</div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
   </div>
+
+  <!-- Blog Images Category -->
+  <div id="blog" class="category-section">
+    <div class="category-header">
+      <div class="category-title">Blog Images</div>
+      <div class="category-desc">OG images and article graphics (1200x630px)</div>
+    </div>
+
+    <div class="screenshots">
+      <!-- Tab Hoarding Article -->
+      <div class="screenshot-wrapper">
+        <div class="screenshot-header">
+          <div class="screenshot-label">Tab Hoarding Article OG</div>
+          <button class="download-btn" onclick="downloadBlogImage(this, 'tab-hoarding-og.png')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PNG
+          </button>
+        </div>
+        <div class="blog-frame" style="width: 1200px; height: 630px; background: #FDFCFB; background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 32px 32px; display: flex; align-items: center; justify-content: center;">
+          <!-- Browser mockup -->
+          <div style="width: 880px; background: #fff; border-radius: 12px; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.04); overflow: hidden;">
+            <!-- Browser header -->
+            <div style="background: #f6f6f6; padding: 10px 12px 0; border-bottom: 1px solid #e5e5e5;">
+              <!-- Tab bar -->
+              <div style="display: flex; gap: 1px; overflow: hidden;">
+                <!-- Active tab -->
+                <div style="max-width: 160px; height: 32px; background: #fff; border-radius: 8px 8px 0 0; display: flex; align-items: center; padding: 0 10px; gap: 6px;">
+                  <div style="width: 14px; height: 14px; border-radius: 3px; background: #8B9DC3;"></div>
+                  <span style="font-size: 11px; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Q3 Planning Doc</span>
+                  <div style="width: 14px; height: 14px; display: flex; align-items: center; justify-content: center; color: #999;">
+                    <svg width="8" height="8" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="2" x2="8" y2="8"/><line x1="8" y1="2" x2="2" y2="8"/></svg>
+                  </div>
+                </div>
+                <!-- Squished tabs -->
+                <div style="max-width: 52px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #D4A59A;"></div></div>
+                <div style="max-width: 52px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #A8B5A0;"></div></div>
+                <div style="max-width: 52px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #9CB4C2;"></div></div>
+                <div style="max-width: 52px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #C9A87C;"></div></div>
+                <div style="max-width: 52px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #B8A9C9;"></div></div>
+                <!-- Tiny tabs -->
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #78716C;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #A39E99;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #C4B8A5;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #D4A574;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #B5A8A0;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #C9B8B0;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #A0B0B8;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #D9C4B8;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #C4B090;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #B0A8C0;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #98B8B8;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #A8C0A8;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #D0C0A0;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #C8A8A8;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #A0B8C8;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #C8B0C0;"></div></div>
+                <div style="max-width: 32px; height: 32px; background: #e8e8e8; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;"><div style="width: 14px; height: 14px; border-radius: 3px; background: #B0C8C0;"></div></div>
+                <!-- New tab button -->
+                <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; color: #999; margin-left: 4px; margin-bottom: 8px;">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="1" x2="6" y2="11"/><line x1="1" y1="6" x2="11" y2="6"/></svg>
+                </div>
+              </div>
+              <!-- Toolbar -->
+              <div style="display: flex; align-items: center; padding: 10px 12px; gap: 8px; background: #fff;">
+                <div style="display: flex; gap: 2px;">
+                  <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #999;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 13L5 8L10 3"/></svg>
+                  </div>
+                  <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #999;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3L11 8L6 13"/></svg>
+                  </div>
+                  <div style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: #999;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 8A5 5 0 1 1 8 3" stroke-linecap="round"/><path d="M8 3V1M8 3L10.5 3"/></svg>
+                  </div>
+                </div>
+                <div style="flex: 1; height: 32px; background: #f1f1f1; border-radius: 16px; display: flex; align-items: center; padding: 0 14px; gap: 8px;">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#999" stroke-width="1.2"><rect x="1" y="1" width="12" height="12" rx="2"/><path d="M1 5h12"/><circle cx="3" cy="3" r="0.5" fill="#999"/><circle cx="5" cy="3" r="0.5" fill="#999"/><circle cx="7" cy="3" r="0.5" fill="#999"/></svg>
+                  <span style="font-size: 13px; color: #666;">docs.google.com/document/d/1x2y3z...</span>
+                </div>
+              </div>
+            </div>
+            <!-- Browser content -->
+            <div style="height: 340px; background: #fafafa;">
+              <div style="padding: 32px 48px; opacity: 0.4;">
+                <div style="width: 280px; height: 24px; background: #ddd; border-radius: 4px; margin-bottom: 24px;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; margin-bottom: 12px; width: 95%;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; margin-bottom: 12px; width: 85%;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; margin-bottom: 12px; width: 95%;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; margin-bottom: 12px; width: 60%;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; margin-bottom: 12px; width: 85%;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; margin-bottom: 12px; width: 95%;"></div>
+                <div style="height: 12px; background: #e5e5e5; border-radius: 3px; width: 40%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Find Any Tab Article -->
+      <div class="screenshot-wrapper">
+        <div class="screenshot-header">
+          <div class="screenshot-label">Find Any Tab Article OG</div>
+          <button class="download-btn" onclick="downloadBlogImage(this, 'find-any-tab-og.png')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PNG
+          </button>
+        </div>
+        <div class="blog-frame" style="width: 1200px; height: 630px; background: #FDFCFB; background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 32px 32px; display: flex; align-items: center; justify-content: center;">
+          <!-- Search UI mockup -->
+          <div style="width: 560px; background: #fff; border-radius: 12px; box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05); overflow: hidden;">
+            <!-- Search bar -->
+            <div style="padding: 16px 20px; border-bottom: 1px solid #e5e4e1;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="m21 21-4.3-4.3"/>
+                </svg>
+                <span style="font-size: 15px; color: #333;">budget report</span>
+                <span style="font-size: 15px; color: #999; margin-left: auto;">|</span>
+              </div>
+            </div>
+            <!-- Results -->
+            <div style="padding: 8px;">
+              <!-- Result 1 - highlighted -->
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F5F4F2; border-radius: 8px; margin-bottom: 4px;">
+                <div style="width: 32px; height: 32px; background: #4285f4; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                </div>
+                <div style="flex: 1;">
+                  <div style="font-size: 14px; font-weight: 500; color: #1a1a1a;">Q3 Budget Report - Final</div>
+                  <div style="font-size: 12px; color: #999;">docs.google.com</div>
+                </div>
+                <div style="font-size: 11px; color: #999; background: #E7E5E4; padding: 2px 6px; border-radius: 4px;">Tab</div>
+              </div>
+              <!-- Result 2 -->
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; margin-bottom: 4px;">
+                <div style="width: 32px; height: 32px; background: #34a853; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <div style="flex: 1;">
+                  <div style="font-size: 14px; font-weight: 500; color: #1a1a1a;">Budget Breakdown 2026</div>
+                  <div style="font-size: 12px; color: #999;">sheets.google.com</div>
+                </div>
+                <div style="font-size: 11px; color: #999;">2h ago</div>
+              </div>
+              <!-- Result 3 -->
+              <div style="display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px;">
+                <div style="width: 32px; height: 32px; background: #78716C; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
+                <div style="flex: 1;">
+                  <div style="font-size: 14px; font-weight: 500; color: #1a1a1a;">Re: Budget approval needed</div>
+                  <div style="font-size: 12px; color: #999;">mail.google.com</div>
+                </div>
+                <div style="font-size: 11px; color: #999;">Yesterday</div>
+              </div>
+            </div>
+            <!-- Footer hint -->
+            <div style="padding: 12px 20px; border-top: 1px solid #e5e4e1; display: flex; align-items: center; gap: 16px;">
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <kbd style="background: #F0EFEC; border: 1px solid #e5e4e1; border-radius: 4px; padding: 2px 6px; font-size: 11px; font-family: inherit;">↑↓</kbd>
+                <span style="font-size: 11px; color: #999;">navigate</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <kbd style="background: #F0EFEC; border: 1px solid #e5e4e1; border-radius: 4px; padding: 2px 6px; font-size: 11px; font-family: inherit;">↵</kbd>
+                <span style="font-size: 11px; color: #999;">open</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <kbd style="background: #F0EFEC; border: 1px solid #e5e4e1; border-radius: 4px; padding: 2px 6px; font-size: 11px; font-family: inherit;">esc</kbd>
+                <span style="font-size: 11px; color: #999;">close</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts Article -->
+      <div class="screenshot-wrapper">
+        <div class="screenshot-header">
+          <div class="screenshot-label">Keyboard Shortcuts Article OG</div>
+          <button class="download-btn" onclick="downloadBlogImage(this, 'keyboard-shortcuts-og.png')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PNG
+          </button>
+        </div>
+        <div class="blog-frame" style="width: 1200px; height: 630px; background: #FDFCFB; background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 32px 32px; display: flex; align-items: center; justify-content: center;">
+          <!-- Keyboard shortcuts visual -->
+          <div style="display: flex; gap: 24px; align-items: center;">
+            <!-- Left: keyboard keys -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <!-- Row 1 -->
+              <div style="display: flex; gap: 8px;">
+                <div style="width: 64px; height: 64px; background: #fff; border: 2px solid #e5e4e1; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; color: #333; box-shadow: 0 4px 0 #e5e4e1;">⌘</div>
+                <div style="width: 64px; height: 64px; background: #F46B45; border: 2px solid #E85D38; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; color: #fff; box-shadow: 0 4px 0 #E85D38;">J</div>
+              </div>
+              <!-- Row 2 -->
+              <div style="display: flex; gap: 8px;">
+                <div style="width: 64px; height: 64px; background: #fff; border: 2px solid #e5e4e1; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; color: #333; box-shadow: 0 4px 0 #e5e4e1;">⌘</div>
+                <div style="width: 64px; height: 64px; background: #fff; border: 2px solid #e5e4e1; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; color: #333; box-shadow: 0 4px 0 #e5e4e1;">T</div>
+              </div>
+              <!-- Row 3 -->
+              <div style="display: flex; gap: 8px;">
+                <div style="width: 64px; height: 64px; background: #fff; border: 2px solid #e5e4e1; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; color: #333; box-shadow: 0 4px 0 #e5e4e1;">⌘</div>
+                <div style="width: 64px; height: 64px; background: #fff; border: 2px solid #e5e4e1; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 600; color: #333; box-shadow: 0 4px 0 #e5e4e1;">W</div>
+              </div>
+            </div>
+            <!-- Right: descriptions -->
+            <div style="display: flex; flex-direction: column; gap: 32px;">
+              <div>
+                <div style="font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Search all tabs</div>
+                <div style="font-size: 15px; color: #78716C;">Find any tab instantly with Daysift</div>
+              </div>
+              <div>
+                <div style="font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">New tab</div>
+                <div style="font-size: 15px; color: #78716C;">Open a fresh tab</div>
+              </div>
+              <div>
+                <div style="font-size: 22px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Close tab</div>
+                <div style="font-size: 15px; color: #78716C;">Done? Close and move on</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Daysift vs OneTab Article -->
+      <div class="screenshot-wrapper">
+        <div class="screenshot-header">
+          <div class="screenshot-label">Daysift vs OneTab Article OG</div>
+          <button class="download-btn" onclick="downloadBlogImage(this, 'daysift-vs-onetab-og.png')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PNG
+          </button>
+        </div>
+        <div class="blog-frame" style="width: 1200px; height: 630px; background: #FDFCFB; background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px); background-size: 32px 32px; display: flex; align-items: center; justify-content: center;">
+          <!-- Comparison visual with real logos -->
+          <div style="display: flex; gap: 80px; align-items: center;">
+            <!-- Daysift side -->
+            <div style="text-align: center;">
+              <div style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <img src="daysift-icon.png" alt="Daysift" style="height: 100px; width: 100px;">
+              </div>
+              <div style="font-size: 28px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">Daysift</div>
+              <div style="font-size: 15px; color: #78716C;">Search & find tabs</div>
+            </div>
+            <!-- VS -->
+            <div style="font-size: 32px; font-weight: 500; color: #78716C;">vs</div>
+            <!-- OneTab side -->
+            <div style="text-align: center;">
+              <div style="width: 120px; height: 120px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                <img src="onetab-logo.png" alt="OneTab" style="height: 100px; width: 100px;">
+              </div>
+              <div style="font-size: 28px; font-weight: 600; color: #1a1a1a; margin-bottom: 8px;">OneTab</div>
+              <div style="font-size: 15px; color: #78716C;">Collapse & store tabs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Browser Tips ADHD Article -->
+      <div class="screenshot-wrapper">
+        <div class="screenshot-header">
+          <div class="screenshot-label">Browser Tips ADHD Article OG</div>
+          <button class="download-btn" onclick="downloadBlogImage(this, 'browser-tips-adhd-og.png')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PNG
+          </button>
+        </div>
+        <div class="blog-frame" style="width: 1200px; height: 630px; background: linear-gradient(135deg, #FDFCFB 0%, #F5F4F2 100%); display: flex; align-items: center; justify-content: center; gap: 60px;">
+          <!-- Left side: Chaotic tabs (faded/stressed) -->
+          <div style="position: relative; opacity: 0.6;">
+            <!-- Scattered tab pills -->
+            <div style="transform: rotate(-8deg); position: relative;">
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: -60px; left: -20px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">amazon.com/cart...</div>
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: -25px; left: 40px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">reddit - ADHD tips</div>
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: 10px; left: -30px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">Google Docs - Q3...</div>
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: 45px; left: 50px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">YouTube</div>
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: 80px; left: -10px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">Stack Overflow</div>
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: 115px; left: 30px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">Gmail (47)</div>
+              <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 14px; font-size: 12px; color: #666; position: absolute; top: 150px; left: -25px; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">Notion - Tasks</div>
+            </div>
+            <!-- Spacer for absolute elements -->
+            <div style="width: 200px; height: 220px;"></div>
+          </div>
+
+          <!-- Center: Arrow -->
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F46B45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </div>
+
+          <!-- Right side: Calm Daysift search -->
+          <div style="background: #fff; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04); overflow: hidden; width: 340px;">
+            <!-- Search bar -->
+            <div style="padding: 16px 20px; border-bottom: 1px solid #e5e4e1;">
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F46B45" stroke-width="2.5">
+                  <circle cx="11" cy="11" r="8"/>
+                  <path d="m21 21-4.3-4.3"/>
+                </svg>
+                <span style="font-size: 15px; color: #333;">q3 report</span>
+              </div>
+            </div>
+            <!-- Single clear result -->
+            <div style="padding: 12px;">
+              <div style="display: flex; align-items: center; gap: 12px; padding: 14px; background: #F5F4F2; border-radius: 10px;">
+                <div style="width: 36px; height: 36px; background: #4285f4; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                </div>
+                <div>
+                  <div style="font-size: 14px; font-weight: 600; color: #1a1a1a;">Q3 Planning Report</div>
+                  <div style="font-size: 12px; color: #78716C;">docs.google.com</div>
+                </div>
+              </div>
+            </div>
+            <!-- Keyboard hint -->
+            <div style="padding: 10px 20px; background: #FAFAF9; border-top: 1px solid #e5e4e1; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <kbd style="background: #fff; border: 1px solid #e5e4e1; border-radius: 4px; padding: 3px 8px; font-size: 12px; font-weight: 500; color: #78716C;">↵</kbd>
+              <span style="font-size: 12px; color: #999;">to open</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Category navigation
+    function showCategory(categoryId) {
+      // Hide all sections
+      document.querySelectorAll('.category-section').forEach(section => {
+        section.classList.remove('active');
+      });
+      // Deactivate all tabs
+      document.querySelectorAll('.category-tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      // Show selected section
+      document.getElementById(categoryId).classList.add('active');
+      // Activate clicked tab
+      event.target.classList.add('active');
+    }
+
+    // Blog image download
+    async function downloadBlogImage(btn, filename) {
+      const wrapper = btn.closest('.screenshot-wrapper');
+      const frame = wrapper.querySelector('.blog-frame');
+
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const canvas = await html2canvas(frame, {
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: '#FDFCFB',
+          scale: 2,
+          logging: false
+        });
+
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PNG';
+        btn.disabled = false;
+      } catch (err) {
+        console.error('Blog image download failed:', err);
+        btn.textContent = 'Error - try again';
+        btn.disabled = false;
+      }
+    }
+  </script>
 
   <script>
     async function downloadPromo(btn, filename) {
@@ -1196,8 +2399,10 @@
       try {
         const canvas = await html2canvas(frame, {
           useCORS: true,
-          allowTaint: true,
-          backgroundColor: '#F8F7F4'
+          allowTaint: false,
+          backgroundColor: '#F8F7F4',
+          scale: 1,
+          logging: true
         });
 
         const link = document.createElement('a');
@@ -1223,8 +2428,10 @@
       try {
         const canvas = await html2canvas(frame, {
           useCORS: true,
-          allowTaint: true,
-          backgroundColor: '#F8F7F4'
+          allowTaint: false,
+          backgroundColor: '#F8F7F4',
+          scale: 1,
+          logging: true
         });
 
         const link = document.createElement('a');
@@ -1240,45 +2447,274 @@
       btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PNG';
     }
 
-    async function downloadAll() {
-      const filenames = [
-        'daysift-cover.png',
-        'daysift-search.png',
-        'daysift-ai.png',
-        'daysift-notes.png',
-        'daysift-actions.png'
-      ];
+    // Preload all images to avoid CORS issues
+    async function preloadImages() {
+      const images = document.querySelectorAll('img');
+      const promises = Array.from(images).map(img => {
+        if (img.complete) return Promise.resolve();
+        return new Promise((resolve) => {
+          img.onload = resolve;
+          img.onerror = resolve; // Continue even if image fails
+        });
+      });
+      await Promise.all(promises);
+    }
 
-      const frames = document.querySelectorAll('.screenshot-frame');
-      const allBtn = event.target.closest('.download-btn');
+    // Store captured screenshots
+    const capturedScreenshots = [];
 
-      allBtn.disabled = true;
-      allBtn.textContent = 'Generating...';
+    function showFlyout() {
+      let flyout = document.getElementById('download-flyout');
+      if (!flyout) {
+        flyout = document.createElement('div');
+        flyout.id = 'download-flyout';
+        flyout.className = 'download-flyout';
+        flyout.innerHTML = `
+          <div class="download-flyout-header">
+            <h3>Capturing Screenshots</h3>
+            <button class="download-flyout-close" onclick="closeFlyout()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="download-flyout-items" id="flyout-items"></div>
+          <div class="download-flyout-footer">
+            <button class="download-flyout-btn" id="flyout-download-btn" disabled>
+              Capturing...
+            </button>
+          </div>
+        `;
+        document.body.appendChild(flyout);
+      }
 
-      for (let i = 0; i < frames.length; i++) {
-        allBtn.textContent = `Downloading ${i + 1}/${frames.length}...`;
+      // Reset items
+      document.getElementById('flyout-items').innerHTML = '';
+      document.getElementById('flyout-download-btn').disabled = true;
+      document.getElementById('flyout-download-btn').textContent = 'Capturing...';
+      capturedScreenshots.length = 0;
 
-        try {
-          const canvas = await html2canvas(frames[i], {
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#F8F7F4'
-          });
+      // Show with animation
+      setTimeout(() => flyout.classList.add('visible'), 10);
+    }
 
-          const link = document.createElement('a');
-          link.download = filenames[i];
-          link.href = canvas.toDataURL('image/png');
-          link.click();
+    function closeFlyout() {
+      const flyout = document.getElementById('download-flyout');
+      if (flyout) {
+        flyout.classList.remove('visible');
+      }
+    }
 
-          // Small delay between downloads
-          await new Promise(r => setTimeout(r, 500));
-        } catch (err) {
-          console.error(`Screenshot ${i + 1} failed:`, err);
+    function addFlyoutItem(name, status, thumbUrl = null) {
+      const items = document.getElementById('flyout-items');
+      const itemId = name.replace(/[^a-z0-9]/gi, '-');
+
+      let item = document.getElementById(`flyout-item-${itemId}`);
+      if (!item) {
+        item = document.createElement('div');
+        item.id = `flyout-item-${itemId}`;
+        item.className = 'download-flyout-item';
+        item.innerHTML = `
+          <div class="download-flyout-thumb" id="thumb-${itemId}">
+            ${status === 'loading' ? '<div class="download-flyout-spinner" style="margin: 12px auto;"></div>' : ''}
+          </div>
+          <div class="download-flyout-info">
+            <div class="download-flyout-name">${name}</div>
+            <div class="download-flyout-status ${status}" id="status-${itemId}">
+              ${status === 'loading' ? 'Capturing...' : status === 'success' ? 'Ready' : 'Failed'}
+            </div>
+          </div>
+        `;
+        items.appendChild(item);
+      } else {
+        // Update existing
+        const statusEl = document.getElementById(`status-${itemId}`);
+        const thumbEl = document.getElementById(`thumb-${itemId}`);
+
+        statusEl.className = `download-flyout-status ${status}`;
+        statusEl.textContent = status === 'loading' ? 'Capturing...' : status === 'success' ? 'Ready' : 'Failed';
+
+        if (thumbUrl && status === 'success') {
+          thumbEl.innerHTML = `<img src="${thumbUrl}" alt="">`;
+        } else if (status === 'error') {
+          thumbEl.innerHTML = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e53935" stroke-width="2" style="margin: 8px auto; display: block;"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg>`;
+        }
+      }
+    }
+
+    function updateFlyoutButton(ready, successCount) {
+      const btn = document.getElementById('flyout-download-btn');
+      if (ready) {
+        btn.disabled = false;
+        btn.textContent = `Download ZIP (${successCount} screenshots)`;
+        btn.onclick = downloadZip;
+      }
+    }
+
+    async function downloadZip() {
+      const btn = document.getElementById('flyout-download-btn');
+      btn.disabled = true;
+      btn.textContent = 'Creating ZIP...';
+
+      const zip = new JSZip();
+      const folder = zip.folder('daysift-screenshots');
+
+      for (const item of capturedScreenshots) {
+        if (item.dataUrl) {
+          const base64Data = item.dataUrl.split(',')[1];
+          folder.file(item.filename, base64Data, { base64: true });
         }
       }
 
-      allBtn.disabled = false;
-      allBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download All (5 PNGs)';
+      try {
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        const link = document.createElement('a');
+        link.download = 'daysift-screenshots.zip';
+        link.href = URL.createObjectURL(zipBlob);
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+
+        btn.textContent = 'Downloaded!';
+        setTimeout(() => {
+          btn.textContent = `Download ZIP (${capturedScreenshots.filter(s => s.dataUrl).length} screenshots)`;
+          btn.disabled = false;
+        }, 2000);
+      } catch (err) {
+        console.error('ZIP creation failed:', err);
+        btn.textContent = 'ZIP Failed - Try Again';
+        btn.disabled = false;
+      }
+    }
+
+    // Convert images to data URLs to avoid CORS issues with file:// protocol
+    async function convertImagesToDataUrls() {
+      const images = document.querySelectorAll('.screenshot-frame img, .promo-frame img');
+      const convertPromises = Array.from(images).map(async (img) => {
+        if (img.src.startsWith('data:')) return; // Already a data URL
+        if (!img.src) return;
+
+        try {
+          const response = await fetch(img.src);
+          const blob = await response.blob();
+          const dataUrl = await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(blob);
+          });
+          img.src = dataUrl;
+        } catch (err) {
+          console.warn(`Could not convert image: ${img.src}`, err);
+        }
+      });
+
+      await Promise.all(convertPromises);
+      console.log(`Converted ${images.length} images to data URLs`);
+    }
+
+    async function downloadAll() {
+      // Screenshots (1280x800) + Promos (440x280 small, 1400x560 marquee)
+      const items = [
+        { selector: '.screenshot-frame', index: 0, filename: 'daysift-cover.png', width: 1280, height: 800 },
+        { selector: '.screenshot-frame', index: 1, filename: 'daysift-search.png', width: 1280, height: 800 },
+        { selector: '.screenshot-frame', index: 2, filename: 'daysift-ai.png', width: 1280, height: 800 },
+        { selector: '.screenshot-frame', index: 3, filename: 'daysift-notes.png', width: 1280, height: 800 },
+        { selector: '.screenshot-frame', index: 4, filename: 'daysift-actions.png', width: 1280, height: 800 },
+        { selector: '.promo-frame.promo-small', index: 0, filename: 'daysift-promo-small.png', width: 440, height: 280 },
+        { selector: '.promo-frame.promo-marquee', index: 0, filename: 'daysift-promo-marquee.png', width: 1400, height: 560 }
+      ];
+
+      const frames = items.map(item => {
+        const elements = document.querySelectorAll(item.selector);
+        console.log(`Selector "${item.selector}" found ${elements.length} elements`);
+        return { frame: elements[item.index], filename: item.filename, width: item.width, height: item.height };
+      }).filter(item => item.frame);
+
+      console.log(`Total frames to capture: ${frames.length}`, frames.map(f => `${f.filename} (${f.width}x${f.height})`));
+
+      // Show flyout
+      showFlyout();
+
+      // Convert all images to data URLs (fixes file:// CORS issues)
+      document.getElementById('flyout-download-btn').textContent = 'Converting images...';
+      await convertImagesToDataUrls();
+
+      // Preload images
+      await preloadImages();
+
+      let successCount = 0;
+
+      // Capture each screenshot and promo
+      for (let i = 0; i < frames.length; i++) {
+        const { frame, filename, width, height } = frames[i];
+
+        // Add loading state
+        addFlyoutItem(filename, 'loading');
+
+        try {
+          // Wait before capture
+          await new Promise(r => setTimeout(r, 500));
+
+          const capturedCanvas = await html2canvas(frame, {
+            useCORS: true,
+            allowTaint: false,
+            backgroundColor: '#F8F7F4',
+            logging: false,
+            imageTimeout: 15000,
+            foreignObjectRendering: false,
+            onclone: function(clonedDoc) {
+              const style = clonedDoc.createElement('style');
+              style.textContent = '*, *::before, *::after { animation: none !important; transition: none !important; }';
+              clonedDoc.head.appendChild(style);
+            }
+          });
+
+          // Resize to exact dimensions required by Chrome Web Store
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(capturedCanvas, 0, 0, width, height);
+
+          console.log(`Canvas for ${filename}: captured ${capturedCanvas.width}x${capturedCanvas.height}, resized to ${width}x${height}`);
+
+          let dataUrl;
+          try {
+            dataUrl = canvas.toDataURL('image/png');
+          } catch (securityErr) {
+            console.error(`✗ toDataURL security error for ${filename}:`, securityErr);
+            console.log('Canvas was likely tainted by cross-origin images.');
+            console.log('Try serving files via local server: npx serve .');
+            capturedScreenshots.push({ filename, dataUrl: null });
+            addFlyoutItem(filename, 'error');
+            continue;
+          }
+
+          if (dataUrl && dataUrl.length > 100) {
+            capturedScreenshots.push({ filename, dataUrl });
+            addFlyoutItem(filename, 'success', dataUrl);
+            successCount++;
+            console.log(`✓ Captured ${filename} (${Math.round(dataUrl.length/1024)}KB)`);
+          } else {
+            capturedScreenshots.push({ filename, dataUrl: null });
+            addFlyoutItem(filename, 'error');
+            console.error(`✗ Empty canvas for ${filename}`);
+          }
+        } catch (err) {
+          capturedScreenshots.push({ filename, dataUrl: null });
+          addFlyoutItem(filename, 'error');
+          console.error(`✗ html2canvas failed for ${filename}:`, err.message);
+        }
+
+        // Small delay between captures
+        await new Promise(r => setTimeout(r, 200));
+      }
+
+      // Update button
+      updateFlyoutButton(true, successCount);
+
+      if (successCount === 0) {
+        document.getElementById('flyout-download-btn').textContent = 'No screenshots captured';
+      }
     }
   </script>
 </body>

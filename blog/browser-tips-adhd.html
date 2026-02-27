@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browser Tips for ADHD: Tools That Work With Your Brain - Daysift Blog</title>
+  <meta name="description" content="Most productivity advice assumes you can stay organized. These browser tips work with your brain, not against it.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Browser Tips for ADHD: Tools That Work With Your Brain">
+  <meta property="og:description" content="Most productivity advice assumes you can stay organized. These tips work with your brain, not against it.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://daysift.com/blog/browser-tips-adhd.html">
+  <meta property="og:image" content="https://daysift.com/blog/images/browser-tips-adhd-og.png">
+  <meta property="og:site_name" content="Daysift">
+  <meta property="article:published_time" content="2026-02-27T00:00:00Z">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@daysiftapp">
+  <meta name="twitter:title" content="Browser Tips for ADHD: Tools That Work With Your Brain">
+  <meta name="twitter:description" content="Most productivity advice assumes you can stay organized. These tips work with your brain, not against it.">
+  <meta name="twitter:image" content="https://daysift.com/blog/images/browser-tips-adhd-og.png">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://daysift.com/blog/browser-tips-adhd.html">
+  <meta name="theme-color" content="#F8F7F4">
+  <meta name="keywords" content="adhd tab management, adhd browser tips, adhd productivity, too many tabs adhd, browser organization adhd">
+
+  <link rel="icon" href="../favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2THKJKR3Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P2THKJKR3Q');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vmbrlb8k8z");
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-wrapper a {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.active {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Article */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .article-header {
+      margin-bottom: 40px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-tag {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .article-date {
+      color: var(--muted-light);
+      font-size: 13px;
+    }
+
+    .article-header h1 {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .article-header .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Article Content */
+    .article-content {
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .article-content h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .article-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .article-content p {
+      margin-bottom: 24px;
+    }
+
+    .article-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .article-content a:hover {
+      text-decoration: underline;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    .article-content kbd {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.85em;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .article-content em {
+      font-style: italic;
+    }
+
+    /* Tip card */
+    .tip-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .tip-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .tip-card-number {
+      background: var(--accent);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .tip-card-title h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+    }
+
+    .tip-card h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      margin: 16px 0 8px 0;
+    }
+
+    .tip-card h4:first-of-type {
+      margin-top: 0;
+    }
+
+    .tip-card p {
+      margin: 0 0 12px 0;
+      color: var(--muted);
+    }
+
+    .tip-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tip-card .takeaway {
+      background: var(--bg-alt);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 14px;
+      margin-top: 16px;
+    }
+
+    .tip-card .takeaway strong {
+      color: var(--foreground);
+    }
+
+    /* Callout box */
+    .callout {
+      background: var(--bg-alt);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+
+    .callout p {
+      margin: 0;
+    }
+
+    .callout p + p {
+      margin-top: 12px;
+    }
+
+    /* CTA Box */
+    .article-cta {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    .article-cta h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .article-cta p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .article-cta .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+
+    .article-cta .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Back link */
+    .article-back {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .article-back a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .article-back a:hover {
+      color: var(--foreground);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 24px;
+    }
+
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 64px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .article-header h1 {
+        font-size: 28px;
+      }
+
+      .article-content {
+        font-size: 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+
+      .tip-card-header {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Browser Tips for ADHD: Tools That Work With Your Brain",
+    "description": "Most productivity advice assumes you can stay organized. These browser tips work with your brain, not against it.",
+    "image": "https://daysift.com/blog/images/browser-tips-adhd-og.png",
+    "datePublished": "2026-02-27T00:00:00Z",
+    "dateModified": "2026-02-27T00:00:00Z",
+    "author": {
+      "@type": "Organization",
+      "name": "Daysift",
+      "url": "https://daysift.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Daysift",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://daysift.com/logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://daysift.com/blog/browser-tips-adhd.html"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="../">
+          <img src="../logo.png" alt="Daysift" class="logo">
+        </a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="./" class="active">Blog</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <article class="article">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="article-tag">Productivity</span>
+        <span class="article-date">February 27, 2026</span>
+      </div>
+      <h1>Browser Tips for ADHD: Tools That Work With Your Brain</h1>
+      <p class="subtitle">Most productivity advice has a fatal flaw: it assumes you'll stay organized. These tips don't.</p>
+    </header>
+
+    <div class="article-content">
+
+      <p>"Just use bookmarks." "Close tabs you're not using." "Organize your workspace."</p>
+
+      <p>If you have ADHD, you've heard all this advice. You've probably tried it. And you've probably noticed it doesn't stick—because it requires the one thing ADHD makes hardest: consistent maintenance.</p>
+
+      <p>These tips are different. They work <em>with</em> your brain, not against it.</p>
+
+      <h2>The problem with most advice</h2>
+
+      <p>Standard productivity systems assume you'll:</p>
+
+      <ul>
+        <li>Remember to categorize things</li>
+        <li>Maintain folder structures</li>
+        <li>Come back to organize later</li>
+        <li>Close tabs "when you're done with them"</li>
+      </ul>
+
+      <p>ADHD brains don't work that way. We context-switch. We hyperfocus. We forget where we put things. And we definitely don't do maintenance.</p>
+
+      <p>What works instead: tools that require <strong>zero upkeep</strong> and rely on <strong>retrieval over organization</strong>.</p>
+
+      <div class="tip-card">
+        <div class="tip-card-header">
+          <span class="tip-card-number">1</span>
+          <div class="tip-card-title">
+            <h3>Search instead of organize</h3>
+          </div>
+        </div>
+        <h4>The tip</h4>
+        <p>Use a tool that searches all your tabs and history instantly—so you never have to organize anything.</p>
+        <h4>Why it works for ADHD</h4>
+        <p>No folders to maintain. No decisions about where things go. Just search when you need something.</p>
+        <h4>How</h4>
+        <p>Daysift's <kbd>⌘J</kbd> searches everything: open tabs, closed tabs, history. Type a few letters, hit enter.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> The best organization system is the one you never have to maintain.
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-header">
+          <span class="tip-card-number">2</span>
+          <div class="tip-card-title">
+            <h3>Let yourself have 50 tabs</h3>
+          </div>
+        </div>
+        <h4>The tip</h4>
+        <p>Stop feeling guilty about your tab count. It's not a character flaw.</p>
+        <h4>Why it works for ADHD</h4>
+        <p>Tabs are working memory externalized. Each one is a context thread, a "thing I might need." Closing them loses the "why" of why you opened them.</p>
+        <h4>How</h4>
+        <p>Keep tabs open. Use search to navigate instead of scrolling. Stop treating tab count as a problem to solve.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Tab hoarding isn't a flaw—it's a coping strategy. Embrace it.
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-header">
+          <span class="tip-card-number">3</span>
+          <div class="tip-card-title">
+            <h3>Use keyboard shortcuts for everything</h3>
+          </div>
+        </div>
+        <h4>The tip</h4>
+        <p>Reduce friction by keeping your hands on the keyboard.</p>
+        <h4>Why it works for ADHD</h4>
+        <p>Mouse movements break focus. Shortcuts become automatic—one less decision to make. Faster actions mean less time to get distracted mid-task.</p>
+        <h4>Essential shortcuts</h4>
+        <ul>
+          <li><kbd>⌘J</kbd> — search tabs and history (Daysift)</li>
+          <li><kbd>⌘W</kbd> — close current tab</li>
+          <li><kbd>⌘Shift+T</kbd> — reopen closed tab</li>
+          <li><kbd>⌘L</kbd> — jump to address bar</li>
+        </ul>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Every mouse reach is a chance to lose focus.
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-header">
+          <span class="tip-card-number">4</span>
+          <div class="tip-card-title">
+            <h3>Capture thoughts without leaving the page</h3>
+          </div>
+        </div>
+        <h4>The tip</h4>
+        <p>Use floating notes instead of switching to a separate notes app.</p>
+        <h4>Why it works for ADHD</h4>
+        <p>Context switch = thought lost. If you have to open another app to write something down, there's a good chance you won't do it—or you'll forget what you were going to write by the time you get there.</p>
+        <h4>How</h4>
+        <p>Daysift's floating notes hover over any page. Press <kbd>⌘J</kbd>, type <code>/notes</code>. Write your thought. Done.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> The best capture system is the one that doesn't break your flow.
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-header">
+          <span class="tip-card-number">5</span>
+          <div class="tip-card-title">
+            <h3>Don't trust "I'll remember this later"</h3>
+          </div>
+        </div>
+        <h4>The tip</h4>
+        <p>If something matters, do something with it <em>now</em>.</p>
+        <h4>Why it works for ADHD</h4>
+        <p>Working memory is unreliable. "Later" often means "never." The thought that seems unforgettable right now will be completely gone in 10 minutes.</p>
+        <h4>How</h4>
+        <p>Pin important pages. Add a note. Or at minimum—trust that search will find it later. Don't rely on remembering.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> Your future self won't remember. Make things findable instead.
+        </div>
+      </div>
+
+      <div class="tip-card">
+        <div class="tip-card-header">
+          <span class="tip-card-number">6</span>
+          <div class="tip-card-title">
+            <h3>Embrace the rabbit hole (but make it findable)</h3>
+          </div>
+        </div>
+        <h4>The tip</h4>
+        <p>Don't fight hyperfocus—just make sure you can get back to where you started.</p>
+        <h4>Why it works for ADHD</h4>
+        <p>Hyperfocus is a superpower when channeled. Interrupting it is painful and counterproductive. The problem isn't the rabbit hole—it's losing the entrance when you surface.</p>
+        <h4>How</h4>
+        <p>Let yourself go deep. Keep those 30 research tabs open. Trust that Daysift's search will help you find your way back when you need to.</p>
+        <div class="takeaway">
+          <strong>Key takeaway:</strong> The goal isn't fewer tabs. It's confident retrieval.
+        </div>
+      </div>
+
+      <h2>The common thread</h2>
+
+      <p>Notice what these tips have in common:</p>
+
+      <ul>
+        <li><strong>Zero maintenance required</strong> — nothing to organize, sort, or clean up</li>
+        <li><strong>Work with context-switching</strong> — not against it</li>
+        <li><strong>Retrieval over organization</strong> — find things instead of filing them</li>
+        <li><strong>Reduce decisions</strong> — not tabs</li>
+      </ul>
+
+      <div class="callout">
+        <p><strong>The bottom line:</strong> Stop trying to be organized. Start making things findable.</p>
+        <p>Your brain works differently. Your tools should too.</p>
+      </div>
+
+      <!-- CTA Box -->
+      <div class="article-cta">
+        <h3>Daysift: Search for ADHD brains</h3>
+        <p>Find anything without organizing anything.</p>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn">Install for Chrome →</a>
+      </div>
+
+      <div class="article-back">
+        <a href="./">← Back to Blog</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="../logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="./">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

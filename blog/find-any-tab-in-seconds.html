@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Find Any Tab in Seconds - Daysift Blog</title>
+  <meta name="description" content="Stop scrolling through 50 tabs. Press one shortcut to search them all instantly. Here's how.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="How to Find Any Tab in Seconds">
+  <meta property="og:description" content="Stop scrolling through 50 tabs. Press one shortcut to search them all instantly.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://daysift.com/blog/find-any-tab-in-seconds.html">
+  <meta property="og:image" content="https://daysift.com/blog/images/find-any-tab-og.png">
+  <meta property="og:site_name" content="Daysift">
+  <meta property="article:published_time" content="2026-02-27T00:00:00Z">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@daysiftapp">
+  <meta name="twitter:title" content="How to Find Any Tab in Seconds">
+  <meta name="twitter:description" content="Stop scrolling through 50 tabs. Press one shortcut to search them all instantly.">
+  <meta name="twitter:image" content="https://daysift.com/blog/images/find-any-tab-og.png">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://daysift.com/blog/find-any-tab-in-seconds.html">
+  <meta name="theme-color" content="#F8F7F4">
+  <meta name="keywords" content="search all open tabs, find tab, browser search, tab search, keyboard shortcut">
+
+  <link rel="icon" href="../favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2THKJKR3Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P2THKJKR3Q');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vmbrlb8k8z");
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+      --badge-bg: #E7E5E4;
+      --badge-text: #78716C;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-wrapper a {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.active {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    .nav-links a.accent:hover {
+      color: var(--accent-hover);
+    }
+
+    /* Article */
+    .article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .article-header {
+      margin-bottom: 40px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .article-tag {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .article-date {
+      color: var(--muted-light);
+      font-size: 13px;
+    }
+
+    .article-header h1 {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .article-header .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Article Content */
+    .article-content {
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .article-content h2 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 48px;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .article-content h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+    }
+
+    .article-content p {
+      margin-bottom: 24px;
+    }
+
+    .article-content a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .article-content a:hover {
+      text-decoration: underline;
+    }
+
+    .article-content ul,
+    .article-content ol {
+      margin-bottom: 24px;
+      padding-left: 24px;
+    }
+
+    .article-content li {
+      margin-bottom: 8px;
+    }
+
+    .article-content code {
+      background: var(--bg-alt);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-family: 'SF Mono', Monaco, monospace;
+    }
+
+    .article-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 24px 0;
+      border: 1px solid var(--border);
+    }
+
+    .article-content kbd {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 0.85em;
+      font-family: 'SF Mono', Monaco, monospace;
+      font-weight: 500;
+    }
+
+    /* Step boxes */
+    .step-box {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .step-box h3 {
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .step-number {
+      background: var(--accent);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .step-box p {
+      margin-bottom: 0;
+      margin-top: 12px;
+    }
+
+    .step-box p + p {
+      margin-top: 12px;
+    }
+
+    /* Pro tip */
+    .pro-tip {
+      background: var(--bg-alt);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 24px 0;
+      font-size: 15px;
+    }
+
+    .pro-tip strong {
+      color: var(--accent);
+    }
+
+    /* Keyboard shortcut display */
+    .shortcut-display {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .shortcut-display kbd {
+      background: var(--foreground);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 18px;
+      border-radius: 6px;
+    }
+
+    .shortcut-display span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* CTA Box */
+    .article-cta {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    .article-cta h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .article-cta p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .article-cta .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: background 0.15s;
+    }
+
+    .article-cta .btn:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Back link */
+    .article-back {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .article-back a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .article-back a:hover {
+      color: var(--foreground);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .footer-brand img {
+      height: 24px;
+    }
+
+    .footer-brand span {
+      font-size: 12px;
+      color: var(--muted-light);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 64px;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.15s;
+    }
+
+    .footer-col a:hover {
+      color: var(--foreground);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .article-header h1 {
+        font-size: 28px;
+      }
+
+      .article-content {
+        font-size: 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      footer .container {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 32px;
+      }
+
+      .shortcut-display {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Find Any Tab in Seconds",
+    "description": "Stop scrolling through 50 tabs. Press one shortcut to search them all instantly.",
+    "image": "https://daysift.com/blog/images/find-any-tab-og.png",
+    "totalTime": "PT2M",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Install Daysift",
+        "text": "Install Daysift from the Chrome Web Store. Takes 10 seconds."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Press the shortcut",
+        "text": "Press Cmd+J on Mac or Ctrl+J on Windows to open the search bar."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Type what you're looking for",
+        "text": "Search by title, URL, or keywords. Results appear as you type."
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Press Enter to open",
+        "text": "Use arrow keys to navigate, Enter to open, Esc to close."
+      }
+    ],
+    "author": {
+      "@type": "Organization",
+      "name": "Daysift",
+      "url": "https://daysift.com"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="../">
+          <img src="../logo.png" alt="Daysift" class="logo">
+        </a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="./" class="active">Blog</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Article -->
+  <article class="article">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="article-tag">How-To</span>
+        <span class="article-date">February 27, 2026</span>
+      </div>
+      <h1>How to Find Any Tab in Seconds</h1>
+      <p class="subtitle">Stop scrolling through your tab bar. Search all your tabs at once with one keyboard shortcut.</p>
+    </header>
+
+    <div class="article-content">
+
+      <p>47 tabs open. One of them has that article you need. Good luck scrolling through them all to find it.</p>
+
+      <p>There's a faster way: search all your tabs at once with a keyboard shortcut. Here's how.</p>
+
+      <h2>What you'll need</h2>
+
+      <ul>
+        <li>Chrome browser</li>
+        <li>Daysift extension (free)</li>
+      </ul>
+
+      <div class="step-box">
+        <h3><span class="step-number">1</span> Install Daysift</h3>
+        <p>Head to the <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Chrome Web Store</a> and click "Add to Chrome." Takes about 10 seconds.</p>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-number">2</span> Press the shortcut</h3>
+        <p>From any page, press:</p>
+        <div class="shortcut-display">
+          <kbd>⌘J</kbd>
+          <span>Mac</span>
+          <span style="margin: 0 8px;">or</span>
+          <kbd>Ctrl+J</kbd>
+          <span>Windows</span>
+        </div>
+        <p>The search bar appears instantly, ready for your query.</p>
+      </div>
+
+      <div class="pro-tip">
+        <strong>Pro tip:</strong> The shortcut works from any tab, even if you're watching a video or filling out a form. It overlays on top of everything.
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-number">3</span> Type what you're looking for</h3>
+        <p>Search by page title, URL, or keywords you remember. Results appear as you type.</p>
+        <p>Daysift searches both your open tabs <em>and</em> your recent history—so you can find pages you've already closed too.</p>
+      </div>
+
+      <div class="step-box">
+        <h3><span class="step-number">4</span> Press Enter to open</h3>
+        <p>Use <kbd>↑</kbd> <kbd>↓</kbd> to navigate results. Press <kbd>Enter</kbd> to open. Press <kbd>Esc</kbd> to close.</p>
+        <p>If the tab is already open, Daysift switches to it. If it's from history, it opens in a new tab.</p>
+      </div>
+
+      <h2>Bonus: search your history too</h2>
+
+      <p>The same shortcut searches your browsing history. Found that article three days ago but closed the tab? Just search for it.</p>
+
+      <p>The free plan keeps 14 days of history. Pro unlocks unlimited.</p>
+
+      <h2>That's it</h2>
+
+      <p>No more tab hunting. No more squinting at tiny favicons. Just:</p>
+
+      <ol>
+        <li><kbd>⌘J</kbd></li>
+        <li>Type what you want</li>
+        <li>Done</li>
+      </ol>
+
+      <p>Faster than scrolling. Every time.</p>
+
+      <!-- CTA Box -->
+      <div class="article-cta">
+        <h3>Try Daysift Free</h3>
+        <p>Find anything in your browser with one shortcut.</p>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn">Install for Chrome →</a>
+      </div>
+
+      <div class="article-back">
+        <a href="./">← Back to Blog</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="../logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="./">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
