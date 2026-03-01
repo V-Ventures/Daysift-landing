@@ -2765,41 +2765,55 @@
       });
     }
 
-    // Hero video: click to open modal
-    const heroVideo = document.getElementById('heroVideo');
-    const videoModal = document.getElementById('videoModal');
-    const videoModalIframe = document.getElementById('videoModalIframe');
-    const videoModalClose = document.getElementById('videoModalClose');
+  </script>
 
-    if (heroVideo && videoModal) {
-      heroVideo.addEventListener('click', function() {
-        videoModalIframe.src = 'https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&rel=0&modestbranding=1';
-        videoModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      });
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="video-modal-close" id="videoModalClose">&times;</button>
+      <iframe id="videoModalIframe" src="" title="Daysift Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
 
-      videoModalClose.addEventListener('click', function() {
-        videoModal.classList.remove('active');
-        videoModalIframe.src = '';
-        document.body.style.overflow = '';
-      });
+  <!-- Video Modal Script -->
+  <script>
+    (function() {
+      const heroVideo = document.getElementById('heroVideo');
+      const videoModal = document.getElementById('videoModal');
+      const videoModalIframe = document.getElementById('videoModalIframe');
+      const videoModalClose = document.getElementById('videoModalClose');
 
-      videoModal.addEventListener('click', function(e) {
-        if (e.target === videoModal) {
+      if (heroVideo && videoModal) {
+        heroVideo.addEventListener('click', function() {
+          videoModalIframe.src = 'https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&rel=0&modestbranding=1';
+          videoModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+
+        videoModalClose.addEventListener('click', function(e) {
+          e.stopPropagation();
           videoModal.classList.remove('active');
           videoModalIframe.src = '';
           document.body.style.overflow = '';
-        }
-      });
+        });
 
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && videoModal.classList.contains('active')) {
-          videoModal.classList.remove('active');
-          videoModalIframe.src = '';
-          document.body.style.overflow = '';
-        }
-      });
-    }
+        videoModal.addEventListener('click', function(e) {
+          if (e.target === videoModal) {
+            videoModal.classList.remove('active');
+            videoModalIframe.src = '';
+            document.body.style.overflow = '';
+          }
+        });
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+            videoModal.classList.remove('active');
+            videoModalIframe.src = '';
+            document.body.style.overflow = '';
+          }
+        });
+      }
+    })();
   </script>
 
   <!-- Reddit Pixel: Track CTA clicks -->
@@ -2812,13 +2826,5 @@
       });
     });
   </script>
-
-  <!-- Video Modal -->
-  <div class="video-modal" id="videoModal">
-    <div class="video-modal-content">
-      <button class="video-modal-close" id="videoModalClose">&times;</button>
-      <iframe id="videoModalIframe" src="" title="Daysift Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-    </div>
-  </div>
 </body>
 </html>
