@@ -432,9 +432,9 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.9);
-      width: 80px;
-      height: 80px;
-      background: rgba(244, 107, 69, 0.95);
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(180deg, #F6A076 0%, #E8654A 100%);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -442,14 +442,14 @@
       opacity: 0;
       transition: opacity 0.25s, transform 0.25s;
       z-index: 10;
-      box-shadow: 0 8px 24px rgba(244, 107, 69, 0.35);
+      box-shadow: 0 12px 32px rgba(244, 107, 69, 0.4);
     }
 
     .video-play-btn svg {
-      width: 28px;
-      height: 28px;
+      width: 38px;
+      height: 38px;
       color: #fff;
-      margin-left: 5px;
+      margin-left: 8px;
     }
 
     .video-container:hover .video-play-btn {
@@ -2035,7 +2035,7 @@
         <div class="video-container" id="heroVideo">
           <img src="https://img.youtube.com/vi/lbEv7E404ks/maxresdefault.jpg" alt="Daysift Demo" class="video-poster">
           <div class="video-play-btn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 6.5c0-1.1.9-1.5 1.7-1l8.1 5c.8.5.8 1.5 0 2l-8.1 5c-.8.5-1.7.1-1.7-1v-10z"/></svg>
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.14v13.72c0 1.04 1.13 1.69 2.03 1.17l10.96-6.86c.85-.53.85-1.81 0-2.34L10.03 3.97C9.13 3.45 8 4.1 8 5.14z"/></svg>
           </div>
           <span class="video-label">Watch the demo</span>
         </div>
