@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Assets - Daysift</title>
+  <meta name="description" content="Download Daysift logos, screenshots, and social media assets.">
+  <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --background: #FDFCFB;
+      --foreground: #292524;
+      --muted: #F5F4F2;
+      --muted-foreground: #78716C;
+      --border: #E7E5E4;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navigation */
+    nav {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      height: 26px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--muted-foreground);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover {
+      color: var(--foreground);
+    }
+
+    .nav-links a.accent {
+      color: var(--accent);
+    }
+
+    /* Header */
+    .page-header {
+      padding: 60px 0 40px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .page-header p {
+      color: var(--muted-foreground);
+      font-size: 16px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+
+    .tab {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted-foreground);
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.15s;
+    }
+
+    .tab:hover {
+      color: var(--foreground);
+    }
+
+    .tab.active {
+      color: var(--foreground);
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    /* Tab Content */
+    .tab-content {
+      display: none;
+      padding-bottom: 80px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Asset Grid */
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .asset-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .asset-preview {
+      aspect-ratio: 3 / 1;
+      background: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .asset-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .asset-preview.contain img {
+      object-fit: contain;
+      padding: 20px;
+    }
+
+    .asset-preview.logo-preview {
+      aspect-ratio: 2 / 1;
+    }
+
+    .asset-preview.screenshot-preview {
+      aspect-ratio: 16 / 10;
+    }
+
+    .asset-info {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .asset-info h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .asset-info span {
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    .download-btn {
+      background: var(--foreground);
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+
+    .download-btn:hover {
+      opacity: 0.85;
+    }
+
+    /* Social preview - special styling */
+    .social-preview {
+      background: #F46B45;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .social-preview span {
+      color: white;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+
+    footer span {
+      font-size: 12px;
+      color: var(--muted-foreground);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .page-header h1 {
+        font-size: 28px;
+      }
+
+      .asset-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="./">
+        <img src="logo.png" alt="Daysift" class="logo">
+      </a>
+      <div class="nav-links">
+        <a href="./#features">Features</a>
+        <a href="./#pricing">Pricing</a>
+        <a href="./blog/">Blog</a>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <header class="page-header">
+      <h1>Brand Assets</h1>
+      <p>Logos, screenshots, and social media assets for press and partners.</p>
+    </header>
+
+    <div class="tabs">
+      <button class="tab" data-tab="screenshots">Screenshots</button>
+      <button class="tab active" data-tab="social">Social Assets</button>
+      <button class="tab" data-tab="logos">Logos</button>
+    </div>
+
+    <!-- Screenshots Tab -->
+    <div id="screenshots" class="tab-content">
+      <p style="color: var(--muted-foreground); padding: 40px 0;">Screenshots coming soon.</p>
+    </div>
+
+    <!-- Social Assets Tab -->
+    <div id="social" class="tab-content active">
+      <div class="asset-grid">
+        <div class="asset-card">
+          <div class="asset-preview social-preview">
+            <span>Find anything you've browsed.</span>
+          </div>
+          <div class="asset-info">
+            <div>
+              <h3>Twitter/X Cover</h3>
+              <span>PNG · 1500×500</span>
+            </div>
+            <a href="images/twitter-cover.svg" download class="download-btn">Download SVG</a>
+          </div>
+        </div>
+
+        <div class="asset-card">
+          <div class="asset-preview">
+            <img src="og-image.png" alt="OG Image">
+          </div>
+          <div class="asset-info">
+            <div>
+              <h3>Open Graph Image</h3>
+              <span>PNG · 1200×630</span>
+            </div>
+            <a href="og-image.png" download class="download-btn">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Logos Tab -->
+    <div id="logos" class="tab-content">
+      <div class="asset-grid">
+        <div class="asset-card">
+          <div class="asset-preview logo-preview contain">
+            <img src="logo.png" alt="Daysift logo">
+          </div>
+          <div class="asset-info">
+            <div>
+              <h3>Logo (Dark)</h3>
+              <span>PNG · For light backgrounds</span>
+            </div>
+            <a href="logo.png" download class="download-btn">Download</a>
+          </div>
+        </div>
+
+        <div class="asset-card">
+          <div class="asset-preview logo-preview contain" style="background: #1a1a1a;">
+            <img src="logo-light.png" alt="Daysift logo light">
+          </div>
+          <div class="asset-info">
+            <div>
+              <h3>Logo (Light)</h3>
+              <span>PNG · For dark backgrounds</span>
+            </div>
+            <a href="logo-light.png" download class="download-btn">Download</a>
+          </div>
+        </div>
+
+        <div class="asset-card">
+          <div class="asset-preview logo-preview contain">
+            <img src="favicon.png" alt="Daysift icon">
+          </div>
+          <div class="asset-info">
+            <div>
+              <h3>App Icon</h3>
+              <span>PNG · 128×128</span>
+            </div>
+            <a href="favicon.png" download class="download-btn">Download</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2026 Daysift</span>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
