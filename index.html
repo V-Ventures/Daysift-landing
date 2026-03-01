@@ -432,21 +432,22 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(0.9);
-      width: 72px;
-      height: 72px;
-      background: rgba(0, 0, 0, 0.75);
-      border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      background: rgba(244, 107, 69, 0.9);
+      border-radius: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: opacity 0.25s, transform 0.25s;
       z-index: 10;
+      box-shadow: 0 8px 24px rgba(244, 107, 69, 0.3);
     }
 
     .video-play-btn svg {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       color: #fff;
       margin-left: 4px;
     }
@@ -456,8 +457,28 @@
       transform: translate(-50%, -50%) scale(1);
     }
 
-    .video-container.playing .video-play-btn {
+    .video-container.playing .video-play-btn,
+    .video-container.playing .video-label {
       display: none;
+    }
+
+    .video-label {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.25s, transform 0.25s;
+      z-index: 10;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-container:hover .video-label {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* Demo */
@@ -1966,6 +1987,7 @@
           <div class="video-play-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
+          <span class="video-label">Watch the demo</span>
         </div>
       </div>
     </div>
