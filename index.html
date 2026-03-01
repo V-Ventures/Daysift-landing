@@ -404,6 +404,7 @@
       overflow: hidden;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
       background: #000;
+      cursor: pointer;
     }
 
     .video-container iframe {
@@ -413,6 +414,48 @@
       width: 100%;
       height: 100%;
       border: none;
+      pointer-events: none;
+    }
+
+    .video-container.playing iframe {
+      pointer-events: auto;
+    }
+
+    .video-container.playing {
+      cursor: default;
+    }
+
+    .video-play-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.9);
+      width: 72px;
+      height: 72px;
+      background: rgba(0, 0, 0, 0.75);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 10;
+    }
+
+    .video-play-btn svg {
+      width: 28px;
+      height: 28px;
+      color: #fff;
+      margin-left: 4px;
+    }
+
+    .video-container:hover .video-play-btn {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .video-container.playing .video-play-btn {
+      display: none;
     }
 
     /* Demo */
@@ -1910,13 +1953,17 @@
         </div>
       </div>
       <div class="hero-video">
-        <div class="video-container">
+        <div class="video-container" id="heroVideo">
           <iframe
-            src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1"
+            id="videoPreview"
+            src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1&controls=0&mute=1&autoplay=1&loop=1&playlist=lbEv7E404ks"
             title="Daysift Demo"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
           </iframe>
+          <div class="video-play-btn" id="videoPlayBtn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </div>
         </div>
       </div>
     </div>
@@ -2641,6 +2688,20 @@
         const offsetY = 15;
         videoThumb.style.left = e.clientX + offsetX + 'px';
         videoThumb.style.top = e.clientY + offsetY + 'px';
+      });
+    }
+
+    // Hero video: click play button to start with audio
+    const heroVideo = document.getElementById('heroVideo');
+    const videoPlayBtn = document.getElementById('videoPlayBtn');
+
+    if (heroVideo && videoPlayBtn) {
+      heroVideo.addEventListener('click', function() {
+        if (!heroVideo.classList.contains('playing')) {
+          heroVideo.classList.add('playing');
+          document.getElementById('videoPreview').src =
+            'https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1&autoplay=1&start=0';
+        }
       });
     }
   </script>
