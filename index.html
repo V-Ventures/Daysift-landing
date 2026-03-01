@@ -160,6 +160,26 @@
       text-align: left;
     }
 
+    .hero .container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-video {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero-video .video-container {
+      max-width: 100%;
+    }
+
     .hero h1 {
       font-size: 42px;
       font-weight: 500;
@@ -182,6 +202,17 @@
       color: var(--muted);
       margin-bottom: 32px;
       max-width: 480px;
+    }
+
+    @media (max-width: 768px) {
+      .hero .container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .hero-video {
+        width: 100%;
+      }
     }
 
     .hero-kbd {
@@ -362,6 +393,26 @@
       color: var(--muted);
       margin-top: 6px;
       font-weight: 500;
+    }
+
+    /* Video Embed */
+    .video-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     /* Demo */
@@ -1843,32 +1894,30 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1>Find anything. <span>Instantly.</span></h1>
-      <p class="hero-subtitle">Press ⌘J to get back to any doc, page or tab you opened. Plus find conversations, ask AI and more.</p>
-      <div class="platform-hints">
-        <span><kbd>⌘</kbd><kbd>J</kbd> for Mac</span>
-        <span><kbd>Alt</kbd><kbd>J</kbd> for Windows</span>
+      <div class="hero-content">
+        <h1>Find anything. <span>Instantly.</span></h1>
+        <p class="hero-subtitle">Press ⌘J to get back to any doc, page or tab you opened. Plus find conversations, ask AI and more.</p>
+        <div class="platform-hints">
+          <span><kbd>⌘</kbd><kbd>J</kbd> for Mac</span>
+          <span><kbd>Alt</kbd><kbd>J</kbd> for Windows</span>
+        </div>
+        <div class="hero-actions">
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn btn-primary">Get started</a>
+        </div>
+        <div class="privacy-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          100% local · No account · Your data never leaves your device
+        </div>
       </div>
-      <div class="hero-actions">
-        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn btn-primary">Get started</a>
-        <a href="https://youtube.com/watch?v=lbEv7E404ks" target="_blank" class="btn btn-secondary video-link">
-          See how it works <span class="arrow">→</span>
-          <div class="video-thumb">
-            <div class="video-thumb-inner">
-              <div style="position: relative;">
-                <img src="https://img.youtube.com/vi/lbEv7E404ks/mqdefault.jpg" alt="Demo video" class="video-thumb-img">
-                <div class="video-thumb-play">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                </div>
-              </div>
-              <span class="video-thumb-label">Watch demo · 1 min</span>
-            </div>
-          </div>
-        </a>
-      </div>
-      <div class="privacy-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        100% local · No account · Your data never leaves your device
+      <div class="hero-video">
+        <div class="video-container">
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1"
+            title="Daysift Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
     </div>
   </section>
