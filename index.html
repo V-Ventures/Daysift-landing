@@ -1977,13 +1977,7 @@
       </div>
       <div class="hero-video">
         <div class="video-container" id="heroVideo">
-          <iframe
-            id="videoPreview"
-            src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&mute=1&loop=1&playlist=lbEv7E404ks&controls=0&modestbranding=1&rel=0&showinfo=0&disablekb=1"
-            title="Daysift Demo"
-            allow="autoplay; encrypted-media"
-            frameborder="0">
-          </iframe>
+          <img src="https://img.youtube.com/vi/lbEv7E404ks/maxresdefault.jpg" alt="Daysift Demo" class="video-poster">
           <div class="video-play-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
@@ -2715,16 +2709,21 @@
       });
     }
 
-    // Hero video: click to play with audio
+    // Hero video: click to play
     const heroVideo = document.getElementById('heroVideo');
-    const videoPreview = document.getElementById('videoPreview');
 
-    if (heroVideo && videoPreview) {
+    if (heroVideo) {
       heroVideo.addEventListener('click', function() {
         if (!heroVideo.classList.contains('playing')) {
           heroVideo.classList.add('playing');
-          // Switch to video with audio and controls
-          videoPreview.src = 'https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&rel=0&modestbranding=1';
+          // Replace thumbnail with iframe
+          const iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&rel=0&modestbranding=1';
+          iframe.title = 'Daysift Demo';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+          iframe.allowFullscreen = true;
+          heroVideo.innerHTML = '';
+          heroVideo.appendChild(iframe);
         }
       });
     }
