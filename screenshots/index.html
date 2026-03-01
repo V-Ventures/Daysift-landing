@@ -1313,6 +1313,7 @@
   <div class="category-nav">
     <button class="category-tab active" onclick="showCategory('chrome-store')">Chrome Web Store</button>
     <button class="category-tab" onclick="showCategory('blog')">Blog Images</button>
+    <button class="category-tab" onclick="showCategory('social')">Social Assets</button>
   </div>
 
   <!-- Chrome Web Store Category -->
@@ -2339,6 +2340,32 @@
     </div>
   </div>
 
+  <!-- Social Assets Category -->
+  <div id="social" class="category-section">
+    <div class="category-header">
+      <div class="category-title">Social Media Assets</div>
+      <div class="category-desc">Twitter/X, LinkedIn, and other social banners</div>
+    </div>
+
+    <div class="screenshots">
+
+    <!-- Twitter Cover -->
+    <div class="screenshot-wrapper">
+      <div class="screenshot-header">
+        <div class="screenshot-label">Twitter/X Cover</div>
+        <button class="download-btn" onclick="downloadSocialImage(this, 'daysift-twitter-cover.png')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PNG
+        </button>
+      </div>
+      <div class="social-frame twitter-cover" style="width: 1500px; height: 500px; background: #F46B45; display: flex; align-items: center; justify-content: center;">
+        <span style="color: white; font-size: 56px; font-weight: 500; letter-spacing: -0.02em;">Find anything you've browsed.</span>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
   <script>
     // Category navigation
     function showCategory(categoryId) {
@@ -2382,6 +2409,37 @@
         btn.disabled = false;
       } catch (err) {
         console.error('Blog image download failed:', err);
+        btn.textContent = 'Error - try again';
+        btn.disabled = false;
+      }
+    }
+
+    // Social image download
+    async function downloadSocialImage(btn, filename) {
+      const wrapper = btn.closest('.screenshot-wrapper');
+      const frame = wrapper.querySelector('.social-frame');
+
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const canvas = await html2canvas(frame, {
+          useCORS: true,
+          allowTaint: false,
+          backgroundColor: '#F46B45',
+          scale: 1,
+          logging: false
+        });
+
+        const link = document.createElement('a');
+        link.download = filename;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download PNG';
+        btn.disabled = false;
+      } catch (err) {
+        console.error('Social image download failed:', err);
         btn.textContent = 'Error - try again';
         btn.disabled = false;
       }
