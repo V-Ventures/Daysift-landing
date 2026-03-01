@@ -407,18 +407,15 @@
       cursor: pointer;
     }
 
-    .video-container iframe {
+    .video-container iframe,
+    .video-container .video-poster {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       border: none;
-      pointer-events: none;
-    }
-
-    .video-container.playing iframe {
-      pointer-events: auto;
+      object-fit: cover;
     }
 
     .video-container.playing {
@@ -1954,13 +1951,7 @@
       </div>
       <div class="hero-video">
         <div class="video-container" id="heroVideo">
-          <iframe
-            id="videoPreview"
-            src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1&controls=0&mute=1&autoplay=1&loop=1&playlist=lbEv7E404ks"
-            title="Daysift Demo"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
+          <img src="https://img.youtube.com/vi/lbEv7E404ks/maxresdefault.jpg" alt="Daysift Demo" class="video-poster">
           <div class="video-play-btn" id="videoPlayBtn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
@@ -2691,16 +2682,14 @@
       });
     }
 
-    // Hero video: click play button to start with audio
+    // Hero video: click to play
     const heroVideo = document.getElementById('heroVideo');
-    const videoPlayBtn = document.getElementById('videoPlayBtn');
 
-    if (heroVideo && videoPlayBtn) {
+    if (heroVideo) {
       heroVideo.addEventListener('click', function() {
         if (!heroVideo.classList.contains('playing')) {
           heroVideo.classList.add('playing');
-          document.getElementById('videoPreview').src =
-            'https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1&autoplay=1&start=0';
+          heroVideo.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1&autoplay=1" title="Daysift Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
         }
       });
     }
