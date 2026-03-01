@@ -416,10 +416,15 @@
       height: 100%;
       border: none;
       object-fit: cover;
+      pointer-events: none;
     }
 
     .video-container.playing {
       cursor: default;
+    }
+
+    .video-container.playing iframe {
+      pointer-events: auto;
     }
 
     .video-play-btn {
@@ -1951,8 +1956,14 @@
       </div>
       <div class="hero-video">
         <div class="video-container" id="heroVideo">
-          <img src="https://img.youtube.com/vi/lbEv7E404ks/maxresdefault.jpg" alt="Daysift Demo" class="video-poster">
-          <div class="video-play-btn" id="videoPlayBtn">
+          <iframe
+            id="videoPreview"
+            src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&mute=1&loop=1&playlist=lbEv7E404ks&controls=0&modestbranding=1&rel=0&showinfo=0&disablekb=1"
+            title="Daysift Demo"
+            allow="autoplay; encrypted-media"
+            frameborder="0">
+          </iframe>
+          <div class="video-play-btn">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
           </div>
         </div>
@@ -2682,14 +2693,16 @@
       });
     }
 
-    // Hero video: click to play
+    // Hero video: click to play with audio
     const heroVideo = document.getElementById('heroVideo');
+    const videoPreview = document.getElementById('videoPreview');
 
-    if (heroVideo) {
+    if (heroVideo && videoPreview) {
       heroVideo.addEventListener('click', function() {
         if (!heroVideo.classList.contains('playing')) {
           heroVideo.classList.add('playing');
-          heroVideo.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/lbEv7E404ks?rel=0&modestbranding=1&autoplay=1" title="Daysift Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+          // Switch to video with audio and controls
+          videoPreview.src = 'https://www.youtube-nocookie.com/embed/lbEv7E404ks?autoplay=1&rel=0&modestbranding=1';
         }
       });
     }
