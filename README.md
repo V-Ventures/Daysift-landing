@@ -41,7 +41,7 @@ Auto-advances every 5 seconds with progress bar indicator. Manual switching paus
 
 ## Current Pricing (Free Tier)
 
-- 14 days of history search
+- 30 days of history search
 - 5 pinned items
 - 5 notes
 - 30 AI credits/month
