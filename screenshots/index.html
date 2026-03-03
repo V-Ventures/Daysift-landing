@@ -2386,9 +2386,86 @@
           Download PNG
         </button>
       </div>
-      <div class="social-frame" style="width: 1088px; height: 816px; background: #F8F7F4; background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 32px 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;">
-        <img src="../logo.png" alt="Daysift" style="height: 48px;">
-        <span style="color: #1a1a1a; font-size: 42px; font-weight: 500; letter-spacing: -0.02em; text-align: center; max-width: 800px;">Find any tab instantly.<br><span style="color: #78716C;">Press ⌘J to search your browser.</span></span>
+      <div class="screenshot-frame uplifted" style="width: 1088px; height: 816px;">
+        <!-- Privacy badges -->
+        <div class="privacy-badges">
+          <div class="privacy-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <path d="M8 21h8"/>
+              <path d="M12 17v4"/>
+            </svg>
+            Local-Only
+          </div>
+          <div class="privacy-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            Private by Design
+          </div>
+        </div>
+        <div class="uplifted-slide">
+          <div class="uplifted-text">
+            <img src="../logo.png" alt="Daysift" style="height: 42px; margin-bottom: 28px;">
+            <h2>Your shortcut to<br><span style="white-space: nowrap;">everything <span class="muted" style="font-style: italic;">'work.'</span></span></h2>
+            <p>Instantly find any doc, page, or tab you've visited. Plus notes and pins.</p>
+            <div class="uplifted-kbd-row">
+              <div class="uplifted-kbd">⌘J <span>Mac</span></div>
+              <div class="uplifted-kbd">Ctrl+J <span>Windows</span></div>
+            </div>
+          </div>
+          <div class="uplifted-demo">
+            <div class="uplifted-mockup">
+              <!-- Main window -->
+              <div class="uplifted-window">
+                <div class="demo-search">
+                  <svg class="demo-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.3-4.3"/>
+                  </svg>
+                  <span class="demo-search-text">Q3 budget</span>
+                </div>
+                <div class="demo-pills" style="height: auto; min-height: auto;">
+                  <div class="demo-pill active">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <rect x="1" y="1" width="6" height="6" rx="1"/>
+                      <rect x="9" y="1" width="6" height="6" rx="1"/>
+                      <rect x="1" y="9" width="6" height="6" rx="1"/>
+                      <rect x="9" y="9" width="6" height="6" rx="1"/>
+                    </svg>
+                    All
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../google-docs.png" alt="">
+                    Docs
+                  </div>
+                  <div class="demo-pill">
+                    <img src="../google-sheets.png" alt="">
+                    Sheets
+                  </div>
+                </div>
+                <div class="demo-results">
+                  <div class="demo-result selected">
+                    <img src="../google-docs.png" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Planning</span>
+                      <span class="demo-result-url">docs.google.com</span>
+                    </div>
+                    <span class="demo-result-time">2d ago</span>
+                  </div>
+                  <div class="demo-result">
+                    <img src="../google-sheets.png" alt="">
+                    <div class="demo-result-content">
+                      <span class="demo-result-title">Q3 Budget Spreadsheet</span>
+                      <span class="demo-result-url">sheets.google.com</span>
+                    </div>
+                    <span class="demo-result-time">1w ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
