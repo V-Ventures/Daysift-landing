@@ -20,23 +20,11 @@
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
-  <!-- SCHEDULED: Add to sitemap on publish
   <url>
     <loc>https://daysift.com/blog/keyboard-shortcuts-save-time.html</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
-  <url>
-    <loc>https://daysift.com/blog/daysift-vs-onetab.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://daysift.com/blog/browser-tips-adhd.html</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  -->
   <url>
     <loc>https://daysift.com/privacy.html</loc>
     <priority>0.5</priority>
