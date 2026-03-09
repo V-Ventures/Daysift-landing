@@ -1961,6 +1961,108 @@
         font-size: 32px;
       }
 
+      /* Demo section mobile */
+      .demo {
+        margin: 24px 0 60px;
+        padding: 0 16px;
+      }
+
+      .browser-content {
+        height: auto;
+        min-height: 380px;
+        padding: 20px 12px;
+      }
+
+      .demo-window {
+        max-width: 100%;
+        min-height: 320px;
+        max-height: none;
+      }
+
+      .demo-search {
+        padding: 10px 10px;
+        height: 44px;
+        gap: 8px;
+      }
+
+      .demo-search-text {
+        font-size: 13px;
+      }
+
+      .demo-pills {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 8px 10px;
+        gap: 6px;
+        height: auto;
+        min-height: 40px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .demo-pills::-webkit-scrollbar {
+        display: none;
+      }
+
+      .demo-pill {
+        padding: 5px 10px;
+        font-size: 11px;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      .demo-results {
+        padding: 8px 10px;
+        gap: 1px;
+      }
+
+      .demo-result {
+        padding: 8px 10px;
+        gap: 10px;
+      }
+
+      .demo-result-title {
+        font-size: 13px;
+      }
+
+      .demo-result-url {
+        font-size: 11px;
+      }
+
+      .demo-result-time {
+        font-size: 11px;
+      }
+
+      .demo-footer {
+        padding: 8px 10px;
+      }
+
+      .demo-shortcuts {
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .demo-shortcuts kbd {
+        padding: 2px 5px;
+        font-size: 10px;
+      }
+
+      .demo-ai-answer {
+        padding: 10px;
+        font-size: 13px;
+      }
+
+      /* Hide floating note popup on mobile - not enough space for both */
+      .demo-floating-note-outside {
+        display: none !important;
+      }
+
+      .demo-switcher-desc {
+        padding: 0 16px;
+        font-size: 15px;
+      }
+
       .features-grid {
         grid-template-columns: 1fr;
       }
@@ -1988,6 +2090,58 @@
       .trust-logos {
         flex-wrap: wrap;
         gap: 24px;
+      }
+    }
+
+    /* Floating CTA button */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--foreground);
+      border-radius: 6px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      font-size: 13px;
+      font-weight: 500;
+      color: #fff;
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease, background 0.15s ease;
+    }
+
+    .floating-cta.visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .floating-cta:hover {
+      background: #333;
+    }
+
+    .floating-cta img {
+      width: 18px;
+      height: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .floating-cta {
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .floating-cta.visible {
+        transform: translateX(-50%) translateY(0);
       }
     }
   </style>
@@ -2847,6 +3001,34 @@
         }
       });
     });
+  </script>
+
+  <!-- Floating CTA -->
+  <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="floating-cta" id="floatingCta">
+    <img src="https://www.google.com/chrome/static/images/chrome-logo-m100.svg" alt="Chrome">
+    Add to Chrome — It's Free
+  </a>
+  <script>
+    (function() {
+      var floatingCta = document.getElementById('floatingCta');
+      var scrollThreshold = 400;
+      var lastScroll = 0;
+
+      function updateFloatingCta() {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollY > scrollThreshold) {
+          floatingCta.classList.add('visible');
+        } else {
+          floatingCta.classList.remove('visible');
+        }
+
+        lastScroll = scrollY;
+      }
+
+      window.addEventListener('scroll', updateFloatingCta, { passive: true });
+      updateFloatingCta();
+    })();
   </script>
 </body>
 </html>
