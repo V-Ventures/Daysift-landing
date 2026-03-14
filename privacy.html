@@ -372,7 +372,7 @@
   <div class="policy">
     <div class="container">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: February 2026</p>
+      <p class="updated">Last updated: March 2026</p>
 
       <p style="font-size: 17px; color: var(--foreground); margin-bottom: 32px;">Daysift was built with privacy as a core principle, not an afterthought.</p>
 
@@ -387,7 +387,8 @@
         </ul>
         <p><strong>What leaves your device (only when you choose):</strong></p>
         <ul>
-          <li><strong>AI search:</strong> When you ask Daysift AI a question, your query is sent to OpenAI</li>
+          <li><strong>AI classification:</strong> Anonymised metadata (hostname, path pattern) sent to Cloudflare Workers AI</li>
+          <li><strong>AI search:</strong> When you ask Daysift AI a question, your query is processed by <a href="https://groq.com" target="_blank">Groq</a> with Zero Data Retention</li>
           <li><strong>Favicons:</strong> Domain names sent to Google to display site icons</li>
           <li><strong>Daysift subscription:</strong> If you upgrade to a paid plan, payment is processed by <a href="https://www.lemonsqueezy.com" target="_blank">Lemon Squeezy</a></li>
         </ul>
@@ -481,15 +482,21 @@
               <td>100% offline</td>
             </tr>
             <tr>
+              <td>AI classification</td>
+              <td>Anonymised metadata only (hostname, path pattern, title category)</td>
+              <td>Cloudflare Workers AI</td>
+              <td>Automatic for new pages (no full URLs or titles sent)</td>
+            </tr>
+            <tr>
               <td>AI search (Ask AI button)</td>
               <td>Your query + relevant page titles</td>
-              <td>OpenAI</td>
+              <td><a href="https://groq.com" target="_blank">Groq</a> (Zero Data Retention)</td>
               <td>Only when you click "Ask AI"</td>
             </tr>
             <tr>
               <td>AI writing tools (in notes)</td>
               <td>Your selected text</td>
-              <td>OpenAI</td>
+              <td><a href="https://groq.com" target="_blank">Groq</a> (Zero Data Retention)</td>
               <td>Only when you click improve/shorten/etc.</td>
             </tr>
             <tr>
@@ -506,44 +513,60 @@
             </tr>
           </tbody>
         </table>
-        <p><strong>The key difference:</strong> Regular search with ⌘J never touches the network. AI search (via the "Ask AI" button) sends your query to OpenAI to get intelligent answers. You're always in control of which one you use.</p>
+        <p><strong>The key difference:</strong> Regular search with ⌘J never touches the network. AI search (via the "Ask AI" button) sends your query to Groq with Zero Data Retention. You're always in control of which one you use.</p>
       </section>
 
       <section>
-        <h2>About OpenAI Data Processing</h2>
-        <p>When you use the "Ask AI" feature, your data is processed by OpenAI. Here's what you should know:</p>
-        <h3>Data flow</h3>
-        <p>When you use AI search, your query takes this path:</p>
-        <ol style="list-style: decimal; margin-left: 20px; margin-bottom: 16px; color: var(--muted);">
-          <li style="margin-bottom: 8px;"><strong>Your browser</strong> → sends query to our proxy</li>
-          <li style="margin-bottom: 8px;"><strong>Cloudflare Worker</strong> (our proxy) → forwards to OpenAI</li>
-          <li style="margin-bottom: 8px;"><strong>OpenAI API</strong> → processes and returns response</li>
-        </ol>
-        <p>The Cloudflare Worker acts as a secure proxy. It does not store your queries, but Cloudflare may log request metadata (IP addresses, timestamps) per their standard practices.</p>
-        <h3>What's sent to OpenAI</h3>
+        <h2>About AI Data Processing</h2>
+        <p>Daysift uses a privacy-preserving AI architecture with two providers, chosen specifically for their data handling practices.</p>
+
+        <h3>Why not OpenAI or Anthropic?</h3>
+        <p>We evaluated multiple AI providers and rejected those with data retention policies:</p>
+        <ul>
+          <li><strong>OpenAI:</strong> Retains API data for up to 30 days</li>
+          <li><strong>Anthropic (Claude):</strong> Retains API data for up to 30 days (7 days with opt-out)</li>
+          <li><strong>Groq:</strong> Zero Data Retention — nothing logged or stored</li>
+        </ul>
+        <p>We chose Groq because "less retention" wasn't good enough. We wanted zero.</p>
+
+        <h3>What is Groq?</h3>
+        <p><a href="https://groq.com" target="_blank">Groq</a> is an AI inference company (not to be confused with Elon Musk's "Grok" chatbot from xAI). Groq provides fast AI inference with a Zero Data Retention policy — your queries are processed and immediately discarded, never logged or stored. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a>.</p>
+
+        <h3>Two-tier architecture</h3>
+        <p>Daysift uses two AI services for different purposes:</p>
+
+        <p><strong>1. Classification (Cloudflare Workers AI)</strong></p>
+        <p>When Daysift encounters a new page, it may use AI to classify whether it's a work tool. This runs on Cloudflare Workers AI (Llama 3.3 70B) and receives only:</p>
+        <ul>
+          <li>Hostname (e.g., "github.com")</li>
+          <li>Generalised path pattern (e.g., "/*/*/issues/*" — not the actual URL)</li>
+          <li>Title category (e.g., "code" — not the actual title)</li>
+        </ul>
+        <p><strong>Never sent:</strong> Full URLs, actual page titles, page content, or any identifying information.</p>
+
+        <p><strong>2. Search & Summarisation (Groq)</strong></p>
+        <p>When you use "Ask AI", your query is processed by Groq (GPT-OSS 120B model). This includes:</p>
         <ul>
           <li>Your question (the text you type)</li>
           <li>Relevant page titles from your local search results</li>
           <li>Domain names of those pages</li>
         </ul>
-        <h3>What's NOT sent to OpenAI</h3>
+        <p><strong>Never sent:</strong> Page content, your notes, your pins, or browsing history beyond relevant results.</p>
+
+        <h3>Zero Data Retention</h3>
+        <p>Groq's Zero Data Retention means:</p>
         <ul>
-          <li>Page content or extracted keywords</li>
-          <li>Your notes or pinned items</li>
-          <li>Your browsing history beyond relevant search results</li>
-          <li>Any personally identifiable information</li>
+          <li>Your queries are <strong>not logged</strong></li>
+          <li>Your queries are <strong>not stored</strong></li>
+          <li>Your queries are <strong>not used for training</strong></li>
+          <li>Data exists only for the duration of processing, then vanishes</li>
         </ul>
-        <h3>OpenAI's data handling</h3>
-        <p>We use OpenAI's API with data retention disabled. According to OpenAI's <a href="https://openai.com/enterprise-privacy" target="_blank">API data usage policy</a>:</p>
-        <ul>
-          <li>API inputs and outputs are <strong>not used to train OpenAI models</strong></li>
-          <li>Data is retained for up to 30 days for abuse monitoring, then deleted</li>
-        </ul>
-        <p>For full details, see <a href="https://openai.com/privacy" target="_blank">OpenAI's Privacy Policy</a>.</p>
+        <p>We have explicitly enabled Zero Data Retention in our Groq account settings. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a> for details.</p>
+
         <h3>Your consent and withdrawal</h3>
-        <p><strong>First use:</strong> When you first use AI search, you'll be asked to consent to your query being sent to OpenAI. AI features won't work until you accept.</p>
-        <p><strong>Withdrawal:</strong> You can revoke your consent at any time in the extension's Settings → AI Search → "Revoke AI Consent". After revoking, you'll need to consent again to use AI features.</p>
-        <p><strong>After uninstall:</strong> If you uninstall Daysift, your local data is deleted immediately. However, any queries previously sent to OpenAI may be retained by them for up to 30 days per their data retention policy.</p>
+        <p><strong>First use:</strong> When you first use AI search, you'll be asked to consent. AI features won't work until you accept.</p>
+        <p><strong>Withdrawal:</strong> You can revoke your consent at any time in the extension's Settings → AI Search. After revoking, you'll need to consent again to use AI features.</p>
+        <p><strong>After uninstall:</strong> If you uninstall Daysift, your local data is deleted immediately. With Groq's Zero Data Retention, there's nothing retained on their end either.</p>
       </section>
 
       <section>
@@ -554,7 +577,7 @@
           <li>No analytics or tracking</li>
           <li>No passwords or form data</li>
           <li>No cloud storage of your data</li>
-          <li>No data leaves your device (except AI queries when you explicitly use AI search)</li>
+          <li>No data leaves your device (except AI queries processed with Zero Data Retention when you explicitly use AI search)</li>
         </ul>
       </section>
 
@@ -563,7 +586,7 @@
         <ul>
           <li><strong>See your data:</strong> It's on your device — open browser dev tools</li>
           <li><strong>Delete everything:</strong> Uninstall the extension</li>
-          <li><strong>AI queries:</strong> Not stored by us; see OpenAI's privacy policy</li>
+          <li><strong>AI queries:</strong> Not stored by us or Groq (Zero Data Retention)</li>
         </ul>
       </section>
 
@@ -581,16 +604,22 @@
           </thead>
           <tbody>
             <tr>
-              <td>Cloudflare</td>
-              <td>Processor (proxy)</td>
-              <td>AI queries, IP address, request metadata</td>
+              <td>Cloudflare Workers AI</td>
+              <td>Processor (classification)</td>
+              <td>Anonymised metadata only (hostname, path pattern, title category)</td>
               <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">cloudflare.com/privacy</a></td>
             </tr>
             <tr>
-              <td>OpenAI</td>
-              <td>Processor</td>
-              <td>AI queries + relevant page titles</td>
-              <td><a href="https://openai.com/privacy" target="_blank">openai.com/privacy</a></td>
+              <td>Cloudflare Workers</td>
+              <td>Processor (proxy)</td>
+              <td>AI queries routed to Groq, IP address, request metadata</td>
+              <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">cloudflare.com/privacy</a></td>
+            </tr>
+            <tr>
+              <td><a href="https://groq.com" target="_blank">Groq</a></td>
+              <td>Processor (Zero Data Retention)</td>
+              <td>AI queries + relevant page titles — not logged or stored</td>
+              <td><a href="https://groq.com/privacy-policy/" target="_blank">groq.com/privacy-policy</a></td>
             </tr>
             <tr>
               <td>Google Favicon API</td>
@@ -606,7 +635,8 @@
             </tr>
           </tbody>
         </table>
-        <p style="margin-top: 16px;">We have Data Processing Agreements (DPAs) in place with our processors. Cloudflare's DPA is incorporated by reference in their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">Customer DPA</a>. OpenAI's DPA is available at <a href="https://openai.com/policies/data-processing-addendum/" target="_blank">openai.com/policies/data-processing-addendum</a>.</p>
+        <p style="margin-top: 16px;">We have Data Processing Agreements (DPAs) in place with our processors. Cloudflare's DPA is incorporated by reference in their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">Customer DPA</a>. Groq's terms are available at <a href="https://groq.com/terms-of-use/" target="_blank">groq.com/terms-of-use</a>.</p>
+        <p style="margin-top: 8px;"><strong>Note:</strong> <a href="https://groq.com" target="_blank">Groq</a> is an AI inference company, not to be confused with "Grok" (xAI's chatbot).</p>
       </section>
 
       <section>
@@ -620,28 +650,29 @@
         <h3>Local data (most of Daysift)</h3>
         <p>Since Daysift stores your data locally on your device and we cannot access it, traditional data controller/processor roles don't apply to this data. <strong>You control your own data.</strong></p>
         <h3>When you use AI features</h3>
-        <p>When you use "Ask AI," your query is sent to OpenAI. In this case:</p>
+        <p>When you use "Ask AI," your query is processed by Groq with Zero Data Retention. In this case:</p>
         <ul>
-          <li><strong>Daysift</strong> acts as a data controller (we decide to use OpenAI for AI features)</li>
-          <li><strong>OpenAI</strong> acts as a data processor (they process the query on our behalf)</li>
+          <li><strong>Daysift</strong> acts as a data controller (we decide to use Groq and Cloudflare for AI features)</li>
+          <li><strong>Cloudflare</strong> acts as a data processor for classification (anonymised metadata only)</li>
+          <li><strong>Groq</strong> acts as a data processor for search/summarisation (Zero Data Retention — nothing stored)</li>
         </ul>
-        <p>OpenAI processes data in accordance with their <a href="https://openai.com/privacy" target="_blank">Privacy Policy</a> and <a href="https://openai.com/policies/data-processing-addendum" target="_blank">Data Processing Addendum</a>.</p>
+        <p>Groq processes data in accordance with their <a href="https://groq.com/privacy-policy/" target="_blank">Privacy Policy</a> and <a href="https://groq.com/terms-of-use/" target="_blank">Terms of Use</a>.</p>
         <h3>When you make a payment</h3>
         <p>Payment processing is handled by Lemon Squeezy, who acts as an independent data controller for payment data. See their <a href="https://www.lemonsqueezy.com/privacy" target="_blank">Privacy Policy</a>.</p>
         <h3>International data transfers</h3>
         <p>When you use AI features, your data may be transferred outside the UK/EU:</p>
         <ul>
           <li><strong>Cloudflare:</strong> May process data in various locations globally. Covered by their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">DPA</a> which includes Standard Contractual Clauses (SCCs) and UK International Data Transfer Agreement (IDTA).</li>
-          <li><strong>OpenAI:</strong> Processes data in the United States. Covered by their <a href="https://openai.com/policies/data-processing-addendum/" target="_blank">DPA</a> which includes Standard Contractual Clauses for EU/UK transfers.</li>
+          <li><strong>Groq:</strong> Processes data in the United States with Zero Data Retention — data is processed ephemerally and never stored. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a>.</li>
         </ul>
-        <p>These transfer mechanisms ensure your data receives adequate protection when processed outside the UK/EU, as required by data protection law.</p>
+        <p>These transfer mechanisms ensure your data receives adequate protection when processed outside the UK/EU, as required by data protection law. With Groq's Zero Data Retention, data exists only for the duration of processing.</p>
         <h3>Your rights</h3>
         <p>Under UK GDPR and EU GDPR, you have the right to:</p>
         <ul>
           <li><strong>Access:</strong> Your local data is already accessible to you in your browser</li>
           <li><strong>Deletion:</strong> Uninstall the extension to delete all local data</li>
           <li><strong>Portability:</strong> Your data is stored in your browser and can be exported via developer tools</li>
-          <li><strong>Object:</strong> Don't use AI features if you don't want data sent to OpenAI</li>
+          <li><strong>Object:</strong> Don't use AI features if you don't want data processed by Groq</li>
           <li><strong>Withdraw consent:</strong> Revoke AI consent anytime in Settings → AI Search</li>
         </ul>
         <p>For questions about data protection, email <a href="mailto:hello@daysift.com">hello@daysift.com</a>.</p>
