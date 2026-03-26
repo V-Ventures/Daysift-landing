@@ -105,11 +105,11 @@ Daysift is designed with privacy as a core principle:
 
 ## Pricing
 
-- **Free**: 14-day history search, 30 AI queries/month, 5 notes, 5 pins
-- **Pro** ($4/month): Unlimited history, 100 AI queries/month, unlimited notes and pins
+- **Free**: Full history search (12 results), 30 AI queries/month, 5 notes, 5 pins
+- **Pro** ($4/month): More search results, 100 AI queries/month, unlimited notes and pins
 - **Pro+** ($8/month): Everything unlimited including AI queries
 
-Free tier has no time limit - use it indefinitely with the 14-day history window.
+Free tier has no time limit - use it indefinitely.
 
 ## Technical details
 
