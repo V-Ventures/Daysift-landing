@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy in browser extensions: stay safe and productive - Daysift Blog</title>
+  <meta name="description" content="52% of AI Chrome extensions collect your data. Learn how to audit permissions, spot high-risk tools, and protect your privacy without losing productivity.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Privacy in browser extensions: stay safe and productive - Daysift Blog">
+  <meta property="og:description" content="52% of AI Chrome extensions collect your data. Learn how to audit permissions, spot high-risk tools, and protect your privacy without losing productivity.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://daysift.com/blog/privacy-browser-extensions-stay-safe-productive.html">
+  <meta property="og:image" content="https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1774589900195_Woman-reviews-browser-extension-permissions-at-laptop.jpeg">
+  <meta property="og:site_name" content="Daysift">
+  <meta property="article:published_time" content="2026-03-27T05:34:44.501Z">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@daysiftapp">
+  <meta name="twitter:title" content="Privacy in browser extensions: stay safe and productive - Daysift Blog">
+  <meta name="twitter:description" content="52% of AI Chrome extensions collect your data. Learn how to audit permissions, spot high-risk tools, and protect your privacy without losing productivity.">
+  <meta name="twitter:image" content="https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1774589900195_Woman-reviews-browser-extension-permissions-at-laptop.jpeg">
+
+  <!-- SEO -->
+  <link rel="canonical" href="https://daysift.com/blog/privacy-browser-extensions-stay-safe-productive.html">
+  <meta name="theme-color" content="#F8F7F4">
+
+  <link rel="icon" href="../favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P2THKJKR3Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P2THKJKR3Q');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vmbrlb8k8z");
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #F8F7F4;
+      --bg-alt: #F0EFEC;
+      --foreground: #1a1a1a;
+      --muted: #6b6b6b;
+      --muted-light: #999;
+      --border: #e5e4e1;
+      --accent: #F46B45;
+      --accent-hover: #E85D38;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+    nav { padding: 24px 0; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo-wrapper { display: flex; align-items: center; gap: 8px; }
+    .logo-wrapper a { display: flex; align-items: center; }
+    .logo { height: 26px; }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--foreground); }
+    .nav-links a.active { color: var(--foreground); }
+    .nav-links a.accent { color: var(--accent); }
+    .nav-links a.accent:hover { color: var(--accent-hover); }
+    .article { max-width: 680px; margin: 0 auto; padding: 60px 24px 80px; }
+    .article-header { margin-bottom: 40px; }
+    .article-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .article-tag { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+    .article-date { font-size: 13px; color: var(--muted-light); }
+    .article-header h1 { font-size: 36px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 16px; }
+    .article-header .subtitle { font-size: 18px; color: var(--muted); line-height: 1.6; }
+    .article-content { font-size: 17px; line-height: 1.8; }
+    .article-content h2 { font-size: 24px; font-weight: 600; margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .article-content h3 { font-size: 20px; font-weight: 600; margin-top: 32px; margin-bottom: 12px; }
+    .article-content p { margin-bottom: 24px; }
+    .article-content a { color: var(--accent); text-decoration: none; }
+    .article-content a:hover { text-decoration: underline; }
+    .article-content ul, .article-content ol { margin-bottom: 24px; padding-left: 24px; }
+    .article-content li { margin-bottom: 8px; }
+    .article-content blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 32px 0; font-style: italic; color: var(--muted); }
+    .article-content code { background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; font-size: 0.9em; font-family: 'SF Mono', Monaco, monospace; }
+    .article-content pre { background: #1a1a1a; color: #f0f0f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 24px 0; }
+    .article-content pre code { background: none; padding: 0; color: inherit; }
+    .article-content img { max-width: 100%; height: auto; border-radius: 8px; margin: 24px 0; }
+    .article-content kbd { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 4px; padding: 2px 6px; font-size: 0.85em; font-family: 'SF Mono', Monaco, monospace; }
+    .article-back { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+    .article-back a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s; }
+    .article-back a:hover { color: var(--foreground); }
+    .article-cta { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-top: 48px; text-align: center; }
+    .article-cta h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .article-cta p { color: var(--muted); margin-bottom: 20px; }
+    .article-cta .btn { display: inline-block; background: var(--accent); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; font-size: 14px; transition: background 0.15s; }
+    .article-cta .btn:hover { background: var(--accent-hover); }
+    footer { border-top: 1px solid var(--border); padding: 48px 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: flex-start; }
+    .footer-brand { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand img { height: 24px; }
+    .footer-brand span { font-size: 12px; color: var(--muted-light); }
+    .footer-links { display: flex; gap: 64px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--foreground); }
+    @media (max-width: 768px) {
+      .article-header h1 { font-size: 28px; }
+      .article-content { font-size: 16px; }
+      .nav-links { display: none; }
+      footer .container { flex-direction: column; gap: 32px; }
+      .footer-links { flex-wrap: wrap; gap: 32px; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Privacy in browser extensions: stay safe and productive",
+    "description": "52% of AI Chrome extensions collect your data. Learn how to audit permissions, spot high-risk tools, and protect your privacy without losing productivity.",
+    "image": "https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1774589900195_Woman-reviews-browser-extension-permissions-at-laptop.jpeg",
+    "datePublished": "2026-03-27T05:34:44.501Z",
+    "author": { "@type": "Organization", "name": "Daysift" },
+    "publisher": { "@type": "Organization", "name": "Daysift", "logo": { "@type": "ImageObject", "url": "https://daysift.com/logo.png" } }
+  }
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <div class="logo-wrapper">
+        <a href="../"><img src="../logo.png" alt="Daysift" class="logo"></a>
+      </div>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="./" class="active">Blog</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <article class="article">
+    <header class="article-header">
+      <div class="article-meta">
+        <span class="article-tag">Productivity</span>
+        <span class="article-date">March 27, 2026</span>
+      </div>
+      <h1>Privacy in browser extensions: stay safe and productive</h1>
+    </header>
+
+    <div class="article-content">
+      <p><img src="https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1774589900195_Woman-reviews-browser-extension-permissions-at-laptop.jpeg" alt="Woman reviews browser extension permissions at laptop"></p>
+<p>Most Chrome users install a productivity extension and never look back. That’s the problem. The tools you rely on daily to write, research, and manage your workflow may be quietly reading your keystrokes, scanning your open tabs, or transmitting your chat history to remote servers. A 2026 study found that <a href="https://blog.incogni.com/chrome-extensions-privacy-2026/" rel="nofollow noopener noreferrer" target="_blank">67% of AI Chrome extensions</a> collect user data, and most users have no idea it’s happening. This article breaks down exactly how extensions access your data, which ones carry the highest risk, and the specific steps you can take to lock things down without gutting your productivity.</p>
+<h2 id="table-of-contents" tabindex="-1">Table of Contents</h2>
+<ul>
+<li><a href="#how-browser-extensions-access-your-data">How browser extensions access your data</a></li>
+<li><a href="#what-the-data-shows%3A-privacy-risks-in-chrome-extensions">What the data shows: Privacy risks in Chrome extensions</a></li>
+<li><a href="#permission-pitfalls%3A-why-productivity-tools-pose-unique-risks">Permission pitfalls: Why productivity tools pose unique risks</a></li>
+<li><a href="#blocking-trackers%3A-comparing-privacy-extension-performance">Blocking trackers: Comparing privacy extension performance</a></li>
+<li><a href="#how-to-audit-and-optimize-extension-privacy">How to audit and optimize extension privacy</a></li>
+<li><a href="#enhance-workflow-privacy-with-trusted-solutions">Enhance workflow privacy with trusted solutions</a></li>
+<li><a href="#frequently-asked-questions">Frequently asked questions</a></li>
+</ul>
+<h2 id="key-takeaways" tabindex="-1">Key Takeaways</h2>
+<table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Extension permissions matter</td>
+<td>High-risk permissions allow deep access, so review and restrict them carefully.</td>
+</tr>
+<tr>
+<td>Not all trusted tools are private</td>
+<td>Many widely-used productivity extensions collect personal data—even when not in active use.</td>
+</tr>
+<tr>
+<td>Fewer is safer</td>
+<td>Minimize extension count and remove those you don’t regularly use to protect your privacy.</td>
+</tr>
+<tr>
+<td>Audit and adjust regularly</td>
+<td>Use Chrome’s built-in tools to review permissions and extension activity on a routine basis.</td>
+</tr>
+<tr>
+<td>Privacy tools can help</td>
+<td>Top-rated privacy extensions block many trackers but should be used thoughtfully to avoid performance issues.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-browser-extensions-access-your-data" tabindex="-1">How browser extensions access your data</h2>
+<p>Every Chrome extension you install requests a set of permissions. These aren’t just formalities. They define exactly what the extension can see, read, and do inside your browser.</p>
+<p><a href="https://support.google.com/chrome_webstore/answer/186213?hl=en-GB" rel="nofollow noopener noreferrer" target="_blank">Chrome permissions</a> fall into three risk tiers. <strong>High-risk</strong> permissions grant access to all data on every site you visit, plus files on your computer, your webcam, and your microphone. <strong>Medium-risk</strong> permissions access data on all sites or specific ones you choose. <strong>Low-risk</strong> permissions cover things like bookmarks, browsing history, tabs, and location. The gap between low and high risk is enormous, yet many users click through install prompts without reading a single line.</p>
+<p>Extensions often ask for more access than their core function requires. A grammar checker doesn’t need access to your file system. A tab organizer doesn’t need to read data on every site. Yet many request exactly that, because broader permissions make future feature additions easier for developers.</p>
+<p>The Manifest V3 framework, Chrome’s current extension architecture, was designed to reduce some of these risks by limiting background scripts and tightening API access. It helps, but it doesn’t eliminate the problem. Extensions can still collect substantial data within V3 rules.</p>
+<table>
+<thead>
+<tr>
+<th>Permission type</th>
+<th>What it accesses</th>
+<th>Risk level</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>All sites data</td>
+<td>Every page you visit</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Specific site data</td>
+<td>Chosen domains only</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Tabs and history</td>
+<td>URLs, page titles</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>Bookmarks</td>
+<td>Saved links</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Camera/microphone</td>
+<td>Live audio and video</td>
+<td>High</td>
+</tr>
+<tr>
+<td>File system</td>
+<td>Local documents</td>
+<td>High</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1774589889542_Infographic-showing-extension-permissions-and-risk-levels.jpeg" alt="Infographic showing extension permissions and risk levels"></p>
+<p>Typical productivity and AI extensions access page content, form inputs, browsing history, and sometimes clipboard data. That’s a wide surface area for any tool sitting inside your browser.</p>
+<p>Pro Tip: Before installing any extension, click “Details” on the Chrome Web Store listing and scroll to the permissions section. If a simple utility requests access to all your data on all sites, that’s a red flag worth taking seriously. You can also review active permissions anytime at chrome://extensions.</p>
+<h2 id="what-the-data-shows-privacy-risks-in-chrome-extensions" tabindex="-1">What the data shows: Privacy risks in Chrome extensions</h2>
+<p>The numbers from recent research are harder to ignore than most users expect.</p>
+<p>Incogni’s 2026 study of 442 AI-powered Chrome extensions found that <strong>52% collect user data</strong> and <strong>29% collect personally identifiable information (PII)</strong>. Programming and math helper extensions ranked as the riskiest category overall. Among widely used tools, Grammarly and Quillbot both scored as high-risk, despite their mainstream adoption and trusted reputations.</p>
+<blockquote>
+<p>“67% of AI Chrome extensions collect data” — Incogni, 2026 analysis of AI-powered Chrome extensions</p>
+</blockquote>
+<p>The risks aren’t just theoretical. In January 2026, a <a href="https://anonym.legal/blog/malicious-chrome-extension-900k-2026" rel="nofollow noopener noreferrer" target="_blank">900,000-user breach</a> was traced to fake AI tools distributed through the Chrome Web Store. These extensions were specifically designed to steal ChatGPT conversation histories. Separately, a VPN extension harvested AI chat data from 7 million users before it was flagged and removed.</p>
+<p>Here’s a structured way to evaluate any extension’s risk level before you install it:</p>
+<ol>
+<li>Check the number and type of permissions requested.</li>
+<li>Read the <a href="https://daysift.com/privacy.html">extension data collection</a> practices in the developer’s privacy policy.</li>
+<li>Search the extension name alongside terms like “privacy” or “data collection” to surface any reported incidents.</li>
+<li>Look at the last update date. Abandoned extensions are higher risk.</li>
+<li>Check the developer’s other published extensions and their reputation.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Data collected</th>
+<th>PII risk</th>
+<th>Risk rating</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grammarly</td>
+<td>Page content, keystrokes</td>
+<td>Yes</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Quillbot</td>
+<td>Text input, usage data</td>
+<td>Yes</td>
+<td>High</td>
+</tr>
+<tr>
+<td>Generic AI assistant</td>
+<td>Browsing history, chats</td>
+<td>Yes</td>
+<td>High</td>
+</tr>
+<tr>
+<td>uBlock Origin</td>
+<td>Minimal (local only)</td>
+<td>No</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Privacy Badger</td>
+<td>Tracker patterns</td>
+<td>No</td>
+<td>Low</td>
+</tr>
+</tbody>
+</table>
+<p>The pattern is clear: the more an extension interacts with your text and browsing behavior, the more data it tends to collect.</p>
+<h2 id="permission-pitfalls-why-productivity-tools-pose-unique-risks" tabindex="-1">Permission pitfalls: Why productivity tools pose unique risks</h2>
+<p>Productivity extensions occupy a strange position in the privacy conversation. They’re trusted precisely because they’re useful. But that utility often requires exactly the kind of broad access that creates risk.</p>
+<p><img src="https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1774589910830_Person-uses-browser-extension-in-shared-office.jpeg" alt="Person uses browser extension in shared office"></p>
+<p>A writing assistant needs to read what you type. A tab manager needs to see your open tabs. An AI research tool needs to access page content. These are legitimate functional needs. The problem is that many tools request <em>more</em> than what their core features actually require, and users rarely push back.</p>
+<p>The AI and productivity extension category consistently ranks as the riskiest in privacy audits, not because the tools are malicious, but because their design requires deep browser access. That access doesn’t disappear when you’re not actively using the extension.</p>
+<p>Here’s what makes this particularly concerning:</p>
+<ul>
+<li><strong>Dormant extensions still run.</strong> An extension you installed six months ago and forgot about may still be collecting data in the background.</li>
+<li><strong>Permissions don’t expire.</strong> Once granted, access remains until you manually revoke it or uninstall the extension.</li>
+<li><strong>Updates can expand permissions.</strong> An extension that was low-risk at install can request additional permissions after an update, sometimes without a clear prompt.</li>
+<li><strong>Privilege inheritance is a real attack vector.</strong> CVE-2026-0628, a Chrome vulnerability <a href="https://www.malwarebytes.com/blog/news/2026/03/chrome-flaw-let-extensions-hijack-geminis-camera-mic-and-file-access" rel="nofollow noopener noreferrer" target="_blank">patched in January 2026</a>, allowed low-privilege extensions to hijack Chrome’s Gemini panel and gain access to camera, microphone, and file system data. The flaw exploited how extensions inherit permissions from trusted browser components.</li>
+</ul>
+<blockquote>
+<p>“Unused extensions are not harmless. They continue to execute, consume resources, and in some cases transmit data even when you haven’t opened them in months.” — Incogni, 2026</p>
+</blockquote>
+<p>The unused extension risks are easy to underestimate because nothing visible happens. But background activity is exactly what makes dormant extensions dangerous.</p>
+<p>Pro Tip: Fewer installed extensions means fewer potential attack surfaces. Aim to keep only the extensions you use at least once a week. Everything else should be removed, not just disabled.</p>
+<h2 id="blocking-trackers-comparing-privacy-extension-performance" tabindex="-1">Blocking trackers: Comparing privacy extension performance</h2>
+<p>If extensions create risk, privacy-focused extensions are supposed to be the antidote. But how well do they actually work, and does it matter which browser you’re using?</p>
+<p>A <a href="https://excel.fit.vutbr.cz/submissions/2025/015/15.pdf" rel="nofollow noopener noreferrer" target="_blank">benchmarking study</a> comparing privacy tools across browsers found significant performance differences. Ghostery on Firefox blocked the most requests overall, reaching 24,729 total blocked requests in testing. uBlock Origin variants also performed strongly, blocking over 24,000 requests. Chrome versions of the same tools consistently underperformed their Firefox counterparts, which matters if Chrome is your primary work browser.</p>
+<table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>Browser</th>
+<th>Requests blocked</th>
+<th>Performance impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ghostery</td>
+<td>Firefox</td>
+<td>~24,729</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>uBlock Origin</td>
+<td>Firefox</td>
+<td>~24,000+</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Ghostery</td>
+<td>Chrome</td>
+<td>Lower than Firefox</td>
+<td>Low to medium</td>
+</tr>
+<tr>
+<td>Privacy Badger</td>
+<td>Chrome</td>
+<td>Moderate</td>
+<td>Minimal</td>
+</tr>
+<tr>
+<td>uBlock Origin Lite</td>
+<td>Chrome</td>
+<td>Moderate (MV3 limited)</td>
+<td>Minimal</td>
+</tr>
+</tbody>
+</table>
+<p>A few practical takeaways from the data:</p>
+<ul>
+<li>Ghostery and uBlock Origin block roughly <strong>20 to 24% of all browser requests</strong>, which is substantial.</li>
+<li>Running multiple blockers simultaneously doesn’t double your protection. It creates redundancy and can noticeably slow page load times.</li>
+<li>uBlock Origin Lite is the Manifest V3 compatible version for Chrome. It’s less powerful than the full version but still effective for most users.</li>
+<li>Privacy Badger learns from your browsing behavior over time, making it more effective the longer you use it.</li>
+</ul>
+<p>The practical recommendation: pick one primary privacy extension and stick with it. Stacking Ghostery on top of uBlock on top of Privacy Badger creates performance drag without meaningful additional protection. For Chrome users specifically, uBlock Origin Lite or Ghostery are the strongest starting points.</p>
+<h2 id="how-to-audit-and-optimize-extension-privacy" tabindex="-1">How to audit and optimize extension privacy</h2>
+<p>Knowing the risks is only useful if you act on them. Here’s a concrete process for auditing what’s installed and tightening your setup.</p>
+<p><strong>Step-by-step extension audit:</strong></p>
+<ol>
+<li>Open chrome://extensions in your browser. Review every installed extension. If you don’t recognize it or haven’t used it recently, remove it.</li>
+<li>Click “Details” on each remaining extension. Under “Site access,” change the setting to “On click” or “On specific sites” rather than “On all sites.”</li>
+<li>Run Chrome’s built-in <a href="https://support.google.com/chrome/answer/2664769" rel="nofollow noopener noreferrer" target="_blank">Safety Check</a> under Settings &gt; Privacy and Security. It flags extensions that have been removed from the Chrome Web Store, which is often a sign of policy violations.</li>
+<li>Review each extension’s permissions list. If an extension you use for a narrow task has high-risk permissions, check whether a lighter alternative exists.</li>
+<li>Check the <a href="https://developer.chrome.com/docs/extensions/mv2/reference/permissions" rel="nofollow noopener noreferrer" target="_blank">Chrome extension permissions documentation</a> to understand what each permission actually grants. The language in permission prompts is often vague.</li>
+<li>Set a recurring calendar reminder every 90 days to repeat this audit. Extensions update, your usage changes, and new risks emerge.</li>
+</ol>
+<p>For enterprise users, allowlisting specific approved extensions through Chrome’s admin policies is the most robust approach. It prevents employees from installing unapproved tools that could expose company data.</p>
+<p>Pro Tip: Aim to keep your active extension count at two or three maximum. One privacy blocker, one productivity tool you genuinely use daily, and nothing else. Every additional extension is a tradeoff between utility and exposure.</p>
+<p>The “On click” permission setting is particularly underused. It means an extension only activates when you explicitly click its icon, rather than running passively on every page you visit. For most productivity tools, this is a reasonable restriction that cuts background data collection significantly without breaking core functionality.</p>
+<h2 id="enhance-workflow-privacy-with-trusted-solutions" tabindex="-1">Enhance workflow privacy with trusted solutions</h2>
+<p>Taking control of your extension stack is one of the highest-leverage privacy moves you can make as a Chrome power user. Audit ruthlessly, restrict permissions, and keep your installed count low.</p>
+<p><a href="https://chromewebstore.google.com/detail/llnlmmjddpfmjjkhpbjkdpcclgncajag?utm_source=item-share-cb" rel="nofollow noopener noreferrer" target="_blank"><img src="https://csuxjmfbwmkxiegfpljm.supabase.co/storage/v1/object/public/blog-images/organization-20791/1773437714761_daysift.jpg" alt="https://daysift.com"></a></p>
+<p>If you’re looking for a productivity tool built with privacy as a foundation, <a href="https://daysift.com">Daysift</a> is worth exploring. Everything Daysift indexes stays on your machine in local storage. No account required, no cloud sync, no data leaving your browser unless you explicitly use an AI feature. You get instant search across everything you’ve opened in Chrome, floating notes, pinned pages, and AI summaries, all without the data exposure that comes with most productivity extensions. Read the full Daysift privacy policy to see exactly how it handles your data, or <a href="https://daysift.com/start.html">get started today</a> and see what a privacy-first workflow actually feels like.</p>
+<h2 id="frequently-asked-questions" tabindex="-1">Frequently asked questions</h2>
+<h3 id="how-do-i-know-if-a-chrome-extension-is-collecting-my-personal-data" tabindex="-1">How do I know if a Chrome extension is collecting my personal data?</h3>
+<p>Check the permissions requested during installation and review extension settings under chrome://extensions. Extensions asking for broad site access or personal data access are the ones to scrutinize most carefully.</p>
+<h3 id="which-productivity-extensions-are-riskiest-for-privacy" tabindex="-1">Which productivity extensions are riskiest for privacy?</h3>
+<p>AI-powered tools, programming helpers, and popular writing assistants like Grammarly and Quillbot collect the most data according to Incogni’s 2026 analysis of 442 extensions, with 52% collecting user data and 29% collecting PII.</p>
+<h3 id="how-can-i-limit-an-extensions-data-access-without-uninstalling" tabindex="-1">How can I limit an extension’s data access without uninstalling?</h3>
+<p>Set site access to “On click” or restrict it to specific sites in Chrome extension settings. The Chrome permissions guide explains how to use optional permissions to limit what each extension can reach.</p>
+<h3 id="are-privacy-blocking-extensions-safe-to-use-together" tabindex="-1">Are privacy-blocking extensions safe to use together?</h3>
+<p>Using multiple blockers like Ghostery and uBlock Origin together can block more trackers, but stacking blockers creates performance drag without proportional gains. One well-chosen tool performs better than two overlapping ones.</p>
+<h2 id="recommended" tabindex="-1">Recommended</h2>
+<ul>
+<li><a href="https://daysift.com/privacy.html">Privacy Policy - Daysift</a></li>
+<li><a href="https://daysift.com/blog">Blog - Daysift</a></li>
+<li><a href="https://daysift.com">Daysift - Find anything. Instantly.</a></li>
+<li><a href="https://daysift.com/blog/tab-hoarding-isnt-your-fault.html">Why Tab Hoarding Isn’t Your Fault - Daysift Blog</a></li>
+<li><a href="https://instantiplookup.com/protect-your-online-privacy-tips-online-privacy-2026" target="_blank" rel="noopener noreferrer">Protect Your Online Privacy in 2026: Key Data Tips</a></li>
+</ul>
+
+
+      <div class="article-cta">
+        <h3>Try Daysift Free</h3>
+        <p>Find anything in your browser history with one shortcut.</p>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="btn">Install for Chrome</a>
+      </div>
+    </div>
+
+    <div class="article-back">
+      <a href="./">← Back to Blog</a>
+    </div>
+  </article>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="../logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="../#features">Features</a>
+          <a href="../#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="./">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="../aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
