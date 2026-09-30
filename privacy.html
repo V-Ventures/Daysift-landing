@@ -388,7 +388,7 @@
         <p><strong>What leaves your device (only when you choose):</strong></p>
         <ul>
           <li><strong>AI classification:</strong> Anonymised metadata (hostname, path pattern) sent to Cloudflare Workers AI</li>
-          <li><strong>AI search:</strong> When you ask Daysift AI a question, your query is processed by <a href="https://groq.com" target="_blank">Groq</a> with Zero Data Retention</li>
+          <li><strong>AI search &amp; summaries:</strong> When you use Ask AI or summarise a page, the text needed to answer is processed by <a href="https://proton.me/lumo" target="_blank">Proton Lumo</a> (based in Europe), with <a href="https://groq.com" target="_blank">Groq</a> as a fallback if Proton is unavailable</li>
           <li><strong>Favicons:</strong> Domain names sent to Google to display site icons</li>
           <li><strong>Daysift subscription:</strong> If you upgrade to a paid plan, payment is processed by <a href="https://www.lemonsqueezy.com" target="_blank">Lemon Squeezy</a></li>
         </ul>
@@ -488,15 +488,21 @@
               <td>Automatic for new pages (no full URLs or titles sent)</td>
             </tr>
             <tr>
-              <td>AI search (Ask AI button)</td>
-              <td>Your query + relevant page titles</td>
-              <td><a href="https://groq.com" target="_blank">Groq</a> (Zero Data Retention)</td>
-              <td>Only when you click "Ask AI"</td>
+              <td>Ask AI</td>
+              <td>Your question + relevant page titles</td>
+              <td><a href="https://proton.me/lumo" target="_blank">Proton Lumo</a> (Europe); <a href="https://groq.com" target="_blank">Groq</a> fallback</td>
+              <td>Only when you use Ask AI</td>
+            </tr>
+            <tr>
+              <td>Page summary (/sum)</td>
+              <td>The content of the page you're summarising</td>
+              <td><a href="https://proton.me/lumo" target="_blank">Proton Lumo</a> (Europe); <a href="https://groq.com" target="_blank">Groq</a> fallback</td>
+              <td>Only when you summarise a page</td>
             </tr>
             <tr>
               <td>AI writing tools (in notes)</td>
               <td>Your selected text</td>
-              <td><a href="https://groq.com" target="_blank">Groq</a> (Zero Data Retention)</td>
+              <td><a href="https://proton.me/lumo" target="_blank">Proton Lumo</a> (Europe); <a href="https://groq.com" target="_blank">Groq</a> fallback</td>
               <td>Only when you click improve/shorten/etc.</td>
             </tr>
             <tr>
@@ -513,60 +519,60 @@
             </tr>
           </tbody>
         </table>
-        <p><strong>The key difference:</strong> Regular search with ⌘J never touches the network. AI search (via the "Ask AI" button) sends your query to Groq with Zero Data Retention. You're always in control of which one you use.</p>
+        <p><strong>The key difference:</strong> Regular search with ⌘J never touches the network. AI features (Ask AI, summaries, writing tools) send the text needed to answer to Proton Lumo. You're always in control of which one you use.</p>
       </section>
 
       <section>
         <h2>About AI Data Processing</h2>
-        <p>Daysift uses a privacy-preserving AI architecture with two providers, chosen specifically for their data handling practices.</p>
+        <p>Daysift's AI features run on Proton Lumo, chosen for its privacy practices and its European base.</p>
 
-        <h3>Why not OpenAI or Anthropic?</h3>
-        <p>We evaluated multiple AI providers and rejected those with data retention policies:</p>
+        <h3>Why Proton Lumo?</h3>
+        <p>We evaluated multiple AI providers. Most retain your data:</p>
         <ul>
-          <li><strong>OpenAI:</strong> Retains API data for up to 30 days</li>
-          <li><strong>Anthropic (Claude):</strong> Retains API data for up to 30 days (7 days with opt-out)</li>
-          <li><strong>Groq:</strong> Zero Data Retention — nothing logged or stored</li>
+          <li><strong>OpenAI:</strong> retains API data for up to 30 days</li>
+          <li><strong>Anthropic (Claude):</strong> retains API data for up to 30 days (7 days with opt-out)</li>
+          <li><strong>Proton Lumo:</strong> not used for training, and not logged or kept after answering</li>
         </ul>
-        <p>We chose Groq because "less retention" wasn't good enough. We wanted zero.</p>
+        <p>Proton runs open-weight models on its own servers in Europe, under Swiss law, so your data stays out of US jurisdiction. See <a href="https://proton.me/lumo/privacy-policy" target="_blank">Proton Lumo's Privacy Policy</a>.</p>
 
-        <h3>What is Groq?</h3>
-        <p><a href="https://groq.com" target="_blank">Groq</a> is an AI inference company (not to be confused with Elon Musk's "Grok" chatbot from xAI). Groq provides fast AI inference with a Zero Data Retention policy — your queries are processed and immediately discarded, never logged or stored. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a>.</p>
+        <h3>A note on encryption</h3>
+        <p>Proton's Lumo app uses zero-access encryption for saved chats. Daysift reaches Proton over its API rather than the app, so requests travel over an encrypted connection (HTTPS/TLS) but are not end-to-end or zero-access encrypted. Your text passes through Daysift's own service (a Cloudflare Worker) before reaching Proton. We do not claim more than this.</p>
 
-        <h3>Two-tier architecture</h3>
+        <h3>Where each part runs</h3>
         <p>Daysift uses two AI services for different purposes:</p>
 
         <p><strong>1. Classification (Cloudflare Workers AI)</strong></p>
-        <p>When Daysift encounters a new page, it may use AI to classify whether it's a work tool. This runs on Cloudflare Workers AI (Llama 3.3 70B) and receives only:</p>
+        <p>When Daysift encounters a new page, it may use AI to classify whether it's a work tool. This runs on Cloudflare Workers AI and receives only:</p>
         <ul>
           <li>Hostname (e.g., "github.com")</li>
-          <li>Generalised path pattern (e.g., "/*/*/issues/*" — not the actual URL)</li>
-          <li>Title category (e.g., "code" — not the actual title)</li>
+          <li>Generalised path pattern (e.g., "/*/*/issues/*", not the actual URL)</li>
+          <li>Title category (e.g., "code", not the actual title)</li>
         </ul>
         <p><strong>Never sent:</strong> Full URLs, actual page titles, page content, or any identifying information.</p>
 
-        <p><strong>2. Search & Summarisation (Groq)</strong></p>
-        <p>When you use "Ask AI", your query is processed by Groq (GPT-OSS 120B model). This includes:</p>
+        <p><strong>2. Ask AI, summaries &amp; writing tools (Proton Lumo)</strong></p>
+        <p>When you use these features, the text needed to answer is processed by Proton Lumo:</p>
         <ul>
-          <li>Your question (the text you type)</li>
-          <li>Relevant page titles from your local search results</li>
-          <li>Domain names of those pages</li>
+          <li>For Ask AI: your question, plus relevant page titles and domains from your local results</li>
+          <li>For summaries: the content of the page you ask to summarise</li>
+          <li>For writing tools: the text you select in a note</li>
         </ul>
-        <p><strong>Never sent:</strong> Page content, your notes, your pins, or browsing history beyond relevant results.</p>
+        <p>If Proton is temporarily unavailable, requests fall back to <a href="https://groq.com" target="_blank">Groq</a> (US), which operates a Zero Data Retention policy, so AI keeps working.</p>
+        <p><strong>Never sent:</strong> Your notes, your pins, or browsing history beyond what a given feature needs.</p>
 
-        <h3>Zero Data Retention</h3>
-        <p>Groq's Zero Data Retention means:</p>
+        <h3>How your data is handled</h3>
+        <p>For requests processed by Proton Lumo:</p>
         <ul>
-          <li>Your queries are <strong>not logged</strong></li>
-          <li>Your queries are <strong>not stored</strong></li>
-          <li>Your queries are <strong>not used for training</strong></li>
-          <li>Data exists only for the duration of processing, then vanishes</li>
+          <li>Your content is <strong>not used to train AI models</strong></li>
+          <li>Your content is <strong>not logged or kept</strong> after your request is answered</li>
+          <li>Processing happens on Proton's servers in Europe, under Swiss law</li>
         </ul>
-        <p>We have explicitly enabled Zero Data Retention in our Groq account settings. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a> for details.</p>
+        <p>On the rare fallback to Groq, Groq's Zero Data Retention applies: data is processed and discarded, never stored. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a>.</p>
 
         <h3>Your consent and withdrawal</h3>
-        <p><strong>First use:</strong> When you first use AI search, you'll be asked to consent. AI features won't work until you accept.</p>
+        <p><strong>First use:</strong> When you first use an AI feature, you'll be asked to consent. AI features won't work until you accept.</p>
         <p><strong>Withdrawal:</strong> You can revoke your consent at any time in the extension's Settings → AI Search. After revoking, you'll need to consent again to use AI features.</p>
-        <p><strong>After uninstall:</strong> If you uninstall Daysift, your local data is deleted immediately. With Groq's Zero Data Retention, there's nothing retained on their end either.</p>
+        <p><strong>After uninstall:</strong> If you uninstall Daysift, your local data is deleted immediately. Neither Proton nor Groq keeps your AI requests, so there's nothing retained on their end either.</p>
       </section>
 
       <section>
@@ -577,7 +583,7 @@
           <li>No analytics or tracking</li>
           <li>No passwords or form data</li>
           <li>No cloud storage of your data</li>
-          <li>No data leaves your device (except AI queries processed with Zero Data Retention when you explicitly use AI search)</li>
+          <li>No data leaves your device, except the text needed for an AI feature (sent to Proton Lumo) when you explicitly use one</li>
         </ul>
       </section>
 
@@ -586,7 +592,7 @@
         <ul>
           <li><strong>See your data:</strong> It's on your device — open browser dev tools</li>
           <li><strong>Delete everything:</strong> Uninstall the extension</li>
-          <li><strong>AI queries:</strong> Not stored by us or Groq (Zero Data Retention)</li>
+          <li><strong>AI requests:</strong> Not stored by us, and not kept by Proton after answering</li>
         </ul>
       </section>
 
@@ -612,13 +618,19 @@
             <tr>
               <td>Cloudflare Workers</td>
               <td>Processor (proxy)</td>
-              <td>AI queries routed to Groq, IP address, request metadata</td>
+              <td>AI requests routed to Proton Lumo (Groq on fallback), IP address, request metadata</td>
               <td><a href="https://www.cloudflare.com/privacypolicy/" target="_blank">cloudflare.com/privacy</a></td>
             </tr>
             <tr>
+              <td><a href="https://proton.me/lumo" target="_blank">Proton Lumo</a></td>
+              <td>Processor (AI features)</td>
+              <td>Your question or selected text, and for summaries the page content. Not used for training, not kept after answering.</td>
+              <td><a href="https://proton.me/lumo/privacy-policy" target="_blank">proton.me/lumo/privacy-policy</a></td>
+            </tr>
+            <tr>
               <td><a href="https://groq.com" target="_blank">Groq</a></td>
-              <td>Processor (Zero Data Retention)</td>
-              <td>AI queries + relevant page titles — not logged or stored</td>
+              <td>Processor (fallback, Zero Data Retention)</td>
+              <td>AI requests when Proton is unavailable. Not logged or stored.</td>
               <td><a href="https://groq.com/privacy-policy/" target="_blank">groq.com/privacy-policy</a></td>
             </tr>
             <tr>
@@ -635,8 +647,7 @@
             </tr>
           </tbody>
         </table>
-        <p style="margin-top: 16px;">We have Data Processing Agreements (DPAs) in place with our processors. Cloudflare's DPA is incorporated by reference in their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">Customer DPA</a>. Groq's terms are available at <a href="https://groq.com/terms-of-use/" target="_blank">groq.com/terms-of-use</a>.</p>
-        <p style="margin-top: 8px;"><strong>Note:</strong> <a href="https://groq.com" target="_blank">Groq</a> is an AI inference company, not to be confused with "Grok" (xAI's chatbot).</p>
+        <p style="margin-top: 16px;">We have Data Processing Agreements (DPAs) or equivalent terms in place with our processors. Cloudflare's DPA is incorporated by reference in their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">Customer DPA</a>. Proton Lumo's terms are at <a href="https://proton.me/lumo/terms" target="_blank">proton.me/lumo/terms</a>, and Groq's at <a href="https://groq.com/terms-of-use/" target="_blank">groq.com/terms-of-use</a>.</p>
       </section>
 
       <section>
@@ -650,29 +661,31 @@
         <h3>Local data (most of Daysift)</h3>
         <p>Since Daysift stores your data locally on your device and we cannot access it, traditional data controller/processor roles don't apply to this data. <strong>You control your own data.</strong></p>
         <h3>When you use AI features</h3>
-        <p>When you use "Ask AI," your query is processed by Groq with Zero Data Retention. In this case:</p>
+        <p>When you use an AI feature, the text needed to answer is processed by Proton Lumo, with Groq as a fallback. In this case:</p>
         <ul>
-          <li><strong>Daysift</strong> acts as a data controller (we decide to use Groq and Cloudflare for AI features)</li>
-          <li><strong>Cloudflare</strong> acts as a data processor for classification (anonymised metadata only)</li>
-          <li><strong>Groq</strong> acts as a data processor for search/summarisation (Zero Data Retention — nothing stored)</li>
+          <li><strong>Daysift</strong> acts as a data controller (we decide to use Proton, Cloudflare and Groq for AI features)</li>
+          <li><strong>Cloudflare</strong> acts as a data processor for classification (anonymised metadata) and as the proxy that forwards requests</li>
+          <li><strong>Proton Lumo</strong> acts as a data processor for Ask AI, summaries and writing tools (not used for training, not kept after answering)</li>
+          <li><strong>Groq</strong> acts as a data processor only when Proton is unavailable (Zero Data Retention)</li>
         </ul>
-        <p>Groq processes data in accordance with their <a href="https://groq.com/privacy-policy/" target="_blank">Privacy Policy</a> and <a href="https://groq.com/terms-of-use/" target="_blank">Terms of Use</a>.</p>
+        <p>Proton processes data in accordance with its <a href="https://proton.me/lumo/privacy-policy" target="_blank">Privacy Policy</a> and <a href="https://proton.me/lumo/terms" target="_blank">Terms</a>.</p>
         <h3>When you make a payment</h3>
         <p>Payment processing is handled by Lemon Squeezy, who acts as an independent data controller for payment data. See their <a href="https://www.lemonsqueezy.com/privacy" target="_blank">Privacy Policy</a>.</p>
         <h3>International data transfers</h3>
-        <p>When you use AI features, your data may be transferred outside the UK/EU:</p>
+        <p>Here is where your data is processed when you use AI features:</p>
         <ul>
-          <li><strong>Cloudflare:</strong> May process data in various locations globally. Covered by their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">DPA</a> which includes Standard Contractual Clauses (SCCs) and UK International Data Transfer Agreement (IDTA).</li>
-          <li><strong>Groq:</strong> Processes data in the United States with Zero Data Retention — data is processed ephemerally and never stored. See <a href="https://groq.com/privacy-policy/" target="_blank">Groq's Privacy Policy</a>.</li>
+          <li><strong>Proton Lumo:</strong> Processes data on servers in Europe, under Swiss law. Switzerland is recognised by the UK and EU as providing an adequate level of data protection.</li>
+          <li><strong>Cloudflare:</strong> May process data in various locations globally. Covered by their <a href="https://www.cloudflare.com/cloudflare-customer-dpa/" target="_blank">DPA</a>, which includes Standard Contractual Clauses (SCCs) and the UK International Data Transfer Agreement (IDTA).</li>
+          <li><strong>Groq (fallback only):</strong> Processes data in the United States under a Zero Data Retention policy, so data is processed and then discarded.</li>
         </ul>
-        <p>These transfer mechanisms ensure your data receives adequate protection when processed outside the UK/EU, as required by data protection law. With Groq's Zero Data Retention, data exists only for the duration of processing.</p>
+        <p>These mechanisms provide adequate protection when data is processed outside the UK/EU, as required by data protection law.</p>
         <h3>Your rights</h3>
         <p>Under UK GDPR and EU GDPR, you have the right to:</p>
         <ul>
           <li><strong>Access:</strong> Your local data is already accessible to you in your browser</li>
           <li><strong>Deletion:</strong> Uninstall the extension to delete all local data</li>
           <li><strong>Portability:</strong> Your data is stored in your browser and can be exported via developer tools</li>
-          <li><strong>Object:</strong> Don't use AI features if you don't want data processed by Groq</li>
+          <li><strong>Object:</strong> Don't use AI features if you don't want your text processed by Proton Lumo (or Groq on fallback)</li>
           <li><strong>Withdraw consent:</strong> Revoke AI consent anytime in Settings → AI Search</li>
         </ul>
         <p>For questions about data protection, email <a href="mailto:hello@daysift.com">hello@daysift.com</a>.</p>
