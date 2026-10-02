@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changelog - Daysift</title>
+  <meta name="description" content="What's new in Daysift, release by release. New features, improvements, and fixes.">
+
+  <meta property="og:title" content="Changelog - Daysift">
+  <meta property="og:description" content="What's new in Daysift, release by release.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://daysift.com/changelog.html">
+  <meta property="og:image" content="https://daysift.com/og-image.png">
+  <meta property="og:site_name" content="Daysift">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Changelog - Daysift">
+  <meta name="twitter:description" content="What's new in Daysift, release by release.">
+  <meta name="twitter:image" content="https://daysift.com/og-image.png">
+
+  <link rel="canonical" href="https://daysift.com/changelog.html">
+  <meta name="theme-color" content="#F8F7F4">
+  <link rel="icon" href="favicon.png" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="favicon-dark.png" media="(prefers-color-scheme: dark)">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #F8F7F4; --bg-alt: #F0EFEC; --foreground: #1a1a1a; --muted: #6b6b6b;
+      --muted-light: #999; --border: #e5e4e1; --accent: #F46B45; --accent-hover: #E85D38;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--foreground); line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image: linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .container { max-width: 980px; margin: 0 auto; padding: 0 24px; }
+    nav { padding: 24px 0; }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .logo { height: 26px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--foreground); }
+    .nav-links a.active { color: var(--foreground); }
+    .nav-links a.accent { color: var(--accent); }
+
+    .changelog { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+    .changelog-head { margin-bottom: 48px; }
+    .changelog-head h1 { font-size: 36px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .changelog-head p { font-size: 17px; color: var(--muted); }
+
+    .cl-entry { padding: 32px 0; border-top: 1px solid var(--border); }
+    .cl-entry:first-of-type { border-top: none; padding-top: 0; }
+    .cl-meta { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+    .cl-version { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+    .cl-date { font-size: 13px; color: var(--muted-light); }
+    .cl-cat { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin: 20px 0 10px; }
+    .cl-cat:first-of-type { margin-top: 0; }
+    .cl-entry ul { list-style: none; }
+    .cl-entry li { position: relative; padding-left: 20px; margin-bottom: 8px; font-size: 15px; line-height: 1.6; color: #3a3a3a; }
+    .cl-entry li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
+    .cl-entry li strong { color: var(--foreground); font-weight: 600; }
+    .cl-entry code { background: var(--bg-alt); padding: 1px 6px; border-radius: 4px; font-size: 0.88em; font-family: 'SF Mono', Monaco, monospace; }
+
+    footer { border-top: 1px solid var(--border); padding: 48px 0; }
+    footer .container { display: flex; justify-content: space-between; align-items: flex-start; }
+    .footer-brand { display: flex; flex-direction: column; gap: 8px; }
+    .footer-brand img { height: 24px; }
+    .footer-brand span { font-size: 12px; color: var(--muted-light); }
+    .footer-links { display: flex; gap: 64px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 10px; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--foreground); }
+
+    @media (max-width: 768px) {
+      .changelog-head h1 { font-size: 28px; }
+      .nav-links { gap: 16px; }
+      footer .container { flex-direction: column; gap: 32px; }
+      .footer-links { flex-wrap: wrap; gap: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <a href="/"><img src="logo.png" alt="Daysift" class="logo"></a>
+      <div class="nav-links">
+        <a href="/#features">Features</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="blog/">Blog</a>
+        <a href="changelog.html" class="active">Changelog</a>
+        <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank" class="accent">Install extension →</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="changelog">
+    <div class="changelog-head">
+      <h1>Changelog</h1>
+      <p>What we're shipping, release by release.</p>
+    </div>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.24</span><span class="cl-date">October 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li><strong>Optional usage stats</strong> — Daysift can now share simple usage stats about how the product is used, so we can see what's useful and what to improve. We don't collect what you search for, the content of your browsing history, or the sites you visit. It's on by default, and you can turn it off anytime in Settings → Data.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.23</span><span class="cl-date">September 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li><strong>Private AI, now on Proton</strong> — Ask AI and page summaries now run on Proton Lumo, based in Europe. Your text isn't used for training, isn't logged, and isn't kept after it answers. Your history stays on your device, as always.</li>
+        <li><strong>Google Workspace filters</strong> — Sheets, Slides, and Forms each get their own filter pill instead of all sitting under Docs.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.20</span><span class="cl-date">March 2026</span></div>
+      <h3 class="cl-cat">Improvements</h3>
+      <ul>
+        <li><strong>Expanded search results</strong> — Free users now see 12 results (was 8); Pro users see 30 with "Show more" to load up to 100.</li>
+        <li><strong>Search all your history</strong> — Free users can now search all-time history, not just the last 14 days.</li>
+        <li><strong>Faster first experience</strong> — History import shows results almost instantly (first 200 items load immediately, the rest in the background).</li>
+      </ul>
+      <h3 class="cl-cat">Fixes</h3>
+      <ul>
+        <li><strong>Pinned items restored</strong> — <code>/pins</code> now shows all your pinned pages, even if they weren't in recent results.</li>
+        <li>Fixed an edge case where the "work" filter could apply by default.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.19</span><span class="cl-date">March 2026</span></div>
+      <h3 class="cl-cat">Performance</h3>
+      <ul>
+        <li>Faster initial load — results appear instantly when you open Daysift.</li>
+        <li>Parallel data fetching — storage, history cache, and filter rules load simultaneously.</li>
+        <li>Smoother result animations — results fade in with a subtle cascade.</li>
+      </ul>
+      <h3 class="cl-cat">Fixes</h3>
+      <ul>
+        <li>If your only tab is the Chrome Web Store when you press ⌘J, Daysift now opens a new tab instead of failing silently.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.18</span><span class="cl-date">March 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li><strong>Redesigned onboarding</strong> — a new welcome flow introduces Search, AI, and Notes with live demos.</li>
+        <li><strong>What's New notifications</strong> — when we ship notable features, a bell appears in the footer so you never miss them.</li>
+        <li><strong>Stay in the loop</strong> — optional email signup for new features and tips.</li>
+        <li><strong>Smart classification</strong> — Daysift decides what to index using heuristics, not just a static allowlist.</li>
+        <li><strong>Mixed-use domain support</strong> — YouTube tutorials and Reddit programming threads are indexed; cat videos and memes are not.</li>
+        <li><strong>Domain learning prompts</strong> — if you often visit a site that's being excluded, Daysift offers to include it.</li>
+        <li><strong>E / I shortcuts</strong> — press E to always exclude a domain, I to always include it.</li>
+        <li><strong>AI streaming</strong> — answers appear word-by-word as they're generated.</li>
+        <li><strong>Hybrid shopping detection</strong> — e-commerce pages are detected and kept out of your history.</li>
+      </ul>
+      <h3 class="cl-cat">Improvements</h3>
+      <ul>
+        <li>Skeleton loader on launch — a smooth shimmer while results load, no blank flash.</li>
+        <li>Fixed modal and search-bar height — no more jump or shift as content loads.</li>
+        <li>New asterisk icon for AI, with a subtle spin-and-scale loading animation.</li>
+        <li>Better junk filtering — 404 pages, direct image URLs, and CDN assets no longer clutter history.</li>
+        <li>Domain prompt banner with keyboard navigation (arrow keys to select, Enter to confirm).</li>
+        <li>Fixed Google Groups, Substack, and Spotify favicons; consistent spacing throughout.</li>
+        <li><strong>Search precision</strong> — short queries like "AI" no longer match unrelated words like "email".</li>
+      </ul>
+      <h3 class="cl-cat">Fixes</h3>
+      <ul>
+        <li>Follow-up questions after <code>/sum</code> now work — AI remembers the page content, and streams.</li>
+        <li>"Out of AI credits" now shows the proper upgrade modal everywhere.</li>
+        <li>Onboarding — pressing ⌘J on the final screen now opens Daysift on your previous tab.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.16</span><span class="cl-date">March 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li><strong>Page summarization</strong> — type <code>/sum</code> to get an AI summary of any page.</li>
+        <li>Floating "Add to Chrome" button as you scroll the landing page.</li>
+      </ul>
+      <h3 class="cl-cat">Improvements</h3>
+      <ul>
+        <li>Cleaner AI answers — proper section headers, bullet formatting, and spacing.</li>
+        <li>Redesigned AI answer card with copy and regenerate buttons inside the card.</li>
+        <li>Recent results limited to 3 per domain to reduce clutter.</li>
+        <li>Reliable keyboard navigation (↑↓).</li>
+      </ul>
+      <h3 class="cl-cat">Fixes</h3>
+      <ul>
+        <li>AI consent now appears for page summaries.</li>
+        <li>Arrow keys no longer blocked by the input field; tooltips stay within bounds.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.15</span><span class="cl-date">February 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li>Redesigned Settings page with sidebar navigation.</li>
+        <li>Tier-specific upgrade paths and an AI Credits display with a reset countdown.</li>
+      </ul>
+      <h3 class="cl-cat">Improvements</h3>
+      <ul>
+        <li>Clearer upgrade flow, with a benefits list of what each tier unlocks.</li>
+        <li>Smoother scroll navigation in settings.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.13</span><span class="cl-date">February 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li>Open-in-new-tab toggle — choose whether results open in a new tab or replace the current one.</li>
+      </ul>
+      <h3 class="cl-cat">Improvements</h3>
+      <ul>
+        <li>Refined tooltips and menu hover states; the version number now shows in the Daysift menu.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.10</span><span class="cl-date">January 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li>Onboarding flow — new users see a welcome screen on first install.</li>
+      </ul>
+      <h3 class="cl-cat">Fixes</h3>
+      <ul>
+        <li>Fixed an issue where onboarding wouldn't trigger on fresh installs.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0.9</span><span class="cl-date">January 2026</span></div>
+      <h3 class="cl-cat">New</h3>
+      <ul>
+        <li><strong>Floating notes</strong> — capture ideas without leaving your current page.</li>
+        <li><strong>Pinned pages</strong> — keep your most-used pages one keystroke away.</li>
+        <li><strong>Domain filters</strong> — narrow search results by app.</li>
+      </ul>
+      <h3 class="cl-cat">Improvements</h3>
+      <ul>
+        <li>Faster search with improved fuzzy matching, and better keyboard navigation throughout.</li>
+      </ul>
+    </section>
+
+    <section class="cl-entry">
+      <div class="cl-meta"><span class="cl-version">1.0</span><span class="cl-date">December 2025</span></div>
+      <h3 class="cl-cat">Initial release</h3>
+      <ul>
+        <li>Command palette search (⌘J on Mac, Alt+J on Windows).</li>
+        <li>Smart history indexing for work apps only.</li>
+        <li>Light and dark themes with system-preference support.</li>
+        <li>Slash commands for quick actions.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-brand">
+        <img src="logo.png" alt="Daysift">
+        <span>© 2026 Daysift</span>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="/#features">Features</a>
+          <a href="/#pricing">Pricing</a>
+          <a href="https://chromewebstore.google.com/detail/daysift/llnlmmjddpfmjjkhpbjkdpcclgncajag" target="_blank">Install</a>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <a href="blog/">Blog</a>
+          <a href="changelog.html">Changelog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="aup.html">Acceptable Use</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="mailto:hello@daysift.com">hello@daysift.com</a>
+          <a href="https://x.com/daysiftapp" target="_blank">X / Twitter</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
